@@ -1,14 +1,13 @@
-var express = require('express');
-var bodyParser= require('body-parser');
+var express = require("express");
+var bodyParser = require("body-parser");
 
-var server = express(); 
+var server = express();
 
+const routes = require("./src/routes/index");
 
-const routes = require('./routes/index')
-
-server.use(bodyParser.urlencoded({extended:false}));
+server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 //rutas base
-server.use('/',routes);
-module.exports=server;
+server.use("/", routes);
+module.exports = server;

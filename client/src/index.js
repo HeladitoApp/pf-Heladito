@@ -15,7 +15,6 @@ root.render(
     <ChakraProvider>
       <App />
     </ChakraProvider>
-      <App />
   </Provider>
 );
 

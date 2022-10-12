@@ -1,0 +1,1 @@
+export const ProductsCategory = ['Helados', 'Combos', 'Bombones', 'Shakes', 'Crepes', 'Parfaits']

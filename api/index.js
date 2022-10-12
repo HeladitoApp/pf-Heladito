@@ -1,11 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const server = require("./app.js");
-/* const { DB_USERS, DB_PASSWORD, DB_HOST } = process.env; */
 const port = 3800;
 
 mongoose
   .connect(
-    `mongodb+srv://heladitosapp:grupo06@cluster0.4vule79.mongodb.net/heladitos`
+    process.env.ADMIN_ID
   )
   .then(() => {
     console.log("La conexion a MongoDB se ha realizado correctamente");
@@ -15,3 +15,6 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
+
+  //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO poner en archivo .env esto: 
+  //ADMIN_ID="mongodb+srv://heladitosapp:grupo06@cluster0.4vule79.mongodb.net/heladitos"

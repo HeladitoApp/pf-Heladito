@@ -3,7 +3,7 @@ const Productos = require("../models/Productos");
 async function postProductos(data) {
   try {
     const newInfo = new Productos();
-    if (data) {
+    if (!data) {
       throw new Error(
         "Error al subir el Producto a la DB. Verifique que la informacion ingresada sea a correcta"
       );

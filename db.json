@@ -288,35 +288,40 @@
             "name": "Aguaymanto",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/aguaymanto_buwmit.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings frutas"
           },
           {
             "id": 2,
             "name": "Banana",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/banana_pmb4tp.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings frutas"
           },
           {
             "id": 3,
             "name": "Fresa",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186869/e.fresa_djouna.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings frutas"
           },
           {
             "id": 4,
             "name": "Sandia",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/sandia_shrnbr.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings frutas"
           },
           {
             "id": 5,
             "name": "Piña",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/pi%C3%B1a_a32ahi.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings frutas"
           }
         ],
         "secos": [
@@ -325,105 +330,120 @@
             "name": "Brownie Bites",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/brownie_bites_zja5xc.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 2,
             "name": "Cookies",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/cdookies_glvvmk.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 3,
             "name": "Cheesecake Bites",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/cheesecake_bites_ozlybo.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 4,
             "name": "Cookies & Cream",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/cookies_cream_w4sj3f.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 5,
             "name": "Delicrispi",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186869/delicrispi_qyd0zi.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 6,
             "name": "Barquillo",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/barquillo_dm9ilz.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 7,
             "name": "Boba de Fresa",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/boba_de_fresa_nkklyv.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 8,
             "name": "Boba de Mango",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186868/boba_de_mango_zwpdhh.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 9,
             "name": "Gomitas",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186869/gomitas_solwuv.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 10,
             "name": "Granola",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186869/granola_pttsdt.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 11,
             "name": "Lentejitas",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186869/lentejitas_g0mxzq.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 12,
             "name": "Mani Tostado",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/mani_tostado_pvvavs.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 13,
             "name": "Mini-marshmellow",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/Mini_Marshmellow_joxuxi.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 14,
             "name": "Sprinkles",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/sprinkles_heosdc.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           },
           {
             "id": 15,
             "name": "White Chocolate Chips",
             "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186870/white_chocolate_chips_kelyzb.png",
             "price": 123,
-            "stock": ""
+            "stock": "",
+            "type": "toppings secos"
           }
         ]
       }
@@ -432,27 +452,32 @@
       {
         "id": 1,
         "name": "Choco-avellana",
-        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_chocoavellana_oj36qv.png"
+        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_chocoavellana_oj36qv.png",
+        "type": "sabores"
       },
       {
         "id": 2,
         "name": "Cookies & cream",
-        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_cookies_cream_x76sdl.png"
+        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_cookies_cream_x76sdl.png",
+        "type": "sabores"
       },
       {
         "id": 3,
         "name": "Lúcuma",
-        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_lucuma_wrrvur.png"
+        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_lucuma_wrrvur.png",
+        "type": "sabores"
       },
       {
         "id": 4,
         "name": "Vainilla",
-        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_original_urqtim.png"
+        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_original_urqtim.png",
+        "type": "sabores"
       },
       {
         "id": 5,
         "name": "Maracuya",
-        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_maracuya_fbwydd.png"
+        "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.sabor_maracuya_fbwydd.png",
+        "type": "sabores"
       }
     ]
   }

@@ -10,6 +10,7 @@ const { getById } = require("../controllers/productosByIdController");
 const {
   postProductosController,
 } = require("../controllers/postProductosController");
+const { postExtraController } = require("../controllers/postExtrasController");
 
 const router = Router();
 // Rutas:
@@ -24,5 +25,6 @@ router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
 
 router.post("/createProducto", postProductosController);
+router.post("/createExtra", postExtraController);
 
 module.exports = router;

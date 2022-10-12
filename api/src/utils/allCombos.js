@@ -2,7 +2,7 @@ const Productos = require("../models/Productos");
 
 async function allCombos() {
   try {
-    const combos = await Productos.find({ type: "combos"});
+    const combos = await Productos.find({ type: "combos" });
     if (!combos.length) {
       throw new Error(
         "Error al cargar los Productos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
@@ -16,5 +16,5 @@ async function allCombos() {
 }
 
 module.exports = {
-    allCombos,
+  allCombos,
 };

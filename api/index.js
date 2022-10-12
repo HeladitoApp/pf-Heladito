@@ -16,5 +16,4 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-  //OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO poner en archivo .env esto: 
-  //ADMIN_ID="mongodb+srv://heladitosapp:grupo06@cluster0.4vule79.mongodb.net/heladitos"
+  

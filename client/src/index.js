@@ -3,15 +3,11 @@ import '@fontsource/quicksand/400.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from "react-redux"
-import { ChakraProvider } from '@chakra-ui/react';
-
-import store from "./redux/store";
-import theme from './theme/theme';
-
 import './index.css';
-import App from './App'
-
+import App from './App';
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { ChakraProvider } from '@chakra-ui/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +16,7 @@ root.render(
       <App />
     </ChakraProvider>
   </Provider>
+
 );
 
 

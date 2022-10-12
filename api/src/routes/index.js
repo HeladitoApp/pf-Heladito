@@ -21,6 +21,6 @@ router.get("/productos/toppings/secos", getAllSecos);
 router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 
-router.post("/create", postProductosController);
+router.post("/createProducto", postProductosController);
 
 module.exports = router;

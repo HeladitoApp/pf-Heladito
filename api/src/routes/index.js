@@ -9,6 +9,7 @@ const { getAllCombos } = require("../controllers/allCombosController");
 const {
   postProductosController,
 } = require("../controllers/postProductosController");
+const { postExtraController } = require("../controllers/postExtrasController");
 
 const router = Router();
 // Rutas:
@@ -22,5 +23,6 @@ router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 
 router.post("/createProducto", postProductosController);
+router.post("/createExtra", postExtraController);
 
 module.exports = router;

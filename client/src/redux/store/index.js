@@ -1,7 +1,10 @@
 import {configureStore } from "@reduxjs/toolkit"
-import users from "../slices"
+// import users from "../slices"
+import data from '../slices/index'
 export default configureStore({
     reducer:{
-        users
+        data:data
+        // helados: helados
+
     }
 })

@@ -1,17 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit'
-//Prueba
+
 export const userSlice = createSlice({
-    name: "user",
+    name: 'data',
     initialState:{
-        list: "hola estado incial"
+        helados: []
     },
     reducers:{
-        //Aqui se realiza las actions
-        addList: (state,action)=>{
-            state.list = "hola"
+        getHelados: (state, action) => {
+            state.helados = action.payload
         }
     }
 })
-//{´------------}
-export const {addList} = userSlice.actions
+export const {getHelados} = userSlice.actions
 export default userSlice.reducer

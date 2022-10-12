@@ -1,10 +1,12 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const server = require("./app.js");
-const { DB_USERS, DB_PASSWORD, DB_HOST } = process.env;
 const port = 3800;
 
 mongoose
-  .connect(`mongodb+srv://${DB_USERS}:${DB_PASSWORD}@${DB_HOST}/heladitos`)
+  .connect(
+  process.env.ADMIN_ID 
+  )
   .then(() => {
     console.log("La conexion a MongoDB se ha realizado correctamente");
 
@@ -13,3 +15,5 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
+
+  

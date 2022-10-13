@@ -9,14 +9,13 @@ import {
     AccordionIcon,
     Wrap,
     WrapItem,
-    Center,
     Image,
     Box,
     Checkbox,
 } from '@chakra-ui/react';
 import s from './Lists.module.css';
 
-export const FlavorsList = () => {
+export default function FlavorsList() {
 
     const flavors = useSelector(state => state.state.flavors);
     const dispatch = useDispatch();
@@ -25,13 +24,13 @@ export const FlavorsList = () => {
         dispatch(getFlavorsFromDb());
     }, [dispatch])
 
-    //const [flavor, setFlavor] = useState('');
+    const [sabor, setSabor] = useState('');
 
     const handleClick = (e) => {
         e.preventDefault();
-        /* setFlavor({
-            ...flavor,
-            [flavor]: e.target.value,
+        /* setSabor({
+            ...sabor,
+            [sabor]: e.target.value,
         }); */
     };
 
@@ -50,7 +49,7 @@ export const FlavorsList = () => {
                     <Wrap>
                         {flavors.map((flavor, index) => (
                             <WrapItem key={index}>
-                                <Checkbox className={s.prueba} align="center" justify="center" w='180px' h='200px' bg='white' value={flavor.name} name='sabor' onClick={handleClick}>
+                                <Checkbox className={s.prueba} align="center" justify="center" w='180px' h='200px' bg='white' value={sabor.name} name='sabor' onClick={handleClick}>
                                     <Image src={flavor.image} alt={'sabor' + flavor.id} />
                                     {flavor.name}
                                 </Checkbox>

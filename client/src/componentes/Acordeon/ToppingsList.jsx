@@ -9,14 +9,13 @@ import {
     AccordionIcon,
     Wrap,
     WrapItem,
-    Center,
     Image,
     Box,
     Checkbox,
 } from '@chakra-ui/react';
 import s from './Lists.module.css';
 
-export const ToppingsList = () => {
+export default function ToppingsList() {
 
     const toppings = useSelector(state => state.state.toppings);
     const dispatch = useDispatch();

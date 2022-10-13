@@ -2,7 +2,7 @@ const Productos = require("../models/Productos");
 
 async function allHelados() {
   try {
-    const helados = await Productos.find({ type: "helados"});
+    const helados = await Productos.find({ type: "helados" });
     if (!helados.length) {
       throw new Error(
         "Error al cargar los Productos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
@@ -16,5 +16,5 @@ async function allHelados() {
 }
 
 module.exports = {
-    allHelados,
+  allHelados,
 };

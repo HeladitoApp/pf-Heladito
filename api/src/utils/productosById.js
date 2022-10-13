@@ -9,11 +9,10 @@ async function productoById(req, res) {
               "Error al cargar el id desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
             );
           } else { 
-            return productoId /* res.status(200).send({productoId}) */;
+            return productoId
           }
         } catch (error) { 
-           /*  res.status(404).send({
-                message: 'No hay Helados'}) */
+           
         console.error(`${error.name} : ${error.message}`);
         }
 }

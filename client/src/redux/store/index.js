@@ -1,7 +1,7 @@
 import {configureStore } from "@reduxjs/toolkit"
-import users from "../slices"
+import state from "../slices"
 export default configureStore({
     reducer:{
-        users
+        state
     }
 })

@@ -6,6 +6,9 @@ export const state = createSlice({
         productos: [],
         flavors: [],
         toppings: [],
+        types: [],
+        details: {},
+        carrito: {}
     },
     reducers: {
         //Aqui se realiza las actions
@@ -18,7 +21,20 @@ export const state = createSlice({
         getToppings: (state, action) => {
             state.toppings = action.payload
         },
+        getDetails: (state, action) => {
+            state.details = action.payload
+        },
+        getTypes: (state, action) => {
+            state.types = action.payload
+        },
+        filterByType: (state, action) => {
+            state.productos = action.payload
+        },
+        addToCart: (state, {payload}) => {
+            state.carrito = { ...state.carrito, payload }
+        }
     }
-})
+});
+
 export const { getProductos, getFlavors, getToppings } = state.actions;
 export default state.reducer;

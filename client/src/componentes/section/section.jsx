@@ -1,15 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductos } from '../../redux/slices';
+import Card from '../cards/card';
 
 const Section = () => {
   const productos = useSelector((state)=>state.state.productos);
-    return (
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getProductos())
+  },[dispatch]);
+  console.log(productos);  
+  return (
     <div>
       <h3>Título de la sección</h3>
-      <Order />
+      {/* <Order /> */}
       {
         productos?.map(p=> {
-            <Cards
+            <Card
             id={p.id}
             image={p.image}
             name={p.name}

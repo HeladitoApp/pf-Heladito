@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getHelados, getSabores, getProductos, getToppings, getFrutas, getSecos, getCombos} from './reducer'
+import {getHelados, getSabores, getProductos, getToppings, getFrutas, getSecos, getCombos} from '../slices/reducer'
 
 export const traerHelados = () => (dispatch) => {
     axios.get("http://localhost:3800/productos/helados")

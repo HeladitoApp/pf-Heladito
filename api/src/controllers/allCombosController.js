@@ -5,7 +5,7 @@ async function getAllCombos(req, res) {
   try {
     result
       ? res.status(200).send(result)
-      : res.status(502).send({ message: "Error al cargar los Productos desde la DB" });
+      : res.status(502).send({ message: "Error al cargar los Combos desde la DB" });
   } catch (error) {
     console.error({ message: error.message });
   }

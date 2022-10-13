@@ -5,7 +5,7 @@ async function allSecos() {
     const secos = await Extras.find({ type: { $regex: "secos" } });
     if (!secos.length) {
       throw new Error(
-        "Error al cargar los Productos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
+        "Error al cargar los Secos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
       );
     } else {
       return secos;

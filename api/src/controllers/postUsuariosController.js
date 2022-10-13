@@ -9,7 +9,7 @@ async function postUsuariosController(req, res) {
       ? res.status(200).send(result)
       : res.status(502).send({
           message:
-            "Error al subir el Usuario a la BD ",
+            "Error al subir el Usuario a la BD",
         });
   } catch (error) {
     console.error({ message: error.message });

@@ -6,7 +6,7 @@ async function getAllProducts(req, res) {
   try {
     if (name) {
       let query = await queryFunction(name);
-      query
+      query.length
         ? res.status(200).send(query)
         : res.status(502).send({
             message: "No se ha encontrado el producto que estás buscando",

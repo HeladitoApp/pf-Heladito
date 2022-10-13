@@ -6,6 +6,9 @@ const { getAllFrutas } = require("../controllers/allFrutasController");
 const { getAllSecos } = require("../controllers/allSecosController");
 const { getAllHelados } = require("../controllers/allHeladosController");
 const { getAllCombos } = require("../controllers/allCombosController");
+const {
+  postProductosController,
+} = require("../controllers/postProductosController");
 
 const router = Router();
 // Rutas:
@@ -17,5 +20,7 @@ router.get("/productos/toppings/frutas", getAllFrutas);
 router.get("/productos/toppings/secos", getAllSecos);
 router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
+
+router.post("/createProducto", postProductosController);
 
 module.exports = router;

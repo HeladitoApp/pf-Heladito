@@ -1,17 +1,24 @@
-import {createSlice} from '@reduxjs/toolkit'
-//Prueba
-export const userSlice = createSlice({
-    name: "user",
-    initialState:{
-        list: "hola estado incial"
+import { createSlice } from '@reduxjs/toolkit';
+
+export const state = createSlice({
+    name: "state",
+    initialState: {
+        productos: [],
+        flavors: [],
+        toppings: [],
     },
-    reducers:{
+    reducers: {
         //Aqui se realiza las actions
-        addList: (state,action)=>{
-            state.list = "hola"
-        }
+        getProductos: (state, action) => {
+            state.productos = action.payload
+        },
+        getFlavors: (state, action) => {
+            state.flavors = action.payload
+        },
+        getToppings: (state, action) => {
+            state.toppings = action.payload
+        },
     }
 })
-//{´------------}
-export const {addList} = userSlice.actions
-export default userSlice.reducer
+export const { getProductos, getFlavors, getToppings } = state.actions;
+export default state.reducer;

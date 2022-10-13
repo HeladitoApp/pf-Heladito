@@ -1,6 +1,5 @@
 //import './App.css';
-import { Route } from "react-router-dom";
-import { Switch } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./componentes/navBar/NavBar";
 import { CardDetail } from "./page/detail/CardDetail";
@@ -16,14 +15,14 @@ function App() {
   return (
     <div>
       <NavBar />
-      <Switch>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:productId" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
         <Route path="/users/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
-      </Switch>
+      </Routes>
     </div>
   );
 }

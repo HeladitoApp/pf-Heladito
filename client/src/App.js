@@ -5,7 +5,7 @@ import NavBar from "./componentes/navBar/NavBar";
 import { CardDetail } from "./page/detail/CardDetail";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
-import Admin from "./page/users/Admin";
+import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
 

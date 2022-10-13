@@ -4,13 +4,13 @@ import { FlavorsList } from "./componentes/Acordeon/FlavorsList";
 import { ToppingsList } from "./componentes/Acordeon/ToppingsList";
 import { CardDetail } from "./page/detail/CardDetail";
 
+import NavBar from "./componentes/navBar/NavBar";
+
+
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        {/* <CardDetail /> */}
-        <FlavorsList />
-        <ToppingsList />
+      <BrowserRouter>      
         {/* <Route></Route> */}
       </BrowserRouter>
     </div>

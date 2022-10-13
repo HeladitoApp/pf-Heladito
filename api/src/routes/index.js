@@ -11,8 +11,8 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/postExtrasController");
-const { postUsuarios } = require("../utils/postUsuarios");
 const { postUsuariosController } = require("../controllers/postUsuariosController");
+const { validateCreate } = require('../validators/users')
 
 const router = Router();
 // Rutas:
@@ -28,6 +28,6 @@ router.get("/productos/:id", getById);
 
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
-router.post("/usuarios", postUsuariosController);
+router.post("/usuarios", validateCreate, postUsuariosController);
 
 module.exports = router;

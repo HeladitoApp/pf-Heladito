@@ -5,7 +5,7 @@ async function postUsuarios(data) {
     const newInfo = new Usuarios();
     if (!data) {
       throw new Error(
-        "Error al subir el Producto a la DB. Verifique que la informacion ingresada sea a correcta"
+        "Error al crear el ususario. Verifique que la informacion ingresada sea a correcta"
       );
     } else {
          

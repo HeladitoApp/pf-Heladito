@@ -4,7 +4,7 @@ import { Box, Flex, Image, Link, chakra, Badge, Center, Heading, Text, Button } 
 // import { getProdsFromDb } from "../../redux/actions/products";
 // import { useEffect } from "react";
 import { Link as ReachLink } from "react-router-dom";
-export default function Card({ id, img, name, price }) {
+export default function Card({ _id, img, name, price }) {
 
     // const dispatch = useDispatch()
     // const productos = useSelector(state => state.state.productos)
@@ -40,7 +40,7 @@ export default function Card({ id, img, name, price }) {
                     New
                 </Badge> */}
                 <Text p={5} fontFamily={'family.body'} fontSize='2xl'>Precio $/{price}</Text>
-                <Link as={ReachLink} to={`/detail/${id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
+                <Link as={ReachLink} to={`/detail/${_id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
                     Seleccionar
                 </Link>
             </Box>

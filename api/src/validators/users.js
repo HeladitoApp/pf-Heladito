@@ -8,7 +8,7 @@ const validateCreate = [
         .isEmpty(),
     check('password')
         .exists()
-        .isLength({ min: 5, max:10 } ),
+        .isLength({ min: 5, max:10 }),
     check('mail')
         .exists()
         .isEmail()

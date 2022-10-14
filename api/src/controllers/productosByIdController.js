@@ -5,7 +5,7 @@ async function getById(req, res) {
     try {
       result
         ? res.status(200).send(result)
-        : res.status(502).send({ message: "No hay productos con este id, verificar en DB" });
+        : res.status(502).send({ message: "No hay Productos asociados con este id, verificar en DB" });
     } catch (error) {
       console.error({ message: error.message });
     }

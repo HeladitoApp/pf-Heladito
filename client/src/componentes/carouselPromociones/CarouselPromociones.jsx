@@ -29,9 +29,9 @@ const CarouselPromociones = () => {
         {
         img: "https://www.pinkberry.pe/Multimedia/slider/Banner_CoockiesCream_V1.PNG",
         },
-        // {
-        // img: "https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-        // },
+        {
+        img: "https://www.pinkberry.pe/Multimedia/slider/Banner_Fresa_Chirimoya_V1.PNG",
+        },
         // {
         // img: "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         // },

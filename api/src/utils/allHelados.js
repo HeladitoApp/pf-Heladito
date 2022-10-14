@@ -5,7 +5,7 @@ async function allHelados() {
     const helados = await Productos.find({ type: "helados" });
     if (!helados.length) {
       throw new Error(
-        "Error al cargar los Productos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
+        "Error al cargar los Helados desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
       );
     } else {
       return helados;

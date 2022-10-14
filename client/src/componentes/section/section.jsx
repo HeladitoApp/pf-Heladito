@@ -1,30 +1,67 @@
+import s from './section.module.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductos } from '../../redux/slices';
 import Card from '../cards/card';
+import { getProdsFromDb } from '../../redux/actions/products';
+// import { getTypesFromProducts } from '../../redux/actions/types';
+import { Divider, Heading  } from '@chakra-ui/react'
 
 const Section = () => {
   const productos = useSelector((state)=>state.state.productos);
+  const types = useSelector((state)=>state.state.types);
+  
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(getProductos())
+    dispatch(getProdsFromDb());
+    // dispatch(getTypesFromProducts());
   },[dispatch]);
-  console.log(productos);  
+  console.log(types);  
   return (
-    <div>
-      <h3>Título de la sección</h3>
-      {/* <Order /> */}
+    <div className={s.sectionsContainer}>
       {
-        productos?.map(p=> {
-            <Card
-            id={p.id}
-            image={p.image}
-            name={p.name}
-            price={p.price}
-            />
+        types.map((t)=>{
+          return (
+            <div >
+              <div className={s.sectionTitle}>
+                <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
+                <h2>Order</h2>
+              </div>
+              <div >
+                <div className={s.sectionContainer}>
+                  {
+                    productos
+                      .filter((p)=> p.type === t)
+                      .map((p)=> {
+                        return <Card key={p._id}
+                        id={p._id}
+                        img={p.image}
+                        name={p.name}
+                        price={p.price}
+                        />
+                    })
+                  }
+                </div>
+              </div>
+              <div>
+                <Divider />
+              </div>
+            </div>
+          )
         })
       }
+      {/* <h3>Título de la sección</h3><br/>
+      <Order />
+      {
+      productos?.map((p)=> {
+          return <Card key={p._id}
+          id={p._id}
+          img={p.image}
+          name={p.name}
+          price={p.price}
+          />
+      })
+      } */}
     </div>
   )
 }

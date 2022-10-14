@@ -1,19 +1,8 @@
 import React from "react";
 import { Box, Flex, Image, Link, chakra, Badge, Center, Heading, Text, Button } from "@chakra-ui/react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getProdsFromDb } from "../../redux/actions/products";
-// import { useEffect } from "react";
 import { Link as ReachLink } from "react-router-dom";
 export default function Card({ id, img, name, price }) {
 
-    // const dispatch = useDispatch()
-    // const productos = useSelector(state => state.state.productos)
-    // const productoIndi = productos[0]
-    // console.log(productoIndi)
-    // useEffect(() => {
-    //     dispatch(getProdsFromDb())
-
-    // }, [dispatch])
     return (
         <Box
             py={4}

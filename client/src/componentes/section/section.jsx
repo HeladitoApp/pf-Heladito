@@ -30,8 +30,7 @@ const Section = () => {
               <div >
                 <div className={s.sectionContainer}>
                   {
-                    productos
-                      .filter((p)=> p.type === t)
+                    productos?.filter((p)=> p.type === t)
                       .map((p)=> {
                         return <Card key={p._id}
                         id={p._id}

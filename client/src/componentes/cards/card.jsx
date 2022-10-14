@@ -40,7 +40,7 @@ export default function Card({ id, img, name, price }) {
                     New
                 </Badge> */}
                 <Text p={5} fontFamily={'family.body'} fontSize='2xl'>Precio $/{price}</Text>
-                <Link as={ReachLink} to={`/detail/${id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
+                <Link as={ReachLink} to={`/product/${id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
                     Seleccionar
                 </Link>
             </Box>

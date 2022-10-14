@@ -13,7 +13,7 @@ async function postUsuarios(data) {
       newInfo.password = data.password;
       newInfo.rol = data.rol;
       newInfo.mail = data.mail;
-      newInfo.Activo = data.Activo;
+      newInfo.activo = data.activo;
       
       newInfo.save();
       return newInfo;
@@ -26,3 +26,4 @@ async function postUsuarios(data) {
 module.exports = {
     postUsuarios,
 };
+

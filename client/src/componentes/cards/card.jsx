@@ -1,19 +1,8 @@
 import React from "react";
 import { Box, Flex, Image, Link, chakra, Badge, Center, Heading, Text, Button } from "@chakra-ui/react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getProdsFromDb } from "../../redux/actions/products";
-// import { useEffect } from "react";
 import { Link as ReachLink } from "react-router-dom";
-export default function Card({ _id, img, name, price }) {
+export default function Card({ id, img, name, price }) {
 
-    // const dispatch = useDispatch()
-    // const productos = useSelector(state => state.state.productos)
-    // const productoIndi = productos[0]
-    // console.log(productoIndi)
-    // useEffect(() => {
-    //     dispatch(getProdsFromDb())
-
-    // }, [dispatch])
     return (
         <Box
             py={4}
@@ -40,7 +29,7 @@ export default function Card({ _id, img, name, price }) {
                     New
                 </Badge> */}
                 <Text p={5} fontFamily={'family.body'} fontSize='2xl'>Precio $/{price}</Text>
-                <Link as={ReachLink} to={`/detail/${_id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
+                <Link as={ReachLink} to={`/product/${id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
                     Seleccionar
                 </Link>
             </Box>

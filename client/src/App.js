@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./componentes/navBar/NavBar";
-import { CardDetail } from "./page/detail/CardDetail";
+import CardDetail from "./page/detail/CardDetail";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
 import Admin from "./page/admin/Admin";
@@ -15,6 +15,7 @@ function App() {
   return (
     <div>
       <NavBar />
+      <CardDetail />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:productId" element={<CardDetail />} />

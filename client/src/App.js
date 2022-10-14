@@ -15,7 +15,6 @@ function App() {
   return (
     <div>
       <NavBar />
-      <CardDetail />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:productId" element={<CardDetail />} />

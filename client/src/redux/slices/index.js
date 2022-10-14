@@ -7,7 +7,7 @@ export const state = createSlice({
         flavors: [],
         toppings: [],
         types: ["helados", "combos", "bombones", "shakes", "parfaits", "crepes"], /* <-- está harcodeado hasta que funcione la action */
-        details: {},
+        details: [],
         carrito: {}
     },
     reducers: {
@@ -36,5 +36,5 @@ export const state = createSlice({
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes } = state.actions;
+export const { getProductos, getFlavors, getToppings, getTypes, getDetails } = state.actions;
 export default state.reducer;

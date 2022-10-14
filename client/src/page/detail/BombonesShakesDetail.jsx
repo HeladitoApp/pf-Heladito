@@ -2,8 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {getProductById} from '../../redux/actions/details';
-import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
-import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
 import { chakra, Box, Flex, Image, Center, Stack, Circle, Wrap, HStack } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
@@ -11,7 +9,7 @@ import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comp
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
 
-export default function CardDetail() {
+export default function BombonesShakesDetail() {
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
@@ -95,8 +93,6 @@ export default function CardDetail() {
             </chakra.p>
             <Stack >
               <Contador />
-              <FlavorsList />
-              <ToppingsList />
             </Stack>
             <HStack
               spacing={10}

@@ -11,8 +11,11 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/postExtrasController");
-const { postUsuariosController } = require("../controllers/postUsuariosController");
-const { validateCreate } = require('../validators/users')
+const {
+  postUsuariosController,
+} = require("../controllers/postUsuariosController");
+const { validateCreate } = require("../validators/users");
+const { filterByType } = require("../controllers/fiterByTypeController");
 
 const router = Router();
 // Rutas:
@@ -25,6 +28,7 @@ router.get("/productos/toppings/secos", getAllSecos);
 router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
+router.get("/productos/tipos/:type", filterByType);
 
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);

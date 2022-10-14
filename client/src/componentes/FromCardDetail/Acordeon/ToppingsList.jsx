@@ -32,19 +32,14 @@ export default function ToppingsList() {
     console.log([checkedToppings, setCheckedToppings])
     console.log(checkedToppings.length)
 
-    const handleChecked = (e) => {
+   /*  const handleChecked = (e) => {
         e.preventDefault();
         if (checkedToppings.lenght <= 6)
             setCheckedToppings([
                 ...checkedToppings, 
                 [e.target.checked, e.target.value]
             ])
-        /* if (isDisabled(checkedToppings))
-            setCheckedToppings([
-                ...checkedToppings,
-                isChecked(checkedToppings)
-            ]) */
-    }
+    } */
 
 
     /* const allChecked = checkedToppings.every(Boolean); */
@@ -70,7 +65,9 @@ export default function ToppingsList() {
                                 <Checkbox
                                     /* isChecked={1} */
                                     /* isIndeterminate={isIndeterminate} */
-                                    onChange={/* (e) => setCheckedToppings([...checkedToppings, [e.target.checked, e.target.value]]) */handleChecked}
+                                    onChange={(e) => setCheckedToppings([
+                                        ...checkedToppings, 
+                                        [e.target.checked, e.target.value]])/* handleChecked */}
 
 
                                     className={s.prueba}

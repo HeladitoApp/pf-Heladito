@@ -6,6 +6,7 @@ import Card from '../cards/card';
 import { getProdsFromDb } from '../../redux/actions/products';
 // import { getTypesFromProducts } from '../../redux/actions/types';
 import { Divider, Heading  } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 
 const Section = () => {
   const productos = useSelector((state)=>state.state.productos);
@@ -20,9 +21,9 @@ const Section = () => {
   return (
     <div className={s.sectionsContainer}>
       {
-        types.map((t)=>{
+        types.map((t, index)=>{
           return (
-            <div >
+            <div key={index}>
               <div className={s.sectionTitle}>
                 <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
                 <h2>Order</h2>
@@ -33,7 +34,8 @@ const Section = () => {
                     productos
                       .filter((p)=> p.type === t)
                       .map((p)=> {
-                        return <Card key={p._id}
+                        return <Card 
+                        key={p._id}
                         id={p._id}
                         img={p.image}
                         name={p.name}

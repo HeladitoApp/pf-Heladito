@@ -63,7 +63,7 @@ const CarouselPromociones = () => {
         <div>
             <Flex
             w="full"
-            bg="#edf3f8"
+            bg="#FFF7EA"
             _dark={{
                 bg: "#3e3e3e",
             }}

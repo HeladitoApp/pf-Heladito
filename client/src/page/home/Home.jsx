@@ -16,7 +16,6 @@ const Home = () => {
     console.log(productos);
     return (
         <div>
-            <SearchBar/>
             <CarouselPromociones/>
             <Section />
             {/* {

@@ -7,6 +7,7 @@ import { getProdsFromDb } from '../../redux/actions/products';
 // import { getTypesFromProducts } from '../../redux/actions/types';
 import { Divider, Heading  } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import Order from './Order';
 
 const Section = () => {
   const productos = useSelector((state)=>state.state.productos);
@@ -27,7 +28,7 @@ const Section = () => {
             <div key={index}>
               <div className={s.sectionTitle}>
                 <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
-                <h2>Order</h2>
+                <Order/>
               </div>
               <div>
                 <div className={s.sectionContainer}>

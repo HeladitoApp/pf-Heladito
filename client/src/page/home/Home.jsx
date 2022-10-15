@@ -18,16 +18,6 @@ const Home = () => {
         <div>
             <CarouselPromociones/>
             <Section />
-            {/* {
-            productos?.map((p)=> {
-                return <Card key={p._id}
-                id={p._id}
-                img={p.image}
-                name={p.name}
-                price={p.price}
-                />
-            })
-            } */}
         </div>
     )
 }

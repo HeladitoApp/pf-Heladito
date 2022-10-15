@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { ShoppingCartOutlined, UserOutlined  } from '@ant-design/icons';
 import { IconButton } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
@@ -7,11 +6,13 @@ import { AiOutlineUser } from 'react-icons/ai';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { Flex } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
+import n from "./navSuperior.module.css";
 
 const NavSuperior = () => {
 
     return (
         <Flex
+                className={n.nav}
                 w="100%"
                 px="6"
                 py="1"
@@ -34,13 +35,11 @@ const NavSuperior = () => {
                          aria-label='carrito' 
                          icon={<AiOutlineUser/>} />
                     </Link>
-                    <Link >
                         <IconButton 
                         variant="outline"
                         colorScheme='pink'
                         aria-label='carrito' 
                         icon={<BsHandbag/>} />
-                    </Link>
                 </Flex>
             </Flex>
         

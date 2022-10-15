@@ -8,7 +8,7 @@ import Login from "./page/login/Login";
 import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
-
+import AgregarProducto from "./componentes/addProducto/addProducto";
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
         <Route path="/users/admin" element={<Admin />} />
+        <Route path="/product/add" element = {<AgregarProducto/>}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

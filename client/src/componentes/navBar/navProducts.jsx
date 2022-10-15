@@ -7,7 +7,7 @@ import ProductSelected from "./productSelected"
 const NavProducts = () => {
 
     return (
-        <Center display={{ base: "none", md: "flex" }}>
+        <Center display={{ base: "none", md: "flex"}}>
             <Tabs variant='line' colorScheme='pink'>
                 <TabList>
                     {ProductsCategory.map(category => <ProductSelected productCategory={category} key={category} />)}

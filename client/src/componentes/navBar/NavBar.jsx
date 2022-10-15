@@ -1,21 +1,18 @@
 import { Flex, chakra } from '@chakra-ui/react'
+import NavInferior from './navInferior'
 
-import NavProducts from './navProducts'
-import NavProductsMobile from './NavProductsMobile'
+import NavSuperior from './navSuperior'
+
 
 const NavBar = () => {
     return (
         <chakra.header id="header">
+            
             <Flex
-                w="100%"
-                px="6"
-                py="5"
-                align="center"
-                justify="space-between"
-            >
-                <NavProductsMobile />
-                <NavProducts />
-
+             flexDirection ="column">
+                <NavSuperior/>
+                <hr />
+                <NavInferior/>
             </Flex>
         </chakra.header>
     )

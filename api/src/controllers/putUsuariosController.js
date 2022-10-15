@@ -1,9 +1,9 @@
-const { updateProducto } = require("../utils/putProductos");
+const { updateUsuario } = require("../utils/putUsuario");
 
-async function putProductosController(req, res) {
+async function putUsuariosController(req, res) {
   const info = req.body;
   try {
-    const result = await updateProducto(info);
+    const result = await updateUsuario(info);
 
     result
       ? res.status(200).send({
@@ -19,5 +19,5 @@ async function putProductosController(req, res) {
 }
 
 module.exports = {
-  putProductosController,
+  putUsuariosController,
 };

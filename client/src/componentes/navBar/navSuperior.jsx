@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { IconButton } from '@chakra-ui/react'
+import { IconButton, useDisclosure } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 
@@ -7,8 +7,11 @@ import logotipo from "../../assets/Logotipo tienda helados.png";
 import { Flex } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
 import n from "./navSuperior.module.css";
+import Carrito from "../Carrito/Carrito";
 
 const NavSuperior = () => {
+
+const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <Flex
@@ -36,10 +39,12 @@ const NavSuperior = () => {
                          icon={<AiOutlineUser/>} />
                     </Link>
                         <IconButton 
+                        onClick={onOpen}
                         variant="outline"
                         colorScheme='pink'
                         aria-label='carrito' 
                         icon={<BsHandbag/>} />
+                        <Carrito isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
                 </Flex>
             </Flex>
         

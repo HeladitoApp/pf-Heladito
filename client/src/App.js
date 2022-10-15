@@ -2,7 +2,8 @@
 import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./componentes/navBar/NavBar";
-import { CardDetail } from "./page/detail/CardDetail";
+import CardDetail from "./page/detail/CardDetail";
+//import CardDetailDos from "./page/detail/CardDetailDos";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
 import Admin from "./page/admin/Admin";
@@ -17,6 +18,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
         <Route path="/product/:productId" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />

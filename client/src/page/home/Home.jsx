@@ -6,6 +6,7 @@ import CarouselPromociones from '../../componentes/carouselPromociones/CarouselP
 import { getProdsFromDb } from '../../redux/actions/products';
 import Section from '../../componentes/section/section'
 import SearchBar from '../../componentes/SearchBar/SearchBar';
+import Footer from '../../componentes/Footer/Footer';
 
 const Home = () => {
     const productos = useSelector((state)=>state.state.productos);
@@ -16,19 +17,9 @@ const Home = () => {
     console.log(productos);
     return (
         <div>
-            <SearchBar/>
             <CarouselPromociones/>
             <Section />
-            {/* {
-            productos?.map((p)=> {
-                return <Card key={p._id}
-                id={p._id}
-                img={p.image}
-                name={p.name}
-                price={p.price}
-                />
-            })
-            } */}
+            <Footer />
         </div>
     )
 }

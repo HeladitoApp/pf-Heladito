@@ -11,7 +11,7 @@ import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comp
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
 
-export default function CardDetail() {
+export default function UnSaborConToppings() {
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
@@ -27,6 +27,11 @@ export default function CardDetail() {
     <Flex
       my={50}
       justifyContent='center'
+      /* direction={{ base: "column", lg: "row" }} */
+      /* mx={{ base: 50, lg: 120, md: 120 }} */
+      /*  ml='3.75em' */
+      /* direction={['column', 'row']} */
+      /* direction={{ base: "row"}} */
       spacing='5' >
       {product.map((detail, index) => (
         <Stack key={index} >
@@ -47,16 +52,22 @@ export default function CardDetail() {
                 src={detail.image}
                 alt={detail.name}
                 objectFit='cover'
-            
+              /* w="25em"
+              h='25em'
+              mx='auto'
+              mt='10%' */
+              /* pos='absolute' */
               />
             </Circle>
           </Box>
 
           <Stack
             direction="column"
+            /* ml='8em' */
+            /* alignItems="start" */
             px={{ base: 4, md: 8, lg: 20 }}
             py={10}
-
+          /* zIndex={3} */
           >
             <chakra.span
               color="celeste.original"

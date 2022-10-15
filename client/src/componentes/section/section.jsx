@@ -6,6 +6,8 @@ import Card from '../cards/card';
 import { getProdsFromDb } from '../../redux/actions/products';
 // import { getTypesFromProducts } from '../../redux/actions/types';
 import { Divider, Heading  } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
+import Order from './Order';
 
 const Section = () => {
   const productos = useSelector((state)=>state.state.productos);
@@ -16,29 +18,31 @@ const Section = () => {
     dispatch(getProdsFromDb());
     // dispatch(getTypesFromProducts());
   },[dispatch]);
-  console.log(types);  
+  //console.log(types);  
   return (
     <div className={s.sectionsContainer}>
       {
-        types.map((t)=>{
-          return (
-            <div >
+        types.map((t, index)=>{
+          if(productos.filter((p) => p.type === t).length) {
+          return (            
+            <div key={index}>
               <div className={s.sectionTitle}>
                 <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
-                <h2>Order</h2>
+                <Order/>
               </div>
-              <div >
+              <div>
                 <div className={s.sectionContainer}>
-                  {
-                    productos?.filter((p)=> p.type === t)
-                      .map((p)=> {
-                        return <Card key={p._id}
+                  {                    
+                    productos.filter((p)=> p.type === t)
+                    ?.map((p)=> {
+                        return <Card 
+                        key={p._id}
                         id={p._id}
                         img={p.image}
                         name={p.name}
                         price={p.price}
                         />
-                    })
+                    })  
                   }
                 </div>
               </div>
@@ -46,21 +50,11 @@ const Section = () => {
                 <Divider />
               </div>
             </div>
-          )
+          ) } else {
+            return null
+          }
         })
       }
-      {/* <h3>Título de la sección</h3><br/>
-      <Order />
-      {
-      productos?.map((p)=> {
-          return <Card key={p._id}
-          id={p._id}
-          img={p.image}
-          name={p.name}
-          price={p.price}
-          />
-      })
-      } */}
     </div>
   )
 }

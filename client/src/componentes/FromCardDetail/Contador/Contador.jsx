@@ -17,7 +17,7 @@ export default function Contador() {
     };
 
     return (
-        <HStack spacing='24px'>
+        <HStack spacing='24px' h='40px'>
             <Box>
                 <button onClick={decrementar}><GoDash /></button>
             </Box>

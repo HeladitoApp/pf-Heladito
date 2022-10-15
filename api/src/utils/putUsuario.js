@@ -1,6 +1,6 @@
 const Usuarios = require("../models/Usuarios");
 
-async function updateProducto(body) {
+async function updateUsuario(body) {
   try {
     if (!body) {
       throw new Error("Error. No se ha podido actualizar el Usuario");
@@ -19,5 +19,5 @@ async function updateProducto(body) {
 }
 
 module.exports = {
-  updateProducto,
+  updateUsuario,
 };

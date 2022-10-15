@@ -7,48 +7,54 @@
           "name": "HeladitosApp mediano de 1 sabor + toppings",
           "description": "Vaso HeladitosApp de 1 sabor - tamaño mediano + 6 toppings a elección.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665533182/e.cups_mt1s_bg01yi.png",
-          "price": 123,
-          "stock": ""
+          "price": 4.01,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 2,
           "name": "HeladitosApp mediano de 2 sabores + toppings",
           "description": "Vaso HeladitosApp de 2 sabores - tamaño mediano + 6 toppings a elección.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186865/e.cups_mt2s_b5bhx4.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.1,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 3,
           "name": "HeladitosApp large de 1 sabor + toppings",
           "description": "Vaso HeladitosApp de 1 sabor - tamaño large + 7 toppings a elección.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.cups_lt1s_xmh8pd.png",
-          "price": 123,
-          "stock": ""
+          "price": 4.94,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 4,
           "name": "HeladitosApp large de 2 sabores + toppings",
           "description": "Vaso HeladitosApp de 2 sabores - tamaño large + 7 toppings a elección.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.cups_lt2s_hrczip.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.94,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 5,
           "name": "HeladitosApp mediano de 1 sabor sin toppings",
           "description": "Vaso HeladitosApp de 1 sabor a elección - tamaño mediano .",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186877/e.cups_m1s_oyylca.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.66,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 6,
           "name": "HeladitosApp mediano de 2 sabores sin toppings",
           "description": "Vaso HeladitosApp de 2 sabores a elección - tamaño mediano .",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186877/e.cups_m2s_xglbml.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.9,
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 7,
@@ -56,7 +62,8 @@
           "description": "Vaso HeladitosApp de 1 sabor a elección - tamaño large.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186877/e.cups_l1s_cparzj.png",
           "price": 123,
-          "stock": ""
+          "stock": "",
+          "type":"helados"
         },
         {
           "id": 8,
@@ -64,7 +71,8 @@
           "description": "Vaso HeladitosApp de 2 sabores a elección - tamaño large.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.cups_l2s_ciuh9l.png",
           "price": 123,
-          "stock": ""
+          "stock": "",
+          "type":"helados"
         }
       ],
       "combos": [
@@ -73,48 +81,54 @@
           "name": "2 vasitos small con topping + 1 bombón HeladitosApp",
           "description": "2 vasitos small con topping más 1 bombón HeladitosApp (8 unidades)",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v1_wanab3.png",
-          "price": 123,
-          "stock": ""
+          "price": 7.55,
+          "stock": "",
+          "type":"combos"
         },
         {
           "id": 2,
           "name": "4 vasitos small con toppings",
           "description": "4 vasitos tamaño small y 5 toppings a elección para cada uno",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v2_t0l9vm.png",
-          "price": 123,
-          "stock": ""
+          "price": 7.81,
+          "stock": "",
+          "type":"combos"
         },
         {
           "id": 3,
           "name": "2 vasitos medianos con toppings",
           "description": "2 vasitos tamaño mediano y 6 toppings a elección para cada uno",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v3_jgd2cr.png",
-          "price": 123,
-          "stock": ""
+          "price": 6.57,
+          "stock": "",
+          "type":"combos"
         },
         {
           "id": 4,
           "name": "Super cup HeladitosAPP + 2 vasitos de toppings",
           "description": "1 super cup HeladittosApp de 30 oz. + 2 vasitos de toppings con opción de un tipo de topping por vasito.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v4_uljvhr.png",
-          "price": 123,
-          "stock": ""
+          "price": 8.31,
+          "stock": "",
+          "type":"combos"
         },
         {
           "id": 5,
           "name": "1 crepe + 1 vasito small con toppings",
           "description": "1 crepe con salsa a elección + un vasito small con 6 toppings a elección.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v5_wlswhn.png",
-          "price": 123,
-          "stock": ""
+          "price": 7.07,
+          "stock": "",
+          "type":"combos"
         },
         {
           "id": 6,
           "name": "Vaso HeladitosApp XL + cobertura de chocolate",
           "description": "Vaso HeladitosApp tamaño XL + 7 toppings a elección + cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v6_bkor8v.png",
-          "price": 123,
-          "stock": ""
+          "price": 8.31,
+          "stock": "",
+          "type":"combos"
         }
       ],
       "bombones": [
@@ -123,64 +137,72 @@
           "name": "Bombones chocolate con avellanas",
           "description": "8 bombones sabor chocolate con avellanas bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186872/e.BOMBONES_CHOCO_AVELLANA_v1_mfmgbk.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.51,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 2,
           "name": "Bombones chocolate con avellanas XL",
           "description": "16 bombones sabor chocolate con avellanas bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186874/e.BOMBONES_XL_CHOCO_AVELLANA_v1_rofqe7.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.31,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 3,
           "name": "Bombones Vainilla",
           "description": "8 bombones sabor Vainilla, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186872/e.BOMBONES_ORIGINAL_v1_xhfvfy.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.51,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 4,
           "name": "Bombones Vainilla XL",
           "description": "16 bombones sabor Vainilla, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186873/e.Bombones_original_XL_V1_uag4gi.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.31,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 5,
           "name": "Bombones lúcuma",
           "description": "8 bombones sabor lúcuma, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186874/e.Bombones_lucuma_V1_dt0itc.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.51,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 6,
           "name": "Bombones lúcuma XL",
           "description": "16 bombones sabor lúcuma, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186874/e.BOMBONES_XL_LUCUMA_v1_t1kaui.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.31,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 7,
           "name": "Bombones cookies & cream",
           "description": "8 bombones sabor cookies & cream, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186871/e.Bombones_Cookies_Cream_V1_yqcjts.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.51,
+          "stock": "",
+          "type":"bombones"
         },
         {
           "id": 8,
           "name": "Bombones cookies & cream XL",
           "description": "16 bombones sabor cookies & cream, bañados en cobertura de chocolate.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186873/e.Bombones_Cookies_Cream_XL_V1_dokexa.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.31,
+          "stock": "",
+          "type":"bombones"
         }
       ],
       "shakes": [
@@ -189,24 +211,27 @@
           "name": "Shake fresa - banana",
           "description": "Batido a base de leche, helado Vainilla, fresas y banana.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/e.Shake_v1_wwcqwb.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.51,
+          "stock": "",
+          "type":"shakes"
         },
         {
           "id": 2,
           "name": "Shake choco cookie",
           "description": "Batido a base de leche, helado de chocolate y galletas con crema.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/e.Shake_v2_hfmpqv.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.51,
+          "stock": "",
+          "type":"shakes"
         },
         {
           "id": 3,
           "name": "Shake piña colada",
           "description": "Batido a base de leche, helado Vainilla, piña y coco.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186867/e.Shake_v3_fn5egj.png",
-          "price": 123,
-          "stock": ""
+          "price": 5.51,
+          "stock": "",
+          "type":"shakes"
         }
       ],
       "crepes": [
@@ -215,24 +240,27 @@
           "name": "Crepe con crema de avellanas + heladito",
           "description": "Crepe con crema de avellanas relleno de 5 toppings a elección, acompañado de helado - 1 sabor.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.Crepe_v3_ruxtqj.png",
-          "price": 123,
-          "stock": ""
+          "price": 4.93,
+          "stock": "",
+          "type":"crepes"
         },
         {
           "id": 2,
           "name": "Crepe con dulce de leche + heladito",
           "description": "Crepe con dulce de leche relleno de 5 toppings a elección, acompañado de helado - 1 sabor.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.Crepe_v2_jgfaax.png",
-          "price": 123,
-          "stock": ""
+          "price": 4.93,
+          "stock": "",
+          "type":"crepes"
         },
         {
           "id": 3,
           "name": "Crepe con fudge + heladito",
           "description": "Crepe con fudge relleno de 5 toppings a elección, acompañado de helado - 1 sabor.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.Crepe_v1_kmrfop.png",
-          "price": 123,
-          "stock": ""
+          "price": 4.93,
+          "stock": "",
+          "type":"crepes"
         }
       ],
       "parfaits": [
@@ -241,40 +269,45 @@
           "name": "Parfait cookies & cream",
           "description": "Parfait sabor cookies & cream + 3 frutas a elección, acompañado de granola o coco rallado.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186865/e.Parfait_Cookies_Cream_V1_kjwcfi.png",
-          "price": 123,
-          "stock": ""
+          "price": 4,
+          "stock": "",
+          "type":"parfaits"
         },
         {
           "id": 2,
           "name": "Parfait piña colada",
           "description": "Parfait sabor piña colada + 3 frutas a elección, acompañado de granola o coco rallado.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.Parfait_SaborPinaCoco_v1_srs5sl.png",
-          "price": 123,
-          "stock": ""
+          "price": 4,
+          "stock": "",
+          "type":"parfaits"
         },
         {
           "id": 3,
           "name": "Parfait Vainilla",
           "description": "Parfait sabor Vainilla + 3 frutas a elección, acompañado de granola o coco rallado.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186866/e.PARFAIT_ORIGINAL_v1_feluew.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.5,
+          "stock": "",
+          "type":"parfaits"
         },
         {
           "id": 4,
           "name": "Parfait chocolate con avellanas",
           "description": "Parfait sabor chocolate con avellanas + 3 frutas a elección, acompañado de granola o coco rallado.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186865/e.PARFAIT_CHOCOLATE_AVELLANAS_v1_xatzty.png",
-          "price": 123,
-          "stock": ""
+          "price": 4,
+          "stock": "",
+          "type":"parfaits"
         },
         {
           "id": 5,
           "name": "Parfait lúcuma",
           "description": "Parfait sabor lúcuma + 3 frutas a elección, acompañado de granola o coco rallado.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186865/e.PARFAIT_LUCUMA_v1_ijrckz.png",
-          "price": 123,
-          "stock": ""
+          "price": 3.5,
+          "stock": "",
+          "type":"parfaits"
         }
       ]
     }

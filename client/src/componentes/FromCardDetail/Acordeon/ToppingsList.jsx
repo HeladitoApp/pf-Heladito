@@ -20,26 +20,30 @@ export default function ToppingsList() {
 
     const toppings = useSelector(state => state.state.toppings);
     const dispatch = useDispatch();
-    
-
-
 
     useEffect(() => {
         dispatch(getToppingsFromDb());
     }, [dispatch]);
 
-    let [checkedToppings, setCheckedToppings] = React.useState([0, false]);
+    let [checkedToppings, setCheckedToppings] = React.useState([]);
+    /* checkedToppings = checkedToppings <= 6 */
     console.log([checkedToppings, setCheckedToppings])
+    console.log(checkedToppings)
     console.log(checkedToppings.length)
+    
+
+
 
    /*  const handleChecked = (e) => {
         e.preventDefault();
         if (checkedToppings.lenght <= 6)
-            setCheckedToppings([
-                ...checkedToppings, 
-                [e.target.checked, e.target.value]
-            ])
+            setCheckedToppings({
+                ...checkedToppings,
+                checkedToppings: [...checkedToppings, e.target.value]
+            })
     } */
+
+
 
 
     /* const allChecked = checkedToppings.every(Boolean); */
@@ -65,10 +69,13 @@ export default function ToppingsList() {
                                 <Checkbox
                                     /* isChecked={1} */
                                     /* isIndeterminate={isIndeterminate} */
-                                    onChange={(e) => setCheckedToppings([
-                                        ...checkedToppings, 
-                                        [e.target.checked, e.target.value]])/* handleChecked */}
-
+                                    onChange={e  => (e.target.checked) ?
+                                        setCheckedToppings( 
+                                         [...checkedToppings, e.target.value]):
+                                         setCheckedToppings([
+                                            ...checkedToppings,        
+                                            checkedToppings.filter((e) => e !== checkedToppings)]
+                                         ) /* handleChecked(e) */}
 
                                     className={s.prueba}
                                     align="center"
@@ -78,7 +85,7 @@ export default function ToppingsList() {
                                     h='12.5em'
                                     bg='white'
                                     value={topping.name}
-                                    /* name='sabor' */
+                                    name='topping'
                                     /* onClick={handleClick} */>
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}

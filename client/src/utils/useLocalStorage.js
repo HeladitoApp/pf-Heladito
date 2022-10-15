@@ -1,4 +1,5 @@
 import { useState } from "react";
+export const keyCarrito = "ProductosCarrito";
 
 export function useLocalStorage(key, initialvalue){
     const [storedValue, setStoredValue] = useState(()=>{

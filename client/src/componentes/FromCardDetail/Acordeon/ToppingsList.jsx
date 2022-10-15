@@ -12,40 +12,52 @@ import {
     Image,
     Box,
     Checkbox,
+    useCheckbox
 } from '@chakra-ui/react';
 import s from './Lists.module.css';
-import { isDisabled } from '@chakra-ui/utils';
+//import { isDisabled } from '@chakra-ui/utils';
 
-export default function ToppingsList() {
+
+export default function ToppingsList(props) {
 
     const toppings = useSelector(state => state.state.toppings);
     const dispatch = useDispatch();
-    
-
-
 
     useEffect(() => {
         dispatch(getToppingsFromDb());
     }, [dispatch]);
 
-    let [checkedToppings, setCheckedToppings] = React.useState([0, false]);
-    console.log([checkedToppings, setCheckedToppings])
+    const { getCheckboxProps } = useCheckbox(props)
+
+    const [checkedToppings, setCheckedToppings] = useState([]);
+    /* checkedToppings = checkedToppings <= 6 */
+    console.log(checkedToppings)
     console.log(checkedToppings.length)
+    const [isChecked, setIsChecked] = useState('false')
 
-   /*  const handleChecked = (e) => {
+    /* checkedToppings.lenght = 7 && isDisabled */
+
+
+
+    const handleChange = (e) => {
         e.preventDefault();
-        if (checkedToppings.lenght <= 6)
-            setCheckedToppings([
-                ...checkedToppings, 
-                [e.target.checked, e.target.value]
-            ])
-    } */
-
-
-    /* const allChecked = checkedToppings.every(Boolean); */
-
-    /* const isIndeterminate = checkedToppings.some(Boolean) && !allChecked */
-
+        if (checkedToppings.includes(e.target.value)) {
+            setCheckedToppings(
+                checkedToppings.filter((t) => t !== e.target.value)
+            )
+        }
+        else if (checkedToppings.length <= 5) {
+            (e.target.checked = true)
+            setCheckedToppings(
+                [...checkedToppings, e.target.value])
+        }
+        else if (!e.target.checked) { 
+            setCheckedToppings(...checkedToppings)
+        }
+        else if(checkedToppings.length > 6){
+            setIsChecked(isChecked)
+        }
+    }
 
     return (
         <Accordion allowToggle>
@@ -65,10 +77,7 @@ export default function ToppingsList() {
                                 <Checkbox
                                     /* isChecked={1} */
                                     /* isIndeterminate={isIndeterminate} */
-                                    onChange={(e) => setCheckedToppings([
-                                        ...checkedToppings, 
-                                        [e.target.checked, e.target.value]])/* handleChecked */}
-
+                                    onChange={e => handleChange(e)}
 
                                     className={s.prueba}
                                     align="center"
@@ -78,7 +87,12 @@ export default function ToppingsList() {
                                     h='12.5em'
                                     bg='white'
                                     value={topping.name}
-                                    /* name='sabor' */
+                                    name='topping'
+                                    checked='isChecked'
+
+
+
+
                                     /* onClick={handleClick} */>
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}

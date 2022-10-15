@@ -9,7 +9,9 @@ const NavProductsMobile = () => {
 
     return (
         <>
-            <Button ref={btnRef} variant={'ghost'} colorScheme='pink' onClick={onOpen} >
+            <Button 
+                display={{ base: "flex", md: "none" }}
+                ref={btnRef} variant={'ghost'} colorScheme='pink' onClick={onOpen} >
                 <IoMdMenu size="26px" />
             </Button>
             <Drawer

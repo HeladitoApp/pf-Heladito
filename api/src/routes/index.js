@@ -16,6 +16,7 @@ const {
 } = require("../controllers/postUsuariosController");
 const { validateCreate } = require("../validators/users");
 const { filterByType } = require("../controllers/fiterByTypeController");
+const { getAllCompras } = require("../controllers/allComprasController");
 const { getAllUsuarios } = require("../controllers/AllUsuariosController");
 
 const router = Router();
@@ -29,6 +30,7 @@ router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
 router.get("/productos/tipos/:type", filterByType);
+router.get("/compras", getAllCompras);
 
 //rutas del usuario:
 router.get("/listaUsuarios", getAllUsuarios);

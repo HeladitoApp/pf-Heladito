@@ -14,6 +14,7 @@ async function postUsuarios(data) {
       newInfo.rol = data.rol;
       newInfo.mail = data.mail;
       newInfo.activo = data.activo;
+      newInfo.compras =data.compras
       
       newInfo.save();
       return newInfo;

@@ -17,22 +17,23 @@ const Section = () => {
     dispatch(getProdsFromDb());
     // dispatch(getTypesFromProducts());
   },[dispatch]);
-  console.log(types);  
+  //console.log(types);  
   return (
     <div className={s.sectionsContainer}>
       {
         types.map((t, index)=>{
-          return (
+          if(productos.filter((p) => p.type === t).length) {
+          return (            
             <div key={index}>
               <div className={s.sectionTitle}>
                 <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
                 <h2>Order</h2>
               </div>
-              <div >
+              <div>
                 <div className={s.sectionContainer}>
-                  {
-                    productos?.filter((p)=> p.type === t)
-                      .map((p)=> {
+                  {                    
+                    productos.filter((p)=> p.type === t)
+                    ?.map((p)=> {
                         return <Card 
                         key={p._id}
                         id={p._id}
@@ -40,7 +41,7 @@ const Section = () => {
                         name={p.name}
                         price={p.price}
                         />
-                    })
+                    })  
                   }
                 </div>
               </div>
@@ -48,21 +49,11 @@ const Section = () => {
                 <Divider />
               </div>
             </div>
-          )
+          ) } else {
+            return null
+          }
         })
       }
-      {/* <h3>Título de la sección</h3><br/>
-      <Order />
-      {
-      productos?.map((p)=> {
-          return <Card key={p._id}
-          id={p._id}
-          img={p.image}
-          name={p.name}
-          price={p.price}
-          />
-      })
-      } */}
     </div>
   )
 }

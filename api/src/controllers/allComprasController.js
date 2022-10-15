@@ -5,12 +5,14 @@ async function getAllCompras(req, res) {
   try {
     result
       ? res.status(200).send(result)
-      : res.status(502).send({ message: "Error al cargar las Frutas desde la DB" });
+      : res
+          .status(502)
+          .send({ message: "Error al cargar las Compras desde la DB" });
   } catch (error) {
     console.error({ message: error.message });
   }
 }
 
 module.exports = {
-    getAllCompras,
+  getAllCompras,
 };

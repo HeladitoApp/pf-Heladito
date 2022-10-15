@@ -8,7 +8,7 @@ const usuariosSchema = new Schema(
     password: String,
     activo: Boolean,
     rol: String,
-    compras: Array,
+    compras: [/* {type:Schema.Types.ObjectId, ref: 'compras'} */] ,
   },
   { timestamps: true }
 );

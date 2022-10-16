@@ -4,5 +4,5 @@ import axios from "axios";
 export const getProdsFromDbByName = (name) => (dispatch) => {
     axios.get(`http://localhost:3800/productos?name=${name}`)
         .then(res => dispatch(getProductos(res.data)))
-        .catch(e => console.log(e))
+        .catch(e => console.log(e, alert(`No hay productos con el nombre "${name}"`)))
 }

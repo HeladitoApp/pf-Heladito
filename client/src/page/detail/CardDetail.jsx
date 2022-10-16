@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {getProductById} from '../../redux/actions/details';
+import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
@@ -47,7 +47,7 @@ export default function CardDetail() {
                 src={detail.image}
                 alt={detail.name}
                 objectFit='cover'
-            
+
               />
             </Circle>
           </Box>
@@ -68,7 +68,7 @@ export default function CardDetail() {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              {detail.price}
+              $ {detail.price}
             </chakra.span>
 
             <chakra.p
@@ -94,7 +94,13 @@ export default function CardDetail() {
               justify='content'
               h='4em'
             >
-              <ButtonAgregar />
+              <ButtonAgregar
+                id={detail.id}
+                image={detail.image}
+                name={detail.name}
+                price={detail.price}
+                type={detail.type}
+              />
               <ButtonComprar />
             </HStack>
           </Stack>

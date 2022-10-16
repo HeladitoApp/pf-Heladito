@@ -9,7 +9,7 @@ export const state = createSlice({
         types: ["helados", "combos", "bombones", "shakes", "parfaits", "crepes"], /* <-- está harcodeado hasta que funcione la action */
         details: [],
         carrito: {},
-        compra: {}
+        respuestacompra: ''
     },
     reducers: {
         //Aqui se realiza las actions
@@ -37,8 +37,8 @@ export const state = createSlice({
         addToCart: (state, {payload}) => {
             state.carrito = { ...state.carrito, payload }
         },
-        addCompra:(state, {payload}) => {
-            state.compra = { ...state.compra, payload }
+        addCompra:(state, action) => {
+            state.respuestacompra =  action.payload 
         },
     }
 });

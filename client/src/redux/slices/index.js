@@ -52,5 +52,5 @@ export const state = createSlice({
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType } = state.actions;
+export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra } = state.actions;
 export default state.reducer;

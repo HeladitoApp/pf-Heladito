@@ -18,6 +18,9 @@ const { validateCreate } = require("../validators/users");
 const { filterByType } = require("../controllers/fiterByTypeController");
 const { getAllCompras } = require("../controllers/allComprasController");
 const { getAllUsuarios } = require("../controllers/AllUsuariosController");
+const {
+  putUsuariosController,
+} = require("../controllers/putUsuariosController");
 
 const router = Router();
 // Rutas:
@@ -32,11 +35,13 @@ router.get("/productos/:id", getById);
 router.get("/productos/tipos/:type", filterByType);
 router.get("/compras", getAllCompras);
 
-//rutas del usuario:
+// Rutas del usuario:
 router.get("/listaUsuarios", getAllUsuarios);
 
+router.post("/usuarios", validateCreate, postUsuariosController);
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
-router.post("/usuarios", validateCreate, postUsuariosController);
+
+router.put("/actualizarUsuario", putUsuariosController);
 
 module.exports = router;

@@ -2,9 +2,12 @@ import React from 'react';
 import { Box, Alert, AlertIcon, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { keyCarrito, useLocalStorage } from '../../utils/useLocalStorage';
 import CardsCarrito from './CardsCarrito';
+import { addCompraDb } from '../../redux/actions/compras';
+import { useDispatch } from 'react-redux';
 export default function Carrito({ isOpen, onOpen, onClose }) {
     const keycarrito = keyCarrito
     const btnRef = React.useRef()
+    const dispatch = useDispatch()
     const productosPrueba = [
         {
             id: 1,
@@ -29,6 +32,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
     ]
     const [productosCarrito, setproductosCarrito] = useLocalStorage(keycarrito, []);
 
+
     function prueba() {
         setproductosCarrito(productosPrueba)
 
@@ -39,6 +43,17 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
 
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)
+    function EnviarCompra() {
+        const compra = {
+            id_usuario: '1',
+            productos: [],
+            total: total,
+            metodoDePago: 'Efectivo',
+            pagado: 'true'
+        }
+        productosCarrito.map(p => compra.productos.push(p.id))
+        dispatch(addCompraDb(compra))
+    }
     // console.log(productosCarrito)
     return (
         <>
@@ -63,7 +78,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                                 <Button size='xs' colorScheme='teal' onClick={() => prueba()}>
                                     Productos prueba
                                 </Button>
-                                <Button ml={4} size='xs' colorScheme='teal' onClick={() => vaciarCarrito()}>
+                                <Button ml={3} size='xs' colorScheme='teal' onClick={() => vaciarCarrito()}>
                                     Vaciar carrito
                                 </Button>
                             </Box>
@@ -95,7 +110,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                         {/* <Stack direction='row' width={'full'} > */}
                         <Text pr={1} fontSize='sm' as='sub' color={'rosado.normal'}>Subtotal: $/{total}</Text>
                         <Text pr={4} fontSize='xl' as='b' color={'rosado.original'}>Total: $/{total}</Text>
-                        <Button disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
+                        <Button onClick={() => EnviarCompra()} disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
                         {/* </Stack> */}
                     </DrawerFooter>
                 </DrawerContent>

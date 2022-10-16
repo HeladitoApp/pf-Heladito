@@ -6,6 +6,7 @@ import CarouselPromociones from '../../componentes/carouselPromociones/CarouselP
 import { getProdsFromDb } from '../../redux/actions/products';
 import Section from '../../componentes/section/section'
 import SearchBar from '../../componentes/SearchBar/SearchBar';
+import Footer from '../../componentes/Footer/Footer';
 
 const Home = () => {
     const productos = useSelector((state)=>state.state.productos);
@@ -18,6 +19,7 @@ const Home = () => {
         <div>
             <CarouselPromociones/>
             <Section />
+            <Footer />
         </div>
     )
 }

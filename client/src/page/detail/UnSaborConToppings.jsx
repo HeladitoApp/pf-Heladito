@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {getProductById} from '../../redux/actions/details';
+import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
+import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
 import { chakra, Box, Flex, Image, Center, Stack, Circle, Wrap, HStack } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
@@ -9,9 +11,9 @@ import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comp
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
 
-export default function BombonesShakesDetail({name, image, price, description}) {
+export default function UnSaborConToppings() {
 
-  /* const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
   console.log(product)
   const { productId } = useParams();
@@ -19,15 +21,20 @@ export default function BombonesShakesDetail({name, image, price, description}) 
 
   useEffect(() => {
     dispatch(getProductById(productId))
-  }, [dispatch, productId]); */
+  }, [dispatch, productId]);
 
   return (
     <Flex
       my={50}
       justifyContent='center'
+      /* direction={{ base: "column", lg: "row" }} */
+      /* mx={{ base: 50, lg: 120, md: 120 }} */
+      /*  ml='3.75em' */
+      /* direction={['column', 'row']} */
+      /* direction={{ base: "row"}} */
       spacing='5' >
-      {/* {product.map((detail, index) => ( */}
-        <Stack /* key={index} */ >
+      {product.map((detail, index) => (
+        <Stack key={index} >
           <Box className={s.cont1} >
             <chakra.h1
               mb={4}
@@ -38,12 +45,12 @@ export default function BombonesShakesDetail({name, image, price, description}) 
               mx='auto'
               width='12em'
             >
-              {/* detail. */name}
+              {detail.name}
             </chakra.h1>
             <Circle>
               <Image
-                src={/* detail. */image}
-                alt={/* detail. */name}
+                src={detail.image}
+                alt={detail.name}
                 objectFit='cover'
               /* w="25em"
               h='25em'
@@ -72,7 +79,7 @@ export default function BombonesShakesDetail({name, image, price, description}) 
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              {/* detail. */price}
+              {detail.price}
             </chakra.span>
 
             <chakra.p
@@ -84,10 +91,12 @@ export default function BombonesShakesDetail({name, image, price, description}) 
               h='3em'
               letterSpacing="wider"
             >
-              {/* detail. */description}
+              {detail.description}
             </chakra.p>
             <Stack >
               <Contador />
+              <FlavorsList />
+              <ToppingsList />
             </Stack>
             <HStack
               spacing={10}
@@ -102,7 +111,7 @@ export default function BombonesShakesDetail({name, image, price, description}) 
           </Stack>
         </Stack>
 
-      {/* ))} */}
+      ))}
     </Flex>
   )
 };

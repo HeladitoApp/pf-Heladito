@@ -16,9 +16,13 @@ export default function SearchBar () {
         dispatch(getProdsFromDbByName(name))
     }
 
+    const handleKeyDown = (e) => {
+        if (e.keyCode === 13) { dispatch(getProdsFromDbByName(name)) }
+    };
+
     return (
         <span className="barra">
-            <input type="text" placeholder="Buscar..."  onChange={ (e) => handelInputChange(e) } className = 'input'/>
+            <input type="text" placeholder="Buscar..."  onChange={ (e) => handelInputChange(e) } className = 'input' onKeyDown={handleKeyDown} />
             <button id = 'button' type="submit" onClick={(e) => handelSubmit(e) } >Buscar</button>
         </span>
     )

@@ -72,12 +72,11 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                             Carrito de compras
                         </Heading>
                         <Stack direction='row' spacing={8}>
-                            <Text fontSize='sm'>
-                                Tienes {productosCarrito.length} productos en el carrito
+                            <Text fontSize='sm'> Tienes {productosCarrito.length} productos en el carrito
                             </Text>
                             <Box align="right">
                                 <Button size='xs' colorScheme='teal' onClick={() => prueba()}>
-                                    Productos de prueba
+                                    Productos prueba
                                 </Button>
                                 <Button ml={3} size='xs' colorScheme='teal' onClick={() => vaciarCarrito()}>
                                     Vaciar carrito

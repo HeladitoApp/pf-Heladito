@@ -1,12 +1,32 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
 import s from './Button.module.css';
-import { useLocalStorage } from '../../../utils/useLocalStorage';
+import { useLocalStorage, keyCarrito } from '../../../utils/useLocalStorage';
 import { wrapHandler } from 'framer-motion';
 
-const ButtonAgregar = () => {
+const ButtonAgregar = ({ id, image, name, price, type }) => {
 
-    const handleClick = () => {};
+    const [addProduct, setAddProduct] = useLocalStorage(keyCarrito, []);
+
+
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        const newProduct = {
+            id: id,
+            img: image,
+            name: name,
+            price: price,
+            type: type,
+            cantidad: 1,
+            flavors: [],
+            toppings: [],
+        }
+        console.log(newProduct)
+        setAddProduct([...addProduct,
+            newProduct])
+
+    };
 
 
     return (

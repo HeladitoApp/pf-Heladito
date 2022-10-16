@@ -72,7 +72,7 @@ export default function BombonesShakesDetail({name, image, price, description}) 
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              {/* detail. */price}
+              $ {/* detail. */price}
             </chakra.span>
 
             <chakra.p

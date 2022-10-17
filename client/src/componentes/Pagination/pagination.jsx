@@ -29,7 +29,9 @@ export default function Pagination({page, setPage, max}) {
         <Flex>
           <Button
           onClick={previusPage} 
-          isDisabled = {page === 1}>
+          isDisabled = {page === 1} 
+          mr = "10%">
+
             <Icon
               as={IoIosArrowBack}
               color="gray.700"
@@ -42,7 +44,8 @@ export default function Pagination({page, setPage, max}) {
 
           <Button
           isDisabled = {page === max}
-          onClick={nextPage} >
+          onClick={nextPage} 
+          ml = "10%">
             <Icon
               as={IoIosArrowForward}
               color="gray.700"

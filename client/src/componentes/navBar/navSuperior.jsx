@@ -39,7 +39,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                          aria-label='carrito' 
                          icon={<VscSettingsGear/>} />
                     </Link>
-                    <Link to="/product/add2" >
+                    <Link>
                         <IconButton
                          mr="10px"
                          variant="outline"

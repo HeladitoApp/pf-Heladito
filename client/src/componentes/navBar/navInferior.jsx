@@ -5,7 +5,9 @@ import NavProducts from './navProducts'
 import NavProductsMobile from './NavProductsMobile'
 
 
-const NavInferior = () => {
+const NavInferior = ({setPage, page}) => {
+
+    
     return (
         <chakra.header id="header">
             <Flex
@@ -15,7 +17,7 @@ const NavInferior = () => {
                 justify="center"
             >
                 <NavProductsMobile/>
-                <NavProducts />
+                <NavProducts setPage={setPage} page={page} />
 
             </Flex>
         </chakra.header>

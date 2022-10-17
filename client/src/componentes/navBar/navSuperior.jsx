@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { IconButton, useDisclosure } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
@@ -10,9 +10,16 @@ import SearchBar from "../SearchBar/SearchBar";
 import n from "./navSuperior.module.css";
 import Carrito from "../Carrito/Carrito";
 
-const NavSuperior = () => {
+const NavSuperior = ({setPage, page}) => {
 
 const { isOpen, onOpen, onClose } = useDisclosure()
+const navigate = useNavigate();
+
+const handleClick = (e) => {
+    e.preventDefault();
+    navigate("/");
+    setPage(1);
+}
 
     return (
         <Flex
@@ -23,7 +30,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                 align="center"
                 justify="space-evenly"
             >
-                <Link to={'/'}>
+                <Link to={'/'} onClick={(e)=>handleClick(e)}>
                     <img 
                     width= '65px'
                      src={logotipo}/>

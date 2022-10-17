@@ -1,0 +1,19 @@
+.cardContainer {
+    margin: 0 0 3rem 0 ;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.order {
+    margin: 3rem 1.5rem 0 3rem;
+    display: grid;
+    grid-template-rows: 30%;
+    grid-template-columns: repeat(1, 30%);
+    gap: 8px;
+
+    justify-content: end;
+}

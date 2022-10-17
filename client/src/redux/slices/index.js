@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//hola
 export const state = createSlice({
     name: "state",
     initialState: {
         productos: [],
+        productosFiltrados: [],
         flavors: [],
         toppings: [],
         types: ["helados", "combos", "bombones", "shakes", "parfaits", "crepes"], /* <-- está harcodeado hasta que funcione la action */
         details: [],
         carrito: {},
-        compra: {}
+        respuestacompra: ''
     },
     reducers: {
         //Aqui se realiza las actions
@@ -32,16 +33,27 @@ export const state = createSlice({
             state.productos = action.payload
         },
         orderByPrice: (state, action) => {
-            state.productos = action.payload
+            state.productos = state.productos.sort((a, b) => {
+                if(a.price < b.price) {
+                    return action.payload === "ascendente" ? -1 : 1;
+                }
+                if(a.price > b.price) {
+                    return action.payload === "ascendente" ? 1 : -1;
+                }
+                return 0;
+            });
         },
         addToCart: (state, {payload}) => {
             state.carrito = { ...state.carrito, payload }
         },
-        addCompra:(state, {payload}) => {
-            state.compra = { ...state.compra, payload }
+        addCompra:(state, action) => {
+            state.respuestacompra =  action.payload 
         },
+        clearDetails: (state) => {
+            state.details = []
+        }
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, addCompra } = state.actions;
+export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails } = state.actions;
 export default state.reducer;

@@ -41,8 +41,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
     function vaciarCarrito() {
         setproductosCarrito([])
     }
-
-    
+ 
 
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)

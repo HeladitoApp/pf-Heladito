@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
@@ -14,7 +14,18 @@ import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
 
+
 export default function CardDetail() {
+
+  //estados para Contador
+  const [contador, setContador] = useState(0);
+
+  //estado para FlavorsList
+  const [sabor, setSabor] = React.useState('');
+
+  //estado para ToppingsList
+  const [checkedToppings, setCheckedToppings] = useState([]);
+
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
@@ -86,7 +97,7 @@ else {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              $ {detail.price}
+              $/ {detail.price}
             </chakra.span>
 
             <chakra.p
@@ -101,9 +112,18 @@ else {
               {detail.description}
             </chakra.p>
             <Stack >
-              <Contador />
-              <FlavorsList />
-              <ToppingsList />
+              <Contador
+              contador={contador} 
+              setContador={setContador}
+              />
+              <FlavorsList
+                sabor={sabor}
+                setSabor={setSabor}
+              />
+              <ToppingsList
+                checkedToppings={checkedToppings}
+                setCheckedToppings={setCheckedToppings}
+              />
             </Stack>
             <HStack
               spacing={10}
@@ -118,8 +138,19 @@ else {
                 name={detail.name}
                 price={detail.price}
                 type={detail.type}
+                sabor={sabor}
+                checkedToppings={checkedToppings}
+                contador={contador}
               />
-              <ButtonComprar />
+              <ButtonComprar 
+              id={detail.id}
+              image={detail.image}
+              name={detail.name}
+              price={detail.price}
+              type={detail.type}
+              sabor={sabor}
+              checkedToppings={checkedToppings}
+              contador={contador}/>
             </HStack>
           </Stack>
         </Stack>

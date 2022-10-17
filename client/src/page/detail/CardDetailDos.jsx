@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import BombonesShakesDetail from './BombonesShakesDetail';
 import UnSaborConToppings from './UnSaborConToppings';
 
+
 export default function CardDetailDos() {
 
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function CardDetailDos() {
           
         )) :
         <h1>hola</h1>
+       
         
          
       } 

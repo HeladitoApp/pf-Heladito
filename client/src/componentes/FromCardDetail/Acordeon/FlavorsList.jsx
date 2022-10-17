@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import s from './Lists.module.css';
 
-export default function FlavorsList() {
+const FlavorsList= ({sabor, setSabor}) => {
 
     const flavors = useSelector(state => state.state.flavors);
     const dispatch = useDispatch();
@@ -25,8 +25,9 @@ export default function FlavorsList() {
         dispatch(getFlavorsFromDb());
     }, [dispatch])
 
-    const [sabor, setSabor] = React.useState('');
-    console.log([sabor, setSabor])
+    /* const [sabor, setSabor] = React.useState('');
+    console.log([sabor, setSabor]) */
+
 
    /*  const handleClick = (e) => {
         e.preventDefault();
@@ -93,4 +94,6 @@ export default function FlavorsList() {
         </Accordion >
     )
 };
+
+export default FlavorsList;
 

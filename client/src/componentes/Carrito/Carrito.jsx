@@ -4,6 +4,7 @@ import { keyCarrito, useLocalStorage } from '../../utils/useLocalStorage';
 import CardsCarrito from './CardsCarrito';
 import { addCompraDb } from '../../redux/actions/compras';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 export default function Carrito({ isOpen, onOpen, onClose }) {
     const keycarrito = keyCarrito
     const btnRef = React.useRef()
@@ -41,6 +42,8 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
         setproductosCarrito([])
     }
 
+    
+
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)
     function EnviarCompra() {
@@ -53,7 +56,9 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
         }
         productosCarrito.map(p => compra.productos.push(p.id))
         dispatch(addCompraDb(compra))
+        
     }
+
     // console.log(productosCarrito)
     return (
         <>

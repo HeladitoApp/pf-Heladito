@@ -10,6 +10,7 @@ import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
 import AgregarProducto from "./componentes/addProducto/addProducto";
+import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/users/admin" element={<Admin />} />
         <Route path="/product/add" element = {<AgregarProducto/>}></Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/product/cart" element={<ResumenPedido />} />
+
       </Routes>
     </div>
   );

@@ -13,7 +13,9 @@ import AgregarProducto from "./componentes/addProducto/addProducto";
 import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
 import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
+
 import { useState } from "react";
+
 
 
 

@@ -57,7 +57,9 @@ export default function Pagination({page, setPage, max}) {
         _dark={{
           bg: "#3e3e3e",
         }}
-        p={50}
+        px={50}
+        pb={5}
+        pt={5}
         w="full"
         alignItems="center"
         justifyContent="center"

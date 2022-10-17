@@ -10,7 +10,7 @@ const ProductSelected = ({ productCategory }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        navigate("/");
+        navigate(`/products/${e.target.value.toLowerCase()}`);
         dispatch(typeFilter(e.target.value.toLowerCase()));
         console.log(e.target.value.toLowerCase());
     }

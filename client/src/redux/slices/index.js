@@ -10,10 +10,14 @@ export const state = createSlice({
         types: ["helados", "combos", "bombones", "shakes", "parfaits", "crepes"], /* <-- está harcodeado hasta que funcione la action */
         details: [],
         carrito: {},
-        respuestacompra: ''
+        respuestacompra: '',
+        loading: false
     },
     reducers: {
         //Aqui se realiza las actions
+        changeLoading: (state, action) => {
+            state.loading = action.payload
+        },
         getProductos: (state, action) => {
             state.productos = action.payload
         },
@@ -55,5 +59,5 @@ export const state = createSlice({
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails } = state.actions;
+export const { changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails } = state.actions;
 export default state.reducer;

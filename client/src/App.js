@@ -10,12 +10,10 @@ import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
 import AgregarProducto from "./componentes/addProducto/addProducto";
-<<<<<<< HEAD
 import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
-=======
 import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
->>>>>>> 18db489f84d32a977d253c7231313b716403620f
+
 
 
 function App() {

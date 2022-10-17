@@ -49,8 +49,11 @@ export const state = createSlice({
         addCompra:(state, {payload}) => {
             state.compra = { ...state.compra, payload }
         },
+        clearDetails: (state) => {
+            state.details = []
+        }
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType } = state.actions;
+export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, clearDetails } = state.actions;
 export default state.reducer;

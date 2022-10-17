@@ -366,6 +366,11 @@ export default function AgregarProducto2() {
       _dark={{ borderColor: "whiteAlpha.300" }}
       visibility={{ base: "hidden", sm: "visible" }}
     />
+    <Button
+          borderRadius={'full'} 
+          colorScheme='pink' variant='solid'>
+              <a  href='/'>volver</a>
+          </Button>
     </Box>
   );
 };

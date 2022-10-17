@@ -10,6 +10,7 @@ import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
+import { clearDetails } from '../../redux/slices';
 
 export default function CardDetail() {
 
@@ -20,7 +21,10 @@ export default function CardDetail() {
   console.log(productId)
 
   useEffect(() => {
-    dispatch(getProductById(productId))
+    dispatch(getProductById(productId));
+    return ()=>{
+      dispatch(clearDetails())
+    }
   }, [dispatch, productId]);
 
   return (

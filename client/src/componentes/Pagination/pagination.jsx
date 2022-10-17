@@ -67,7 +67,7 @@ export default function Pagination({page, setPage, max}) {
             <Icon
             onClick={previusPage} disabled={page === 1}
               as={IoIosArrowBack}
-              color="amarillo.original"
+              color="gray.700"
               _dark={{
                 color: "gray.200",
               }}

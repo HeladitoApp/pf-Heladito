@@ -1,6 +1,5 @@
 import { orderByPrice } from "../slices";
-import axios from "axios";
 
-export const priceSort = (order, type) => (dispatch) => {
+export const priceSort = (order) => (dispatch) => {
     dispatch(orderByPrice(order))   
 }

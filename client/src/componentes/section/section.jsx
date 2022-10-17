@@ -7,9 +7,9 @@ import { getProdsFromDb } from '../../redux/actions/products';
 // import { getTypesFromProducts } from '../../redux/actions/types';
 import { Divider, Heading, Select  } from '@chakra-ui/react'
 // import { Link } from 'react-router-dom';
-// import Order from './Order';
-import { priceSort } from '../../redux/actions/order';
+// import { priceSort } from '../../redux/actions/order';
 import Pagination from '../Pagination/pagination';
+import Order from './Order';
 
 
 const Section = () => {
@@ -31,29 +31,21 @@ const Section = () => {
     <div className={s.sectionsContainer}>
       {
         types.map((t, index)=>{
-          const handleSelect = (e) => {
-            e.preventDefault();
-            dispatch(priceSort(e.target.value, t));
-            console.log(e.target.value);
-            };
+          /* Esto es de Pagination */
           const max = Math.ceil(productos.filter((p) => p.type === t).length / perPage);
           if(productos.filter((p) => p.type === t).length) {
           return (            
             <div key={index}>
               <div className={s.sectionTitle}>
                 <Heading>{t[0].toUpperCase()+t.slice(1)}</Heading>
-                <Select onChange={handleSelect} >
-                  <option value="default" hidden>Ordenar por precio</option>
-                  <option value="ascendente">Menor precio</option>
-                  <option value="descendente">Mayor precio</option>
-                </Select>
+                <Order />
               </div>
               <div>
                 <div className={s.sectionContainer}>
                   {                    
                     productos.filter((p)=> p.type === t)
-                    ?.slice((page-1) * perPage, (page-1) * perPage + perPage )
-                      .map((p)=> {
+                    //.slice((page-1) * perPage, (page-1) * perPage + perPage ) /* <--- De Pagination */
+                      ?.map((p)=> {
                         return <Card 
                         key={p._id}
                         id={p._id}
@@ -61,10 +53,10 @@ const Section = () => {
                         name={p.name}
                         price={p.price}
                         />
-                    })  
+                    }) 
                   }
                 </div>
-                <Pagination page={page} setPage={setPage} max={max}/>
+                  {/* <Pagination page={page} setPage={setPage} max={max}/> */}
               </div>
               <div>
                 <Divider />

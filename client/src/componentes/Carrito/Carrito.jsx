@@ -20,12 +20,13 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
     }
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)
+    const Total = total.toFixed(2)
     function EnviarCompra() {
 
         const compra = {
             name: 'Pepito Lopez',
             productos: [],
-            total: total,
+            total: Total,
             metodoDePago: 'Banco nacional',
             pagado: 'true'
         }
@@ -37,6 +38,14 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
     function cerrar_ventana() {
         setmensaje(false)
     }
+    function redenrizarCarrito() {
+        const item = window.localStorage.getItem(keycarrito)
+        return item ? JSON.parse(item) : []
+    }
+    useEffect(() => {
+        setproductosCarrito(redenrizarCarrito())
+    }, [isOpen])
+
 
     // console.log(productosCarrito)
     return (
@@ -96,8 +105,8 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                     </DrawerBody>
                     <DrawerFooter>
                         {/* <Stack direction='row' width={'full'} > */}
-                        <Text pr={1} fontSize='sm' as='sub' color={'rosado.normal'}>Subtotal: $/{total}</Text>
-                        <Text pr={4} fontSize='xl' as='b' color={'rosado.original'}>Total: $/{total}</Text>
+                        <Text pr={1} fontSize='sm' as='sub' color={'rosado.normal'}>Subtotal: $/{Total}</Text>
+                        <Text pr={4} fontSize='xl' as='b' color={'rosado.original'}>Total: $/{Total}</Text>
                         <Button onClick={() => EnviarCompra()} disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
                         {/* </Stack> */}
                     </DrawerFooter>

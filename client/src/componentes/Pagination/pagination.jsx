@@ -57,7 +57,9 @@ export default function Pagination({page, setPage, max}) {
         _dark={{
           bg: "#3e3e3e",
         }}
-        p={50}
+        px={50}
+        pb={5}
+        pt={5}
         w="full"
         alignItems="center"
         justifyContent="center"
@@ -67,7 +69,7 @@ export default function Pagination({page, setPage, max}) {
             <Icon
             onClick={previusPage} disabled={page === 1}
               as={IoIosArrowBack}
-              color="amarillo.original"
+              color="gray.700"
               _dark={{
                 color: "gray.200",
               }}

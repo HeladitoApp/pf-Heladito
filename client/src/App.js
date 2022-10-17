@@ -10,7 +10,10 @@ import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
 import AgregarProducto from "./componentes/addProducto/addProducto";
+import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
 import Footer from '../src/componentes/Footer/Footer';
+import Types from "./page/Types/Types";
+
 
 
 function App() {
@@ -21,11 +24,14 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
         <Route path="/product/:productId" element={<CardDetail />} />
+        <Route path="/products/:type" element={<Types />} />
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
         <Route path="/users/admin" element={<Admin />} />
         <Route path="/product/add" element = {<AgregarProducto/>}></Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/product/cart" element={<ResumenPedido />} />
+
       </Routes>
       <Footer />
     </div>

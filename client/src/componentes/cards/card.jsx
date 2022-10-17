@@ -26,13 +26,12 @@ export default function Card({ id, img, name, price }) {
                 mx="auto"
             />
             <Box p="4" align="center">
-                <Heading fontFamily={'family.heading'} as='h4' size='md' > {name}</Heading>
+                <Heading fontFamily={'family.heading'} as='h4' size='md' h="4rem"> {name}</Heading>
                 {/* <Badge variant={'solid'} colorScheme='green' rounded={'full'} px='2'>
                     New
                 </Badge> */}
                 <Text p={5} fontFamily={'family.body'} fontSize='2xl'>Precio $/{price}</Text>
             </Box>
-
         </Box >
         </Link>
     );

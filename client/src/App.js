@@ -12,14 +12,18 @@ import NotFound from "./page/NotFound/NotFound";
 import AgregarProducto from "./componentes/addProducto/addProducto";
 import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
+import { useState } from "react";
 
 
 function App() {
-  return (
+  
+  const [page, setPage] = useState(1);
+
+  return (  
     <div>
-      <NavBar />
+      <NavBar setPage={setPage} page={page}/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home  setPage={setPage} page={page}/>} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
         <Route path="/product/:productId" element={<CardDetail />} />
         <Route path="/products/:type" element={<Types />} />

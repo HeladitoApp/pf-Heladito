@@ -4,15 +4,15 @@ import NavInferior from './navInferior'
 import NavSuperior from './navSuperior'
 
 
-const NavBar = () => {
+const NavBar = ({setPage, page}) => {
     return (
         <chakra.header id="header">
             
             <Flex
              flexDirection ="column">
-                <NavSuperior/>
+                <NavSuperior setPage={setPage} page={page}/>
                 <hr />
-                <NavInferior/>
+                <NavInferior setPage={setPage} page={page}/>
             </Flex>
         </chakra.header>
     )

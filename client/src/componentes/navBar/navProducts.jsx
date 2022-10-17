@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { getProdsFromDb } from "../../redux/actions/products";
 import { useNavigate } from "react-router-dom";
 
-const NavProducts = () => {
+const NavProducts = ({setPage, page}) => {
     useEffect(()=>{
         dispatch(getProdsFromDb());
     },[])
@@ -20,6 +20,7 @@ const NavProducts = () => {
         e.preventDefault();
         navigate("/");
         dispatch(getProdsFromDb());
+        setPage(1);
         console.log(e.target.value.toLowerCase());
     }
 

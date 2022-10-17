@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//hola
 export const state = createSlice({
     name: "state",
     initialState: {
@@ -10,7 +10,7 @@ export const state = createSlice({
         types: ["helados", "combos", "bombones", "shakes", "parfaits", "crepes"], /* <-- está harcodeado hasta que funcione la action */
         details: [],
         carrito: {},
-        compra: {}
+        respuestacompra: ''
     },
     reducers: {
         //Aqui se realiza las actions
@@ -46,8 +46,8 @@ export const state = createSlice({
         addToCart: (state, {payload}) => {
             state.carrito = { ...state.carrito, payload }
         },
-        addCompra:(state, {payload}) => {
-            state.compra = { ...state.compra, payload }
+        addCompra:(state, action) => {
+            state.respuestacompra =  action.payload 
         },
         clearDetails: (state) => {
             state.details = []
@@ -55,5 +55,5 @@ export const state = createSlice({
     }
 });
 
-export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, clearDetails } = state.actions;
+export const { getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails } = state.actions;
 export default state.reducer;

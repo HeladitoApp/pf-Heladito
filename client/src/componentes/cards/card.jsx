@@ -4,6 +4,8 @@ import { Link as ReachLink } from "react-router-dom";
 export default function Card({ id, img, name, price }) {
 
     return (
+        <Link as={ReachLink} to={`/product/${id}`}
+        style={{textDecoration: 'none', paddingLeft: 2, paddingRight: 2}} >
         <Box
             py={4}
             w="280px"
@@ -29,12 +31,10 @@ export default function Card({ id, img, name, price }) {
                     New
                 </Badge> */}
                 <Text p={5} fontFamily={'family.body'} fontSize='2xl'>Precio $/{price}</Text>
-                <Link as={ReachLink} to={`/product/${id}`} border={'1px'} borderColor={'teal'} borderRadius={'full'} px="70" py={"2"} _hover={{ bg: 'celeste.original' }}>
-                    Seleccionar
-                </Link>
             </Box>
 
         </Box >
+        </Link>
     );
 };
 

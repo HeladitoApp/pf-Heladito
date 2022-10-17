@@ -10,6 +10,7 @@ import Admin from "./page/admin/Admin";
 import Consumer from "./page/Consumer/Consumer";
 import NotFound from "./page/NotFound/NotFound";
 import AgregarProducto from "./componentes/addProducto/addProducto";
+import Footer from '../src/componentes/Footer/Footer';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/product/add" element = {<AgregarProducto/>}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

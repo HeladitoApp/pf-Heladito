@@ -5,43 +5,7 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 
 export default function Pagination({page, setPage, max}) {
-    const PagButton = (props) => {
-      const activeStyle = {
-        bg: "brand.600",
-        _dark: {
-          bg: "brand.500",
-        },
-        color: "white",
-      };
-
-
-      return (
-        <Button
-          mx={1}
-          px={4}
-          py={2}
-          rounded="md"
-          bg="rosado.claro"
-          _dark={{
-            bg: "gray.800",
-          }}
-          color="gray.700"
-          opacity={props.disabled && 0.6}
-          _hover={!props.disabled && activeStyle}
-          cursor={props.disabled && "not-allowed"}
-          {...(props.active && activeStyle)}
-          display={
-            props.p &&
-            !props.active && {
-              base: "none",
-              sm: "block",
-            }
-          }
-        >
-          {props.children}
-        </Button>
-      );
-    };
+  
 
     const nextPage = () => {
         setPage(parseInt(page) + 1);
@@ -49,11 +13,9 @@ export default function Pagination({page, setPage, max}) {
     const previusPage = () => {
         setPage(parseInt(page) - 1);
       };
-      console.log(max)
 
     return (
       <Flex
-        //bg="white"
         _dark={{
           bg: "#3e3e3e",
         }}
@@ -65,21 +27,27 @@ export default function Pagination({page, setPage, max}) {
         justifyContent="center"
       >
         <Flex>
-          <PagButton>
+          <Button
+          onClick={previusPage} 
+          isDisabled = {page === 1}
+          m="5%"
+           >
             <Icon
-            onClick={previusPage} disabled={page === 1}
               as={IoIosArrowBack}
               color="gray.700"
               _dark={{
-                color: "gray.200",
+              color: "gray.200",
               }}
               boxSize={4}
             />
-          </PagButton>
-
-          <PagButton>
+          </Button>
+          
+          <Button
+          isDisabled = {page === max}
+          onClick={nextPage} 
+          m="5%"
+          >
             <Icon
-              onClick={nextPage} disabled={page === max}
               as={IoIosArrowForward}
               color="gray.700"
               _dark={{
@@ -87,7 +55,7 @@ export default function Pagination({page, setPage, max}) {
               }}
               boxSize={4}
             />
-          </PagButton>
+          </Button>
         </Flex>
       </Flex>
     );

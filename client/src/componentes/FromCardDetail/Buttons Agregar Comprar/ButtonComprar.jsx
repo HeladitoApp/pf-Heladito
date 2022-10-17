@@ -3,6 +3,7 @@ import { Button } from '@chakra-ui/react';
 import s from './Button.module.css';
 import { useLocalStorage, keyCarrito } from '../../../utils/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, contador }) => {
@@ -25,12 +26,29 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
             toppings: [checkedToppings],
         }
         console.log(newProduct)
-        setAddProduct([...addProduct,
-            newProduct])
-        /* forceUpdate() */
-        navigate("/product/cart");
-    };
+        if (contador === 0 || sabor === [''] || checkedToppings === []) {
+            swal({
+                title: 'Porfavor, verifique que todas las secciones estén completas',
+                icon: "info",
+                button: "aceptar"
+            })
+        }
 
+        else if (id && image &&
+            name && price &&
+            type && contador &&
+            sabor.length > 0 &&
+            checkedToppings.length > 0) {
+            setAddProduct([...addProduct,
+                newProduct])
+            swal({
+                title: 'Producto agregado al carrito, a seguir comprando!',
+                icon: "success",
+                button: "aceptar"
+            })
+            navigate("/");
+        }
+    };
 
     return (
         <Button className={s.button} w='18.75em' colorScheme='rosado.original' variant='outline'

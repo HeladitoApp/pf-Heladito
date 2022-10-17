@@ -19,9 +19,11 @@ import {
     chakra,
     Divider,
   } from "@chakra-ui/react";
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/actions/addProduct';
+import { setLoading } from '../../redux/actions/loading';
+import Loading from '../loading/loading';
 
 
 
@@ -37,7 +39,8 @@ function control(input) {
 }
 
 export default function AgregarProducto2() {
-  
+
+    const loading = useSelector((state) => state.state.loading)
     const dispatch = useDispatch()
     const [errors, setErrors] = useState({})
     const [input, setInput] = useState({
@@ -48,6 +51,15 @@ export default function AgregarProducto2() {
         stock: '',
         type: ''
     })
+
+    useEffect(()=>{
+      dispatch(setLoading(true));
+      setTimeout(() => {
+          dispatch(setLoading(false));
+      }, 1500);
+  },[dispatch]);
+
+
     function handleInputsChange(e) {
         setInput({
             ...input,
@@ -96,6 +108,13 @@ export default function AgregarProducto2() {
             }
     }
 
+
+    if(loading){
+      return(
+          <Loading/>
+      )
+  }
+  else{
   return (
     <Box bg="#EBFBFC" _dark={{ bg: "#111" }} p={10}>
         <Divider
@@ -347,6 +366,12 @@ export default function AgregarProducto2() {
       _dark={{ borderColor: "whiteAlpha.300" }}
       visibility={{ base: "hidden", sm: "visible" }}
     />
+    <Button
+          borderRadius={'full'} 
+          colorScheme='pink' variant='solid'>
+              <a  href='/'>volver</a>
+          </Button>
     </Box>
   );
 };
+}

@@ -71,6 +71,7 @@ export default function ToppingsList({props, checkedToppings, setCheckedToppings
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
+                    <Box fontSize='xs'>Elige max. 6 toppings</Box>
                     <Wrap>
                         {toppings.map((topping, index) => (
                             <WrapItem key={index}>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { IconButton, useDisclosure } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
+import { VscSettingsGear } from 'react-icons/vsc';
 
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { Flex } from "@chakra-ui/react";
@@ -30,7 +31,15 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                 <SearchBar/>
                 <Flex
                   >
-                    <Link >
+                    <Link to="/product/add" >
+                        <IconButton
+                         mr="15px"
+                         variant="outline"
+                         colorScheme='pink'
+                         aria-label='carrito' 
+                         icon={<VscSettingsGear/>} />
+                    </Link>
+                    <Link to="/product/add2" >
                         <IconButton
                          mr="10px"
                          variant="outline"

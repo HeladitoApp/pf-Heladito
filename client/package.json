@@ -20,6 +20,7 @@
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

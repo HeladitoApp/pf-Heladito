@@ -1,20 +1,43 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {Link} from 'react-router-dom'
-import { addProduct } from "../../redux/actions/addProduct";
 import './addProductos.css'
+import swal from 'sweetalert';
+import {
+    Box,
+    Button,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    GridItem,
+    Heading,
+    Input,
+    InputGroup,
+    InputLeftAddon,
+    Select,
+    SimpleGrid,
+    Stack,
+    Text,
+    Textarea,
+    chakra,
+    Divider,
+  } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/actions/addProduct';
+
+
+
 function control(input) {
     let error = {}
-    if(!input.name) error.name = 'Nombre es necesario'
-    else if (!input.description) error.description = 'Una descripcion es necesaria'
-    else if (!input.image) error.image = 'Una imagen es necesaria'
-    else if (!input.price) error.price = 'El precio es necesario'
-    else if (!input.stock) error.stock = 'El sotck es necesario'
-    else if (!input.type) error.stock = 'El tipo de producto es necesario'
+    if(!input.name) error.name = 'Ingrese un nombre'
+    else if (!input.description) error.description = 'La descripcion es necesaria'
+    else if (!input.image) error.image = 'Ingrese una imagen'
+    else if (!input.price) error.price = 'Ingrese un precio'
+    else if (!input.stock) error.stock = 'Ingrese cantidad en stock'
+    else if (!input.type) error.type = 'Seleccione un tipo de producto'
     return error
 }
 
-export default function AgregarProducto() {
+export default function AgregarProducto2() {
+  
     const dispatch = useDispatch()
     const [errors, setErrors] = useState({})
     const [input, setInput] = useState({
@@ -50,7 +73,11 @@ export default function AgregarProducto() {
             input.stock &&
             input.type) {
                 dispatch(addProduct(input))
-                alert('Producto creado con exito!')
+                swal({
+                    title:'Producto creado con exito!',
+                    icon:"success",
+                    button: "aceptar"
+                })
                 setInput({
                     name: '',
                     description: '',
@@ -61,70 +88,265 @@ export default function AgregarProducto() {
                 })
             }
             else {
-                alert('Porfavor complete todos los campos para continuar')
+                swal({
+                    title:'Por favor, complete todos los campos para continuar',
+                    icon:"info",
+                    button: "aceptar"
+                })
             }
     }
 
-    return (
-        <section className="todo">
-            <div className="info">
-            <Link id="ToHome" to='/'>
-                <button className = 'ToHome'>Volver al inicio</button>
-            </Link>
-                <h1 id = 'titulo'>COMPLETE TODOS LOS CAMPOS</h1>
-                <form onSubmit={e => handleSubmit(e)}>
-                    <article>
-                        <label className="titulo">Nombre</label>
-                        <input type="text" className="inputs" value={input.name} name = 'name'
-                        onChange={(e) => handleInputsChange(e)}
-                        />
-                        {errors.name && ( <p className="error">{errors.name}</p>)}
-                    </article>
-                    <article>
-                        <label className="titulo">Descipcion</label>
-                        <input type="text" className="inputs" value={input.description} name = 'description'
-                        onChange={(e) => handleInputsChange(e)}
+  return (
+    <Box bg="#EBFBFC" _dark={{ bg: "#111" }} p={10}>
+        <Divider
+        my="5"
+        borderColor="gray.300"
+        _dark={{ borderColor: "whiteAlpha.300" }}
+        visibility={{ base: "hidden", sm: "visible" }}
+        />
+    <Box mt={[10, 0]}>
+      <SimpleGrid
+        display={{ base: "initial", md: "grid" }}
+        columns={{ md: 3 }}
+        spacing={{ md: 6 }}
+      >
+        <GridItem colSpan={{ md: 1 }}>
+          <Box px={[4, 0]}>
+            <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
+              Crear producto
+            </Heading>
+            <Text
+              mt={1}
+              fontSize="sm"
+              color="gray.600"
+              _dark={{ color: "gray.400" }}
+            >
+              Complete todos los campos.
+            </Text>
+          </Box>
+        </GridItem>
+        <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
+          <chakra.form
+            onSubmit={e => handleSubmit(e)}
+            method="POST"
+            shadow="base"
+            rounded={[null, "md"]}
+            overflow={{ sm: "hidden" }}
+          >
+            <Stack
+              px={4}
+              py={5}
+              p={[null, 6]}
+              bg="white"
+              _dark={{ bg: "#141517" }}
+              spacing={6}
+            >
+              <SimpleGrid columns={6} spacing={6}>
+                <FormControl as={GridItem} colSpan={[6, 3]}>
+                  <FormLabel
+                    htmlFor="name"
+                    fontSize="sm"
+                    fontWeight="md"
+                    color="gray.700"
+                    _dark={{ color: "gray.50" }}
+                  >
+                    Nombre
+                  </FormLabel>
+                  <Input
+                    type="text" 
+                    value={input.name} 
+                    name='name'
+                    onChange={(e) => handleInputsChange(e)}
+                    id="name"
+                    mt={1}
+                    focusBorderColor="#5CE1E6"
+                    shadow="sm"
+                    size="sm"
+                    w="full"
+                    rounded="md"
+                    className="error"
+                  />
+                  {errors.name && ( <p className="error">{errors.name}</p>)}
+                </FormControl>
+    
+                
+    
+                <FormControl as={GridItem} colSpan={[6, 4]}>
+                        <FormLabel
+                          fontSize="sm"
+                          fontWeight="md"
+                          color="gray.700"
+                          _dark={{ color: "gray.50" }}
+                        >
+                          Descripción
+                        </FormLabel>
+                        <Textarea
+                          type="text"
+                          value={input.description} 
+                          name = 'description'
+                          onChange={(e) => handleInputsChange(e)}
+                          mt={1}
+                          rows={3}
+                          shadow="sm"
+                          focusBorderColor= "#5CE1E6"
+                          fontSize={{ sm: "sm" }}
+                          className="error"
                         />
                         {errors.description && ( <p className="error">{errors.description}</p>)}
-                    </article>
-                    <article>
-                        <label className="titulo">Imagen</label>
-                        <input type="url" className="inputs" value={input.image} name = 'image'
-                        onChange={(e) => handleInputsChange(e)}
-                        />
+                </FormControl>
+    
+                <FormControl as={GridItem} colSpan={[6, 4]}>
+                        <FormLabel
+                          fontSize="sm"
+                          fontWeight="md"
+                          color="gray.700"
+                          _dark={{ color: "gray.50" }}
+                        >
+                          Imagen
+                        </FormLabel>
+                        <InputGroup size="sm">
+                          <InputLeftAddon
+                            bg="gray.50"
+                            _dark={{ bg: "gray.800" }}
+                            color="gray.500"
+                            rounded="md"
+                            className="error"                          >
+                            http://
+                          </InputLeftAddon>
+                          <Input
+                            type="url"
+                            value={input.image} 
+                            name='image'
+                            onChange={(e) => handleInputsChange(e)}
+                            placeholder="www.example.com"
+                            focusBorderColor="#5CE1E6"
+                            rounded="md"
+                            className="error"
+                          />
+                        </InputGroup>
                         {errors.image && ( <p className="error">{errors.image}</p>)}
-                    </article>
-                    <article>
-                        <label className="titulo">Price</label>
-                        <input type="number" className="inputs" value={input.price} name = 'price'
-                        onChange={(e) => handleInputsChange(e)}
-                        />
-                        {errors.price && ( <p className="error">{errors.price}</p>)}
-                    </article>
-                    <article>
-                        <label className="titulo">Stock</label>
-                        <input type="number" className="inputs" value={input.stock} name = 'stock'
-                        onChange={(e) => handleInputsChange(e)}
-                        />
-                        {errors.stock && ( <p className="error">{errors.stock}</p>)}
-                    </article>
-                    <article>
-                        <select className = 'tipos'  id="selectTipo"  defaultValue={'plaseholder'} onChange = {e => handleSelectType(e)}>
-                            <option hidden value='plaseholder'>Elige un tipo de producto</option>
-                            <option value="helados">Helados</option>
-                            <option value="combos">Combos</option>
-                            <option value="bombones">Bombones</option>
-                            <option value="shakes">Shakes</option>
-                            <option value="parfaits">Parfaits</option>
-                            <option value="crepes">Crepes</option>
-                        </select>
-                        {errors.type && ( <p className="error">{errors.type}</p>)}
-                    </article>
-                    <button id="addButton" type='submit'>¡AGREGAR PRODUCTO!</button>
-                </form>
-            </div>
-        </section>
-    )
-}
+                        <FormHelperText>
+                          Ingrese la URL de la imagen.
+                        </FormHelperText>
+                      </FormControl>
+    
+                <FormControl as={GridItem} colSpan={[6, 3]}>
+                  <FormLabel
+                    htmlFor="price"
+                    fontSize="sm"
+                    fontWeight="md"
+                    color="gray.700"
+                    _dark={{ color: "gray.50" }}
+                  >
+                    Precio
+                  </FormLabel>
+                  <Input
+                    type="number" 
+                    value={input.price} 
+                    onChange={(e) => handleInputsChange(e)}
+                    name="price"
+                    id="price"
+                    mt={1}
+                    focusBorderColor="#5CE1E6"
+                    shadow="sm"
+                    size="sm"
+                    w="full"
+                    rounded="md"
+                    className="error"
+                  />
+                  {errors.price && ( <p className="error">{errors.price}</p>)}
+                </FormControl>
+    
+                <FormControl as={GridItem} colSpan={[6, 3]}>
+                  <FormLabel
+                    htmlFor="stock"
+                    fontSize="sm"
+                    fontWeight="md"
+                    color="gray.700"
+                    _dark={{ color: "gray.50" }}
+                  >
+                    Stock
+                  </FormLabel>
+                  <Input
+                    type="number" 
+                    value={input.stock}
+                    onChange={(e) => handleInputsChange(e)}
+                    name="stock"
+                    id="stock"
+                    mt={1}
+                    focusBorderColor="#5CE1E6"
+                    shadow="sm"
+                    size="sm"
+                    w="full"
+                    rounded="md"
+                    className="error"
+                  />
+                  {errors.stock && ( <p className="error">{errors.stock}</p>)}
+                </FormControl>
+    
+                <FormControl as={GridItem} colSpan={[6, 3]}>
+                  <FormLabel
+                    htmlFor="country"
+                    fontSize="sm"
+                    fontWeight="md"
+                    color="gray.700"
+                    _dark={{ color: "gray.50" }}
+                  >
+                    Elige un tipo de producto
+                  </FormLabel>
+                  <Select
+                    id="selectTipo"  
+                    defaultValue={'plaseholder'} 
+                    onChange = {e => handleSelectType(e)}
+                    mt={1}
+                    focusBorderColor="#5CE1E6"
+                    shadow="sm"
+                    size="sm"
+                    w="full"
+                    rounded="md"
+                    className="error"
+                  >
+                    <option hidden value='plaseholder'>Productos</option>
+                    <option value="helados">Helados</option>
+                    <option value="combos">Combos</option>
+                    <option value="bombones">Bombones</option>
+                    <option value="shakes">Shakes</option>
+                    <option value="parfaits">Parfaits</option>
+                    <option value="crepes">Crepes</option>
+                  </Select>
+                  {errors.type && ( <p className="error">{errors.type}</p>)}
+                </FormControl>
+              </SimpleGrid>
+            </Stack>
+            <Box
+              px={{ base: 4, sm: 6 }}
+              py={3}
+              bg="gray.50"
+              _dark={{ bg: "#121212" }}
+              textAlign="right"
+            >
+              <Button
+                borderRadius={'full'} 
+                variant='solid'
+                type="submit"
+                colorScheme="blue"
+                _focus={{ shadow: "" }}
+                fontWeight="md"
+              >
+                ¡AGREGAR PRODUCTO!
+              </Button>
+            </Box>
+          </chakra.form>
+        </GridItem>
+      </SimpleGrid>
+    </Box>
 
-// "helados", "combos", "bombones", "shakes", "parfaits", "crepes"
+    <Divider
+      my="5"
+      borderColor="gray.300"
+      _dark={{ borderColor: "whiteAlpha.300" }}
+      visibility={{ base: "hidden", sm: "visible" }}
+    />
+    </Box>
+  );
+};

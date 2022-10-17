@@ -1,41 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Alert, AlertIcon, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { keyCarrito, useLocalStorage } from '../../utils/useLocalStorage';
 import CardsCarrito from './CardsCarrito';
 import { addCompraDb } from '../../redux/actions/compras';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 export default function Carrito({ isOpen, onOpen, onClose }) {
     const keycarrito = keyCarrito
     const btnRef = React.useRef()
     const dispatch = useDispatch()
-    const [mensaje, setmensaje] = useState(false)
-    const respuesta = useSelector((state) => state.state.respuestacompra)
-
-
+    const productosPrueba = [
+        {
+            id: 1,
+            name: "HeladitosApp mediano de 1 sabor + toppings",
+            img: "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665533182/e.cups_mt1s_bg01yi.png",
+            price: 123,
+            type: "helados",
+            cantidad: 2,
+            flavors: [],
+            toppings: []
+        },
+        {
+            id: 2,
+            name: "2 vasitos small con topping + 1 bombón HeladitosAp",
+            img: "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186875/e.promo_v1_wanab3.png",
+            price: 123,
+            type: "combos",
+            cantidad: 4,
+            flavors: [],
+            toppings: []
+        }
+    ]
     const [productosCarrito, setproductosCarrito] = useLocalStorage(keycarrito, []);
 
 
+    function prueba() {
+        setproductosCarrito(productosPrueba)
+
+    }
     function vaciarCarrito() {
         setproductosCarrito([])
     }
+ 
+
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)
     function EnviarCompra() {
-
         const compra = {
-            name: 'Pepito Lopez',
+            id_usuario: '1',
             productos: [],
             total: total,
-            metodoDePago: 'Banco nacional',
+            metodoDePago: 'Efectivo',
             pagado: 'true'
         }
-        productosCarrito.map(p => compra.productos.push({ id: p.id, name: p.name }))
+        productosCarrito.map(p => compra.productos.push(p.id))
         dispatch(addCompraDb(compra))
-        setmensaje(true)
-        setproductosCarrito([])
-    }
-    function cerrar_ventana() {
-        setmensaje(false)
+        
     }
 
     // console.log(productosCarrito)
@@ -50,27 +70,24 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton onClick={cerrar_ventana} />
+                    <DrawerCloseButton />
                     <DrawerHeader borderBottomWidth='1px' size="xl">
                         <Heading as='h4' fontSize='3xl' >
                             Carrito de compras
                         </Heading>
                         <Stack direction='row' spacing={8}>
-                            <Text fontSize='sm'> Tienes {productosCarrito.length} productos en el carrito
+                            <Text fontSize='sm'>
+                                Tienes {productosCarrito.length} productos en el carrito
                             </Text>
                             <Box align="right">
-                                {/* <Button size='xs' colorScheme='teal' onClick={() => prueba()}>
+                                <Button size='xs' colorScheme='teal' onClick={() => prueba()}>
                                     Productos de prueba
-                                </Button> */}
+                                </Button>
                                 <Button ml={3} size='xs' colorScheme='teal' onClick={() => vaciarCarrito()}>
                                     Vaciar carrito
                                 </Button>
                             </Box>
                         </Stack>
-                        {mensaje && <Alert status='success' variant='left-accent' height='30px' fontSize='sm' mt={2}>
-                            <AlertIcon />
-                            {respuesta}
-                        </Alert>}
                     </DrawerHeader>
                     <DrawerBody>
                         <Input placeholder='Type here...' />

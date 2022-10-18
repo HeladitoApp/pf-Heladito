@@ -1,9 +1,9 @@
 const { postUsuarios } = require("../utils/postUsuarios");
 
 async function postUsuariosController(req, res) {
-  const info = req.body;
+  //const info = req.body;
   try {
-    const result = await postUsuarios(info);
+    const result = await postUsuarios(req);
 
     result
       ? res.status(200).send(result)

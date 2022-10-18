@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const compraSchema = new Schema(
+const comprasSchema = new Schema(
   {
     usuario: String,
     productos: Array,
@@ -12,5 +12,5 @@ const compraSchema = new Schema(
   { timestamps: true }
 );
 
-const Compra = mongoose.model("Compra", compraSchema);
-module.exports = Compra;
+const Compras = mongoose.model("Compras", comprasSchema);
+module.exports = Compras;

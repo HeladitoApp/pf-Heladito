@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getProductById } from '../../redux/actions/details';
+import {getProductById} from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
@@ -10,9 +10,8 @@ import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
-import { clearDetails } from '../../redux/slices';
 
-export default function CardDetail() {
+export default function UnSaborConToppings() {
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
@@ -21,16 +20,18 @@ export default function CardDetail() {
   console.log(productId)
 
   useEffect(() => {
-    dispatch(getProductById(productId));
-    return ()=>{
-      dispatch(clearDetails())
-    }
+    dispatch(getProductById(productId))
   }, [dispatch, productId]);
 
   return (
     <Flex
       my={50}
       justifyContent='center'
+      /* direction={{ base: "column", lg: "row" }} */
+      /* mx={{ base: 50, lg: 120, md: 120 }} */
+      /*  ml='3.75em' */
+      /* direction={['column', 'row']} */
+      /* direction={{ base: "row"}} */
       spacing='5' >
       {product.map((detail, index) => (
         <Stack key={index} >
@@ -51,16 +52,22 @@ export default function CardDetail() {
                 src={detail.image}
                 alt={detail.name}
                 objectFit='cover'
-
+              /* w="25em"
+              h='25em'
+              mx='auto'
+              mt='10%' */
+              /* pos='absolute' */
               />
             </Circle>
           </Box>
 
           <Stack
             direction="column"
+            /* ml='8em' */
+            /* alignItems="start" */
             px={{ base: 4, md: 8, lg: 20 }}
             py={10}
-
+          /* zIndex={3} */
           >
             <chakra.span
               color="celeste.original"
@@ -98,13 +105,7 @@ export default function CardDetail() {
               justify='content'
               h='4em'
             >
-              <ButtonAgregar
-                id={detail.id}
-                image={detail.image}
-                name={detail.name}
-                price={detail.price}
-                type={detail.type}
-              />
+              <ButtonAgregar />
               <ButtonComprar />
             </HStack>
           </Stack>

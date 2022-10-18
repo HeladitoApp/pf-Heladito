@@ -1,27 +1,44 @@
-import React from 'react';
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure } from '@chakra-ui/react';
-
-import { useState } from "react"
-import { useLocalStorage } from '../../utils/useLocalStorage';
-// import { useDispatch, useSelector } from "react-redux";
-import { getProdsFromDb } from "../../redux/actions/products";
-import { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import { Box, Alert, AlertIcon, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure } from '@chakra-ui/react';
+import { keyCarrito, useLocalStorage } from '../../utils/useLocalStorage';
 import CardsCarrito from './CardsCarrito';
+import { addCompraDb } from '../../redux/actions/compras';
+import { useDispatch, useSelector } from 'react-redux';
 export default function Carrito({ isOpen, onOpen, onClose }) {
+    const keycarrito = keyCarrito
     const btnRef = React.useRef()
-    // const dispatch = useDispatch()
-    // const productos = useSelector(state => state.state.productos)
-    // const productoIndi = productos.slice(0, 4)
+    const dispatch = useDispatch()
+    const [mensaje, setmensaje] = useState(false)
+    const respuesta = useSelector((state) => state.state.respuestacompra)
 
-    const [productosCarrito, setproductosCarrito] = useLocalStorage('prueba_pruductos', []);
+
+    const [productosCarrito, setproductosCarrito] = useLocalStorage(keycarrito, []);
+
+
+    function vaciarCarrito() {
+        setproductosCarrito([])
+    }
     let total = 0;
-    productosCarrito.map(p => total = p.price + total)
-    console.log(productosCarrito)
-    // useEffect(() => {
-    //     setContador(productoIndi)
-    //     dispatch(getProdsFromDb())
+    productosCarrito.map(p => total = (p.price * p.cantidad) + total)
+    function EnviarCompra() {
 
-    // }, [dispatch])
+        const compra = {
+            name: 'Pepito Lopez',
+            productos: [],
+            total: total,
+            metodoDePago: 'Banco nacional',
+            pagado: 'true'
+        }
+        productosCarrito.map(p => compra.productos.push({ id: p.id, name: p.name }))
+        dispatch(addCompraDb(compra))
+        setmensaje(true)
+        setproductosCarrito([])
+    }
+    function cerrar_ventana() {
+        setmensaje(false)
+    }
+
+    // console.log(productosCarrito)
     return (
         <>
             <Drawer
@@ -33,25 +50,55 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton />
+                    <DrawerCloseButton onClick={cerrar_ventana} />
                     <DrawerHeader borderBottomWidth='1px' size="xl">
                         <Heading as='h4' fontSize='3xl' >
                             Carrito de compras
                         </Heading>
-                        <Text fontSize='sm'> Tienes {productosCarrito.length} productos en el carrito</Text>
+                        <Stack direction='row' spacing={8}>
+                            <Text fontSize='sm'> Tienes {productosCarrito.length} productos en el carrito
+                            </Text>
+                            <Box align="right">
+                                {/* <Button size='xs' colorScheme='teal' onClick={() => prueba()}>
+                                    Productos de prueba
+                                </Button> */}
+                                <Button ml={3} size='xs' colorScheme='teal' onClick={() => vaciarCarrito()}>
+                                    Vaciar carrito
+                                </Button>
+                            </Box>
+                        </Stack>
+                        {mensaje && <Alert status='success' variant='left-accent' height='30px' fontSize='sm' mt={2}>
+                            <AlertIcon />
+                            {respuesta}
+                        </Alert>}
                     </DrawerHeader>
                     <DrawerBody>
                         <Input placeholder='Type here...' />
+                        {productosCarrito.length === 0 ?
+                            <Box pt={4}>
+                                <Alert status='warning'>
+                                    <AlertIcon />
+                                    <Text as='b'>El carrito de compras se encuentra vacio</Text>
+                                </Alert>
+                            </Box> : false}
                         {productosCarrito && productosCarrito.map(c => (
-                            <CardsCarrito key={c._id} type={c.type} img={c.image} name={c.name} price={c.price} />
-                        )
+                            <CardsCarrito
+                                productosCarrito={productosCarrito}
+                                setproductosCarrito={setproductosCarrito}
+                                key={c.id}
+                                id={c.id}
+                                type={c.type}
+                                img={c.img}
+                                name={c.name}
+                                price={c.price}
+                                cantidad={c.cantidad} />)
                         )}
                     </DrawerBody>
                     <DrawerFooter>
                         {/* <Stack direction='row' width={'full'} > */}
                         <Text pr={1} fontSize='sm' as='sub' color={'rosado.normal'}>Subtotal: $/{total}</Text>
                         <Text pr={4} fontSize='xl' as='b' color={'rosado.original'}>Total: $/{total}</Text>
-                        <Button colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
+                        <Button onClick={() => EnviarCompra()} disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
                         {/* </Stack> */}
                     </DrawerFooter>
                 </DrawerContent>

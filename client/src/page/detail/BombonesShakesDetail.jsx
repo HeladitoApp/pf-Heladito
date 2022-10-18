@@ -1,39 +1,33 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getProductById } from '../../redux/actions/details';
-import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
-import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
+import {getProductById} from '../../redux/actions/details';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
 import { chakra, Box, Flex, Image, Center, Stack, Circle, Wrap, HStack } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
-import { clearDetails } from '../../redux/slices';
 
-export default function CardDetail() {
+export default function BombonesShakesDetail({name, image, price, description}) {
 
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
   console.log(product)
   const { productId } = useParams();
   console.log(productId)
 
   useEffect(() => {
-    dispatch(getProductById(productId));
-    return ()=>{
-      dispatch(clearDetails())
-    }
-  }, [dispatch, productId]);
+    dispatch(getProductById(productId))
+  }, [dispatch, productId]); */
 
   return (
     <Flex
       my={50}
       justifyContent='center'
       spacing='5' >
-      {product.map((detail, index) => (
-        <Stack key={index} >
+      {/* {product.map((detail, index) => ( */}
+        <Stack /* key={index} */ >
           <Box className={s.cont1} >
             <chakra.h1
               mb={4}
@@ -44,23 +38,29 @@ export default function CardDetail() {
               mx='auto'
               width='12em'
             >
-              {detail.name}
+              {/* detail. */name}
             </chakra.h1>
             <Circle>
               <Image
-                src={detail.image}
-                alt={detail.name}
+                src={/* detail. */image}
+                alt={/* detail. */name}
                 objectFit='cover'
-
+              /* w="25em"
+              h='25em'
+              mx='auto'
+              mt='10%' */
+              /* pos='absolute' */
               />
             </Circle>
           </Box>
 
           <Stack
             direction="column"
+            /* ml='8em' */
+            /* alignItems="start" */
             px={{ base: 4, md: 8, lg: 20 }}
             py={10}
-
+          /* zIndex={3} */
           >
             <chakra.span
               color="celeste.original"
@@ -72,7 +72,7 @@ export default function CardDetail() {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              $ {detail.price}
+              $ {/* detail. */price}
             </chakra.span>
 
             <chakra.p
@@ -84,12 +84,10 @@ export default function CardDetail() {
               h='3em'
               letterSpacing="wider"
             >
-              {detail.description}
+              {/* detail. */description}
             </chakra.p>
             <Stack >
               <Contador />
-              <FlavorsList />
-              <ToppingsList />
             </Stack>
             <HStack
               spacing={10}
@@ -98,19 +96,13 @@ export default function CardDetail() {
               justify='content'
               h='4em'
             >
-              <ButtonAgregar
-                id={detail.id}
-                image={detail.image}
-                name={detail.name}
-                price={detail.price}
-                type={detail.type}
-              />
+              <ButtonAgregar />
               <ButtonComprar />
             </HStack>
           </Stack>
         </Stack>
 
-      ))}
+      {/* ))} */}
     </Flex>
   )
 };

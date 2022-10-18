@@ -6,7 +6,7 @@ const productosSchema = new Schema({
   name: String,
   description: String,
   image: String,
-  price: mongoose.Types.Decimal128,
+  price: Number,
   stock: Number,
   type: String,
 });

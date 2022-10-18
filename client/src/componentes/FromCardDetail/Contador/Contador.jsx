@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { GoDash, GoPlus } from "react-icons/go";
 import { Box, HStack } from '@chakra-ui/react'
 
-export default function Contador() {
+export default function Contador({contador, setContador}) {
 
-    const [contador, setContador] = useState(0);
+    /* const [contador, setContador] = useState(0); */
 
     const incrementar = () => {
         setContador(contador + 1);

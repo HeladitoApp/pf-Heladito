@@ -8,18 +8,18 @@ const Order = () => {
     
     const dispatch = useDispatch();
 
-    const handleSelect = (e) => {
+    const handleSelect = (e) => { 
         e.preventDefault();
         dispatch(priceSort(e.target.value));
-        e.target.value="default";
-    }
+        console.log(e.target.value);
+    };
     
     return (
     <div>
-        <Select placeholder='Ordenar' /* onChange={handleSelect} */ > {/* <---- hay que arreglar */}
-            <option value='default'>Más relevantes</option>
-            <option value='ascendente'>Menor precio</option>
-            <option value='descendente'>Mayor precio</option>
+        <Select onChange={handleSelect} > {/* Esto es Order */}
+            <option value="default" hidden>Ordenar por precio</option>
+            <option value="ascendente">Menor precio</option>
+            <option value="descendente">Mayor precio</option>
         </Select>
     </div>
   )

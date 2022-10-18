@@ -1,10 +1,10 @@
 const { postCompra } = require("../utils/postCompra");
 
 async function postCompraController(req, res) {
-    const data = req.body;
+    //const data = req.body;
 
     try {
-        const result = await postCompra(data)
+        const result = await postCompra(req)
         result
             ? res.status(200).send(result)
             : res.status(502).send({

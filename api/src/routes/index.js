@@ -21,6 +21,10 @@ const { getAllUsuarios } = require("../controllers/AllUsuariosController");
 const {
   putUsuariosController,
 } = require("../controllers/putUsuariosController");
+const {
+  putProductoController,
+} = require("../controllers/putProductosController");
+const { putExtraController } = require("../controllers/putExtraController");
 
 const router = Router();
 // Rutas:
@@ -43,5 +47,7 @@ router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
 
 router.put("/actualizarUsuario", putUsuariosController);
+router.put("/actualizarProducto", putProductoController);
+router.put("/actualizarExtra", putExtraController);
 
 module.exports = router;

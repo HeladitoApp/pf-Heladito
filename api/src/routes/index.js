@@ -26,6 +26,7 @@ const {
 } = require("../controllers/putProductosController");
 const { putExtraController } = require("../controllers/putExtraController");
 const { postCompraController } = require("../controllers/PostCompraController");
+const { getAllTiposController } = require("../controllers/allTiposController");
 
 const router = Router();
 
@@ -39,6 +40,7 @@ router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
 router.get("/productos/tipos/:type", filterByType);
+router.get("/tipos", getAllTiposController)
 
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);

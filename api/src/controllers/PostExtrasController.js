@@ -1,4 +1,4 @@
-const { postExtra } = require("../utils/PostExtras");
+const { postExtra } = require("../utils/postExtras");
 
 async function postExtraController(req, res) {
   const info = req.body;

@@ -1,4 +1,5 @@
-const { postExtra } = require("../utils/PostExtras");
+const { postExtra } = require("../utils/postExtras");
+
 
 async function postExtraController(req, res) {
   const info = req.body;
@@ -8,9 +9,9 @@ async function postExtraController(req, res) {
     result
       ? res.status(200).send(result)
       : res.status(502).send({
-          message:
-            "Error al subir el Producto a la DB. Verifique que la informacion ingresada sea a correcta",
-        });
+        message:
+          "Error al subir el Producto a la DB. Verifique que la informacion ingresada sea a correcta",
+      });
   } catch (error) {
     console.error({ message: error.message });
   }

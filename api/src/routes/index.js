@@ -10,19 +10,32 @@ const { getById } = require("../controllers/productosByIdController");
 const {
   postProductosController,
 } = require("../controllers/postProductosController");
-const { postExtraController } = require("../controllers/postExtrasController");
+const { postExtraController } = require("../controllers/PostExtrasController");
+
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
 const { validateCreate } = require("../validators/users");
 const { filterByType } = require("../controllers/fiterByTypeController");
 const { getAllCompras } = require("../controllers/allComprasController");
-
-
+const { getAllUsuarios } = require("../controllers/AllUsuariosController");
+const {
+  putUsuariosController,
+} = require("../controllers/putUsuariosController");
+const {
+  putProductoController,
+} = require("../controllers/putProductosController");
+const { putExtraController } = require("../controllers/putExtraController");
+const { postCompraController } = require("../controllers/PostCompraController");
+const { getAllTiposController } = require("../controllers/allTiposController");
 
 const router = Router();
-// Rutas:
 
+//Seteo rutas Login
+const loginRouter = require("./login/login.router");
+
+
+// Rutas de PRODUCTOS:
 router.get("/productos", getAllProducts);
 router.get("/productos/sabores", getAllSabores);
 router.get("/productos/toppings", getAllToppings);
@@ -32,10 +45,29 @@ router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
 router.get("/productos/tipos/:type", filterByType);
-router.get("/compras",getAllCompras)
+router.get("/tipos", getAllTiposController)
 
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
-router.post("/usuarios", validateCreate, postUsuariosController);
+
+router.put("/actualizarProducto", putProductoController);
+router.put("/actualizarExtra", putExtraController);
+
+//Rutas de COMPRAS:
+router.get("/compras", getAllCompras);
+
+router.post("/addCompras", postCompraController);
+
+// Rutas del USUARIO:
+router.get("/listaUsuarios", getAllUsuarios);
+
+router.post("/usuarios", validateCreate, postUsuariosController)
+router.post("/createProducto", postProductosController);
+router.post("/createExtra", postExtraController);
+
+router.put("/actualizarUsuario", putUsuariosController);
+
+//Rutas de Login
+router.use('/login', loginRouter)
 
 module.exports = router;

@@ -79,7 +79,7 @@ export default function UnSaborConToppings() {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              {detail.price}
+              $ {detail.price}
             </chakra.span>
 
             <chakra.p

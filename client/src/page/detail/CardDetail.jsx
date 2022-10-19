@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import {getProductById} from '../../redux/actions/details';
+import { useEffect, useState } from 'react';
+import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
@@ -10,19 +10,48 @@ import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
 import { useParams } from "react-router-dom";
+import { clearDetails } from '../../redux/slices';
+import { setLoading } from '../../redux/actions/loading';
+import Loading from '../../componentes/loading/loading';
+
 
 export default function CardDetail() {
 
+  //estados para Contador
+  const [contador, setContador] = useState(0);
+
+  //estado para FlavorsList
+  const [sabor, setSabor] = React.useState('');
+
+  //estado para ToppingsList
+  const [checkedToppings, setCheckedToppings] = useState([]);
+
+
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
-  console.log(product)
+  const loading = useSelector((state) => state.state.loading)
+
   const { productId } = useParams();
-  console.log(productId)
+
 
   useEffect(() => {
-    dispatch(getProductById(productId))
+    dispatch(getProductById(productId));
+    dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch(setLoading(false));
+        }, 1500);
+    return ()=>{
+      dispatch(clearDetails())
+    }
   }, [dispatch, productId]);
 
+
+  if(loading){
+    return(
+        <Loading/>
+    )
+}
+else {
   return (
     <Flex
       my={50}
@@ -47,7 +76,7 @@ export default function CardDetail() {
                 src={detail.image}
                 alt={detail.name}
                 objectFit='cover'
-            
+
               />
             </Circle>
           </Box>
@@ -68,7 +97,7 @@ export default function CardDetail() {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              {detail.price}
+              $/ {detail.price}
             </chakra.span>
 
             <chakra.p
@@ -83,9 +112,18 @@ export default function CardDetail() {
               {detail.description}
             </chakra.p>
             <Stack >
-              <Contador />
-              <FlavorsList />
-              <ToppingsList />
+              <Contador
+              contador={contador} 
+              setContador={setContador}
+              />
+              <FlavorsList
+                sabor={sabor}
+                setSabor={setSabor}
+              />
+              <ToppingsList
+                checkedToppings={checkedToppings}
+                setCheckedToppings={setCheckedToppings}
+              />
             </Stack>
             <HStack
               spacing={10}
@@ -94,8 +132,25 @@ export default function CardDetail() {
               justify='content'
               h='4em'
             >
-              <ButtonAgregar />
-              <ButtonComprar />
+              <ButtonAgregar
+                id={detail.id}
+                image={detail.image}
+                name={detail.name}
+                price={detail.price}
+                type={detail.type}
+                sabor={sabor}
+                checkedToppings={checkedToppings}
+                contador={contador}
+              />
+              <ButtonComprar 
+              id={detail.id}
+              image={detail.image}
+              name={detail.name}
+              price={detail.price}
+              type={detail.type}
+              sabor={sabor}
+              checkedToppings={checkedToppings}
+              contador={contador}/>
             </HStack>
           </Stack>
         </Stack>
@@ -104,3 +159,4 @@ export default function CardDetail() {
     </Flex>
   )
 };
+}

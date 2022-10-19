@@ -1,27 +1,67 @@
-import React from 'react'
+import s from './Home.module.css';
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-// import Card from '../../componentes/cards/card';
+import Card from '../../componentes/cards/card';
 import CarouselPromociones from '../../componentes/carouselPromociones/CarouselPromociones'
 import { getProdsFromDb } from '../../redux/actions/products';
-import Section from '../../componentes/section/section'
-import SearchBar from '../../componentes/SearchBar/SearchBar';
-import Footer from '../../componentes/Footer/Footer';
+// import Section from '../../componentes/section/section'
+import Pagination from '../../componentes/Pagination/pagination';
+import Order from '../../componentes/section/Order';
+import Loading from '../../componentes/loading/loading';
+import { setLoading } from '../../redux/actions/loading';
 
-const Home = () => {
-    const productos = useSelector((state)=>state.state.productos);
+
+const Home = ({ page, setPage }) => {
+    const productos = useSelector((state) => state.state.productos);
+    const loading = useSelector((state) => state.state.loading);
+
     const dispatch = useDispatch();
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getProdsFromDb());
-    },[dispatch]);
-    console.log(productos);
-    return (
-        <div>
-            <CarouselPromociones/>
-            <Section />
-            <Footer />
-        </div>
-    )
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch(setLoading(false));
+        }, 1500);
+    }, [dispatch]);
+
+    const [perPage, setPerPage] = useState(8);
+    const max = Math.ceil(productos.length / perPage);
+
+
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <div>
+                <CarouselPromociones />
+                {/* <Pagination page={page} setPage={setPage} max={max}/> */}
+                <div className={s.order}>
+                    <Order />
+                </div>
+                <div className={s.cardContainer}>
+                    {
+                        productos
+                            ?.slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+                            .map((p) => {
+                                return <Card
+                                    key={p._id}
+                                    id={p._id}
+                                    img={p.image}
+                                    name={p.name}
+                                    price={p.price}
+                                />
+                            })
+                    }
+                </div>
+                <Pagination page={page} setPage={setPage} max={max} />
+            </div>
+        )
+    }
 }
+
 
 export default Home;

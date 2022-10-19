@@ -18,7 +18,7 @@ import s from './Lists.module.css';
 //import { isDisabled } from '@chakra-ui/utils';
 
 
-export default function ToppingsList(props) {
+export default function ToppingsList({props, checkedToppings, setCheckedToppings}) {
 
     const toppings = useSelector(state => state.state.toppings);
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function ToppingsList(props) {
 
     const { getCheckboxProps } = useCheckbox(props)
 
-    const [checkedToppings, setCheckedToppings] = useState([]);
+    //const [checkedToppings, setCheckedToppings] = useState([]);
     /* checkedToppings = checkedToppings <= 6 */
     console.log(checkedToppings)
     console.log(checkedToppings.length)
@@ -71,6 +71,7 @@ export default function ToppingsList(props) {
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
+                    <Box fontSize='xs'>Elige max. 6 toppings</Box>
                     <Wrap>
                         {toppings.map((topping, index) => (
                             <WrapItem key={index}>
@@ -89,10 +90,6 @@ export default function ToppingsList(props) {
                                     value={topping.name}
                                     name='topping'
                                     checked='isChecked'
-
-
-
-
                                     /* onClick={handleClick} */>
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}

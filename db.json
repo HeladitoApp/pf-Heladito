@@ -61,7 +61,7 @@
           "name": "HeladitosApp large de 1 sabor sin toppings",
           "description": "Vaso HeladitosApp de 1 sabor a elección - tamaño large.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186877/e.cups_l1s_cparzj.png",
-          "price": 123,
+          "price": 4.7,
           "stock": "",
           "type":"helados"
         },
@@ -70,7 +70,7 @@
           "name": "HeladitosApp large de 2 sabores sin toppings",
           "description": "Vaso HeladitosApp de 2 sabores a elección - tamaño large.",
           "image": "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1665186876/e.cups_l2s_ciuh9l.png",
-          "price": 123,
+          "price": 5.01,
           "stock": "",
           "type":"helados"
         }
@@ -310,7 +310,7 @@
           "type":"parfaits"
         }
       ]
-    }
+    } 
   ],
   "Extras": {
     "toppings": [

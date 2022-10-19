@@ -15,3 +15,4 @@ server.use(cors())
 //rutas base
 server.use("/", routes);
 module.exports = server;
+

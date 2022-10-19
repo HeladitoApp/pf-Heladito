@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
-const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, contador }) => {
+const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador }) => {
 
     const [addProduct, setAddProduct] = useLocalStorage(keyCarrito, []);
 
     const navigate = useNavigate();
+
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -22,18 +23,17 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
             price: price,
             type: type,
             cantidad: contador,
-            flavors: [sabor],
-            toppings: [checkedToppings],
+            flavors: [],
+            toppings: [],
         }
         console.log(newProduct)
-        if (contador === 0 || sabor === [''] || checkedToppings === []) {
+        if (contador === 0) {
             swal({
-                title: 'Porfavor, verifique que todas las secciones estén completas',
+                title: 'Porfavor, selecciona cuantos shakes deseas!',
                 icon: "info",
                 button: "aceptar"
             })
         }
-
         else if (id && image &&
             name && price &&
             type && contador &&
@@ -48,8 +48,9 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
             })
             navigate("/");
         }
-
     };
+
+
 
     return (
         <Button className={s.button} w='18.75em' colorScheme='rosado.original' variant='outline'
@@ -59,4 +60,4 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
     )
 }
 
-export default ButtonComprar;
+export default ButtonComprarBombonesShakes;

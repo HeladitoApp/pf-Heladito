@@ -72,7 +72,7 @@ router.use('/login', loginRouter)
 
 
 
-const PaymentController = require("../controllers/PaymentsController copy");
+const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 
 const PaymentInstance = new PaymentController(new PaymentService());

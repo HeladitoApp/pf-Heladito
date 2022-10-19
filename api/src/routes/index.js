@@ -70,4 +70,16 @@ router.put("/actualizarUsuario", putUsuariosController);
 //Rutas de Login
 router.use('/login', loginRouter)
 
+
+
+const PaymentController = require("../controllers/PaymentsController copy");
+const PaymentService = require("../services/PaymensServices");
+
+const PaymentInstance = new PaymentController(new PaymentService());
+router.post("/payment", function (req, res, next) {
+  PaymentInstance.getPaymentLink(req, res);
+});
+
+
+
 module.exports = router;

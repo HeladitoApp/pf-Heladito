@@ -34,19 +34,22 @@ const Admin = () => {
     return (
         // <AgregarProducto2 />
         // <Login />
-        <Center>
-            <VStack>
-                <HStack m={5}>
-                    <LoginActionButton name={'Get Public Resposta'} onClick={getPublicResponse} color={'brandTerciario'} />
-                    <LoginActionButton name={'Get Private Resposta'} onClick={getPrivateResponse} color={'brandSecundario'} />
-                    <LoginActionButton name={'Get VIP Resposta'} onClick={getVipResponse} color={'brandPrincipal'} />
+        <>
+            <Center m={5} >
+                <VStack>
+                    <HStack m={5}>
+                        <LoginActionButton name={'Get Public Resposta'} onClick={getPublicResponse} color={'brandTerciario'} />
+                        <LoginActionButton name={'Get Private Resposta'} onClick={getPrivateResponse} color={'brandSecundario'} />
+                        <LoginActionButton name={'Get VIP Resposta'} onClick={getVipResponse} color={'brandPrincipal'} />
 
-                </HStack>
-                <Box bg={'amarillo.muy_claro'} m={5}>
-                    <pre>{message}</pre>
-                </Box>
-            </VStack>
-        </Center>
+                    </HStack>
+                    <Box bg={'amarillo.muy_claro'} m={5}>
+                        <pre>{message}</pre>
+                    </Box>
+                </VStack>
+            </Center>
+            <AgregarProducto2 />
+        </>
     )
 }
 

@@ -15,26 +15,27 @@ import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
 
 import { useState } from "react";
+import ProtectedRoute from "./auth/protectedRoute";
 
 
 
 
 function App() {
-  
+
   const [page, setPage] = useState(1);
 
-  return (  
+  return (
     <div>
-      <NavBar setPage={setPage} page={page}/>
+      <NavBar setPage={setPage} page={page} />
       <Routes>
-        <Route path="/" element={<Home  setPage={setPage} page={page}/>} />
+        <Route path="/" element={<Home setPage={setPage} page={page} />} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
         <Route path="/product/:productId" element={<CardDetail />} />
         <Route path="/products/:type" element={<Types />} />
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
-        <Route path="/users/admin" element={<Admin />} />
-        <Route path="/product/add" element = {<AgregarProducto/>}></Route>
+        <Route path="/admin" element={<ProtectedRoute component={Admin} />} />
+        <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
 

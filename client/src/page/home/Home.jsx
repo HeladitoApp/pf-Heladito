@@ -12,56 +12,56 @@ import Loading from '../../componentes/loading/loading';
 import { setLoading } from '../../redux/actions/loading';
 
 
-const Home = ({page, setPage}) => {
-    const productos = useSelector((state)=>state.state.productos);
+const Home = ({ page, setPage }) => {
+    const productos = useSelector((state) => state.state.productos);
     const loading = useSelector((state) => state.state.loading);
 
     const dispatch = useDispatch();
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getProdsFromDb());
         dispatch(setLoading(true));
         setTimeout(() => {
             dispatch(setLoading(false));
         }, 1500);
-    },[dispatch]);
+    }, [dispatch]);
 
     const [perPage, setPerPage] = useState(8);
     const max = Math.ceil(productos.length / perPage);
 
-    
-    if(loading){
-        return(
-            <Loading/>
+
+    if (loading) {
+        return (
+            <Loading />
         )
     }
     else {
         return (
             <div>
-                <CarouselPromociones/>
+                <CarouselPromociones />
                 {/* <Pagination page={page} setPage={setPage} max={max}/> */}
                 <div className={s.order}>
                     <Order />
                 </div>
-                <div className={s.cardContainer}>                
+                <div className={s.cardContainer}>
                     {
                         productos
-                        ?.slice((page-1) * perPage, (page-1) * perPage + perPage )
-                        .map((p)=>{
-                            return <Card 
-                            key={p._id}
-                            id={p._id}
-                            img={p.image}
-                            name={p.name}
-                            price={p.price}
-                            />
-                        })
+                            ?.slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+                            .map((p) => {
+                                return <Card
+                                    key={p._id}
+                                    id={p._id}
+                                    img={p.image}
+                                    name={p.name}
+                                    price={p.price}
+                                />
+                            })
                     }
                 </div>
-                <Pagination page={page} setPage={setPage} max={max}/>
+                <Pagination page={page} setPage={setPage} max={max} />
             </div>
         )
-    } 
-    } 
-        
+    }
+}
+
 
 export default Home;

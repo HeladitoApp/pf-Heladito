@@ -10,7 +10,8 @@ const { getById } = require("../controllers/productosByIdController");
 const {
   postProductosController,
 } = require("../controllers/postProductosController");
-const { postExtraController } = require("../controllers/postExtrasController");
+const { postExtraController } = require("../controllers/PostExtrasController");
+
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
@@ -29,6 +30,10 @@ const { postCompraController } = require("../controllers/PostCompraController");
 const { getAllTiposController } = require("../controllers/allTiposController");
 
 const router = Router();
+
+//Seteo rutas Login
+const loginRouter = require("./login/login.router");
+
 
 // Rutas de PRODUCTOS:
 router.get("/productos", getAllProducts);
@@ -56,8 +61,13 @@ router.post("/addCompras", postCompraController);
 // Rutas del USUARIO:
 router.get("/listaUsuarios", getAllUsuarios);
 
-router.post("/usuarios", validateCreate, postUsuariosController);
+router.post("/usuarios", validateCreate, postUsuariosController)
+router.post("/createProducto", postProductosController);
+router.post("/createExtra", postExtraController);
 
 router.put("/actualizarUsuario", putUsuariosController);
+
+//Rutas de Login
+router.use('/login', loginRouter)
 
 module.exports = router;

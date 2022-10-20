@@ -41,7 +41,7 @@ function App() {
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
-        <Route path="/product/update/:id" element={<ActualizarProducto/>}></Route>
+        <Route path="/product/update/:id" element={<ActualizarProducto/>} />
         <Route path="/payment/success" element={<PaymentSuccess />} />
         <Route path="/payment/pending" element={<PaymentPending />} />
         <Route path="/payment/failure" element={<PaymentFailure />} />

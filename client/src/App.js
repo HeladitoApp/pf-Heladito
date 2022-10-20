@@ -16,6 +16,9 @@ import Types from "./page/Types/Types";
 import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
+import PaymentSuccess from "./page/Back_URL/PaymentSuccess";
+import PaymentPending from "./page/Back_URL/PaymentPending";
+import PaymentFailure from "./page/Back_URL/PaymentFailure";
 
 
 
@@ -39,7 +42,9 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
         <Route path="/product/update/:id" element={<ActualizarProducto/>}></Route>
-
+        <Route path="/payment/success" element={<PaymentSuccess />} />
+        <Route path="/payment/pending" element={<PaymentPending />} />
+        <Route path="/payment/failure" element={<PaymentFailure />} />
       </Routes>
       <Footer />
     </div>

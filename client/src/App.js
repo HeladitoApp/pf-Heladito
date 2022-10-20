@@ -13,7 +13,7 @@ import AgregarProducto from "./componentes/addProducto/addProducto";
 import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
 import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
-
+import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
 
@@ -38,6 +38,7 @@ function App() {
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
+        <Route path="/product/update/:id" element={<ActualizarProducto/>}></Route>
 
       </Routes>
       <Footer />

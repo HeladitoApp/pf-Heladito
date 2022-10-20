@@ -37,126 +37,126 @@ export default function CardDetail() {
   useEffect(() => {
     dispatch(getProductById(productId));
     dispatch(setLoading(true));
-        setTimeout(() => {
-            dispatch(setLoading(false));
-        }, 1500);
-    return ()=>{
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 1500);
+    return () => {
       dispatch(clearDetails())
     }
   }, [dispatch, productId]);
 
 
-  if(loading){
-    return(
-        <Loading/>
+  if (loading) {
+    return (
+      <Loading />
     )
-}
-else {
-  return (
-    <Flex
-      my={50}
-      justifyContent='center'
-      spacing='5' >
-      {product.map((detail, index) => (
-        <Stack key={index} >
-          <Box className={s.cont1} >
-            <chakra.h1
-              mb={4}
-              fontSize='2.5em'
-              fontWeight="bold"
-              /* color="b#FF8CD3" */
-              lineHeight="shorter"
-              mx='auto'
-              width='12em'
+  }
+  else {
+    return (
+      <Flex
+        my={50}
+        justifyContent='center'
+        spacing='5' >
+        {product.map((detail, index) => (
+          <Stack key={index} >
+            <Box className={s.cont1} >
+              <chakra.h1
+                mb={4}
+                fontSize='2.5em'
+                fontWeight="bold"
+                /* color="b#FF8CD3" */
+                lineHeight="shorter"
+                mx='auto'
+                width='12em'
+              >
+                {detail.name}
+              </chakra.h1>
+              <Circle>
+                <Image
+                  src={detail.image}
+                  alt={detail.name}
+                  objectFit='cover'
+
+                />
+              </Circle>
+            </Box>
+
+            <Stack
+              direction="column"
+              px={{ base: 4, md: 8, lg: 20 }}
+              py={10}
+
             >
-              {detail.name}
-            </chakra.h1>
-            <Circle>
-              <Image
-                src={detail.image}
-                alt={detail.name}
-                objectFit='cover'
+              <chakra.span
+                color="celeste.original"
+                _dark={{ color: "gray.300" }}
+                fontSize="lg"
+                h='2em'
+                mr='10%'
+                align='right'
+                textTransform="uppercase"
+                fontWeight="extrabold"
+              >
+                $/ {detail.price}
+              </chakra.span>
 
-              />
-            </Circle>
-          </Box>
-
-          <Stack
-            direction="column"
-            px={{ base: 4, md: 8, lg: 20 }}
-            py={10}
-
-          >
-            <chakra.span
-              color="celeste.original"
-              _dark={{ color: "gray.300" }}
-              fontSize="lg"
-              h='2em'
-              mr='10%'
-              align='right'
-              textTransform="uppercase"
-              fontWeight="extrabold"
-            >
-              $/ {detail.price}
-            </chakra.span>
-
-            <chakra.p
-              pr={{ base: 0, lg: 16 }}
-              mb={4}
-              fontSize="lg"
-              color="brand.600"
-              _dark={{ color: "gray.400" }}
-              h='3em'
-              letterSpacing="wider"
-            >
-              {detail.description}
-            </chakra.p>
-            <Stack >
-              <Contador
-              contador={contador} 
-              setContador={setContador}
-              />
-              <FlavorsList
-                sabor={sabor}
-                setSabor={setSabor}
-              />
-              <ToppingsList
-                checkedToppings={checkedToppings}
-                setCheckedToppings={setCheckedToppings}
-              />
+              <chakra.p
+                pr={{ base: 0, lg: 16 }}
+                mb={4}
+                fontSize="lg"
+                color="brand.600"
+                _dark={{ color: "gray.400" }}
+                h='3em'
+                letterSpacing="wider"
+              >
+                {detail.description}
+              </chakra.p>
+              <Stack >
+                <Contador
+                  contador={contador}
+                  setContador={setContador}
+                />
+                <FlavorsList
+                  sabor={sabor}
+                  setSabor={setSabor}
+                />
+                <ToppingsList
+                  checkedToppings={checkedToppings}
+                  setCheckedToppings={setCheckedToppings}
+                />
+              </Stack>
+              <HStack
+                spacing={10}
+                /* direction={['column', 'row']} */
+                align='center'
+                justify='content'
+                h='4em'
+              >
+                <ButtonAgregar
+                  id={detail._id}
+                  image={detail.image}
+                  name={detail.name}
+                  price={detail.price}
+                  type={detail.type}
+                  sabor={sabor}
+                  checkedToppings={checkedToppings}
+                  contador={contador}
+                />
+                <ButtonComprar
+                  id={detail._id}
+                  image={detail.image}
+                  name={detail.name}
+                  price={detail.price}
+                  type={detail.type}
+                  sabor={sabor}
+                  checkedToppings={checkedToppings}
+                  contador={contador} />
+              </HStack>
             </Stack>
-            <HStack
-              spacing={10}
-              /* direction={['column', 'row']} */
-              align='center'
-              justify='content'
-              h='4em'
-            >
-              <ButtonAgregar
-                id={detail.id}
-                image={detail.image}
-                name={detail.name}
-                price={detail.price}
-                type={detail.type}
-                sabor={sabor}
-                checkedToppings={checkedToppings}
-                contador={contador}
-              />
-              <ButtonComprar 
-              id={detail.id}
-              image={detail.image}
-              name={detail.name}
-              price={detail.price}
-              type={detail.type}
-              sabor={sabor}
-              checkedToppings={checkedToppings}
-              contador={contador}/>
-            </HStack>
           </Stack>
-        </Stack>
 
-      ))}
-    </Flex>
-  )
-};
+        ))}
+      </Flex>
+    )
+  };
 }

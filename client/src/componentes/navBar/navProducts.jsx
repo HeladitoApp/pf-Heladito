@@ -39,7 +39,7 @@ const NavProducts = ({setPage, page}) => {
                     >
                         Todos los productos
                     </Tab>
-                    {ProductsCategory.map(category => <ProductSelected productCategory={category} />)}
+                    {ProductsCategory.map(category => <ProductSelected key={category} productCategory={category} />)}
                 </TabList>
             </Tabs>
         </Center>

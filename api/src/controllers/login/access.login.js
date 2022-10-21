@@ -11,9 +11,13 @@ const privateAccess = (req, res) => {
 }
 
 const privateAccessVIP = (req, res) => {
-    res.json({
-        msg: "Estas en la zona VIP"
-    })
+    try {
+        res.json({
+            msg: "Estas en la zona VIP"
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 

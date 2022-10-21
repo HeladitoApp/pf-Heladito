@@ -6,6 +6,6 @@ const checkJwt = auth({
     issuerBaseURL: config.issuer
 });
 
-const checkScopes = requiredScopes('admin-products')
+const checkScopes = requiredScopes('read:admin-message')
 
 module.exports = { checkJwt, checkScopes }

@@ -47,10 +47,6 @@ export default function CardDetail() {
     }
   }, [dispatch, productId]);
 
-
-  /* if (product.map((e) => e.type === 'shakes' || e.type === 'bombones'))
-    let bombonesShakes = bombonesShakes. push(product) */
-
   if (loading) {
     return (
       <Loading />

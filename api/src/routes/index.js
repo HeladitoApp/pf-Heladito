@@ -15,7 +15,7 @@ const { postExtraController } = require("../controllers/PostExtrasController");
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
-const { validateCreate } = require("../validators/users");
+//const { validateCreate } = require("../validators/users");
 const { filterByType } = require("../controllers/fiterByTypeController");
 const { getAllCompras } = require("../controllers/allComprasController");
 const { getAllUsuarios } = require("../controllers/AllUsuariosController");
@@ -64,7 +64,7 @@ router.post("/addCompras", postCompraController);
 router.get("/listaUsuarios", getAllUsuarios);
 router.get("/rankingUsuarios",getRankingUsuariosCont)
 
-router.post("/usuarios", validateCreate, postUsuariosController)
+router.post("/usuarios", postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
 

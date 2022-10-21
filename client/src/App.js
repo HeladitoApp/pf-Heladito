@@ -16,12 +16,13 @@ import Types from "./page/Types/Types";
 import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
+import AboutUs from "./page/About/AboutUs";
+import ContactUs from "./page/Contact/ContactUs";
 import PaymentSuccess from "./page/Back_URL/PaymentSuccess";
 import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
-import AboutUs from "./page/About/AboutUs";
-import ContactUs from "./page/Contact/ContactUs";
 import Reviews from "./page/Reviews/Reviews";
+
 
 
 

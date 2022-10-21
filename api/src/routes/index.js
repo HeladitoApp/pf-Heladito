@@ -30,6 +30,7 @@ const { postCompraController } = require("../controllers/PostCompraController");
 const { getAllTiposController } = require("../controllers/allTiposController");
 const {  getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
 const { getProductoMasVend } = require("../controllers/rankingProductosCont");
+const { getByMail } = require("../controllers/userByMailController");
 const router = Router();
 
 //Seteo rutas Login
@@ -67,6 +68,7 @@ router.get("/rankingUsuarios",getRankingUsuariosCont)
 router.post("/usuarios", postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+router.get("/usuarioEmail", getByMail);
 
 router.put("/actualizarUsuario", putUsuariosController);
 
@@ -80,10 +82,14 @@ const PaymentService = require("../services/PaymensServices");
 
 
 
+
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
+
+
+
 
 
 

@@ -56,9 +56,9 @@ import {
   
   const Reviews = () => {
     return (
-      <Container maxW="5xl" py={10} px={6} bg={useColorModeValue('gray.200', 'gray.600')}>
+      <Container maxW="5xl" py={10} px={6} bg={useColorModeValue('#E9FBFC', 'gray.600')}>
         <Flex justify="center" mb={8}>
-          <chakra.h3 fontSize="3xl" fontWeight="bold" mb={3} textAlign="center">
+          <chakra.h3 fontSize="3xl" fontWeight="bold" mb={3} textAlign="center" color='#ff66c4'>
             Lo que la gente anda diciendo de nosotros
           </chakra.h3>
         </Flex>

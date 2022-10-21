@@ -6,7 +6,7 @@ import cloudinary from '../../assets/cloudinary.png';
 import auth from '../../assets/auth0.png';
 import chakraimg from '../../assets/chakra.png';
 import react from '../../assets/reactjs.png';
-import reduxt from '../../assets/redux-toolkit.webp';
+import reduxt from '../../assets/redux-toolkit.png';
 import Cris from '../../assets/Cris.png';
 import Eze from '../../assets/Eze.png';
 import Franco from '../../assets/Franco.png';
@@ -116,7 +116,7 @@ const AboutUs = () => {
 
                                 <Center>
                                     <Image
-                                        w='9em'
+                                        w='7em'
                                         src={reduxt}
                                         alt='redux toolkit'
                                     />

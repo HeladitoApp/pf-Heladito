@@ -80,7 +80,7 @@ const Footer = () => {
       }}
     >
       <Flex justify="start" direction="column">
-        <Link textTransform="uppercase">Reseñas</Link>
+        <Link to={'/reviews'} textTransform="uppercase">Reseñas</Link>
       </Flex>
     </HStack>
     <HStack

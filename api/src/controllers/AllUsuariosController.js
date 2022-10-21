@@ -6,7 +6,7 @@ async function getAllUsuarios(req, res) {
   try {
     if (name) {
       let query = await queryUsuario(name);
-      query.length
+      query?.length
         ? res.status(200).send(query)
         : res.status(502).send({
             message: "No se ha encontrado el Usuario que estás buscando",

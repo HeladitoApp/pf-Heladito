@@ -16,7 +16,7 @@ import Types from "./page/Types/Types";
 import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
-
+import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
 
 
 
@@ -35,6 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
         <Route path="/admin" element={<ProtectedRoute component={Admin} />} />
+        <Route path="/admin/update/:id" element = {<ActualizarUsuario/>}/>
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />

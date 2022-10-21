@@ -28,7 +28,7 @@ const {
 const { putExtraController } = require("../controllers/putExtraController");
 const { postCompraController } = require("../controllers/PostCompraController");
 const { getAllTiposController } = require("../controllers/allTiposController");
-
+const { getUsuarioById } = require("../controllers/usuariosByIdController")
 const router = Router();
 
 //Seteo rutas Login
@@ -60,7 +60,7 @@ router.post("/addCompras", postCompraController);
 
 // Rutas del USUARIO:
 router.get("/listaUsuarios", getAllUsuarios);
-
+router.get('/usuario/:id', getUsuarioById )
 router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);

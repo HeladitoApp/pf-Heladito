@@ -3,16 +3,20 @@ const Productos = require("../models/Productos");
 const Usuarios = require("../models/Usuarios");
 
 async function postCompra(req, res) {
-  const { productos, sumaTotal, metodoDePago, pagado, usuario } = req.body;
+  const { productos,/*  metodoDePago, pagado, */ usuario,total } = req.body;
 
-  const listaProductos = await Productos.find({ _id: productos }, { name: 1 });
+  const productsId = productos.map(p=> {
+    return (
+   { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}` } 
+)})
+//console.log(productsId)
 
   const user = await Usuarios.findById(usuario);
   const NewCompra = new Compras({
-    productos: listaProductos,
-    sumaTotal,
-    metodoDePago,
-    pagado,
+    productos: productsId,
+     sumaTotal: total,
+    // metodoDePago: "mercadopago",
+    // pagado: true,
     usuario: user.name, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
   });
 

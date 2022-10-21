@@ -9,14 +9,18 @@ import { Flex } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
 import n from "./navSuperior.module.css";
 import Carrito from "../Carrito/Carrito";
+import { useDispatch } from "react-redux";
+import { getProdsFromDb } from "../../redux/actions/products";
 
 const NavSuperior = ({setPage, page}) => {
 
 const { isOpen, onOpen, onClose } = useDisclosure()
 const navigate = useNavigate();
+const dispatch = useDispatch();
 
 const handleClick = (e) => {
     e.preventDefault();
+    dispatch(getProdsFromDb());
     navigate("/");
     setPage(1);
 }

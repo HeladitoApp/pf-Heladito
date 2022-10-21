@@ -15,7 +15,7 @@ const { postExtraController } = require("../controllers/PostExtrasController");
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
-const { validateCreate } = require("../validators/users");
+//const { validateCreate } = require("../validators/users");
 const { filterByType } = require("../controllers/fiterByTypeController");
 const { getAllCompras } = require("../controllers/allComprasController");
 const { getAllUsuarios } = require("../controllers/AllUsuariosController");
@@ -28,7 +28,9 @@ const {
 const { putExtraController } = require("../controllers/putExtraController");
 const { postCompraController } = require("../controllers/PostCompraController");
 const { getAllTiposController } = require("../controllers/allTiposController");
-const { getUsuarioById } = require("../controllers/usuariosByIdController")
+const { getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
+const { getProductoMasVend } = require("../controllers/rankingProductosCont");
+const { getByMail, postUserByMail } = require("../controllers/userByMailController");
 const router = Router();
 
 //Seteo rutas Login
@@ -55,19 +57,41 @@ router.put("/actualizarExtra", putExtraController);
 
 //Rutas de COMPRAS:
 router.get("/compras", getAllCompras);
+router.get("/rankingProductos", getProductoMasVend)
 
 router.post("/addCompras", postCompraController);
 
 // Rutas del USUARIO:
 router.get("/listaUsuarios", getAllUsuarios);
+router.get("/rankingUsuarios", getRankingUsuariosCont)
 router.get('/usuario/:id', getUsuarioById )
-router.post("/usuarios", validateCreate, postUsuariosController)
+router.post("/usuarios", postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+router.get("/usuarioEmail", getByMail);
+router.post("/createUserByBD", postUserByMail);
 
 router.put("/actualizarUsuario", putUsuariosController);
 
 //Rutas de Login
 router.use('/login', loginRouter)
+
+
+
+const PaymentController = require("../controllers/PaymentsController");
+const PaymentService = require("../services/PaymensServices");
+
+
+
+
+const PaymentInstance = new PaymentController(new PaymentService());
+router.post("/payment", function (req, res, next) {
+  PaymentInstance.getPaymentLink(req, res);
+});
+
+
+
+
+
 
 module.exports = router;

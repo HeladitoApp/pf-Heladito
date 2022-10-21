@@ -42,11 +42,11 @@ const ButtonAgregar = ({ id, image, name, price, type, sabor, checkedToppings, c
             checkedToppings.length > 0) {
             setAddProduct([...addProduct,
                 newProduct])
-            swal({
+           /*  swal({
                 title: 'Producto agregado al carrito, a seguir comprando!',
                 icon: "success",
                 button: "aceptar"
-            })
+            }) */
             navigate("/");
         }
     };

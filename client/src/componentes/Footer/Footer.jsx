@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text, Link } from '@chakra-ui/react';
+import { Link } from "react-router-dom";
+import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text } from '@chakra-ui/react';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 
@@ -58,7 +59,7 @@ const Footer = () => {
       }}
     >
       <Flex justify="start" direction="column">
-        <Link textTransform="uppercase">Sobre nosotros</Link>
+        <Link to={'/sobre_nosotros'} textTransform="uppercase">Sobre nosotros</Link>
       </Flex>
     </HStack>
     <HStack
@@ -79,7 +80,7 @@ const Footer = () => {
       }}
     >
       <Flex justify="start" direction="column">
-        <Link textTransform="uppercase">Reseñas</Link>
+        <Link to={'/reviews'} textTransform="uppercase">Reseñas</Link>
       </Flex>
     </HStack>
     <HStack
@@ -100,7 +101,7 @@ const Footer = () => {
       }}
     >
       <Flex justify="start" direction="column">
-        <Link textTransform="uppercase">Contacto</Link>
+        <Link to={'/contactanos'} textTransform="uppercase">Contáctanos</Link>
       </Flex>
     </HStack>
   </Stack>
@@ -181,7 +182,7 @@ const Footer = () => {
       &copy;HeladitosApp. Todos los derechos reservados.
     </Text>
   </VStack>
-</Box>;
+</Box>
     </div>
   )
 }

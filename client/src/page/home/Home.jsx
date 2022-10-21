@@ -20,6 +20,7 @@ const Home = ({ page, setPage }) => {
     useEffect(() => {
         dispatch(getProdsFromDb());
         dispatch(setLoading(true));
+        window.scrollTo(0, 0);
         setTimeout(() => {
             dispatch(setLoading(false));
         }, 1500);

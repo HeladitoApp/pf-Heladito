@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const server = require("./app.js");
-const port = 3800;
+const PORT = process.env.PORT || 3800;
 
 mongoose
   .connect(
@@ -10,8 +10,8 @@ mongoose
   .then(() => {
     console.log("La conexion a MongoDB se ha realizado correctamente");
 
-    server.listen(port, () => {
-      console.log("El servidor esta corriendo en localhost:3800");
+    server.listen(PORT, () => {
+      console.log("El servidor esta corriendo en ", PORT);
     });
   })
   .catch((err) => console.log(err));

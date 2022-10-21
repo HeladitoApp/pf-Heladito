@@ -3,7 +3,7 @@ import axios from "axios";
 import { getProdsFromDb } from "./products";
 
 export const getTypesFromProducts = () => async(dispatch) => {
-    const productos = await axios.get('http://localhost:3800/productos').data;
+    const productos = await axios.get(`${process.env.REACT_APP_SERVER_URL}/productos`).data;
     
     const types = productos.map((p)=>{
         return [new Set([...types, p.type])]

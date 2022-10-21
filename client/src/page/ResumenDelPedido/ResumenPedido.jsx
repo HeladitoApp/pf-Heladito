@@ -12,7 +12,7 @@ import { Link } from '@chakra-ui/react';
 const ResumenPedido = () => {
   const [productosCarrito, setproductosCarrito] = useLocalStorage(keyCarrito, []);
 
-  const respuestacompra = useSelector((state)=>state.state.respuestacompra)
+  const respuestacompra = useSelector((state) => state.state.respuestacompra)
 
   const dispatch = useDispatch()
 
@@ -47,6 +47,8 @@ const ResumenPedido = () => {
         <Box>
           {productosCarrito && productosCarrito.map((p, index) => (
             <CardPedido
+              productosCarrito={productosCarrito}
+              setproductosCarrito={setproductosCarrito}
               key={index}
               id={p.id}
               name={p.name}
@@ -71,7 +73,7 @@ const ResumenPedido = () => {
             </Text>
           </Flex>
           <Box align="right" m={5} >
-              <Button onClick={() => pagar_pedito()}> Pagar Compra</Button>
+            <Button onClick={() => pagar_pedito()}> Pagar Compra</Button>
           </Box>
         </Box>
       </Box>

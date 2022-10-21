@@ -235,7 +235,7 @@ const AboutUs = () => {
                             >
                                 <Feature
                                     title="Cristian Cobo"
-                                    icon={<Link href='//www.linkedin.com/in/rolando-quispe/' isExternal>
+                                    icon={<Link href='https://www.linkedin.com/in/cristian-cobo-211365227/' isExternal>
                                         <ImLinkedin2 />
                                     </Link>
                                     }

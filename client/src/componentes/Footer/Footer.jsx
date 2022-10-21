@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text } from '@chakra-ui/react';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
-import { SearchBar } from '../../page/About/SearchBar';
 
 const Footer = () => {
   return (

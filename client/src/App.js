@@ -21,6 +21,7 @@ import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
 import AboutUs from "./page/About/AboutUs";
 import ContactUs from "./page/Contact/ContactUs";
+import Reviews from "./page/Reviews/Reviews";
 
 
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/payment/failure" element={<PaymentFailure />} />
         <Route path="/sobre_nosotros" element={<AboutUs />} />
         <Route path="/contactanos" element={<ContactUs />} />
+        <Route path="/reviews" element={<Reviews />} />
       </Routes>
       <Footer />
     </div>

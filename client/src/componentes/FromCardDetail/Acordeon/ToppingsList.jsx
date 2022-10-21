@@ -12,13 +12,16 @@ import {
     Image,
     Box,
     Checkbox,
-    useCheckbox
+    useCheckbox,
+    Button,
 } from '@chakra-ui/react';
 import s from './Lists.module.css';
+//import { is } from 'immer/dist/internal';
 //import { isDisabled } from '@chakra-ui/utils';
 
 
-export default function ToppingsList({props, checkedToppings, setCheckedToppings}) {
+export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
+
 
     const toppings = useSelector(state => state.state.toppings);
     const dispatch = useDispatch();
@@ -27,37 +30,53 @@ export default function ToppingsList({props, checkedToppings, setCheckedToppings
         dispatch(getToppingsFromDb());
     }, [dispatch]);
 
-    const { getCheckboxProps } = useCheckbox(props)
-
     //const [checkedToppings, setCheckedToppings] = useState([]);
-    /* checkedToppings = checkedToppings <= 6 */
+
     console.log(checkedToppings)
     console.log(checkedToppings.length)
-    const [isChecked, setIsChecked] = useState('false')
+    const [isChecked, setIsChecked] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [, updateState] = React.useState(); 
+    const forceUpdate = React.useCallback(() => updateState({}), []);
 
-    /* checkedToppings.lenght = 7 && isDisabled */
 
 
 
     const handleChange = (e) => {
+
+        const limit = 6
+        let isSelected = e.target.checked
+
+
         e.preventDefault();
+        if (isSelected) {
+            if (checkedToppings.length < limit) {
+                setCheckedToppings([
+                    ...checkedToppings,
+                    e.target.value
+                ])
+            } /* else {
+                isSelected = !isChecked
+
+            } */
+        }
         if (checkedToppings.includes(e.target.value)) {
             setCheckedToppings(
-                checkedToppings.filter((t) => t !== e.target.value)
+                checkedToppings.filter(el => el !== e.target.value)
             )
         }
-        else if (checkedToppings.length <= 5) {
-            (e.target.checked = true)
-            setCheckedToppings(
-                [...checkedToppings, e.target.value])
-        }
-        else if (!e.target.checked) { 
-            setCheckedToppings(...checkedToppings)
-        }
-        else if(checkedToppings.length > 6){
-            setIsChecked(isChecked)
+        if (checkedToppings.length >= 5) {
+            setIsDisabled(!isDisabled)
         }
     }
+
+
+    /* const handleClick = (e) => {
+        e.preventDefault();
+        forceUpdate()
+    } */
+
+
 
     return (
         <Accordion allowToggle>
@@ -67,6 +86,7 @@ export default function ToppingsList({props, checkedToppings, setCheckedToppings
                         <Box flex='1' textAlign='left'>
                             Elige los toppings que deseas
                         </Box>
+                        <Button onClick={forceUpdate}>Modificar Toppings</Button>
                         <AccordionIcon />
                     </AccordionButton>
                 </h2>
@@ -76,21 +96,15 @@ export default function ToppingsList({props, checkedToppings, setCheckedToppings
                         {toppings.map((topping, index) => (
                             <WrapItem key={index}>
                                 <Checkbox
-                                    /* isChecked={1} */
-                                    /* isIndeterminate={isIndeterminate} */
-                                    onChange={e => handleChange(e)}
-
-                                    className={s.prueba}
+                                    key={index}
+                                    colorScheme='pink'
                                     align="center"
                                     justify="center"
-                                    /* w='11.25em' */
-                                    w='auto'
-                                    h='12.5em'
-                                    bg='white'
                                     value={topping.name}
-                                    name='topping'
-                                    checked='isChecked'
-                                    /* onClick={handleClick} */>
+                                    onChange={handleChange}
+                                    disabled={isDisabled}
+                                    checked={isChecked}
+                                >
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}
                                 </Checkbox>

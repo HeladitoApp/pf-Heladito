@@ -4,13 +4,12 @@ import { useEffect } from 'react';
 import { getProductById } from '../../redux/actions/details';
 import { useParams } from "react-router-dom";
 import BombonesShakesDetail from './BombonesShakesDetail';
-import UnSaborConToppings from './UnSaborConToppings';
 
 
 export default function CardDetailDos() {
 
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.state.details);
+  const product = useSelector((state) => state.state);
   console.log(product)
   const { productId } = useParams();
   //console.log(productId)
@@ -19,31 +18,22 @@ export default function CardDetailDos() {
     dispatch(getProductById(productId))
   }, [dispatch, productId]);
 
-  
+
   /* if(Object.keys(product).includes('Shake' || 'Bombones')) */
   /* const name = product.find(detail => detail.name) */
   /* if(name.includes('Shake' || 'Bombones')) */
-  
+
 
   return (
     <React.Fragment>
-      { Object.keys(product).includes('Shake' || 'Bombones') ?
-        product.map((d, index) => (
-          <div key={index}>
-            <BombonesShakesDetail
-              id={d.id}
-              image={d.image}
-              name={d.name}
-              price={d.price}
-              description={d.description} />
-          </div> 
-          
-        )) :
-        <h1>hola</h1>
+      <BombonesShakesDetail />
+     
+      
+
        
         
-         
-      } 
+        <h1>hola</h1>
+      
 
     </React.Fragment>
   )

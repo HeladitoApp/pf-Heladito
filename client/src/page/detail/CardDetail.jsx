@@ -5,7 +5,7 @@ import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
-import { chakra, Box, Flex, Image, Center, Stack, Circle, Wrap, HStack } from "@chakra-ui/react";
+import { chakra, Box, Flex, Image, Stack, Circle, HStack } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
@@ -29,6 +29,7 @@ export default function CardDetail() {
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
+  console.log(product)
   const loading = useSelector((state) => state.state.loading)
 
   const { productId } = useParams();
@@ -45,6 +46,9 @@ export default function CardDetail() {
     }
   }, [dispatch, productId]);
 
+
+  /* if (product.map((e) => e.type === 'shakes' || e.type === 'bombones'))
+    let bombonesShakes = bombonesShakes. push(product) */
 
   if (loading) {
     return (

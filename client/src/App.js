@@ -19,6 +19,8 @@ import ProtectedRoute from "./auth/protectedRoute";
 import PaymentSuccess from "./page/Back_URL/PaymentSuccess";
 import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
+import AboutUs from "./page/About/AboutUs";
+import ContactUs from "./page/Contact/ContactUs";
 
 
 
@@ -45,6 +47,8 @@ function App() {
         <Route path="/payment/success" element={<PaymentSuccess />} />
         <Route path="/payment/pending" element={<PaymentPending />} />
         <Route path="/payment/failure" element={<PaymentFailure />} />
+        <Route path="/sobre_nosotros" element={<AboutUs />} />
+        <Route path="/contactanos" element={<ContactUs />} />
       </Routes>
       <Footer />
     </div>

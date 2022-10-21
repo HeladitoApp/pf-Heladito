@@ -1,4 +1,4 @@
-const { check } = require('express-validator') 
+/* const { check } = require('express-validator') 
 const { validateResult } = require('../helpers/validateHelper')
 const Usuarios = require('../models/Usuarios')
 
@@ -47,5 +47,5 @@ const validateCreate = [
     }
 ]
 
-module.exports = { validateCreate }
+module.exports = { validateCreate } */
 

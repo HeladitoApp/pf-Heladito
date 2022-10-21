@@ -1,4 +1,4 @@
-import { addCompra } from "../slices";
+//import { addCompra } from "../slices";
 import axios from "axios";
 
 export const addCompraDb = (data) => (dispatch) => {

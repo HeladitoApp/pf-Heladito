@@ -13,9 +13,16 @@ import AgregarProducto from "./componentes/addProducto/addProducto";
 import ResumenPedido from "./page/ResumenDelPedido/ResumenPedido";
 import Footer from '../src/componentes/Footer/Footer';
 import Types from "./page/Types/Types";
-
+import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
+import AboutUs from "./page/About/AboutUs";
+import ContactUs from "./page/Contact/ContactUs";
+import PaymentSuccess from "./page/Back_URL/PaymentSuccess";
+import PaymentPending from "./page/Back_URL/PaymentPending";
+import PaymentFailure from "./page/Back_URL/PaymentFailure";
+import Reviews from "./page/Reviews/Reviews";
+
 
 
 
@@ -38,7 +45,13 @@ function App() {
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
-
+        <Route path="/product/update/:id" element={<ActualizarProducto/>} />
+        <Route path="/payment/success" element={<PaymentSuccess />} />
+        <Route path="/payment/pending" element={<PaymentPending />} />
+        <Route path="/payment/failure" element={<PaymentFailure />} />
+        <Route path="/sobre_nosotros" element={<AboutUs />} />
+        <Route path="/contactanos" element={<ContactUs />} />
+        <Route path="/reviews" element={<Reviews />} />
       </Routes>
       <Footer />
     </div>

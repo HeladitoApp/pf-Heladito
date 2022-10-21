@@ -3,15 +3,23 @@ const Schema = mongoose.Schema;
 
 const usuariosSchema = new Schema(
   {
-    name: { type: String, require: true },
-    mail: { type: String, require: true },
+    name: { type: String },
+    apodo: {type: String},
+    picture:{type:String},
+    connection:{type:String},
+    email: { type: String},
+    phone_number:{type:Number},
     password: String,
     activo: {type: Boolean, default:true}, 
-    rol: {type:String, default:"usuario"},
+    role: {type:String},
     compras: [{type:Schema.Types.ObjectId, ref: 'Compras'}] ,
+    created_at: {type:String},
+    update_at: {type:String}
   },
-  { timestamps: true }
+ 
 );
 
 const Usuarios = mongoose.model("Usuarios", usuariosSchema);
 module.exports = Usuarios; 
+
+

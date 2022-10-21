@@ -46,7 +46,7 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
                 icon: "success",
                 button: "aceptar"
             })
-            navigate("/");
+            navigate("/product/cart");
         }
 
     };

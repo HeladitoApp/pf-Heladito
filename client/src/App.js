@@ -16,6 +16,8 @@ import Types from "./page/Types/Types";
 
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
+import AboutUs from "./page/About/AboutUs";
+import ContactUs from "./page/Contact/ContactUs";
 
 
 
@@ -38,6 +40,8 @@ function App() {
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
+        <Route path="/sobre_nosotros" element={<AboutUs />} />
+        <Route path="/contactanos" element={<ContactUs />} />
 
       </Routes>
       <Footer />

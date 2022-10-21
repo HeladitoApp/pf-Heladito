@@ -16,7 +16,7 @@ const NavInferior = ({setPage, page}) => {
                 align="center"
                 justify="center"
             >
-                <NavProductsMobile/>
+                <NavProductsMobile setPage={setPage} page={page} />
                 <NavProducts setPage={setPage} page={page} />
 
             </Flex>

@@ -14,6 +14,7 @@ const Section = ({t}) => {
 
   const dispatch = useDispatch();
   useEffect(()=>{
+    window.scrollTo(0, 0);
     dispatch(getProdsFromDb());
     // dispatch(getTypesFromProducts());
   },[dispatch]);

@@ -10,7 +10,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import n from "./navSuperior.module.css";
 import Carrito from "../Carrito/Carrito";
 import { useDispatch } from "react-redux";
-import { getProductos } from "../../redux/slices";
 import { getProdsFromDb } from "../../redux/actions/products";
 
 const NavSuperior = ({setPage, page}) => {

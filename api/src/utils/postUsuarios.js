@@ -2,10 +2,7 @@ const Usuarios = require("../models/Usuarios");
 const emailer = require("../controllers/nodeMailer/emailer");
 
 async function postUsuarios(req, res) {
-  const { name, apodo, picture, connection, mail, phone_number, password, activo, 
-    rol, compras, created_at, update_at} = req.body;
-  try {
-    const newInfo = new Usuarios({
+  const {
     name,
     apodo,
     picture,
@@ -13,11 +10,26 @@ async function postUsuarios(req, res) {
     mail,
     phone_number,
     password,
-    activo, 
+    activo,
     rol,
-    compras ,
+    compras,
     created_at,
-    update_at
+    update_at,
+  } = req.body;
+  try {
+    const newInfo = new Usuarios({
+      name,
+      apodo,
+      picture,
+      connection,
+      mail,
+      phone_number,
+      password,
+      activo,
+      rol,
+      compras,
+      created_at,
+      update_at,
     });
     if (!name) {
       throw new Error(

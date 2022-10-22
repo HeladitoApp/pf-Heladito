@@ -32,6 +32,7 @@ const { getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont")
 const { getProductoMasVend } = require("../controllers/rankingProductosCont");
 const { getByMail } = require("../controllers/userByMailController");
 const { validateCreate } = require("../validators/users");
+const { getUsuarioById } = require("../controllers/usuariosByIdController");
 
 const router = Router();
 

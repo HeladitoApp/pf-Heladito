@@ -31,7 +31,7 @@ const ResumenPedido = () => {
 
   function pagar_pedito() {
     if (isAuthenticated) {
-      const pedido = { usuario: "6352c46d07841200112ea78a", productos: [], total: 0 }
+      const pedido = { usuario: user.email, productos: [], total: 0 }
       productosCarrito.map(p => (
         pedido.productos.push({
           category_id: p.id,
@@ -91,7 +91,7 @@ const ResumenPedido = () => {
             </Text>
           </Flex>
           <Box align="right" m={5} >
-            <Button onClick={() => pagar_pedito()}> Pagar Compra</Button>
+            <Button colorScheme='whatsapp' onClick={() => pagar_pedito()}> Pagar Compra</Button>
           </Box>
         </Box>
       </Box>

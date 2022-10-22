@@ -26,7 +26,7 @@ await Promise.all(
      sumaTotal: total,
     // metodoDePago: "mercadopago",
     // pagado: true,
-    usuario: user.name, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
+    usuario: user.email, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
   });
 
   try {

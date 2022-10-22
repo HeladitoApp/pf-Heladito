@@ -12,6 +12,7 @@ import Loading from '../../componentes/loading/loading';
 import { setLoading } from '../../redux/actions/loading';
 
 
+
 const Home = ({ page, setPage }) => {
     const productos = useSelector((state) => state.state.productos);
     const loading = useSelector((state) => state.state.loading);
@@ -38,6 +39,7 @@ const Home = ({ page, setPage }) => {
     else {
         return (
             <div>
+                
                 <CarouselPromociones />
                 {/* <Pagination page={page} setPage={setPage} max={max}/> */}
                 <div className={s.order}>
@@ -51,6 +53,7 @@ const Home = ({ page, setPage }) => {
                                 return <Card
                                     key={p._id}
                                     id={p._id}
+                                    stock={p.stock}
                                     img={p.image}
                                     name={p.name}
                                     price={p.price}

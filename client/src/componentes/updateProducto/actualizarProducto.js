@@ -29,7 +29,7 @@ import { updateProduct } from '../../redux/actions/updateProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
 import { useParams } from "react-router"
-import { getProductById } from '../../redux/actions/details'
+import { traerUsuariosById } from '../../redux/actions/getProductosById'
 
 // function control(input) {
 //     let error = {}
@@ -58,7 +58,7 @@ export default function ActualizarProducto() {
         type: null
     })
     useEffect(()=>{
-      dispatch(getProductById(id))
+      dispatch(traerUsuariosById(id))
       dispatch(setLoading(true));
       setTimeout(() => {
           dispatch(setLoading(false));

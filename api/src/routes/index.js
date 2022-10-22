@@ -31,11 +31,14 @@ const { getAllTiposController } = require("../controllers/allTiposController");
 const {  getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
 const { getProductoMasVend } = require("../controllers/rankingProductosCont");
 const { getByMail } = require("../controllers/userByMailController");
+
+const { validateCreate } = require("../validators/users");
+const { getUsuarioById } = require("../controllers/usuariosByIdController");
+
 const router = Router();
 
 //Seteo rutas Login
 const loginRouter = require("./login/login.router");
-
 
 // Rutas de PRODUCTOS:
 router.get("/productos", getAllProducts);
@@ -47,7 +50,7 @@ router.get("/productos/helados", getAllHelados);
 router.get("/productos/combos", getAllCombos);
 router.get("/productos/:id", getById);
 router.get("/productos/tipos/:type", filterByType);
-router.get("/tipos", getAllTiposController)
+router.get("/tipos", getAllTiposController);
 
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
@@ -65,32 +68,27 @@ router.post("/addCompras", postCompraController);
 router.get("/listaUsuarios", getAllUsuarios);
 router.get("/rankingUsuarios",getRankingUsuariosCont)
 
-router.post("/usuarios", postUsuariosController)
+router.get('/usuario/:id', getUsuarioById )
+
+router.get("/usuarioEmail", getByMail);
+
+router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+
 router.get("/usuarioEmail", getByMail);
 
 router.put("/actualizarUsuario", putUsuariosController);
 
 //Rutas de Login
-router.use('/login', loginRouter)
-
-
+router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
-
-
-
 
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
-
-
-
-
-
 
 module.exports = router;

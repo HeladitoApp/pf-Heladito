@@ -1,7 +1,11 @@
 const Usuarios = require("../models/Usuarios");
 
 async function postUsuarios(req, res) {
-  const {
+
+  const { name, apodo, picture, connection, email, phone_number, password, activo, 
+    rol, compras, created_at, update_at} = req.body;
+  try {
+    const newInfo = new Usuarios({
     name,
     apodo,
     picture,
@@ -43,6 +47,8 @@ async function postUsuarios(req, res) {
       newInfo.compras =data.compras */
 
       newInfo.save();
+
+      // emailer.sendMailController(newInfo);
       return newInfo;
     }
   } catch (error) {

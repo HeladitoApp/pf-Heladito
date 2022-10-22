@@ -39,7 +39,7 @@ export const getPrivateAccess = async (accessToken) => {
 
 export const getPrivateAccessVip = async (accessToken) => {
     const config = {
-        url: `${apiServerUrl}/login/vip`,
+        url: `${apiServerUrl}/login/private/admin`,
         method: "GET",
         headers: {
             "content-type": "application/json",

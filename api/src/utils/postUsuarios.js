@@ -4,21 +4,7 @@ async function postUsuarios(req, res) {
 
   const { name, apodo, picture, connection, email, phone_number, password, activo, 
     rol, compras, created_at, update_at} = req.body;
-  try {
-    const newInfo = new Usuarios({
-    name,
-    apodo,
-    picture,
-    connection,
-    email,
-    phone_number,
-    password,
-    activo,
-    rol,
-    compras,
-    created_at,
-    update_at,
-  }) = req.body;
+
   try {
     const newInfo = new Usuarios({
       name,

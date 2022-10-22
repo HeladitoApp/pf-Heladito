@@ -23,7 +23,7 @@ import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
 import Reviews from "./page/Reviews/Reviews";
 
-
+import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
 
 
 
@@ -42,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/users/client" element={<Consumer />} />
         <Route path="/admin" element={<ProtectedRoute component={Admin} />} />
+        <Route path="/admin/update/:id" element = {<ActualizarUsuario/>}/>
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />

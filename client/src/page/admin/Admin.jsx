@@ -6,6 +6,7 @@ import AgregarProducto2 from '../../componentes/addProducto/addProducto'
 import LoginActionButton from '../../componentes/Login/LoginActionButton'
 import { getPrivateAccess, getPrivateAccessVip, getPublicAccess } from '../../services/getResponses'
 import Login from '../login/Login'
+import SearchUsuario from '../../componentes/buscarUsuario/buscarUsuario'
 
 const Admin = () => {
     const [message, setMessage] = useState('');
@@ -41,7 +42,7 @@ const Admin = () => {
                         <LoginActionButton name={'Get Public Resposta'} onClick={getPublicResponse} color={'brandTerciario'} />
                         <LoginActionButton name={'Get Private Resposta'} onClick={getPrivateResponse} color={'brandSecundario'} />
                         <LoginActionButton name={'Get VIP Resposta'} onClick={getVipResponse} color={'brandPrincipal'} />
-
+                        <SearchUsuario/>
                     </HStack>
                     <Box bg={'amarillo.muy_claro'} m={5}>
                         <pre>{message}</pre>

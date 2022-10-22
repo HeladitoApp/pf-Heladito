@@ -65,6 +65,9 @@ router.post("/addCompras", postCompraController);
 // Rutas del USUARIO:
 router.get("/listaUsuarios", getAllUsuarios);
 router.get("/rankingUsuarios", getRankingUsuariosCont)
+
+router.get('/usuario/:id', getUsuarioById )
+
 router.get("/usuarioEmail", getByMail);
 
 router.post("/usuarios", validateCreate, postUsuariosController)

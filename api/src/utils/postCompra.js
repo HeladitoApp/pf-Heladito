@@ -7,11 +7,19 @@ async function postCompra(req, res) {
 
   const productsId = productos.map(p=> {
     return (
-   { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}` } 
+   { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}`,price:`${p.unit_price}` } 
 )})
-//console.log(productsId)
+await Promise.all(
+  productsId.map( async(p)=>{
+    await Productos.update(
+      {_id: p._id},
+      {
+        $inc: { stock: -p.quantity }
+      }
+  )}))
+  const user = await Usuarios.findOne({email: "ccobo1405@gmail.com" });
 
-  const user = await Usuarios.findById(usuario);
+
   const NewCompra = new Compras({
     productos: productsId,
      sumaTotal: total,

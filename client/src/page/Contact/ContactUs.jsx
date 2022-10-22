@@ -1,4 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+
 import {
     FormControl,
     GridItem,
@@ -15,10 +19,96 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 
+
 const ContactUs = () => {
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate()
+
+    const [input, setInput] = useState({
+        first_name: '',
+        last_name: '',
+        email_address: '',
+        country: '',
+        street_address: '',
+        city: '',
+        state: '',
+        postal_code: '',
+        message: '',
+    });
+
+    console.log([input, setInput])
+
+    const handleInputChange = (e) => {
         e.preventDefault();
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handleSelect = (e) => {
+        e.preventDefault()
+        setInput({
+            ...input,
+            country: e.target.value,
+        }
+        )
+    }
+
+
+    function createMessage(e) {
+        let newMessage = []
+        newMessage.push({
+            first_name: e.first_name,
+            last_name: e.last_name,
+            email_address: e.email_address,
+            country: e.country,
+            street_address: e.street_address,
+            city: e.city,
+            state: e.state,
+            postal_code: e.postal_code,
+            message: e.message,
+        })
+        console.log(newMessage)
+        return newMessage
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (input.first_name &&
+            input.last_name &&
+            input.email_address &&
+            //input.country && --- no esta tomando el país
+            input.street_address &&
+            input.city &&
+            input.state &&
+            input.postal_code &&
+            input.message) {
+            createMessage(input)
+            setInput({
+                first_name: '',
+                last_name: '',
+                email_address: '',
+                country: '',
+                street_address: '',
+                city: '',
+                state: '',
+                postal_code: '',
+                message: '',
+            })
+            swal({
+                title: 'Su mensaje fue enviado correctamente. En breve nos podremos en contacto!',
+                icon: "success",
+                button: "aceptar"
+            })
+            navigate("/")
+        } else {
+            swal({
+                title: 'Porfavor, verifique que todas las secciones estén completas',
+                icon: "info",
+                button: "aceptar"
+            })
+        }
     }
 
     return (
@@ -69,7 +159,6 @@ const ContactUs = () => {
 
                         <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
                             <chakra.form
-                                onSubmit={handleSubmit}
                                 method="POST"
                                 shadow="base"
                                 rounded={[null, "md"]}
@@ -98,6 +187,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="first_name"
                                                 id="first_name"
+                                                value={input.first_name}
+                                                onChange={handleInputChange}
                                                 autoComplete="given-name"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -122,6 +213,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="last_name"
                                                 id="last_name"
+                                                value={input.last_name}
+                                                onChange={handleInputChange}
                                                 autoComplete="family-name"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -148,6 +241,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="email_address"
                                                 id="email_address"
+                                                value={input.email_address}
+                                                onChange={handleInputChange}
                                                 autoComplete="email"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -179,10 +274,11 @@ const ContactUs = () => {
                                                 size="sm"
                                                 w="full"
                                                 rounded="md"
+                                                onChange={handleSelect}
                                             >
-                                                <option>Argentina</option>
-                                                <option>Perú</option>
-                                                <option>Colombia</option>
+                                                <option name="country" value={input.country} >Argentina</option>
+                                                <option name="country" value={input.country}>Perú</option>
+                                                <option name="country" value={input.country}>Colombia</option>
                                             </Select>
                                         </FormControl>
 
@@ -200,6 +296,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="street_address"
                                                 id="street_address"
+                                                value={input.street_address}
+                                                onChange={handleInputChange}
                                                 autoComplete="street-address"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -224,6 +322,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="city"
                                                 id="city"
+                                                value={input.city}
+                                                onChange={handleInputChange}
                                                 autoComplete="city"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -248,6 +348,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="state"
                                                 id="state"
+                                                value={input.state}
+                                                onChange={handleInputChange}
                                                 autoComplete="state"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -272,6 +374,8 @@ const ContactUs = () => {
                                                 type="text"
                                                 name="postal_code"
                                                 id="postal_code"
+                                                value={input.postal_code}
+                                                onChange={handleInputChange}
                                                 autoComplete="postal-code"
                                                 mt={1}
                                                 focusBorderColor="brand.400"
@@ -284,7 +388,7 @@ const ContactUs = () => {
 
                                         <FormControl as={GridItem} colSpan={6}>
                                             <FormLabel
-                                                htmlFor="street_address"
+                                                htmlFor="message"
                                                 fontSize="sm"
                                                 fontWeight="md"
                                                 color="gray.700"
@@ -292,9 +396,25 @@ const ContactUs = () => {
                                             >
                                                 Mensaje
                                             </FormLabel>
+
+                                            {/*  <Input
+                                                type="textarea"
+                                                name="message"
+                                                id="message"
+                                                value={input.postal_code}
+                                                onChange={handleInputChange}
+                                                autoComplete="message"
+                                                mt={1}
+                                                focusBorderColor="brand.400"
+                                                shadow="sm"
+                                                size="sm"
+                                                w="full"
+                                                rounded="md"
+                                            /> */}
                                             <Textarea
-                                                //value={value}
-                                                //onChange={handleInputChange}
+                                                name='message'
+                                                value={input.message}
+                                                onChange={handleInputChange}
                                                 //placeholder='Mensaje'
                                                 size='sm'
                                             />
@@ -309,9 +429,10 @@ const ContactUs = () => {
                                     textAlign="right"
                                 >
                                     <Button
-                                        type="submit"
+                                        //type="submit"
                                         color='#ff66c4'
                                         bg='#FFF5E5'
+                                        onClick={e => handleClick(e)}
                                     >
                                         Enviar
                                     </Button>

@@ -51,6 +51,7 @@ const Home = ({ page, setPage }) => {
                                 return <Card
                                     key={p._id}
                                     id={p._id}
+                                    stock={p.stock}
                                     img={p.image}
                                     name={p.name}
                                     price={p.price}

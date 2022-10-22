@@ -1,7 +1,9 @@
 import { Tab } from '@chakra-ui/react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { typeFilter } from '../../redux/actions/typeFilter';
+
 
 const ProductSelected = ({ productCategory }) => {
     const dispatch = useDispatch();
@@ -15,17 +17,21 @@ const ProductSelected = ({ productCategory }) => {
         console.log(e.target.value.toLowerCase());
     }
     return (
-        <Tab
-            // py={4}
-            // m={0}
-            _focus={{
-                boxShadow: "none",
-            }}
-            value={productCategory} 
-            onClick={(e)=>handleClick(e)}
-        >
-            {productCategory}
-        </Tab>
+        <React.Fragment>
+            
+            <Tab
+                // py={4}
+                // m={0}
+                _focus={{
+                    boxShadow: "none",
+                }}
+                value={productCategory}
+                onClick={(e) => handleClick(e)}
+            >
+                {productCategory}
+            </Tab>
+        </React.Fragment>
+
     )
 }
 

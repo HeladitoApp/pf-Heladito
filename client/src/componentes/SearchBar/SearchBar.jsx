@@ -1,6 +1,8 @@
+import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch} from 'react-redux'
 import { getProdsFromDbByName } from '../../redux/actions/searchBar';
+
 export default function SearchBar () {
     const dispatch = useDispatch()
     const [name, setName] = useState('')
@@ -21,10 +23,20 @@ export default function SearchBar () {
     };
 
     return (
-        <span className="barra">
-            <input type="text" placeholder="Buscar..."  onChange={ (e) => handelInputChange(e) } className = 'input' onKeyDown={handleKeyDown} />
-            <button id = 'button' type="submit" onClick={(e) => handelSubmit(e) } >Buscar</button>
-        </span>
+        <InputGroup /* size='md' */ mx="5rem" w="20rem">
+            <Input
+                pr='4.5rem'
+                type='text'
+                placeholder='Buscar...'
+                onChange={ (e) => handelInputChange(e) }
+                onKeyDown={handleKeyDown}
+            />
+            <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handelSubmit} mr="0.4rem" bg="rosado.muy_claro">
+                    Buscar
+                </Button>
+            </InputRightElement>
+        </InputGroup>
     )
 
 }

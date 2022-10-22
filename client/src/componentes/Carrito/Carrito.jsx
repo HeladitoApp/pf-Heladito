@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Alert, AlertIcon, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Alert, AlertIcon, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, ScaleFade, Stack, Text, useDisclosure, Link } from '@chakra-ui/react';
 import { keyCarrito, useLocalStorage } from '../../utils/useLocalStorage';
 import CardsCarrito from './CardsCarrito';
-import { addCompraDb } from '../../redux/actions/compras';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link as ReachLink } from "react-router-dom";
 export default function Carrito({ isOpen, onOpen, onClose }) {
     const keycarrito = keyCarrito
     const btnRef = React.useRef()
-    const dispatch = useDispatch()
-    const [mensaje, setmensaje] = useState(false)
-    const respuesta = useSelector((state) => state.state.respuestacompra)
-
-
     const [productosCarrito, setproductosCarrito] = useLocalStorage(keycarrito, []);
-
 
     function vaciarCarrito() {
         setproductosCarrito([])
@@ -21,23 +14,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
     let total = 0;
     productosCarrito.map(p => total = (p.price * p.cantidad) + total)
     const Total = total.toFixed(2)
-    function EnviarCompra() {
 
-        const compra = {
-            name: 'Pepito Lopez',
-            productos: [],
-            total: Total,
-            metodoDePago: 'Banco nacional',
-            pagado: 'true'
-        }
-        productosCarrito.map(p => compra.productos.push({ id: p.id, name: p.name }))
-        dispatch(addCompraDb(compra))
-        setmensaje(true)
-        setproductosCarrito([])
-    }
-    function cerrar_ventana() {
-        setmensaje(false)
-    }
     function redenrizarCarrito() {
         const item = window.localStorage.getItem(keycarrito)
         return item ? JSON.parse(item) : []
@@ -59,7 +36,7 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton onClick={cerrar_ventana} />
+                    <DrawerCloseButton />
                     <DrawerHeader borderBottomWidth='1px' size="xl">
                         <Heading as='h4' fontSize='3xl' >
                             Carrito de compras
@@ -76,10 +53,6 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                                 </Button>
                             </Box>
                         </Stack>
-                        {mensaje && <Alert status='success' variant='left-accent' height='30px' fontSize='sm' mt={2}>
-                            <AlertIcon />
-                            {respuesta}
-                        </Alert>}
                     </DrawerHeader>
                     <DrawerBody>
                         <Input placeholder='Type here...' />
@@ -107,7 +80,9 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                         {/* <Stack direction='row' width={'full'} > */}
                         <Text pr={1} fontSize='sm' as='sub' color={'rosado.normal'}>Subtotal: $/{Total}</Text>
                         <Text pr={4} fontSize='xl' as='b' color={'rosado.original'}>Total: $/{Total}</Text>
-                        <Button onClick={() => EnviarCompra()} disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >PAGAR</Button>
+                        <Link as={ReachLink} to={`/product/cart`}>
+                            <Button onClick={onClose} disabled={productosCarrito.length === 0 ? true : false} colorScheme='whatsapp' borderRadius={'full'} >Continuar</Button>
+                        </Link>
                         {/* </Stack> */}
                     </DrawerFooter>
                 </DrawerContent>

@@ -1,5 +1,5 @@
 const AdminPermissions = {
-    ALL: 'admin-products',
+    Read: "read:admin-messages",
 }
 
 module.exports = {

@@ -2,7 +2,7 @@ const Usuarios = require("../models/Usuarios");
 const emailer = require("../controllers/nodeMailer/emailer");
 
 async function postUsuarios(req, res) {
-  const { name, apodo, picture, connection, mail, phone_number, password, activo, 
+  const { name, apodo, picture, connection, email, phone_number, password, activo, 
     rol, compras, created_at, update_at} = req.body;
   try {
     const newInfo = new Usuarios({

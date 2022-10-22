@@ -11,12 +11,12 @@ async function rankingMejoresCompras() {
       const reducer = (accumulator, curr) => accumulator.concat(curr);
       const prodCompradosJuntos= ArraydeObjProduc.reduce(reducer); 
 
-      if (!prodCompradosJuntos.length) {
+    if (!prodCompradosJuntos.length) {
       throw new Error(
-        "Error al cargar los Usuarios desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
+        "Error al cargar los Productos más vendidos desde la DB. Verifique posibles problemas en la relacion del Back con la DB"
       );
     } else {
-        key = "name"
+      key = "name";
 
         let arr2 = [];
             
@@ -51,9 +51,6 @@ async function rankingMejoresCompras() {
   }
 }
 
-
-
-
 module.exports = {
-    rankingMejoresCompras,
+  rankingMejoresCompras,
 };

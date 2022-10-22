@@ -18,7 +18,7 @@ async function postUsuarios(req, res) {
     compras,
     created_at,
     update_at,
-  } = req.body;
+  }) = req.body;
   try {
     const newInfo = new Usuarios({
       name,

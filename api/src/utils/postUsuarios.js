@@ -10,7 +10,7 @@ async function postUsuarios(req, res) {
     apodo,
     picture,
     connection,
-    mail,
+    email,
     phone_number,
     password,
     activo, 
@@ -32,7 +32,7 @@ async function postUsuarios(req, res) {
       newInfo.compras =data.compras */
 
       newInfo.save();
-      emailer.sendMailController(newInfo);
+      // emailer.sendMailController(newInfo);
       return newInfo;
     }
   } catch (error) {

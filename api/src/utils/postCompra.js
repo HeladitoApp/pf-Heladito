@@ -5,6 +5,7 @@ const Usuarios = require("../models/Usuarios");
 async function postCompra(req, res) {
   const { productos,/*  metodoDePago, pagado, */ usuario,total } = req.body;
 
+
   const productsId = productos.map(p=> {
     return (
    { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}`,price:`${p.unit_price}` } 
@@ -17,7 +18,7 @@ await Promise.all(
         $inc: { stock: -p.quantity }
       }
   )}))
-  const user = await Usuarios.findOne({email: "ccobo1405@gmail.com" });
+  const user = await Usuarios.findOne({email: usuario });
 
 
   const NewCompra = new Compras({

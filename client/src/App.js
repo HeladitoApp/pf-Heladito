@@ -1,7 +1,7 @@
 //import './App.css';
 import { Route, Routes } from "react-router-dom";
 
-import NavBar from "./componentes/navBar/NavBar";
+//import NavBar from "./componentes/navBar/NavBar";
 import CardDetail from "./page/detail/CardDetail";
 //import CardDetailDos from "./page/detail/CardDetailDos";
 import Home from "./page/home/Home";
@@ -16,6 +16,7 @@ import Types from "./page/Types/Types";
 import ActualizarProducto from "./componentes/updateProducto/actualizarProducto";
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
+import NavSuperior from "./componentes/navBar/navSuperior";
 
 
 
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div>
-      <NavBar setPage={setPage} page={page} />
+      <NavSuperior setPage={setPage} page={page} />
       <Routes>
         <Route path="/" element={<Home setPage={setPage} page={page} />} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}

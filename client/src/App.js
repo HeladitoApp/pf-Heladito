@@ -24,6 +24,7 @@ import PaymentFailure from "./page/Back_URL/PaymentFailure";
 import Reviews from "./page/Reviews/Reviews";
 
 import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
+import PaymentFeedback from "./page/Back_URL/PaymentFeedback";
 import AdminHome from "./page/admin/AdminHome";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
 import Users from "./page/admin/Users";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/sobre_nosotros" element={<AboutUs />} />
         <Route path="/contactanos" element={<ContactUs />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/payment/feedback" element={<PaymentFeedback />} />
       </Routes>
       <Footer />
     </div>

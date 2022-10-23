@@ -2,21 +2,13 @@ const axios = require("axios");
 require("dotenv").config();
 
 class PaymentService {
-  async createPayment() {
+  async createPayment(req) {
+    const datos = req.body
     const url = "https://api.mercadopago.com/checkout/preferences";
-
+    
     const body = {
       payer_email: "test_user_46945293@testuser.com",
-      items: [
-        { /* Este modelo tienen que tener los productos que se envíen al back */
-          title: "Dummy Title",
-          description: "Dummy description",
-          picture_url: "http://www.myapp.com/myimage.jpg",
-          category_id: "category123",
-          quantity: 1,
-          unit_price: 10
-        }
-      ],
+      items:datos.productos,
       back_urls: {
         failure: `http://localhost:3000/payment/failure`,
         pending: `http://localhost:3000/payment/pending`,

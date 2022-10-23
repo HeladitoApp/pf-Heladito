@@ -1,4 +1,4 @@
-let { expressjwt: jwt } = require('express-jwt');
+let jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 
 const { config } = require('../config/config');
@@ -12,7 +12,7 @@ const verifyJwt = jwt({
     }),
     audience: config.audience,
     issuer: config.issuer,
-    algorithms: [config.algotithms]
+    algorithms: [config.algorithms]
 })
 
 module.exports = { verifyJwt }

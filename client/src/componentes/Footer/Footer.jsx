@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text, Link } from '@chakra-ui/react';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
+import Mapa from "../map/map"
 
 const Footer = () => {
   return (
@@ -12,6 +13,7 @@ const Footer = () => {
         bg: "gray.600",
         }}
         >
+          <Mapa/>
   <Stack
     direction={{
       base: "column",

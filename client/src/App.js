@@ -17,6 +17,7 @@ import ActualizarProducto from "./componentes/updateProducto/actualizarProducto"
 import { useState } from "react";
 import ProtectedRoute from "./auth/protectedRoute";
 import NavSuperior from "./componentes/navBar/navSuperior";
+import ActualizarExtra from "./componentes/updateExtra/updateExtra";
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/product/cart" element={<ResumenPedido />} />
         <Route path="/product/update/:id" element={<ActualizarProducto/>}></Route>
+        <Route path="/product/update/extras" element={<ActualizarExtra/>}></Route>
 
       </Routes>
       <Footer />

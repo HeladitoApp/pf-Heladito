@@ -2,11 +2,10 @@ const Usuarios = require("../models/Usuarios");
 
 async function postUsuarios(req, res) {
 
-
-  /* const { name, apodo, picture, connection, email, phone_number, password, activo,
-    rol, compras, created_at, update_at } = req.body; */
-
-  /* const newInfo = new Usuarios({
+  const { name, apodo, picture, connection, email, phone_number, password, activo, 
+    rol, compras, created_at, update_at} = req.body;
+  /* try {
+    const newInfo = new Usuarios({
     name,
     apodo,
     picture,
@@ -19,12 +18,7 @@ async function postUsuarios(req, res) {
     compras,
     created_at,
     update_at,
-  }) = req.body; */
-
-  const { name, apodo, picture, connection, email, phone_number, password, activo, 
-    rol, compras, created_at, update_at} = req.body;
-
-
+  } = req.body; */
   try {
     const newInfo = new Usuarios({
       name,
@@ -61,7 +55,6 @@ async function postUsuarios(req, res) {
     console.error(`${error.name} : ${error.message}`);
   }
 }
-
 
 module.exports = {
   postUsuarios,

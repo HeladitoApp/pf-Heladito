@@ -28,7 +28,7 @@ const {
 const { putExtraController } = require("../controllers/putExtraController");
 const { postCompraController } = require("../controllers/PostCompraController");
 const { getAllTiposController } = require("../controllers/allTiposController");
-const {  getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
+const { getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
 const { getProductoMasVend } = require("../controllers/rankingProductosCont");
 const { getByMail } = require("../controllers/userByMailController");
 
@@ -60,15 +60,15 @@ router.put("/actualizarExtra", putExtraController);
 
 //Rutas de COMPRAS:
 router.get("/compras", getAllCompras);
-router.get("/rankingProductos",getProductoMasVend)
+router.get("/rankingProductos", getProductoMasVend)
 
 router.post("/addCompras", postCompraController);
 
 // Rutas del USUARIO:
 router.get("/listaUsuarios", getAllUsuarios);
-router.get("/rankingUsuarios",getRankingUsuariosCont)
+router.get("/rankingUsuarios", getRankingUsuariosCont)
 
-router.get('/usuario/:id', getUsuarioById )
+router.get('/usuario/:id', getUsuarioById)
 
 router.get("/usuarioEmail", getByMail);
 

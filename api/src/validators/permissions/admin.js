@@ -1,5 +1,8 @@
 const AdminPermissions = {
-    ALL: 'admin-products',
+    Create: 'create:items',
+    Read: "read:admin-messages",
+    Delete: "delete:items",
+    Update: "update-items"
 }
 
 module.exports = {

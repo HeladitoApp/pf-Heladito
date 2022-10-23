@@ -5,6 +5,7 @@ const Usuarios = require("../models/Usuarios");
 async function postCompra(req, res) {
   const { productos,/*  metodoDePago, pagado, */ usuario,total } = req.body;
 
+
   const productsId = productos.map(p=> {
     return (
    { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}`,price:`${p.unit_price}` } 
@@ -17,7 +18,7 @@ await Promise.all(
         $inc: { stock: -p.quantity }
       }
   )}))
-  const user = await Usuarios.findOne({email: "ccobo1405@gmail.com" });
+  const user = await Usuarios.findOne({email: usuario });
 
 
   const NewCompra = new Compras({
@@ -25,7 +26,7 @@ await Promise.all(
      sumaTotal: total,
     // metodoDePago: "mercadopago",
     // pagado: true,
-    usuario: user.name, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
+    usuario: user.email, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
   });
 
   try {

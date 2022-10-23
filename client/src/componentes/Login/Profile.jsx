@@ -10,11 +10,11 @@ const Profile = () => {
             <Image src={picture} alt={name} />
             <h2>{name}</h2>
             <p>{email}</p>
-            <Box bg={'amarillo.muy_claro'} >
+            {/* <Box bg={'amarillo.muy_claro'} >
                 <pre>
                     {JSON.stringify(user, null, 2)}
                 </pre>
-            </Box>
+            </Box> */}
 
         </VStack>
     )

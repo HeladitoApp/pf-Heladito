@@ -26,7 +26,7 @@ export default function SearchUsuario() {
 
     return (
         <React.Fragment>
-            <Flex className="barra" w='31em'>
+            <Flex className="barra" w='31em' p='10'>
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents='none'
@@ -34,7 +34,7 @@ export default function SearchUsuario() {
                     />
                     <Input type='text'
                         focusBorderColor='#FF8CD3'
-                        placeholder='Buscar usuario...'
+                        placeholder='Buscar cliente...'
                         onChange={(e) => handelInputChange(e)}
                         className='input'
                         onKeyDown={handleKeyDown} />

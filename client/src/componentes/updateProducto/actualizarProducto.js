@@ -30,6 +30,7 @@ import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
 import { useParams } from "react-router"
 import { traerUsuariosById } from '../../redux/actions/getProductosById'
+import { Link } from 'react-router-dom';
 
 // function control(input) {
 //     let error = {}
@@ -363,11 +364,13 @@ export default function ActualizarProducto() {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 visibility={{ base: "hidden", sm: "visible" }}
               />
-              {/* <Button
-                borderRadius={'full'}
-                colorScheme='pink' variant='solid'>
-                <a href='/admin'>volver</a>
-              </Button> */}
+              <Link to={'/admin'}>
+                <Button
+                  borderRadius={'full'}
+                  colorScheme='pink' variant='solid'>
+                  Volver
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Box>

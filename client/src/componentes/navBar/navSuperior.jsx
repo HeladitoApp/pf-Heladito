@@ -42,7 +42,7 @@ const handleClick = (e) => {
                 <SearchBar/>
                 <Flex
                   >
-                    <Link to="/product/add" >
+                    <Link to="/admin" >
                         <IconButton
                          mr="15px"
                          variant="outline"

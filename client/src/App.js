@@ -29,6 +29,7 @@ import AdminHome from "./page/admin/AdminHome";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
 import Users from "./page/admin/Users";
 import ModifiedProduct from "./page/admin/ModifiedProduct";
+import UserHome from "./page/Usuario/UserHome";
 
 
 
@@ -50,7 +51,7 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
         <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} />
         <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} />
-        <Route path="/admin/usuarios" element={<ProtectedRoute component={Users} />} />
+        <Route path="/admin/clientes" element={<ProtectedRoute component={Users} />} />
         <Route path="/admin/update/:id" element={<ActualizarUsuario />} />
         <Route path="/product/add" element={<AgregarProducto />} />
         <Route path="*" element={<NotFound />} />
@@ -63,6 +64,7 @@ function App() {
         <Route path="/contactanos" element={<ContactUs />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/payment/feedback" element={<PaymentFeedback />} />
+        <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
       </Routes>
       <Footer />
     </div>

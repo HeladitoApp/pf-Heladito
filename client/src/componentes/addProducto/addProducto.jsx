@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/actions/addProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
+import {Link} from 'react-router-dom'
 
 
 
@@ -368,11 +369,13 @@ export default function AgregarProducto2() {
               _dark={{ borderColor: "whiteAlpha.300" }}
               visibility={{ base: "hidden", sm: "visible" }}
             />
-            {/* <Button
-              borderRadius={'full'}
-              colorScheme='pink' variant='solid'>
-              <a href='/admin'>volver</a>
-            </Button> */}
+            <Link to={'/admin'}>
+              <Button
+                borderRadius={'full'}
+                colorScheme='pink' variant='solid'>
+                  Volver        
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Box>

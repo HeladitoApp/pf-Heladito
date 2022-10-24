@@ -10,9 +10,9 @@ import { Button, Center, HStack, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-    const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0()
-    // const { picture, email, name } = user
-    const loading = useSelector((state) => state.state.loading)
+    const { loginWithRedirect, logout, isAuthenticated, isLoading} = useAuth0()
+    //const { picture, email, name } = user
+    //const loading = useSelector((state) => state.state.loading)
     const dispatch = useDispatch()
 
     // useEffect(() => {
@@ -43,8 +43,8 @@ const Login = () => {
                 <VStack>
                     <Profile />
                     <LoginActionButton name={'Log Out'} onClick={handleLogout} color={'brandPrincipal'} />
-                    <Link to={'/admin'} >
-                        <Button colorScheme={'cyan'} >Go to Admin </Button>
+                    <Link to={`/login/user`} >
+                        <Button colorScheme={'cyan'} >Go to Usuario </Button>
                     </Link>
 
                 </VStack>

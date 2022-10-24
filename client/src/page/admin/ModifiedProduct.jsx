@@ -17,14 +17,27 @@ import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProdsFromDb } from '../../redux/actions/products';
 import { Link } from 'react-router-dom';
+import { clearDetails } from '../../redux/slices';
+import { setLoading } from '../../redux/actions/loading';
+import Loading from '../../componentes/loading/loading';
+
 
 const ModifiedProduct = () => {
 
     const dispatch = useDispatch();
     const products = useSelector((state) => state.state.productos);
+    const loading = useSelector((state) => state.state.loading)
 
     useEffect(() => {
         dispatch(getProdsFromDb());
+        dispatch(setLoading(true));
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+            dispatch(setLoading(false));
+        }, 1500);
+        return () => {
+            dispatch(clearDetails())
+        }
     }, [dispatch])
 
     const header = ["id", "nombre", "tipo", "acciones"];
@@ -41,159 +54,166 @@ const ModifiedProduct = () => {
     const color1 = useColorModeValue("gray.400", "gray.400");
     const color2 = useColorModeValue("gray.400", "gray.400");
 
-    return (
-        <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
-            <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
-                <Box as="main" p="10">
-                    <Flex
-                        w="full"
-                        bg="#FFE6C1"
-                        _dark={{ bg: "#3e3e3e" }}
-                        p={50}
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <Table
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
+                <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
+                    <Box as="main" p="10">
+                        <Flex
                             w="full"
-                            bg="white"
-                            _dark={{ bg: "gray.800" }}
-                            display={{
-                                base: "block",
-                                md: "table",
-                            }}
-                            sx={{
-                                "@media print": {
-                                    display: "table",
-                                },
-                            }}
+                            bg="#FFE6C1"
+                            _dark={{ bg: "#3e3e3e" }}
+                            p={50}
+                            alignItems="center"
+                            justifyContent="center"
                         >
-                            <Thead
-                                display={{
-                                    base: "none",
-                                    md: "table-header-group",
-                                }}
-                                sx={{
-                                    "@media print": {
-                                        display: "table-header-group",
-                                    },
-                                }}
-                            >
-                                <Tr>
-                                    {header.map((x) => (
-                                        <Th key={x}>{x}</Th>
-                                    ))}
-                                </Tr>
-                            </Thead>
-                            <Tbody
+                            <Table
+                                w="full"
+                                bg="white"
+                                _dark={{ bg: "gray.800" }}
                                 display={{
                                     base: "block",
-                                    lg: "table-row-group",
+                                    md: "table",
                                 }}
                                 sx={{
                                     "@media print": {
-                                        display: "table-row-group",
+                                        display: "table",
                                     },
                                 }}
                             >
-                                {data.map((token, tid) => {
-                                    return (
-                                        <Tr
-                                            key={tid}
-                                            display={{
-                                                base: "grid",
-                                                md: "table-row",
-                                            }}
-                                            sx={{
-                                                "@media print": {
-                                                    display: "table-row",
-                                                },
-                                                gridTemplateColumns: "minmax(0px, 35%) minmax(0px, 65%)",
-                                                gridGap: "10px",
-                                            }}
-                                        >
-                                            {Object.keys(token).map((x) => {
-                                                return (
-                                                    <React.Fragment key={`${tid}${x}`}>
-                                                        <Td
-                                                            display={{
-                                                                base: "table-cell",
-                                                                md: "none",
-                                                            }}
-                                                            sx={{
-                                                                "@media print": {
-                                                                    display: "none",
-                                                                },
-                                                                textTransform: "uppercase",
-                                                                color: color1,
-                                                                fontSize: "xs",
-                                                                fontWeight: "bold",
-                                                                letterSpacing: "wider",
-                                                                fontFamily: "heading",
-                                                            }}
-                                                        >
-                                                            {x}
-                                                        </Td>
-                                                        <Td
-                                                            color={"gray.500"}
-                                                            fontSize="md"
-                                                            fontWeight="hairline"
-                                                        >
-                                                            {token[x]}
-                                                        </Td>
-                                                    </React.Fragment>
-                                                );
-                                            })}
-                                            <Td
+                                <Thead
+                                    display={{
+                                        base: "none",
+                                        md: "table-header-group",
+                                    }}
+                                    sx={{
+                                        "@media print": {
+                                            display: "table-header-group",
+                                        },
+                                    }}
+                                >
+                                    <Tr>
+                                        {header.map((x) => (
+                                            <Th key={x}>{x}</Th>
+                                        ))}
+                                    </Tr>
+                                </Thead>
+                                <Tbody
+                                    display={{
+                                        base: "block",
+                                        lg: "table-row-group",
+                                    }}
+                                    sx={{
+                                        "@media print": {
+                                            display: "table-row-group",
+                                        },
+                                    }}
+                                >
+                                    {data.map((token, tid) => {
+                                        return (
+                                            <Tr
+                                                key={tid}
                                                 display={{
-                                                    base: "table-cell",
-                                                    md: "none",
+                                                    base: "grid",
+                                                    md: "table-row",
                                                 }}
                                                 sx={{
                                                     "@media print": {
-                                                        display: "none",
+                                                        display: "table-row",
                                                     },
-                                                    textTransform: "uppercase",
-                                                    color: color2,
-                                                    fontSize: "xs",
-                                                    fontWeight: "bold",
-                                                    letterSpacing: "wider",
-                                                    fontFamily: "heading",
+                                                    gridTemplateColumns: "minmax(0px, 35%) minmax(0px, 65%)",
+                                                    gridGap: "10px",
                                                 }}
                                             >
-                                                Actions
-                                            </Td>
-                                            <Td>
-                                                <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                                    <IconButton
-                                                        colorScheme="blue"
-                                                        icon={<BsBoxArrowUpRight />}
-                                                        aria-label="Up"
-                                                    />
-                                                    <Link to={`/admin/modificar_producto/update/${token.id}`}>
+                                                {Object.keys(token).map((x) => {
+                                                    return (
+                                                        <React.Fragment key={`${tid}${x}`}>
+                                                            <Td
+                                                                display={{
+                                                                    base: "table-cell",
+                                                                    md: "none",
+                                                                }}
+                                                                sx={{
+                                                                    "@media print": {
+                                                                        display: "none",
+                                                                    },
+                                                                    textTransform: "uppercase",
+                                                                    color: color1,
+                                                                    fontSize: "xs",
+                                                                    fontWeight: "bold",
+                                                                    letterSpacing: "wider",
+                                                                    fontFamily: "heading",
+                                                                }}
+                                                            >
+                                                                {x}
+                                                            </Td>
+                                                            <Td
+                                                                color={"gray.500"}
+                                                                fontSize="md"
+                                                                fontWeight="hairline"
+                                                            >
+                                                                {token[x]}
+                                                            </Td>
+                                                        </React.Fragment>
+                                                    );
+                                                })}
+                                                <Td
+                                                    display={{
+                                                        base: "table-cell",
+                                                        md: "none",
+                                                    }}
+                                                    sx={{
+                                                        "@media print": {
+                                                            display: "none",
+                                                        },
+                                                        textTransform: "uppercase",
+                                                        color: color2,
+                                                        fontSize: "xs",
+                                                        fontWeight: "bold",
+                                                        letterSpacing: "wider",
+                                                        fontFamily: "heading",
+                                                    }}
+                                                >
+                                                    Actions
+                                                </Td>
+                                                <Td>
+                                                    <ButtonGroup variant="solid" size="sm" spacing={3}>
                                                         <IconButton
-                                                            colorScheme="green"
-                                                            icon={<AiFillEdit />}
-                                                            aria-label="Edit"
+                                                            colorScheme="blue"
+                                                            icon={<BsBoxArrowUpRight />}
+                                                            aria-label="Up"
                                                         />
-                                                    </Link>
-                                                    <IconButton
+                                                        <Link to={`/admin/modificar_producto/update/${token.id}`}>
+                                                            <IconButton
+                                                                colorScheme="green"
+                                                                icon={<AiFillEdit />}
+                                                                aria-label="Edit"
+                                                            />
+                                                        </Link>
+                                                        {/* <IconButton
                                                         colorScheme="red"
                                                         variant="outline"
                                                         icon={<BsFillTrashFill />}
                                                         aria-label="Delete"
-                                                    />
-                                                </ButtonGroup>
-                                            </Td>
-                                        </Tr>
-                                    );
-                                })}
-                            </Tbody>
-                        </Table>
-                    </Flex>
+                                                    /> */}
+                                                    </ButtonGroup>
+                                                </Td>
+                                            </Tr>
+                                        );
+                                    })}
+                                </Tbody>
+                            </Table>
+                        </Flex>
+                    </Box>
                 </Box>
             </Box>
-        </Box>
-    )
+        )
+    }
 }
 
 

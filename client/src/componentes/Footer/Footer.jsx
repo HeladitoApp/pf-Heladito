@@ -5,6 +5,7 @@ import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom'
 import FooterAdmin from './FooterAdmin';
+import Mapa from '../Map/map';
 
 const Footer = () => {
   const ruta = useLocation();
@@ -108,6 +109,7 @@ const Footer = () => {
                 <Link to={'/contactanos'} textTransform="uppercase">Contáctanos</Link>
               </Flex>
             </HStack>
+            <Mapa/>
           </Stack>
           <Divider
             w="95%"

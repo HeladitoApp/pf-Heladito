@@ -2,6 +2,8 @@ import { Flex, chakra } from '@chakra-ui/react'
 import NavInferior from './navInferior'
 import NavSuperior from './navSuperior'
 import { useLocation } from 'react-router-dom'
+//import NavBarAdmin from './NavBarAdmin'
+import SideBarAdmin from './SideBarAdmin'
 
 
 const NavBar = ({ setPage, page }) => {
@@ -23,7 +25,7 @@ const NavBar = ({ setPage, page }) => {
                     <NavInferior setPage={setPage} page={page} />
                 </Flex>
             </chakra.header> :
-            <div>aqui no hay navbar</div>
+            <SideBarAdmin />
 
     )
 }

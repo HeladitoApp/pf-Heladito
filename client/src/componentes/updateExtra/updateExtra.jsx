@@ -25,20 +25,22 @@ import {
 import React, { useEffect, useState } from 'react';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
-import { getToppingsFromDb } from '../../../src/redux/actions/toppings';
 import { updateExtra } from '../../redux/actions/updateExtra';
 import { useDispatch, useSelector } from 'react-redux';
-import { getToppings } from '../../redux/actions/details';
+import { traerExtraById } from '../../redux/actions/getExtraById';
+import { useParams } from 'react-router-dom';
+
 
 
 export default function ActualizarExtra() {
-  const toppings = useSelector(state => state.state.toppings);
+  const { id } = useParams()
+  const detail = useSelector((state) => state.state.toppingDetail[0])
   const loading = useSelector((state) => state.state.loading)
 
 
   const dispatch = useDispatch()
   const [input, setInput] = useState({
-    _id: null,
+    _id: id,
     name: null,
     image: null,
     price: null,
@@ -46,11 +48,8 @@ export default function ActualizarExtra() {
     type: null
   })
 
-  console.log(input)
-
-
   useEffect(() => {
-    dispatch(getToppingsFromDb());
+    dispatch(traerExtraById(id))
     dispatch(setLoading(true));
     setTimeout(() => {
       dispatch(setLoading(false));
@@ -63,11 +62,6 @@ export default function ActualizarExtra() {
       [e.target.name]: e.target.value
     })
 
-  }
-  function handleSelectTopping(e) {
-    setInput({
-      input: toppings.find(el => el.name === e.target.value)
-    })
   }
 
   function handleSelectTypeTop(e) {
@@ -149,35 +143,6 @@ export default function ActualizarExtra() {
                     >
                       <SimpleGrid columns={6} spacing={6}>
 
-                        <FormControl as={GridItem} colSpan={[6, 4]}>
-                          <FormLabel
-                            htmlFor="country"
-                            fontSize="sm"
-                            fontWeight="md"
-                            color="gray.700"
-                            _dark={{ color: "gray.50" }}
-                          >
-                            Elige un extra
-                          </FormLabel>
-                          <Select
-                            id="selectTopping"
-                            onChange={e => handleSelectTopping(e)}
-                            mt={1}
-                            focusBorderColor="#5CE1E6"
-                            shadow="sm"
-                            size="sm"
-                            w="full"
-                            rounded="md"
-                            className="error"
-                          >
-                            <option hidden value='plaseholder'>Extras</option>
-                            {toppings.map((t) =>
-                              <option value={t.name}>{t.name}</option>)
-                            }
-                          </Select>
-                        </FormControl>
-
-
                         <FormControl as={GridItem} colSpan={[6, 3]}>
                           <FormLabel
                             htmlFor="name"
@@ -191,7 +156,7 @@ export default function ActualizarExtra() {
                           <Input
                             type="text"
                             name='name'
-                            defaultValue={input?.name}
+                            defaultValue={detail?.name}
                             onChange={(e) => handleInputsChange(e)}
                             id="name"
                             mt={1}
@@ -224,7 +189,7 @@ export default function ActualizarExtra() {
                             </InputLeftAddon>
                             <Input
                               type="url"
-                              defaultValue={input?.image}
+                              defaultValue={detail?.image}
                               name='image'
                               onChange={(e) => handleInputsChange(e)}
                               placeholder="www.example.com"
@@ -250,7 +215,7 @@ export default function ActualizarExtra() {
                           </FormLabel>
                           <Input
                             type="number"
-                            defaultValue={input?.price}
+                            defaultValue={detail?.price}
                             onChange={(e) => handleInputsChange(e)}
                             name="price"
                             id="price"
@@ -276,7 +241,7 @@ export default function ActualizarExtra() {
                           </FormLabel>
                           <Input
                             type="number"
-                            defaultValue={input?.stock}
+                            defaultValue={detail?.stock}
                             onChange={(e) => handleInputsChange(e)}
                             name="stock"
                             id="stock"
@@ -311,9 +276,9 @@ export default function ActualizarExtra() {
                             rounded="md"
                             className="error"
                           >
-                            <option hidden value='plaseholder'>{input.name}</option>
-                            <option value="toppings secos">secos</option>
-                            <option value=" toppings futas">frutas</option>
+                            <option hidden value='plaseholder'>{detail?.type}</option>
+                            <option value="toppings secos">topping secos</option>
+                            <option value=" toppings futas">tooping frutas</option>
 
                           </Select>
                         </FormControl>

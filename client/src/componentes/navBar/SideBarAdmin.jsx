@@ -136,7 +136,9 @@ const SideBarAdmin = () => {
                     <NavItem icon={FaCartArrowDown}>Modificar Producto</NavItem>
                 </Link>
 
+                <Link to={'/admin/modificar_toppings'}>
                 <NavItem icon={FaCartArrowDown}>Modificar Toppings</NavItem>
+                </Link>
 
                 <Link to={'/admin/clientes'}>
                     <NavItem icon={FaUsers}>Clientes</NavItem>

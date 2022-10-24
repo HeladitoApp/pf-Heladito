@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { IconButton, useDisclosure } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
@@ -11,22 +11,26 @@ import n from "./navSuperior.module.css";
 import Carrito from "../Carrito/Carrito";
 import { useDispatch } from "react-redux";
 import { getProdsFromDb } from "../../redux/actions/products";
+import SideBarAdmin from "./SideBarAdmin";
 
-const NavSuperior = ({setPage, page}) => {
+const NavSuperior = ({ setPage, page }) => {
 
-const { isOpen, onOpen, onClose } = useDisclosure()
-const navigate = useNavigate();
-const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const ruta = useLocation();
 
-const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(getProdsFromDb());
-    navigate("/");
-    setPage(1);
-}
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(getProdsFromDb());
+        navigate("/");
+        setPage(1);
+    }
 
     return (
-        <Flex
+        (!ruta.pathname.includes('admin')) ?
+
+            <Flex
                 className={n.nav}
                 w="100%"
                 px="6"
@@ -34,40 +38,42 @@ const handleClick = (e) => {
                 align="center"
                 justify="space-evenly"
             >
-                <Link to={'/'} onClick={(e)=>handleClick(e)}>
-                    <img 
-                    width= '65px'
-                     src={logotipo}/>
+                <Link to={'/'} onClick={(e) => handleClick(e)}>
+                    <img
+                        width='65px'
+                        src={logotipo} />
                 </Link>
-                <SearchBar/>
+                <SearchBar />
                 <Flex
-                  >
+                >
                     <Link to="/admin" >
                         <IconButton
-                         mr="15px"
-                         variant="outline"
-                         colorScheme='pink'
-                         aria-label='carrito' 
-                         icon={<VscSettingsGear/>} />
+                            mr="15px"
+                            variant="outline"
+                            colorScheme='pink'
+                            aria-label='carrito'
+                            icon={<VscSettingsGear />} />
                     </Link>
                     <Link to="/login">
                         <IconButton
-                         mr="10px"
-                         variant="outline"
-                         colorScheme='pink'
-                         aria-label='carrito' 
-                         icon={<AiOutlineUser/>} />
+                            mr="10px"
+                            variant="outline"
+                            colorScheme='pink'
+                            aria-label='carrito'
+                            icon={<AiOutlineUser />} />
                     </Link>
-                        <IconButton 
+                    <IconButton
                         onClick={onOpen}
                         variant="outline"
                         colorScheme='pink'
-                        aria-label='carrito' 
-                        icon={<BsHandbag/>} />
-                        <Carrito isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+                        aria-label='carrito'
+                        icon={<BsHandbag />} />
+                    <Carrito isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
                 </Flex>
-            </Flex>
-        
+            </Flex> :
+
+            <SideBarAdmin />
+
     )
 }
 

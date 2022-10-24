@@ -47,7 +47,7 @@ export default function ActualizarProducto() {
   const { id } = useParams()
   const loading = useSelector((state) => state.state.loading)
   const dispatch = useDispatch()
-  const detail = useSelector((state) => state.state.details[0])
+  const detail = useSelector((state) => state.state.productosFiltrados[0])
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
     _id: id,

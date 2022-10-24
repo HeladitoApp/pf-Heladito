@@ -5,21 +5,29 @@ const Usuarios = require("../models/Usuarios");
 async function postCompra(req, res) {
   const { productos, sumaTotal, metodoDePago, pagado, usuario } = req.body;
 
-  const listaProductos = await Productos.find({ _id: productos }, { name: 1 /* ,price:1 */});
-/*   const sumaProductos = listaProductos.map(p => {
-    return (Suma=p.price
-      )})
-const reducer = (accumulator, curr) => accumulator + curr;
-const sumaPrecios= sumaProductos.reduce(reducer); */ //DESCOMENTAR SOLO SI QUIERO PONER LOS PRECIOS
- 
+
+  const productsId = productos.map(p=> {
+    return (
+   { _id:`${p.category_id}`,name:`${p.title}`,quantity:`${p.quantity}`,price:`${p.unit_price}` } 
+)})
+await Promise.all(
+  productsId.map( async(p)=>{
+    await Productos.update(
+      {_id: p._id},
+      {
+        $inc: { stock: -p.quantity }
+      }
+  )}))
+  const user = await Usuarios.findOne({email: usuario });
+
 
   const user = await Usuarios.findById(usuario);
   const NewCompra = new Compras({
-    productos: listaProductos,
-    sumaTotal/* : sumaPrecios */,
-    metodoDePago,
-    pagado,
-    usuario: user.name, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
+    productos: productsId,
+     sumaTotal: total,
+    // metodoDePago: "mercadopago",
+    // pagado: true,
+    usuario: user.email, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
   });
 
   try {

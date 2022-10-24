@@ -13,7 +13,6 @@ import { useParams } from "react-router-dom";
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
-import { Link } from "react-router-dom";
 
 export default function CardDetail() {
 
@@ -50,33 +49,34 @@ export default function CardDetail() {
     return(
         <Loading/>
     )
-}
-else {
-  return (
-    <Flex
-    my={50}
-    justifyContent='center'
-    spacing='5' >
-      {product.map((detail, index) => (
-        <Stack key={index} >
-          <Link to = {`/product/update/${detail._id}`}>Editar</Link>,
-          <Box className={s.cont1} >
-            <chakra.h1
-              mb={4}
-              fontSize='2.5em'
-              fontWeight="bold"
-              /* color="b#FF8CD3" */
-              lineHeight="shorter"
-              mx='auto'
-              width='12em'
-            >
-              {detail.name}
-            </chakra.h1>
-            <Circle>
-              <Image
-                src={detail.image}
-                alt={detail.name}
-                objectFit='cover'
+  }
+  else {
+    return (
+      <React.Fragment>
+        
+        <Flex
+          my={50}
+          justifyContent='center'
+          spacing='5' >
+          {product.map((detail, index) => (
+            <Stack key={index} >
+              <Box className={s.cont1} >
+                <chakra.h1
+                  mb={4}
+                  fontSize='2.5em'
+                  fontWeight="bold"
+                  /* color="b#FF8CD3" */
+                  lineHeight="shorter"
+                  mx='auto'
+                  width='12em'
+                >
+                  {detail.name}
+                </chakra.h1>
+                <Circle>
+                  <Image
+                    src={detail.image}
+                    alt={detail.name}
+                    objectFit='cover'
 
               />
             </Circle>

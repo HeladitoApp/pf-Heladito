@@ -36,7 +36,7 @@ const PaymentFeedback = () => {
         <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
           <chakra.form
             // onSubmit={e => handleSubmit(e)}
-            method="POST"
+            //method="POST"
             shadow="base"
             rounded={[null, "md"]}
             overflow={{ sm: "hidden" }}
@@ -156,7 +156,7 @@ const PaymentFeedback = () => {
                                         color: "gray.50",
                                     }}
                                     >
-                                    Comments
+                                    Variedad de productos
                                     </chakra.label>
                                 </Box>
                                 </Flex>
@@ -177,7 +177,7 @@ const PaymentFeedback = () => {
                                         color: "gray.50",
                                     }}
                                     >
-                                    Candidates
+                                    Tiempo de entrega
                                     </chakra.label>                                    
                                 </Box>
                                 </Flex>
@@ -194,7 +194,41 @@ const PaymentFeedback = () => {
                                         color: "gray.50",
                                     }}
                                     >
-                                    Offers
+                                    Ofertas y combos
+                                    </chakra.label>                                    
+                                </Box>
+                                </Flex>
+                                <Flex alignItems="start">
+                                <Flex alignItems="center" h={5}>
+                                    <Checkbox colorScheme="brand" id="offers" rounded="md" />
+                                </Flex>
+                                <Box ml={3} fontSize="sm">
+                                    <chakra.label
+                                    htmlFor="offers"
+                                    fontWeight="md"
+                                    color="gray.700"
+                                    _dark={{
+                                        color: "gray.50",
+                                    }}
+                                    >
+                                    Tiempo de respuesta
+                                    </chakra.label>                                    
+                                </Box>
+                                </Flex>
+                                <Flex alignItems="start">
+                                <Flex alignItems="center" h={5}>
+                                    <Checkbox colorScheme="brand" id="offers" rounded="md" />
+                                </Flex>
+                                <Box ml={3} fontSize="sm">
+                                    <chakra.label
+                                    htmlFor="offers"
+                                    fontWeight="md"
+                                    color="gray.700"
+                                    _dark={{
+                                        color: "gray.50",
+                                    }}
+                                    >
+                                    Medios de pago
                                     </chakra.label>                                    
                                 </Box>
                                 </Flex>
@@ -238,7 +272,7 @@ const PaymentFeedback = () => {
               <Button
                 // borderRadius={'full'} 
                 variant='solid'
-                type="submit"
+                //type="submit"
                 colorScheme="blue"
                 _focus={{ shadow: "" }}
                 fontWeight="md"

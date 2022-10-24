@@ -4,11 +4,11 @@ require("dotenv").config();
 class PaymentService {
   async createPayment(req) {
     const datos = req.body
-    const url = "https://api.mercadopago.com/checkout/preferences";
-    
+    const url = process.env.ACCESS_URL;
+    console.log(datos);
     const body = {
-      payer_email: "test_user_46945293@testuser.com",
-      items:datos.productos,
+      payer_email: "test_user_46945293@testuser.com", /* datos.usuario */
+      items: datos.productos,
       back_urls: {
         failure: `http://localhost:3000/payment/failure`,
         pending: `http://localhost:3000/payment/pending`,

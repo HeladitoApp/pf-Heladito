@@ -12,7 +12,8 @@ export const state = createSlice({
         carrito: {},
         respuestacompra: '',
         loading: false,
-        usuarios: []
+        usuarios: [],
+        compras:[]
     },
     reducers: {
         getProductoById: (state, action) => {
@@ -61,9 +62,12 @@ export const state = createSlice({
         },
         clearDetails: (state) => {
             state.details = []
+        },
+        compraByEmail: (state, action ) =>{
+            state.compras = action.payload
         }
     }
 });
 
-export const { getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails } = state.actions;
+export const { getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails,compraByEmail } = state.actions;
 export default state.reducer;

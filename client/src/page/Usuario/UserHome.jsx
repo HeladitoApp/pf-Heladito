@@ -18,7 +18,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 const UserHome = () => {
   const {user} = useAuth0();
   const { picture, name } = user;
+  const { logout } = useAuth0()
 
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin })
+}
   const Card = ({ heading, detail }) => {
     return (
       <Stack
@@ -104,6 +108,7 @@ const UserHome = () => {
                 mb={{ base: 2, sm: 0 }}
                 minW="9rem"
                 bg="celeste.claro"
+                onClick={handleLogout}
                 >
                 Cerrar sesión
               </Button>

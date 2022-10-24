@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 const UserHome = () => {
   const { user } = useAuth0();
   const { picture, name } = user;

@@ -25,6 +25,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import Loading from '../loading/loading';
+import avatar from '../../assets/usuario.png'
 
 
 
@@ -34,9 +35,9 @@ const SideBarAdmin = () => {
     const { logout } = useAuth0()
     const handleLogout = () => logout({ returnTo: window.location.origin })
 
-    const { user, isLoading } = useAuth0();
+    const { user,  isLoading } = useAuth0();
     const { picture, name } = user;
-    console.log(user)
+    
 
     const sidebar = useDisclosure();
 
@@ -223,7 +224,7 @@ const SideBarAdmin = () => {
                                 ml="4"
                                 size="sm"
                                 name="anubra266"
-                                src={picture}
+                                src={picture?picture:avatar}
                                 alt={name}
                                 cursor="pointer"
                             />

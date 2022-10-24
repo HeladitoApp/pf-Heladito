@@ -44,6 +44,7 @@ const ResumenPedido = () => {
       pedido.total = Total
       dispatch(addCompraDb(pedido))
       dispatch(addPayment(pedido))
+      setproductosCarrito([])
     } else {
       swal({
         title: 'Porfavor, inicie se sesión para poder comprar ',

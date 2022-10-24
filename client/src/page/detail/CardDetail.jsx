@@ -17,7 +17,7 @@ import Loading from '../../componentes/loading/loading';
 export default function CardDetail() {
 
   //estados para Contador
-  const [contador, setContador] = useState(0);
+  const [contador, setContador] = useState(1);
 
   //estado para FlavorsList
   const [sabor, setSabor] = React.useState('');

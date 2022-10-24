@@ -14,13 +14,21 @@ import { getProdsFromDb } from "../../redux/actions/products";
 import SideBarAdmin from "./SideBarAdmin";
 import Profile from "../Login/Profile";
 import LoginActionButton from "../Login/LoginActionButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import Login from "../../page/login/Login";
 
 const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { logout, isLoading, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const ruta = useLocation();
+
+    const handleLogout = () => {
+        logout({ returnTo: window.location.origin })
+        onCloseM()
+    }
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -54,41 +62,41 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                             variant="outline"
                             colorScheme='pink'
                             aria-label='carrito'
-                            icon={<VscSettingsGear />} 
-                            />
+                            icon={<VscSettingsGear />}
+                        />
                     </Link>
-                    <Link /* to="/login" */>
+                    <Link  to="/login" >
                         <IconButton
                             mr="10px"
                             variant="outline"
                             colorScheme='pink'
                             aria-label='carrito'
-                            icon={<AiOutlineUser />} 
+                            icon={<AiOutlineUser />}
                             onClick={onOpenM}
-                            />
+                        />
                     </Link>
 
-                    <Modal isOpen={isOpenM} onClose={onCloseM}>
+                    {/* <Modal isOpen={isOpenM} onClose={onCloseM}>
                         <ModalOverlay />
                         <ModalContent>
-                        <ModalHeader>HeladitosApp</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
+                            <ModalHeader>HeladitosApp</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
 
 
-                            <Profile />
+                                <Profile />
 
-                        
-                        </ModalBody>
 
-                        <ModalFooter display="flex" justifyContent="space-around" alignItems="center" py="2rem">
-                            <Link to={`/login/user`} >
-                                <Button colorScheme={'cyan'} onClick={onCloseM} minW="7rem">Ir al perfil</Button>
-                            </Link>
-                            <LoginActionButton name={'Cerrar sesión'} onClick={onCloseM} /* onClick={handleLogout} */ color={'brandPrincipal'} />                            
-                        </ModalFooter>
+                            </ModalBody>
+
+                            <ModalFooter display="flex" justifyContent="space-around" alignItems="center" py="2rem">
+                                <Link to={`/login/user`} >
+                                    <Button colorScheme={'cyan'} onClick={onCloseM} minW="7rem">Ir al perfil</Button>
+                                </Link>
+                                <LoginActionButton name={'Cerrar sesión'} onClick={handleLogout} color={'brandPrincipal'} />
+                            </ModalFooter>
                         </ModalContent>
-                    </Modal>
+                    </Modal> */}
 
                     <IconButton
                         onClick={onOpen}

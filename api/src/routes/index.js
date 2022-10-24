@@ -85,10 +85,14 @@ router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
+const { getExtraById } = require("../controllers/extraByIdController");
 
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
+
+//Rutas de Extras
+router.get("/extras/:id", getExtraById)
 
 module.exports = router;

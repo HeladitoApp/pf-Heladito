@@ -32,13 +32,19 @@ import ModifiedProduct from "./page/admin/ModifiedProduct";
 import UserHome from "./page/Usuario/UserHome";
 import ModifiedExtra from "./page/admin/ModifiedExtra";
 import ActualizarExtra from "./componentes/updateExtra/updateExtra";
+import Loading from "./componentes/loading/loading";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 function App() {
 
   const [page, setPage] = useState(1);
+  const { isLoading } = useAuth0();
 
+  if (isLoading) {
+    return <Loading />;
+  } else {
   return (
     <div>
       <NavBar setPage={setPage} page={page} />
@@ -72,7 +78,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
-  );
+  );}
 }
 
 export default App;

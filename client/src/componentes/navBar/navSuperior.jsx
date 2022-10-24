@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { IconButton, useDisclosure } from '@chakra-ui/react'
+import { Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import { VscSettingsGear } from 'react-icons/vsc';
@@ -12,8 +12,10 @@ import Carrito from "../Carrito/Carrito";
 import { useDispatch } from "react-redux";
 import { getProdsFromDb } from "../../redux/actions/products";
 import SideBarAdmin from "./SideBarAdmin";
+import Profile from "../Login/Profile";
+import LoginActionButton from "../Login/LoginActionButton";
 
-const NavSuperior = ({ setPage, page }) => {
+const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate();
@@ -52,16 +54,42 @@ const NavSuperior = ({ setPage, page }) => {
                             variant="outline"
                             colorScheme='pink'
                             aria-label='carrito'
-                            icon={<VscSettingsGear />} />
+                            icon={<VscSettingsGear />} 
+                            />
                     </Link>
-                    <Link to="/login">
+                    <Link /* to="/login" */>
                         <IconButton
                             mr="10px"
                             variant="outline"
                             colorScheme='pink'
                             aria-label='carrito'
-                            icon={<AiOutlineUser />} />
+                            icon={<AiOutlineUser />} 
+                            onClick={onOpenM}
+                            />
                     </Link>
+
+                    <Modal isOpen={isOpenM} onClose={onCloseM}>
+                        <ModalOverlay />
+                        <ModalContent>
+                        <ModalHeader>HeladitosApp</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+
+
+                            <Profile />
+
+                        
+                        </ModalBody>
+
+                        <ModalFooter display="flex" justifyContent="space-around" alignItems="center" py="2rem">
+                            <Link to={`/login/user`} >
+                                <Button colorScheme={'cyan'} onClick={onCloseM} minW="7rem">Ir al perfil</Button>
+                            </Link>
+                            <LoginActionButton name={'Cerrar sesión'} onClick={onCloseM} /* onClick={handleLogout} */ color={'brandPrincipal'} />                            
+                        </ModalFooter>
+                        </ModalContent>
+                    </Modal>
+
                     <IconButton
                         onClick={onOpen}
                         variant="outline"

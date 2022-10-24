@@ -34,6 +34,7 @@ import ActualizarExtra from "./componentes/updateExtra/updateExtra";
 import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavSuperior from "./componentes/navBar/navSuperior";
+import { useDisclosure } from "@chakra-ui/react";
 
 
 
@@ -42,18 +43,20 @@ function App() {
   const [page, setPage] = useState(1);
   const { isLoading } = useAuth0();
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   if (isLoading) {
     return <Loading />;
   } else {
   return (
     <div>
-      <NavSuperior setPage={setPage} page={page} />
+      <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose}/>
       <Routes>
         <Route path="/" element={<Home setPage={setPage} page={page} />} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
         <Route path="/product/:productId" element={<CardDetail />} />
         <Route path="/products/:type" element={<Types />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>} />
         <Route path="/users/client" element={<Consumer />} />
         {/* <Route path="/admin" element={<ProtectedRoute component={Admin} />} /> */}
         <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />

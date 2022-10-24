@@ -63,7 +63,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link to={'/sobre_nosotros'} textTransform="uppercase">Sobre nosotros</Link>
+                <Link href='/sobre_nosotros' textTransform="uppercase">Sobre nosotros</Link>
               </Flex>
             </HStack>
             <HStack
@@ -84,7 +84,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link to={'/reviews'} textTransform="uppercase">Reseñas</Link>
+                <Link href='/reviews' textTransform="uppercase">Reseñas</Link>
               </Flex>
             </HStack>
             <HStack
@@ -105,7 +105,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link to={'/contactanos'} textTransform="uppercase">Contáctanos</Link>
+                <Link href='/contactanos' textTransform="uppercase">Contáctanos</Link>
               </Flex>
             </HStack>
             <Center>

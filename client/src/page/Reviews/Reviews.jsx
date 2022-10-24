@@ -13,44 +13,36 @@ import {
   
   const testimonials = [
     {
-      name: 'Ben Parker',
+      name: 'Batman Wayne',
       position: 'CEO',
       company: 'Olpers',
       image:
         'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80',
-      content: `Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-        risus at semper`
+      content: `Los mejores heladitos de toda Ciudad Gótica`
     },
     {
-      name: 'Jena Karlis',
+      name: 'Daenerys Targaryen',
       position: 'GM',
       company: 'Olpers',
       image:
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80',
-      content: `Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-        risus at semper`
+      content: `Ideales para cualquier momento del día, super frescos!`
     },
     {
-      name: 'Vicky Hald',
+      name: 'Ben Bohmer',
       position: 'CFO',
       company: 'Olpers',
       image:
         'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80',
-      content: `Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-        risus at semper`
+      content: `Los preferidos de todos en mi grupo de trabajo`
     },
     {
-      name: 'Vicky Hald',
+      name: 'Chakra Uber',
       position: 'CFO',
       company: 'Olpers',
       image:
         'https://images.unsplash.com/photo-1606513542745-97629752a13b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
-      content: `Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-        risus at semper`
+      content: `Lúcuma mi sabor favorito!! No puedo comer heladitos de ningún otro lado`
     }
   ];
   
@@ -110,9 +102,9 @@ import {
                   <Text fontWeight="bold" fontSize="md">
                     {obj.name}
                   </Text>
-                  <Text fontWeight="medium" fontSize="xs" color="gray.400">
+                  {/* <Text fontWeight="medium" fontSize="xs" color="gray.400">
                     {obj.position}, {obj.company}
-                  </Text>
+                  </Text> */}
                 </Box>
               </Stack>
             </Stack>

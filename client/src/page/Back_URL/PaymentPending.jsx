@@ -1,7 +1,7 @@
-import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, background } from '@chakra-ui/react';
+import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, Link } from '@chakra-ui/react';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import success from '../../assets/success.jpg';
 
 const PaymentPending = () => {
@@ -84,7 +84,7 @@ const PaymentPending = () => {
               base: "none",
               lg: "flex",
             }} */}      
-              <Link to="/">
+              <Link href="/" style={{ textDecoration: 'none'}}>
                 <Button
                   color="white"
                   variant="solid"
@@ -97,7 +97,7 @@ const PaymentPending = () => {
                   Ir al inicio
                 </Button>
               </Link>
-              <Link to="/payment/feedback">
+              <Link href="/payment/feedback" style={{ textDecoration: 'none'}}>
                 <Button
                   color="white"
                   variant="solid"

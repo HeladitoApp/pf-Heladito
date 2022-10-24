@@ -16,7 +16,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const UserHome = () => {
-  const {user} = useAuth0();
+  const { user } = useAuth0();
   const { picture, name } = user;
 
   const Card = ({ heading, detail }) => {
@@ -37,18 +37,18 @@ const UserHome = () => {
         spacing={1}
         minW="20rem"
         h="max-content"
-        style={{ textDecoration: 'none'}}
+        style={{ textDecoration: 'none' }}
       >
         <Text fontSize="md" fontWeight="semibold">
           {heading}
         </Text>
         <Text fontSize="sm" textAlign="left" color="gray.500" lineHeight={1.3} noOfLines={2}>
           {detail}
-        </Text>        
+        </Text>
       </Stack>
     );
   };
-  
+
   return (
     <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14} bg="amarillo.muy_claro">
       <Stack direction={{ base: 'column', md: 'row' }} spacing={2} justifyContent="center">
@@ -84,29 +84,29 @@ const UserHome = () => {
             spacing="1rem"
           >
             <Button
-                // rightIcon={<GoChevronRight />}
-                //colorScheme="blue"
-                variant="ghost"
-                //size="lg"
-                rounded="md"
-                mb={{ base: 2, sm: 0 }}
-                minW="9rem"
-                bg="celeste.claro"
-              >
-                Actualizar clave
-              </Button>
-              <Button
-                // rightIcon={<GoChevronRight />}
-                // colorScheme="blue"
-                variant="ghost"
-                //size="lg"
-                rounded="md"
-                mb={{ base: 2, sm: 0 }}
-                minW="9rem"
-                bg="celeste.claro"
-                >
-                Cerrar sesión
-              </Button>
+              // rightIcon={<GoChevronRight />}
+              //colorScheme="blue"
+              variant="ghost"
+              //size="lg"
+              rounded="md"
+              mb={{ base: 2, sm: 0 }}
+              minW="9rem"
+              bg="celeste.claro"
+            >
+              Actualizar clave
+            </Button>
+            <Button
+              // rightIcon={<GoChevronRight />}
+              // colorScheme="blue"
+              variant="ghost"
+              //size="lg"
+              rounded="md"
+              mb={{ base: 2, sm: 0 }}
+              minW="9rem"
+              bg="celeste.claro"
+            >
+              Cerrar sesión
+            </Button>
           </HStack>
         </Stack>
         <VStack
@@ -122,11 +122,11 @@ const UserHome = () => {
             heading="Mis favoritos"
             detail="Guarda los Heladitos que más te gustan para más tarde."
           />
-          <Card 
-            heading="Historial de pedidos" 
+          <Card
+            heading="Historial de pedidos"
             detail="Accedé a tus últimas compras y sus detalles." />
-          <Card 
-            heading="Mi información" 
+          <Card
+            heading="Mi información"
             detail="Actualizá tu información personal para no perderte las últimas novedades!" />
         </VStack>
       </Stack>

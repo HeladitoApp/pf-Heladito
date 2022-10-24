@@ -188,7 +188,7 @@ const ModifiedExtra = () => {
                                                             icon={<BsBoxArrowUpRight />}
                                                             aria-label="Up"
                                                         />
-                                                        <Link to={`/admin/modificar_producto/update/${token.id}`}>
+                                                        <Link to={`/admin/modificar_extra/update/${token.id}`}>
                                                             <IconButton
                                                                 colorScheme="green"
                                                                 icon={<AiFillEdit />}

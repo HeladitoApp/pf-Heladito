@@ -64,7 +64,7 @@ const AboutUs = () => {
     };
     return (
         <React.Fragment>
-            
+
             <Stack>
                 <Flex
                     bg="#E9FBFC"
@@ -236,80 +236,75 @@ const AboutUs = () => {
                                     gridColumnGap={{ md: 8 }}
                                     gridRowGap={{ md: 10 }}
                                 >
-                                    <Feature
-                                        title="Cristian Cobo"
-                                        icon={<Link href='https://www.linkedin.com/in/cristian-cobo-211365227/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
-                                    >
-                                        <Center>
-                                            <Image
-                                                borderRadius='full'
-                                                boxSize='9.375em'
-                                                src={Cris}
-                                                alt='Cris'
-                                            />
-                                        </Center>
-                                    </Feature>
+                                    <Link href='https://www.linkedin.com/in/cristian-cobo-211365227/' isExternal>
+                                        <Feature
+                                            title="Cristian Cobo"
+                                            icon={<ImLinkedin2 />}
+                                        >
+                                            <Center>
+                                                <Image
+                                                    borderRadius='full'
+                                                    boxSize='9.375em'
+                                                    src={Cris}
+                                                    alt='Cris'
+                                                />
+                                            </Center>
+                                        </Feature>
+                                    </Link>
 
-                                    <Feature
-                                        title="Ezequiel Murga"
-                                        icon={<Link href='https://www.linkedin.com/in/ezequiel-murga-pereyra/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
-                                    >
-                                        <Center>
-                                            <Image
-                                                borderRadius='full'
-                                                boxSize='9.375em'
-                                                src={Eze}
-                                                alt='Ezequiel'
-                                            />
-                                        </Center>
-                                    </Feature>
+                                    <Link href='https://www.linkedin.com/in/ezequiel-murga-pereyra/' isExternal>
+                                        <Feature
+                                            title="Ezequiel Murga"
+                                            icon={<ImLinkedin2 />}
+                                        >
+                                            <Center>
+                                                <Image
+                                                    borderRadius='full'
+                                                    boxSize='9.375em'
+                                                    src={Eze}
+                                                    alt='Ezequiel'
+                                                />
+                                            </Center>
+                                        </Feature>
+                                    </Link>
 
-                                    <Feature
-                                        title="Franco Pelaez"
-                                        icon={<Link href='https://www.linkedin.com/in/franco-pelaez-885338249/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
-                                    >
-                                        <Center>
-                                            <Image
-                                                borderRadius='full'
-                                                boxSize='9.375em'
-                                                src={Franco}
-                                                alt='Franco'
-                                            />
-                                        </Center>
-                                    </Feature>
+                                    <Link href='https://www.linkedin.com/in/franco-pelaez-885338249/' isExternal>
+                                        <Feature
+                                            title="Franco Pelaez"
+                                            icon={<ImLinkedin2 />}
+                                        >
+                                            <Center>
+                                                <Image
+                                                    borderRadius='full'
+                                                    boxSize='9.375em'
+                                                    src={Franco}
+                                                    alt='Franco'
+                                                />
+                                            </Center>
+                                        </Feature>
+                                    </Link>
 
-                                    <Feature
-                                        title="Liza García"
-                                        icon={<Link href='https://www.linkedin.com/in/lizags/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
-                                    >
-                                        <Center>
-                                            <Image
-                                                borderRadius='full'
-                                                boxSize='9.375em'
-                                                src={Liza}
-                                                alt='Liza'
-                                            />
-                                        </Center>
-                                    </Feature>
+                                    <Link href='https://www.linkedin.com/in/lizags/' isExternal>
 
+                                        <Feature
+                                            title="Liza García"
+                                            icon={<ImLinkedin2 />}
+                                        >
+                                            <Center>
+                                                <Image
+                                                    borderRadius='full'
+                                                    boxSize='9.375em'
+                                                    src={Liza}
+                                                    alt='Liza'
+                                                />
+                                            </Center>
+                                        </Feature>
+                                    </Link>
+
+                                    <Link href='https://www.linkedin.com/in/marcos-soria-fullstack/' isExternal>
                                     <Feature
                                         title="Marcos Soria"
-                                        icon={<Link href='https://www.linkedin.com/in/marcos-soria-fullstack/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
+                                        icon={<ImLinkedin2 />}
                                     >
                                         <Center>
                                             <Image
@@ -320,13 +315,12 @@ const AboutUs = () => {
                                             />
                                         </Center>
                                     </Feature>
+                                    </Link>
 
+                                    <Link href='//www.linkedin.com/in/rolando-quispe/' isExternal>
                                     <Feature
                                         title="Rolando Quispe"
-                                        icon={<Link href='//www.linkedin.com/in/rolando-quispe/' isExternal>
-                                            <ImLinkedin2 />
-                                        </Link>
-                                        }
+                                        icon={<ImLinkedin2 />}
                                     >
                                         <Center>
                                             <Image
@@ -337,14 +331,12 @@ const AboutUs = () => {
                                             />
                                         </Center>
                                     </Feature>
+                                    </Link>
 
+                                    <Link href='https://www.linkedin.com/in/santiago-corino-720153b9/' isExternal>
                                     <Feature
                                         title="Santiago Corino"
-                                        icon={
-                                            <Link href='https://www.linkedin.com/in/santiago-corino-720153b9/' isExternal>
-                                                <ImLinkedin2 />
-                                            </Link>
-                                        }
+                                        icon={<ImLinkedin2 />}
                                     >
                                         <Center>
                                             <Image
@@ -355,15 +347,13 @@ const AboutUs = () => {
                                             />
                                         </Center>
                                     </Feature>
+                                    </Link>
 
+                                    <Link href='https://www.linkedin.com/in/navarro-sofiar/' isExternal>
                                     <Feature
                                         title="Sofia Navarro"
 
-                                        icon={
-                                            <Link href='https://www.linkedin.com/in/navarro-sofiar/' isExternal>
-                                                <ImLinkedin2 />
-                                            </Link>
-                                        }
+                                        icon={<ImLinkedin2 />}
                                     >
                                         <Center>
                                             <Image
@@ -374,6 +364,7 @@ const AboutUs = () => {
                                             />
                                         </Center>
                                     </Feature>
+                                    </Link>
                                 </Stack>
                             </Box>
                         </Box>

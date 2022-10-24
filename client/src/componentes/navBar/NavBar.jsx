@@ -8,12 +8,12 @@ import SideBarAdmin from './SideBarAdmin'
 
 const NavBar = ({ setPage, page }) => {
 
-    const ruta = useLocation();
-    console.log(ruta)
+    //const ruta = useLocation();
+    //console.log(ruta)
 
 
     return (
-        (!ruta.pathname.includes('admin') ) ?
+        (/* !ruta.pathname.includes('admin')  */ true) ?
 
             <chakra.header id="header">
 

@@ -1,7 +1,7 @@
-import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid } from '@chakra-ui/react';
+import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, Link } from '@chakra-ui/react';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import React from 'react'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const PaymentFailure = () => {
   return (
@@ -84,7 +84,7 @@ const PaymentFailure = () => {
               base: "none",
               lg: "flex",
             }} */}      
-              <Link to="/">
+              <Link href="/">
                 <Button
                   color="white"
                   variant="solid"
@@ -97,7 +97,7 @@ const PaymentFailure = () => {
                   Ir al inicio
                 </Button>
               </Link>
-              <a href='https://www.mercadopago.com/'>
+              <Link href='https://www.mercadopago.com/' isExternal/* ={true} */ >
                 <Button
                   color="white"
                   variant="solid"
@@ -105,14 +105,12 @@ const PaymentFailure = () => {
                   size="lg"
                   bg="celeste.original"
                   w="10rem"
-                  as="a"
-                  target='_blank'
-                  href='https://www.mercadopago.com/'
+                  textDecoration="none"
                 >
                   Ir MercadoPago
                 </Button>
-              </a>
-              <Link to="/payment/feedback">
+              </Link>
+              <Link href="/payment/feedback">
                 <Button
                   color="white"
                   variant="solid"

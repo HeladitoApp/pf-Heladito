@@ -1,7 +1,6 @@
 //import './App.css';
 import { Route, Routes } from "react-router-dom";
 
-import NavBar from "./componentes/navBar/NavBar";
 import CardDetail from "./page/detail/CardDetail";
 //import CardDetailDos from "./page/detail/CardDetailDos";
 import Home from "./page/home/Home";
@@ -34,6 +33,7 @@ import ModifiedExtra from "./page/admin/ModifiedExtra";
 import ActualizarExtra from "./componentes/updateExtra/updateExtra";
 import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
+import NavSuperior from "./componentes/navBar/navSuperior";
 
 
 
@@ -47,7 +47,7 @@ function App() {
   } else {
   return (
     <div>
-      <NavBar setPage={setPage} page={page} />
+      <NavSuperior setPage={setPage} page={page} />
       <Routes>
         <Route path="/" element={<Home setPage={setPage} page={page} />} />
         {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}

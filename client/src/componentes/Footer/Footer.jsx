@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text } from '@chakra-ui/react';
+import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text, Center, Link } from '@chakra-ui/react';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom'
 import FooterAdmin from './FooterAdmin';
+import Mapa from '../Map/map';
 
 const Footer = () => {
   const ruta = useLocation();
@@ -108,6 +108,10 @@ const Footer = () => {
                 <Link to={'/contactanos'} textTransform="uppercase">Contáctanos</Link>
               </Flex>
             </HStack>
+            <Center>
+              <Mapa />
+            </Center>
+
           </Stack>
           <Divider
             w="95%"

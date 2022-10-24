@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack } from '@chakra-ui/react'
+import { Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { BsHandbag } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import { VscSettingsGear } from 'react-icons/vsc';
@@ -20,7 +20,7 @@ import Login from "../../page/login/Login";
 const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { logout, isLoading, isAuthenticated } = useAuth0()
+    const { logout, loginWithRedirect, isLoading, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const ruta = useLocation();
@@ -29,6 +29,10 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
         logout({ returnTo: window.location.origin })
         onCloseM()
     }
+    
+    const handleLogin = () => loginWithRedirect()
+
+    const handleSingUp = () => loginWithRedirect({ screen_hint: 'signup', })
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -65,7 +69,7 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                             icon={<VscSettingsGear />}
                         />
                     </Link>
-                    <Link  to="/login" >
+                    <Link  /* to="/login" */ >
                         <IconButton
                             mr="10px"
                             variant="outline"
@@ -76,17 +80,13 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                         />
                     </Link>
 
-                    {/* <Modal isOpen={isOpenM} onClose={onCloseM}>
+                    { isAuthenticated ? (<Modal isOpen={isOpenM} onClose={onCloseM}>
                         <ModalOverlay />
                         <ModalContent>
                             <ModalHeader>HeladitosApp</ModalHeader>
                             <ModalCloseButton />
                             <ModalBody>
-
-
                                 <Profile />
-
-
                             </ModalBody>
 
                             <ModalFooter display="flex" justifyContent="space-around" alignItems="center" py="2rem">
@@ -96,7 +96,25 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                                 <LoginActionButton name={'Cerrar sesión'} onClick={handleLogout} color={'brandPrincipal'} />
                             </ModalFooter>
                         </ModalContent>
-                    </Modal> */}
+                    </Modal>) :
+                    (<Modal isOpen={isOpenM} onClose={onCloseM}>
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>HeladitosApp</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <Text>
+                                    Parece que no has iniciado sesión.
+                                </Text>                                
+                            </ModalBody>
+
+                            <ModalFooter display="flex" justifyContent="space-around" alignItems="center" py="2rem">
+                                <LoginActionButton name={'Log In'} onClick={handleLogin} color={'brandSecundario'} />
+                                <LoginActionButton name={'Sing Up'} onClick={handleSingUp} color={'brandTerciario'} />
+                            </ModalFooter>
+                        </ModalContent>
+                    </Modal>)
+                    }
 
                     <IconButton
                         onClick={onOpen}

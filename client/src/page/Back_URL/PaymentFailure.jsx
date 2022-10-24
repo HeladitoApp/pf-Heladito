@@ -84,7 +84,7 @@ const PaymentFailure = () => {
               base: "none",
               lg: "flex",
             }} */}      
-              <Link href="/">
+              <Link href="/" style={{ textDecoration: 'none'}}>
                 <Button
                   color="white"
                   variant="solid"
@@ -97,7 +97,7 @@ const PaymentFailure = () => {
                   Ir al inicio
                 </Button>
               </Link>
-              <Link href='https://www.mercadopago.com/' isExternal/* ={true} */ >
+              <Link href='https://www.mercadopago.com/' isExternal/* ={true} */ style={{ textDecoration: 'none'}}>
                 <Button
                   color="white"
                   variant="solid"
@@ -110,7 +110,7 @@ const PaymentFailure = () => {
                   Ir MercadoPago
                 </Button>
               </Link>
-              <Link href="/payment/feedback">
+              <Link href="/payment/feedback" style={{ textDecoration: 'none'}}>
                 <Button
                   color="white"
                   variant="solid"

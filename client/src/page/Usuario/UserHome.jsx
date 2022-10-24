@@ -36,6 +36,7 @@ const UserHome = () => {
         spacing={1}
         minW="20rem"
         h="max-content"
+        style={{ textDecoration: 'none'}}
       >
         <Text fontSize="md" fontWeight="semibold">
           {heading}
@@ -58,14 +59,14 @@ const UserHome = () => {
           mb={{ base: 3, md: 0 }}
           mr="2rem"
         >
-          <Stack justifyContent="center" alignItems="center">
+          <HStack justifyContent="flex start" alignItems="center">
             <Avatar
               boxShadow="xl"
               size="xl"
               src={picture}
             />
-            <Text fontSize="md">{name}</Text>
-          </Stack>
+            <Text fontSize="lg" pl="1rem" fontWeight="semibold">{name}</Text>
+          </HStack>
           <Heading
             textAlign={{ base: 'center', sm: 'left' }}
             margin="0 auto"
@@ -78,7 +79,8 @@ const UserHome = () => {
           <Text textAlign="center">Nos apasiona el helado y el buen servicio, como a vos.</Text>
           <HStack
             display="flex"
-            justifyContent="space-evenly"
+            justifyContent="flex-start"
+            spacing="1rem"
           >
             <Button
                 // rightIcon={<GoChevronRight />}

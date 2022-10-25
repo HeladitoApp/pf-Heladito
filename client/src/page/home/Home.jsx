@@ -10,6 +10,8 @@ import Pagination from '../../componentes/Pagination/pagination';
 import Order from '../../componentes/section/Order';
 import Loading from '../../componentes/loading/loading';
 import { setLoading } from '../../redux/actions/loading';
+import NavInferior from '../../componentes/navBar/navInferior';
+
 
 
 const Home = ({ page, setPage }) => {
@@ -38,6 +40,7 @@ const Home = ({ page, setPage }) => {
     else {
         return (
             <div>
+                <NavInferior setPage={setPage} page={page}/>
                 <CarouselPromociones />
                 {/* <Pagination page={page} setPage={setPage} max={max}/> */}
                 <div className={s.order}>
@@ -51,6 +54,7 @@ const Home = ({ page, setPage }) => {
                                 return <Card
                                     key={p._id}
                                     id={p._id}
+                                    stock={p.stock}
                                     img={p.image}
                                     name={p.name}
                                     price={p.price}

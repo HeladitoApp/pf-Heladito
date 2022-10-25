@@ -1,12 +1,15 @@
 import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import { getProdsFromDbByName } from '../../redux/actions/searchBar';
 
 export default function SearchBar () {
     const dispatch = useDispatch()
     const [name, setName] = useState('')
     
+    const navigate = useNavigate();
+
     function handelInputChange(e) {
         e.preventDefault()
         setName(e.target.value)
@@ -15,11 +18,15 @@ export default function SearchBar () {
     function handelSubmit(e) {
         e.preventDefault()
         console.log(name);
+        // navigate("/")
         dispatch(getProdsFromDbByName(name))
     }
 
     const handleKeyDown = (e) => {
-        if (e.keyCode === 13) { dispatch(getProdsFromDbByName(name)) }
+        if (e.keyCode === 13) { 
+            // navigate("/")
+            dispatch(getProdsFromDbByName(name)) 
+        }
     };
 
     return (
@@ -27,7 +34,7 @@ export default function SearchBar () {
             <Input
                 pr='4.5rem'
                 type='text'
-                placeholder='Buscar...'
+                placeholder='Escribe aquí...'
                 onChange={ (e) => handelInputChange(e) }
                 onKeyDown={handleKeyDown}
             />

@@ -7,14 +7,14 @@ const Profile = () => {
     const { picture, name, email } = user
     return (
         <VStack>
-            <Image src={picture} alt={name} />
-            <h2>{name}</h2>
-            <p>{email}</p>
-            <Box bg={'amarillo.muy_claro'} >
+            <Image src={picture} alt={name} borderRadius='full' p="1rem"/>
+            <h2>Iniciaste sesión como {name}</h2>
+            <p>( {email} )</p>
+            {/* <Box bg={'amarillo.muy_claro'} >
                 <pre>
                     {JSON.stringify(user, null, 2)}
                 </pre>
-            </Box>
+            </Box> */}
 
         </VStack>
     )

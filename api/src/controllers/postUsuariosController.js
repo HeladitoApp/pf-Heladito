@@ -1,3 +1,4 @@
+const Usuarios = require("../models/Usuarios");
 const { postUsuarios } = require("../utils/postUsuarios");
 const { updateUsuario } = require("../utils/updateUsuario");
 

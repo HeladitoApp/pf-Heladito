@@ -11,7 +11,7 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/PostExtrasController");
-
+const { getUsuarioById } = require('../controllers/GetUsuariosById')
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");

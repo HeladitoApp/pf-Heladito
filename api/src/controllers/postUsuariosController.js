@@ -1,14 +1,10 @@
 const { postUsuarios } = require("../utils/postUsuarios");
-const { updateUsuario } = require("../utils/updateUsuario");
-const Usuarios = require("../models/Usuarios");
+
 
 async function postUsuariosController(req, res) {
-  //const info = req.body;
+
   try {
-    let result
-    const userBymail = await Usuarios.find({ email: req.email })
-    if (!userBymail) result = await postUsuarios(req);
-    result = await updateUsuario(req)
+    const result = await postUsuarios(req);
 
     result
       ? res.status(200).send(result)

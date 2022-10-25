@@ -1,6 +1,6 @@
 const { postUsuarios } = require("../utils/postUsuarios");
 const { updateUsuario } = require("../utils/updateUsuario");
-
+const Usuarios = require("../models/Usuarios");
 
 async function postUsuariosController(req, res) {
   //const info = req.body;

@@ -5,7 +5,6 @@ import {
   HStack,
   Text,
   useColorModeValue,
-  Link,
   Icon,
   Avatar,
   Heading,
@@ -13,7 +12,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link as ReachLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const UserHome = () => {
@@ -24,11 +23,11 @@ const UserHome = () => {
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }
-  const Card = ({ heading, detail, link }) => {
+  const Card = ({ heading, detail }) => {
     return (
       <Stack
-        as={ReachLink}
-        to={link}
+        /*  as={Link}
+         href="#" */
         direction="column"
         _hover={{
           boxShadow: useColorModeValue(
@@ -129,10 +128,11 @@ const UserHome = () => {
             heading="Mis favoritos"
             detail="Guarda los Heladitos que más te gustan para más tarde."
           />
-          <Card
-            heading="Historial de pedidos"
-            detail="Accedé a tus últimas compras y sus detalles."
-            link="/user/historial_de_compra" />
+          <Link to={'/login/user/historial_de_pedidos'}>
+            <Card
+              heading="Historial de pedidos"
+              detail="Accedé a tus últimas compras y sus detalles." />
+          </Link>
           <Card
             heading="Mi información"
             detail="Actualizá tu información personal para no perderte las últimas novedades!" />

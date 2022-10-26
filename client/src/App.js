@@ -26,7 +26,6 @@ import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
 import PaymentFeedback from "./page/Back_URL/PaymentFeedback";
 import AdminHome from "./page/admin/AdminHome";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
-import Users from "./page/admin/Users";
 import ModifiedProduct from "./page/admin/ModifiedProduct";
 import UserHome from "./page/Usuario/UserHome";
 import ModifiedExtra from "./page/admin/ModifiedExtra";
@@ -35,7 +34,11 @@ import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavSuperior from "./componentes/navBar/navSuperior";
 import { useDisclosure } from "@chakra-ui/react";
-import HistoralPedido from "./page/Usuario/HistorialPedido";
+import DataTables from "./page/admin/DataTables";
+import Clientes from "./page/admin/Clientes";
+//import ClienteCompras from "./page/admin/ClienteCompras";
+import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
+import ComprasCard from "./componentes/ComprasCard";
 
 
 
@@ -49,41 +52,44 @@ function App() {
   if (isLoading) {
     return <Loading />;
   } else {
-  return (
-    <div>
-      <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose}/>
-      <Routes>
-        <Route path="/" element={<Home setPage={setPage} page={page} />} />
-        {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
-        <Route path="/product/:productId" element={<CardDetail />} />
-        <Route path="/products/:type" element={<Types />} />
-        <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>} />
-        <Route path="/users/client" element={<Consumer />} />
-        {/* <Route path="/admin" element={<ProtectedRoute component={Admin} />} /> */}
-        <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
-        <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} />
-        <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} />
-        <Route path="admin/modificar_toppings" element={<ProtectedRoute component={ModifiedExtra} />} />
-        <Route path="/admin/clientes" element={<ProtectedRoute component={Users} />} />
-        <Route path="/admin/update/:id" element={<ActualizarUsuario />} />
-        <Route path="/product/add" element={<AgregarProducto />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/product/cart" element={<ResumenPedido />} />
-        <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} />
-        <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} />
-        <Route path="/payment/success" element={<PaymentSuccess />} />
-        <Route path="/payment/pending" element={<PaymentPending />} />
-        <Route path="/payment/failure" element={<PaymentFailure />} />
-        <Route path="/sobre_nosotros" element={<AboutUs />} />
-        <Route path="/contactanos" element={<ContactUs />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/payment/feedback" element={<PaymentFeedback />} />
-        <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
-        <Route path="/user/historial_de_compra" element={<HistoralPedido />} />
-      </Routes>
-      <Footer />
-    </div>
-  );}
+    return (
+      <div>
+        <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose} />
+        <Routes>
+          <Route path="/" element={<Home setPage={setPage} page={page} />} />
+          {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
+          <Route path="/product/:productId" element={<CardDetail />} />
+          <Route path="/products/:type" element={<Types />} />
+          <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose} />} />
+          <Route path="/users/client" element={<Consumer />} />
+          {/* <Route path="/admin" element={<ProtectedRoute component={Admin} />} /> */}
+          <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
+          <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} />
+          <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} />
+          <Route path="admin/modificar_toppings" element={<ProtectedRoute component={ModifiedExtra} />} />
+          <Route path="/admin/clientes" element={<ProtectedRoute component={Clientes} />} />
+          <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} />
+          <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} />
+          <Route path="/admin/update/:id" element={<ActualizarUsuario />} />
+          <Route path="/product/add" element={<AgregarProducto />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/product/cart" element={<ResumenPedido />} />
+          <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} />
+          <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/pending" element={<PaymentPending />} />
+          <Route path="/payment/failure" element={<PaymentFailure />} />
+          <Route path="/sobre_nosotros" element={<AboutUs />} />
+          <Route path="/contactanos" element={<ContactUs />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/payment/feedback" element={<PaymentFeedback />} />
+          <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
+          <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={ComprasCliente} />} />
+        </Routes>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

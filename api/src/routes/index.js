@@ -31,6 +31,7 @@ const { getAllTiposController } = require("../controllers/allTiposController");
 const { getRankingUsuariosCont } = require("../controllers/rankingUsuariosCont");
 const { getProductoMasVend } = require("../controllers/rankingProductosCont");
 const { getByMail } = require("../controllers/userByMailController");
+const { getCompraByEmail } = require("../controllers/comprasByEmailController");
 
 const { validateCreate } = require("../validators/users");
 const { getUsuarioById } = require("../controllers/usuariosByIdController");
@@ -61,7 +62,7 @@ router.put("/actualizarExtra", putExtraController);
 //Rutas de COMPRAS:
 router.get("/compras", getAllCompras);
 router.get("/rankingProductos", getProductoMasVend)
-
+router.get("/comprasCliente/:email", getCompraByEmail);
 router.post("/addCompras", postCompraController);
 
 // Rutas del USUARIO:
@@ -85,10 +86,14 @@ router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
+const { getExtraById } = require("../controllers/extraByIdController");
 
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
+
+//Rutas de Extras
+router.get("/extras/:id", getExtraById)
 
 module.exports = router;

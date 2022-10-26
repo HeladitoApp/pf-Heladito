@@ -18,6 +18,14 @@ const colors = {
         claro: '#FFE6C1',
         muy_claro: '#FFF7EA'
     },
+    verde: {
+        fondo: "#74aa8c",
+        letras: "#C0D8CB"
+    },
+    rojo: {
+        fondo: "#D88391",
+        letras: "#EBC1C8"
+    },
     //colores para usar los colores en schema
     //brandPrincipal = Rosado
     //brandSecundario = Celeste

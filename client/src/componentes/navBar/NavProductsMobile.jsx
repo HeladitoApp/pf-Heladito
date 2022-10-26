@@ -2,7 +2,7 @@ import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFoo
 import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdMenu } from 'react-icons/io';
-import { ProductsCategory } from "../../utils/ProductsCategories";
+//import { ProductsCategory } from "../../utils/ProductsCategories";
 import { useNavigate } from "react-router-dom";
 import { getProdsFromDb } from "../../redux/actions/products";
 import { typeFilter } from "../../redux/actions/typeFilter";
@@ -26,6 +26,7 @@ const NavProductsMobile = ({setPage, page}) => {
         e.preventDefault();
         navigate(`/products/${e.target.value}`);
         dispatch(typeFilter(e.target.value.toLowerCase()));
+        setPage(1);
         console.log(e.target.value.toLowerCase());
     }
 

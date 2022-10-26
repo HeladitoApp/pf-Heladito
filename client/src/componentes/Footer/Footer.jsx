@@ -28,7 +28,7 @@ const Footer = () => {
             p={10}
           >
             <Flex justify="center">
-              <Link to='/'>
+              <Link href='/'>
                 <Image
                   src={logotipo}
                   alt="Company Logo"

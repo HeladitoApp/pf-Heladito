@@ -20,6 +20,7 @@ async function updateUsuario(body) {
           connection: body.connection ? body.connection : usuarioId.connection,
           phone_number: body.phone_number ? body.phone_number : usuarioId.phone_number,
           activo: body.activo ? body.activo : usuarioId.activo,
+          favoritos: body.favoritos ? body.favoritos : usuarioId.favoritos,
           created_at: body.created_at ? body.created_at : usuarioId.created_at,
           update_at: body.update_at ? body.update_at : usuarioId.update_at,
         },

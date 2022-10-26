@@ -1,24 +1,29 @@
+
 import { Box } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import SearchUsuario from '../../componentes/buscarUsuario/buscarUsuario'
 import { getAllUsers } from '../../redux/actions/getAllUsers'
-import UserCard from '../../componentes/UserCard'
+import UserCard from '../../componentes/ComprasCard'
 import Loading from '../../componentes/loading/loading';
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
+import { getCompraByEmail } from '../../redux/actions/getCompraByEmail'
+import { useParams } from 'react-router'
 
-const Users = () => {
+
+const ClienteCompras = () => {
+
     const dispatch = useDispatch();
-
-    const users = useSelector(state => state.state.usuarios);
-    console.log(users)
+    const { email } = useParams()
+    const compras = useSelector(state => state.state.compras);
+    console.log(compras)
 
     const loading = useSelector((state) => state.state.loading)
 
 
     useEffect(() => {
-        dispatch(getAllUsers());
+        dispatch(getCompraByEmail(email));
         dispatch(setLoading(true));
         window.scrollTo(0, 0);
         setTimeout(() => {
@@ -42,16 +47,16 @@ const Users = () => {
                         <Box as="main" p="10">
                             <SearchUsuario />
                             <div>
-                                {users?.map((user, index) => {
+                                {compras?.map((compra, index) => {
                                     return (
                                         <div key={index}>
                                             <UserCard
-                                                /* id={user._id} */
-                                                name={user.name}
-                                                picture={user.picture}
-                                                email={user.email}
-                                                activo={user.activo}
-                                                compras={user.compras}
+                                                id={compra._id}
+                                                usuario={compra.usuario}
+                                                productos={compra.productos}
+                                                cantidad={compra.cantidad}
+                                                createdAt={compra.createdAt}
+                                                sumaTotal={compra.sumaTotal}
                                             />
                                         </div>
                                     )
@@ -66,4 +71,4 @@ const Users = () => {
     }
 }
 
-export default Users
+export default ClienteCompras

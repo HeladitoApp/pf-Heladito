@@ -35,6 +35,7 @@ import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavSuperior from "./componentes/navBar/navSuperior";
 import { useDisclosure } from "@chakra-ui/react";
+import HistoralPedido from "./page/Usuario/HistorialPedido";
 
 
 
@@ -78,6 +79,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/payment/feedback" element={<PaymentFeedback />} />
         <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
+        <Route path="/user/historial_de_compra" element={<HistoralPedido />} />
       </Routes>
       <Footer />
     </div>

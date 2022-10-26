@@ -13,6 +13,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link as ReachLink } from 'react-router-dom';
 
 
 const UserHome = () => {
@@ -22,12 +23,12 @@ const UserHome = () => {
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
-}
-  const Card = ({ heading, detail }) => {
+  }
+  const Card = ({ heading, detail, link }) => {
     return (
       <Stack
-        as={Link}
-        href="#"
+        as={ReachLink}
+        to={link}
         direction="column"
         _hover={{
           boxShadow: useColorModeValue(
@@ -43,6 +44,7 @@ const UserHome = () => {
         h="max-content"
         style={{ textDecoration: 'none' }}
       >
+
         <Text fontSize="md" fontWeight="semibold">
           {heading}
         </Text>
@@ -88,30 +90,30 @@ const UserHome = () => {
             spacing="1rem"
           >
             <Button
-                // rightIcon={<GoChevronRight />}
-                //colorScheme="blue"
-                variant="ghost"
-                //size="lg"
-                rounded="md"
-                mb={{ base: 2, sm: 0 }}
-                minW="9rem"
-                bg="celeste.claro"
-              >
-                Actualizar clave
-              </Button>
-              <Button
-                // rightIcon={<GoChevronRight />}
-                // colorScheme="blue"
-                variant="ghost"
-                //size="lg"
-                rounded="md"
-                mb={{ base: 2, sm: 0 }}
-                minW="9rem"
-                bg="celeste.claro"
-                onClick={handleLogout}
-                >
-                Cerrar sesión
-              </Button>
+              // rightIcon={<GoChevronRight />}
+              //colorScheme="blue"
+              variant="ghost"
+              //size="lg"
+              rounded="md"
+              mb={{ base: 2, sm: 0 }}
+              minW="9rem"
+              bg="celeste.claro"
+            >
+              Actualizar clave
+            </Button>
+            <Button
+              // rightIcon={<GoChevronRight />}
+              // colorScheme="blue"
+              variant="ghost"
+              //size="lg"
+              rounded="md"
+              mb={{ base: 2, sm: 0 }}
+              minW="9rem"
+              bg="celeste.claro"
+              onClick={handleLogout}
+            >
+              Cerrar sesión
+            </Button>
           </HStack>
         </Stack>
         <VStack
@@ -129,7 +131,8 @@ const UserHome = () => {
           />
           <Card
             heading="Historial de pedidos"
-            detail="Accedé a tus últimas compras y sus detalles." />
+            detail="Accedé a tus últimas compras y sus detalles."
+            link="/user/historial_de_compra" />
           <Card
             heading="Mi información"
             detail="Actualizá tu información personal para no perderte las últimas novedades!" />

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text, Center, Link } from '@chakra-ui/react';
+import { Box, Stack, Flex, Image, HStack, Divider, VStack, Icon, Text, Center } from '@chakra-ui/react';
 import logotipo from "../../assets/Logotipo tienda helados.png";
 import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom'
 import FooterAdmin from './FooterAdmin';
 import Mapa from '../Map/map';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const ruta = useLocation();
@@ -27,23 +28,25 @@ const Footer = () => {
             p={10}
           >
             <Flex justify="center">
-              <Image
-                src={logotipo}
-                alt="Company Logo"
-                rounded="lg"
-                width={{
-                  base: "150px",
-                  lg: "150px",
-                }}
-                height={{
-                  base: "150px",
-                  lg: "150px",
-                }}
-                my={{
-                  base: 2,
-                  lg: 0,
-                }}
-              />
+              <Link to='/'>
+                <Image
+                  src={logotipo}
+                  alt="Company Logo"
+                  rounded="lg"
+                  width={{
+                    base: "150px",
+                    lg: "150px",
+                  }}
+                  height={{
+                    base: "150px",
+                    lg: "150px",
+                  }}
+                  my={{
+                    base: 2,
+                    lg: 0,
+                  }}
+                />
+              </Link>
             </Flex>
             <HStack
               alignItems="start"

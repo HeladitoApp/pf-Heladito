@@ -36,7 +36,6 @@ import NavSuperior from "./componentes/navBar/navSuperior";
 import { useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
-//import ClienteCompras from "./page/admin/ClienteCompras";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
 

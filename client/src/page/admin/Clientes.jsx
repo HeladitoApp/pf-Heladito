@@ -10,7 +10,9 @@ import {
     Thead,
     Tr,
     useColorModeValue,
-    Box
+    Box,
+    Switch,
+    Center
 } from "@chakra-ui/react";
 import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
@@ -20,15 +22,15 @@ import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
 import { getAllUsers } from '../../redux/actions/getAllUsers';
-import ClienteCompras from './ClienteCompras';
 import SearchUsuario from '../../componentes/buscarUsuario/buscarUsuario';
+import { useState } from 'react';
 
 
 const Clientes = () => {
 
     const dispatch = useDispatch();
-    const users = useSelector(state => state.state.usuarios);
-    console.log(users)
+    let users = useSelector(state => state.state.usuarios);
+   // console.log(users)
     const loading = useSelector((state) => state.state.loading)
 
     useEffect(() => {
@@ -43,20 +45,34 @@ const Clientes = () => {
         }
     }, [dispatch])
 
-    const header = ["cliente", "email", "estado", "compras"];
+    const header = ["cliente", "email", "estado", "compras", "acceso admin"];
     const data = users.map((user) => {
         return {
             cliente: user.name,
             email: user.email,
-            estado: (user.activo === true) ? 'Estado: Activo' : 'Estado: Inactivo', 
-            //id: user._id
+            estado: (user.activo === true) ? 'Estado: Activo' : 'Estado: Inactivo',
         }
     })
-
     //console.log(data)
 
     const color1 = useColorModeValue("gray.400", "gray.400");
     const color2 = useColorModeValue("gray.400", "gray.400");
+ 
+    let estadoAdmin = false;
+    users = users.map(users =>{
+        return {...users, estadoAdmin  }
+    })
+    console.log(users)
+    
+    
+    let [admin, setAdmin] = useState(false)
+  
+
+    const handleClick = (e) => {
+        e.preventDefaul();
+          
+    }
+    console.log([admin, setAdmin])
 
     if (loading) {
         return (
@@ -187,28 +203,22 @@ const Clientes = () => {
                                                     Actions
                                                 </Td>
                                                 <Td>
-                                                    <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                                        <Link to={`/admin/clientes/${token.email}`}>
-                                                            <IconButton
-                                                                colorScheme="blue"
-                                                                icon={<BsBoxArrowUpRight />}
-                                                                aria-label="Up"
-                                                            />
-                                                        </Link>
-                                                        
-                                                            <IconButton
-                                                                colorScheme="green"
-                                                                icon={<AiFillEdit />}
-                                                                aria-label="Edit"
-                                                            />
-                                                        
-                                                        {/* <IconButton
-                                                        colorScheme="red"
-                                                        variant="outline"
-                                                        icon={<BsFillTrashFill />}
-                                                        aria-label="Delete"
-                                                    /> */}
-                                                    </ButtonGroup>
+                                                    <Center>
+                                                        <ButtonGroup variant="solid" size="sm" spacing={3}>
+                                                            <Link to={`/admin/clientes/${token.email}`}>
+                                                                <IconButton
+                                                                    colorScheme="blue"
+                                                                    icon={<BsBoxArrowUpRight />}
+                                                                    aria-label="Up"
+                                                                />
+                                                            </Link>
+                                                        </ButtonGroup>
+                                                    </Center>
+                                                </Td>
+                                                <Td>
+                                                    <Center>
+                                                        <Switch onClick={handleClick} id='email-alerts' />
+                                                    </Center>
                                                 </Td>
                                             </Tr>
                                         );
@@ -216,10 +226,10 @@ const Clientes = () => {
                                 </Tbody>
                             </Table>
                         </Flex>
-                       
+
                     </Box>
                 </Box>
-                
+
             </Box>
         )
     }

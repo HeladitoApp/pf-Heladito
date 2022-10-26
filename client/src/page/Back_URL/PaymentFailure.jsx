@@ -22,7 +22,7 @@ const PaymentFailure = () => {
         zIndex: -1,
         content: '" "',
       }}
-      bg="amarillo.claro"
+      bg="rojo.letras"
     >
       <Flex
         direction="column"
@@ -53,7 +53,7 @@ const PaymentFailure = () => {
             lg: "4xl",
           }}
           fontWeight="bold"
-          color="brand.600"
+          color=" rgb(151, 7, 7)"
           _dark={{
             color: "gray.300",
           }}
@@ -90,7 +90,7 @@ const PaymentFailure = () => {
                   variant="solid"
                   colorScheme="celeste.normal"
                   size="lg"
-                  bg="celeste.original"
+                  bg="amarillo.original"
                   w="9rem"
                   leftIcon={<ArrowBackIcon />}
                 >
@@ -103,7 +103,7 @@ const PaymentFailure = () => {
                   variant="solid"
                   colorScheme="celeste.normal"
                   size="lg"
-                  bg="celeste.original"
+                  bg="amarillo.original"
                   w="10rem"
                   textDecoration="none"
                 >
@@ -116,7 +116,7 @@ const PaymentFailure = () => {
                   variant="solid"
                   colorScheme="celeste.normal"
                   size="lg"
-                  bg="celeste.original"
+                  bg="amarillo.original"
                   w="10rem"
                   rightIcon={<ArrowForwardIcon />}
                 >

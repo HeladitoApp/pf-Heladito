@@ -22,6 +22,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,6 +32,7 @@ import Loading from '../loading/loading';
 import { useParams } from "react-router"
 import { traerUsuariosById } from '../../redux/actions/getProductosById'
 import { Link } from 'react-router-dom';
+
 
 // function control(input) {
 //     let error = {}
@@ -146,6 +148,7 @@ export default function ActualizarProducto() {
                       >
                         Complete todos los campos.
                       </Text>
+                      <Image src={detail.image} p='10' />
                     </Box>
                   </GridItem>
                   <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>

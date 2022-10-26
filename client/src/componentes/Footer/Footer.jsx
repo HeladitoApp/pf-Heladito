@@ -27,23 +27,25 @@ const Footer = () => {
             p={10}
           >
             <Flex justify="center">
-              <Image
-                src={logotipo}
-                alt="Company Logo"
-                rounded="lg"
-                width={{
-                  base: "150px",
-                  lg: "150px",
-                }}
-                height={{
-                  base: "150px",
-                  lg: "150px",
-                }}
-                my={{
-                  base: 2,
-                  lg: 0,
-                }}
-              />
+              <Link href='/'>
+                <Image
+                  src={logotipo}
+                  alt="Company Logo"
+                  rounded="lg"
+                  width={{
+                    base: "150px",
+                    lg: "150px",
+                  }}
+                  height={{
+                    base: "150px",
+                    lg: "150px",
+                  }}
+                  my={{
+                    base: 2,
+                    lg: 0,
+                  }}
+                />
+              </Link>
             </Flex>
             <HStack
               alignItems="start"

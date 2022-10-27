@@ -88,6 +88,7 @@ router.use("/login", loginRouter);
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { getExtraById } = require("../controllers/extraByIdController");
+const { reporteCompras } = require("../controllers/reporteComprasController");
 
 
 const PaymentInstance = new PaymentController(new PaymentService());
@@ -98,4 +99,7 @@ router.post("/payment", function (req, res, next) {
 //Rutas de Extras
 router.get("/extras/:id", getExtraById)
 
+
+//Reportes de admin
+router.get("/reportes/compras", reporteCompras)
 module.exports = router;

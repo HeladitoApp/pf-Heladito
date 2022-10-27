@@ -67,19 +67,6 @@ export default function ActualizarProducto() {
       dispatch(setLoading(false));
     }, 1500);
   }, [dispatch]);
-
-  // let name = detail?.name
-  // setInput({name: name})
-  // if (detail) { setInput({
-  // _id: detail?._id,
-  // name: detail?.name,
-  // description: detail?.description,
-  // image: detail?.image,
-  // price: detail?.price,
-  // stock: detail?.stock,
-  // type: detail?.type
-  // })}
-
   function handleInputsChange(e) {
     setInput({
       ...input,
@@ -148,7 +135,7 @@ export default function ActualizarProducto() {
                       >
                         Complete todos los campos.
                       </Text>
-                      <Image src={detail.image} p='10' />
+                      <Image src={detail?.image} p='10' />
                     </Box>
                   </GridItem>
                   <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>

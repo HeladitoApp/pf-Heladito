@@ -36,6 +36,8 @@ const { getCompraByEmail } = require("../controllers/comprasByEmailController");
 const { validateCreate } = require("../validators/users");
 const { getUsuarioById } = require("../controllers/usuariosByIdController");
 const { putFavoritosController } = require("../controllers/putFavoritosUserController");
+const { adminInboxController } = require("../controllers/adminInboxController");
+
 
 const router = Router();
 
@@ -77,6 +79,7 @@ router.get("/usuarioEmail", getByMail);
 router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+router.post("/adminInbox", adminInboxController)
 
 router.get("/usuarioEmail", getByMail);
 
@@ -88,6 +91,7 @@ router.use("/login", loginRouter);
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { getExtraById } = require("../controllers/extraByIdController");
+/* const { postEmailsController } = require("../controllers/postEmailsController"); */
 
 
 const PaymentInstance = new PaymentController(new PaymentService());
@@ -97,5 +101,9 @@ router.post("/payment", function (req, res, next) {
 
 //Rutas de Extras
 router.get("/extras/:id", getExtraById)
+
+
+//ruta nodemail
+/* router.post("/sendEmail", postEmailsController) */
 
 module.exports = router;

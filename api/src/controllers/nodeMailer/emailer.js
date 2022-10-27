@@ -20,26 +20,30 @@ function createTransporter() {
   }
 }
 
-const infoMail = (user) => {
+/* const infoMail = (users) => {
   return {
     from: process.env.EMAIL,
-    to: `${user.email}`,
-    subject: `Hola ${user.name}. ¡Bienvenid@ a HeladitosApp 🍦!`,
+    to: `itsmarcos.1up@gmail.com`,
+    subject: `¡No te lo pierdas! Descubre novedades en HeladitosApp 🍦!`,
     //todo el html que va en el body:
-    html: "<b>texto de ejemplo pal body, nene</b> <p>OJO QUE TAMBIEN SE PUEDE USAR UN ARCHIVO HTML COMO VARIABLE A IMPORTAR</p>",
-    /* attachments: [
-      {
-        filename: "",
-        path: "",
-      },
-    ], */
+    html: ,
+    // attachments: [{filename: "", path: ""},]
   };
-};
+}; */
 
-async function sendMail(user) {
+const mensajeHtml = anuncioHtml(anuncio)
+
+async function sendMail(users) {
   const transporter = createTransporter();
-  const info = await transporter.sendMail(infoMail(user));
+  const info = await transporter.sendMail({
+    from: process.env.EMAIL,
+    to: `itsmarcos.1up@gmail.com`,
+    subject: `¡No te lo pierdas! Descubre novedades en HeladitosApp 🍦`,
+    //todo el html que va en el body:
+    html: await mensajeHtml,
+    // attachments: [{filename: "", path: ""},]
+  });
   console.log("mensaje enviado: %s", info.messageId);
 }
 
-exports.sendMailController = (user) => sendMail(user);
+exports.sendMailController = (users) => sendMail(users);

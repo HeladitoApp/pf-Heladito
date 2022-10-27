@@ -32,8 +32,6 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
 
     //const [checkedToppings, setCheckedToppings] = useState([]);
 
-    console.log(checkedToppings)
-    console.log(checkedToppings.length)
     const [isChecked, setIsChecked] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
     const [, updateState] = React.useState();
@@ -115,6 +113,7 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
                     <Wrap>
                         {toppings.map((topping, index) => (
                             <Box key={index}>
+                                <label>
                                 <input
                                     type="checkbox"
                                     name={topping.name}
@@ -126,7 +125,7 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
                                 // colorScheme='pink'
                                 />
 
-                                <label>
+                                
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}
                                 </label>

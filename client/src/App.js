@@ -38,6 +38,7 @@ import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
+import NoAutrizado from "./page/noAutorizado/noAutorizado";
 
 
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/admin/update/:id" element={<ActualizarUsuario />} />
           <Route path="/product/add" element={<AgregarProducto />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="notAuthorized" element={<NoAutrizado/>} />
           <Route path="/product/cart" element={<ResumenPedido />} />
           <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} />
           <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} />

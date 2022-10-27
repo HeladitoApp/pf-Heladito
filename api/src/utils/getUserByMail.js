@@ -1,7 +1,7 @@
 const Usuarios = require("../models/Usuarios");
 
 async function usuarioByMail(req, res) {
-  const mailUser = req.body.email;
+  const mailUser = req.params.email;
   
   try {
     const userBymail = await Usuarios.find({ email:mailUser });

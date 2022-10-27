@@ -16,14 +16,14 @@ function createTransporter() {
     });
     return transporter;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
 const infoMail = (user) => {
   return {
     from: process.env.EMAIL,
-    to: `${user.mail}`,
+    to: `${user.email}`,
     subject: `Hola ${user.name}. ¡Bienvenid@ a HeladitosApp 🍦!`,
     //todo el html que va en el body:
     html: "<b>texto de ejemplo pal body, nene</b> <p>OJO QUE TAMBIEN SE PUEDE USAR UN ARCHIVO HTML COMO VARIABLE A IMPORTAR</p>",

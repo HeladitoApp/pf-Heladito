@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Link, chakra, Center } from "@chakra-ui/react";
+import { Box, Flex, Image, chakra, Center, Button } from "@chakra-ui/react";
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
@@ -7,13 +7,13 @@ import { clearDetails, compraByEmail } from '../redux/slices';
 import { setLoading } from '../redux/actions/loading';
 import { getCompraByEmail } from "../redux/actions/getCompraByEmail";
 import carrito from '../assets/carrito.png';
+import { Link } from "react-router-dom";
 
 const ComprasCard = () => {
 
     const dispatch = useDispatch();
     const { email } = useParams()
     const compras = useSelector(state => state.state.compras);
-    console.log(compras)
 
     const loading = useSelector((state) => state.state.loading)
 
@@ -36,7 +36,7 @@ const ComprasCard = () => {
     }
     else {
         return (
-            (compras === 0) ?
+            (compras.length > 1) ?
                 <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
                     <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
                         <Box as="main" p="10">
@@ -98,6 +98,16 @@ const ComprasCard = () => {
                                     })}
                                 </Box>
                             </Flex>
+                            <Link to={'/admin/clientes'}>
+                                <Button
+                                    borderRadius={'full'}
+                                    colorScheme='pink'
+                                    variant='solid'
+                                    m='5'
+                                >
+                                    Volver
+                                </Button>
+                            </Link>
                         </Box>
                     </Box>
                 </Box>
@@ -142,11 +152,19 @@ const ComprasCard = () => {
                                     </Center>
                                 </Box>
                             </Flex>
+                            <Link to={'/admin/clientes'}>
+                                <Button
+                                    borderRadius={'full'}
+                                    colorScheme='pink'
+                                    variant='solid'
+                                    m='5'
+                                >
+                                    Volver
+                                </Button>
+                            </Link>
                         </Box>
                     </Box>
                 </Box>
-
-
         );
     }
 }

@@ -32,11 +32,9 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
 
     //const [checkedToppings, setCheckedToppings] = useState([]);
 
-    console.log(checkedToppings)
-    console.log(checkedToppings.length)
     const [isChecked, setIsChecked] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
-    const [, updateState] = React.useState(); 
+    const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
 
 
@@ -48,33 +46,53 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
         let isSelected = e.target.checked
 
 
-        e.preventDefault();
+        // e.preventDefault();
+        // if (isSelected) {
+        //     if (checkedToppings.length < limit) {
+        //         setCheckedToppings([
+        //             ...checkedToppings,
+        //             e.target.value
+        //         ])
+
+
+        //     } 
+        // }
+        // if (checkedToppings.includes(e.target.value)) {
+        //     setCheckedToppings(
+        //         checkedToppings.filter(el => el !== e.target.value)
+        //     )
+
+
+        // }
+        // if (checkedToppings.length >= 5) {
+        //     setIsDisabled(!isDisabled)
+        //     return
+        // }
+        // setIsChecked(!isChecked)
+
+
         if (isSelected) {
             if (checkedToppings.length < limit) {
-                setCheckedToppings([
-                    ...checkedToppings,
-                    e.target.value
-                ])
-            } /* else {
-                isSelected = !isChecked
+                setCheckedToppings((prev) => [...prev, e.target.value]);
+            } else {
+                e.target.checked = false;
+                alert(`You can select only ${limit} toppings from the given group`);
+            }
+        } else {
+            let newArr = checkedToppings.filter((d) => d !== e.target.value);
+            setCheckedToppings(newArr);
+        }
 
-            } */
-        }
-        if (checkedToppings.includes(e.target.value)) {
-            setCheckedToppings(
-                checkedToppings.filter(el => el !== e.target.value)
-            )
-        }
-        if (checkedToppings.length >= 5) {
-            setIsDisabled(!isDisabled)
-        }
+
+
     }
 
 
-    /* const handleClick = (e) => {
-        e.preventDefault();
-        forceUpdate()
-    } */
+
+    // const handleClick = (e) => {
+    //     setCheckedToppings([])
+    //     setIsDisabled(!isDisabled)
+    // }
 
 
 
@@ -86,29 +104,45 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
                         <Box flex='1' textAlign='left'>
                             Elige los toppings que deseas
                         </Box>
-                        <Button onClick={forceUpdate}>Modificar Toppings</Button>
                         <AccordionIcon />
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
                     <Box fontSize='xs'>Elige max. 6 toppings</Box>
+                    {/* <Button onClick={handleClick}>Modificar Toppings</Button> */}
                     <Wrap>
                         {toppings.map((topping, index) => (
-                            <WrapItem key={index}>
-                                <Checkbox
-                                    key={index}
-                                    colorScheme='pink'
-                                    align="center"
-                                    justify="center"
+                            <Box key={index}>
+                                <label>
+                                <input
+                                    type="checkbox"
+                                    name={topping.name}
                                     value={topping.name}
                                     onChange={handleChange}
-                                    disabled={isDisabled}
-                                    checked={isChecked}
-                                >
+                                    align="center"
+                                    justify="center"
+                                    color='pink'
+                                // colorScheme='pink'
+                                />
+
+                                
                                     <Image src={topping.image} alt={'sabor' + topping.id} />
                                     {topping.name}
-                                </Checkbox>
-                            </WrapItem>
+                                </label>
+                            </Box>
+                            // <Checkbox
+                            //     key={index}
+                            //     colorScheme='pink'
+                            //     align="center"
+                            //     justify="center"
+                            //     name={topping.name}
+                            //     value={topping.name}
+                            //     onChange={handleChange}
+                            // >
+                            //     <Image src={topping.image} alt={'sabor' + topping.id} />
+                            //     {topping.name}
+                            // </Checkbox>
+
                         ))}
                     </Wrap>
                 </AccordionPanel>

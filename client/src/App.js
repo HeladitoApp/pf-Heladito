@@ -36,10 +36,13 @@ import NavSuperior from "./componentes/navBar/navSuperior";
 import { Alert, useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
-//import ClienteCompras from "./page/admin/ClienteCompras";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
+
 import { useSelector } from "react-redux";
+
+import NoAutrizado from "./page/noAutorizado/noAutorizado";
+
 
 
 
@@ -88,6 +91,7 @@ function App() {
           {/* <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> */}
           {/* <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> */}
           <Route path="*" element={<NotFound />} />
+          <Route path="notAuthorized" element={<NoAutrizado/>} />
           <Route path="/product/cart" element={<ResumenPedido />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/pending" element={<PaymentPending />} />

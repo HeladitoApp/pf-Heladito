@@ -34,6 +34,7 @@ const { getCompraByEmail } = require("../controllers/comprasByEmailController");
 
 const { validateCreate } = require("../validators/users");
 const { getUsuarioById } = require("../controllers/usuariosByIdController");
+const { putFavoritosController } = require("../controllers/putFavoritosUserController");
 
 const router = Router();
 
@@ -79,13 +80,15 @@ router.post("/createExtra", postExtraController);
 router.get("/usuarioEmail", getByMail);
 
 router.put("/actualizarUsuario", putUsuariosController);
-
+router.put("/actualizarFavoritos",putFavoritosController)
 //Rutas de Login
 router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { getExtraById } = require("../controllers/extraByIdController");
+const { reporteCompras } = require("../controllers/reporteComprasController");
+
 
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
@@ -95,4 +98,7 @@ router.post("/payment", function (req, res, next) {
 //Rutas de Extras
 router.get("/extras/:id", getExtraById)
 
+
+//Reportes de admin
+router.get("/reportes/compras", reporteCompras)
 module.exports = router;

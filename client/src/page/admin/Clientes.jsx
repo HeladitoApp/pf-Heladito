@@ -30,7 +30,6 @@ const Clientes = () => {
 
     const dispatch = useDispatch();
     let users = useSelector(state => state.state.usuarios);
-   // console.log(users)
     const loading = useSelector((state) => state.state.loading)
 
     useEffect(() => {
@@ -53,7 +52,6 @@ const Clientes = () => {
             estado: (user.activo === true) ? 'Estado: Activo' : 'Estado: Inactivo',
         }
     })
-    //console.log(data)
 
     const color1 = useColorModeValue("gray.400", "gray.400");
     const color2 = useColorModeValue("gray.400", "gray.400");
@@ -62,17 +60,16 @@ const Clientes = () => {
     users = users.map(users =>{
         return {...users, estadoAdmin  }
     })
-    console.log(users)
     
     
     let [admin, setAdmin] = useState(false)
-  
 
     const handleClick = (e) => {
         e.preventDefaul();
           
     }
     console.log([admin, setAdmin])
+    
 
     if (loading) {
         return (

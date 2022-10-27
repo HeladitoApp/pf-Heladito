@@ -16,7 +16,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProdsFromDb } from '../../redux/actions/products';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
@@ -27,6 +27,7 @@ const ModifiedProduct = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.state.productos);
     const loading = useSelector((state) => state.state.loading)
+
 
     useEffect(() => {
         dispatch(getProdsFromDb());
@@ -183,11 +184,13 @@ const ModifiedProduct = () => {
                                                 </Td>
                                                 <Td>
                                                     <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                                        <IconButton
-                                                            colorScheme="blue"
-                                                            icon={<BsBoxArrowUpRight />}
-                                                            aria-label="Up"
-                                                        />
+                                                        <Link to={`/product/${token.id}`}>
+                                                            <IconButton
+                                                                colorScheme="blue"
+                                                                icon={<BsBoxArrowUpRight />}
+                                                                aria-label="Up"
+                                                            />
+                                                        </Link>
                                                         <Link to={`/admin/modificar_producto/update/${token.id}`}>
                                                             <IconButton
                                                                 colorScheme="green"
@@ -195,12 +198,6 @@ const ModifiedProduct = () => {
                                                                 aria-label="Edit"
                                                             />
                                                         </Link>
-                                                        {/* <IconButton
-                                                        colorScheme="red"
-                                                        variant="outline"
-                                                        icon={<BsFillTrashFill />}
-                                                        aria-label="Delete"
-                                                    /> */}
                                                     </ButtonGroup>
                                                 </Td>
                                             </Tr>

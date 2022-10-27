@@ -92,6 +92,7 @@ const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { getExtraById } = require("../controllers/extraByIdController");
 /* const { postEmailsController } = require("../controllers/postEmailsController"); */
+const { reporteCompras } = require("../controllers/reporteComprasController");
 
 
 const PaymentInstance = new PaymentController(new PaymentService());
@@ -103,7 +104,12 @@ router.post("/payment", function (req, res, next) {
 router.get("/extras/:id", getExtraById)
 
 
+
 //ruta nodemail
 /* router.post("/sendEmail", postEmailsController) */
+
+
+//Reportes de admin
+router.get("/reportes/compras", reporteCompras)
 
 module.exports = router;

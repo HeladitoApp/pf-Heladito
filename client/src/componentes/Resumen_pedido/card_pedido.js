@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { FaMinus, FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import EditarPedido from './editar_pedido'
 
-export default function CardPedido({ productosCarrito, setproductosCarrito, id, name, img, flavors, price, toppings, cantidad, type }) {
+export default function CardPedido({ productosCarrito, setproductosCarrito,disponible, id, name, img, flavors, price, toppings, cantidad, type }) {
     const [contador, setcontador] = useState(cantidad)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -62,7 +62,7 @@ export default function CardPedido({ productosCarrito, setproductosCarrito, id, 
                     <FaMinus />
                 </Button>
                 <Text p={1} px={15}>{contador}</Text>
-                <Button onClick={() => setContador('mas')} size='sm' colorScheme='green' variant='outline' borderRadius={'full'}>
+                <Button onClick={() => setContador('mas')} size='sm' colorScheme='green' variant='outline' borderRadius={'full'} disabled={contador !== disponible ? false : true}>
                     <FaPlus />
                 </Button>
                 <Spacer />

@@ -125,7 +125,7 @@ const SideBarAdmin = () => {
                     <NavItem icon={MdHome}>Main Dashboard</NavItem>
                 </Link>
 
-                <Link to={'/admin/perfil'}>
+                <Link to={'/login/user'}>
                     <NavItem icon={BsGearFill}>Config. Perfil</NavItem>
                 </Link>
 

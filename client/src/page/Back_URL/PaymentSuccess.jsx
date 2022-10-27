@@ -2,7 +2,7 @@ import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, Link } from '@chak
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import React from 'react';
 //import { Link } from 'react-router-dom';
-import success from '../../assets/success.jpg';
+import success from '../../assets/helado_succes.png';
 
 const PaymentSuccess = () => {
   return (
@@ -23,7 +23,7 @@ const PaymentSuccess = () => {
         zIndex: -1,
         content: '" "',
       }}
-      bg="amarillo.claro"
+      bg="verde.letras"
     >
       <Flex
         direction="column"
@@ -54,7 +54,7 @@ const PaymentSuccess = () => {
             lg: "4xl",
           }}
           fontWeight="bold"
-          color="brand.600"
+          color="green"
           _dark={{
             color: "gray.300",
           }}
@@ -88,9 +88,9 @@ const PaymentSuccess = () => {
                 <Button
                   color="white"
                   variant="solid"
-                  colorScheme="celeste.normal"
+                  colorScheme="rosado.normal"
                   size="lg"
-                  bg="celeste.original"
+                  bg="rosado.original"
                   w="9rem"
                   leftIcon={<ArrowBackIcon />}
                 >
@@ -101,9 +101,9 @@ const PaymentSuccess = () => {
                 <Button
                   color="white"
                   variant="solid"
-                  colorScheme="celeste.normal"
+                  colorScheme="rosado.normal"
                   size="lg"
-                  bg="celeste.original"
+                  bg="rosado.original"
                   w="10rem"
                   rightIcon={<ArrowForwardIcon />}
                 >

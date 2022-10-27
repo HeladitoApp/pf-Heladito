@@ -143,12 +143,12 @@ const ContactUs = () => {
                     >
                         <GridItem colSpan={{ md: 1 }}>
                             <Box px={[4, 0]}>
-                                <Heading color='#ff66c4' fontSize="3xl" fontWeight="medium" lineHeight="6">
+                                <Heading color='#ff66c4' fontSize="2xl" fontWeight="medium" lineHeight="6">
                                     Contáctanos
                                 </Heading>
                                 <Text
                                     mt={1}
-                                    fontSize="lg"
+                                    fontSize="sm"
                                     color="gray.600"
                                     _dark={{ color: "gray.400" }}
                                 >

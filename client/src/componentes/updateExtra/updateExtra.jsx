@@ -21,6 +21,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { setLoading } from '../../redux/actions/loading';
@@ -28,7 +29,7 @@ import Loading from '../loading/loading';
 import { updateExtra } from '../../redux/actions/updateExtra';
 import { useDispatch, useSelector } from 'react-redux';
 import { traerExtraById } from '../../redux/actions/getExtraById';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 
@@ -123,6 +124,7 @@ export default function ActualizarExtra() {
                     >
                       Modifique los campos necesarios.
                     </Text>
+                    <Image src={detail?.image} p='10' />
                   </Box>
                 </GridItem>
                 <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
@@ -315,11 +317,13 @@ export default function ActualizarExtra() {
               _dark={{ borderColor: "whiteAlpha.300" }}
               visibility={{ base: "hidden", sm: "visible" }}
             />
-            <Button
-              borderRadius={'full'}
-              colorScheme='pink' variant='solid'>
-              <a href='/'>volver</a>
-            </Button>
+            <Link to={'/admin'}>
+                <Button
+                  borderRadius={'full'}
+                  colorScheme='pink' variant='solid'>
+                  Volver
+                </Button>
+              </Link>
           </Box>
         </Box>
       </Box>

@@ -1,9 +1,0 @@
-ADMIN_ID="mongodb+srv://heladitosapp:grupo06@cluster0.4vule79.mongodb.net/heladitos"
-SERVER_PORT=3800
-
-AUDIENCE=HeladitosAPP identifier
-ISSUER=https://heladitos-app.us.auth0.com/
-ALGORITHMS=RS256
-JWKSURI=https://heladitos-app.us.auth0.com/.well-known/jwks.json
-
-ACCESS_TOKEN="APP_USR-2648439202059510-101818-24fae0c38a90e3588d625172b8c65fa8-1220395545"

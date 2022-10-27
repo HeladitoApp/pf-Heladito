@@ -1,14 +1,14 @@
 import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch} from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getProdsFromDbByName } from '../../redux/actions/searchBar';
 
 export default function SearchBar () {
     const dispatch = useDispatch()
     const [name, setName] = useState('')
-    
-    const navigate = useNavigate();
+    const ruta = useLocation();
+    //const navigate = useNavigate();
 
     function handelInputChange(e) {
         e.preventDefault()
@@ -30,7 +30,9 @@ export default function SearchBar () {
     };
 
     return (
-        <InputGroup /* size='md' */ mx="5rem" w="20rem">
+        (ruta.pathname === "/") ?
+
+        (<InputGroup /* size='md' */ mx="5rem" w="20rem" minW="12rem">
             <Input
                 pr='4.5rem'
                 type='text'
@@ -43,7 +45,11 @@ export default function SearchBar () {
                     Buscar
                 </Button>
             </InputRightElement>
+        </InputGroup>) : 
+        (
+        <InputGroup /* size='md' */ mx="5rem" w="20rem" minW="12rem">            
         </InputGroup>
+        )
     )
 
 }

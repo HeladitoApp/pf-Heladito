@@ -10,10 +10,11 @@ const usuariosSchema = new Schema({
   phone_number: { type: Number },
   password: String,
   activo: { type: Boolean, default: true },
-  rol: { type: String },
+  rol: { type: String, default: "usuario" },
   compras: [{ type: Schema.Types.ObjectId, ref: "Compras" }],
   created_at: { type: String },
   update_at: { type: String },
+  favoritos: [],
 });
 
 const Usuarios = mongoose.model("Usuarios", usuariosSchema);

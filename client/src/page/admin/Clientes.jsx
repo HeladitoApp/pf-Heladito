@@ -10,26 +10,30 @@ import {
     Thead,
     Tr,
     useColorModeValue,
-    Box
+    Box,
+    Switch,
+    Center
 } from "@chakra-ui/react";
 import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProdsFromDb } from '../../redux/actions/products';
 import { Link } from 'react-router-dom';
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
+import { getAllUsers } from '../../redux/actions/getAllUsers';
+import SearchUsuario from '../../componentes/buscarUsuario/buscarUsuario';
+import { useState } from 'react';
 
 
-const ModifiedProduct = () => {
+const Clientes = () => {
 
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.state.productos);
+    let users = useSelector(state => state.state.usuarios);
     const loading = useSelector((state) => state.state.loading)
 
     useEffect(() => {
-        dispatch(getProdsFromDb());
+        dispatch(getAllUsers());
         dispatch(setLoading(true));
         window.scrollTo(0, 0);
         setTimeout(() => {
@@ -40,19 +44,32 @@ const ModifiedProduct = () => {
         }
     }, [dispatch])
 
-    const header = ["id", "nombre", "tipo", "acciones"];
-    const data = products.map((product) => {
+    const header = ["cliente", "email", "estado", "compras", "acceso admin"];
+    const data = users.map((user) => {
         return {
-            id: product._id,
-            nombre: product.name,
-            tipo: product.type
+            cliente: user.name,
+            email: user.email,
+            estado: (user.activo === true) ? 'Estado: Activo' : 'Estado: Inactivo',
         }
     })
 
-    //console.log(data)
-
     const color1 = useColorModeValue("gray.400", "gray.400");
     const color2 = useColorModeValue("gray.400", "gray.400");
+ 
+    let estadoAdmin = false;
+    users = users.map(users =>{
+        return {...users, estadoAdmin  }
+    })
+    
+    
+    let [admin, setAdmin] = useState(false)
+
+    const handleClick = (e) => {
+        e.preventDefaul();
+          
+    }
+    console.log([admin, setAdmin])
+    
 
     if (loading) {
         return (
@@ -64,6 +81,7 @@ const ModifiedProduct = () => {
             <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
                 <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
                     <Box as="main" p="10">
+                        <SearchUsuario />
                         <Flex
                             w="full"
                             bg="#FFE6C1"
@@ -182,26 +200,22 @@ const ModifiedProduct = () => {
                                                     Actions
                                                 </Td>
                                                 <Td>
-                                                    <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                                        <IconButton
-                                                            colorScheme="blue"
-                                                            icon={<BsBoxArrowUpRight />}
-                                                            aria-label="Up"
-                                                        />
-                                                        <Link to={`/admin/modificar_producto/update/${token.id}`}>
-                                                            <IconButton
-                                                                colorScheme="green"
-                                                                icon={<AiFillEdit />}
-                                                                aria-label="Edit"
-                                                            />
-                                                        </Link>
-                                                        {/* <IconButton
-                                                        colorScheme="red"
-                                                        variant="outline"
-                                                        icon={<BsFillTrashFill />}
-                                                        aria-label="Delete"
-                                                    /> */}
-                                                    </ButtonGroup>
+                                                    <Center>
+                                                        <ButtonGroup variant="solid" size="sm" spacing={3}>
+                                                            <Link to={`/admin/clientes/${token.email}`}>
+                                                                <IconButton
+                                                                    colorScheme="blue"
+                                                                    icon={<BsBoxArrowUpRight />}
+                                                                    aria-label="Up"
+                                                                />
+                                                            </Link>
+                                                        </ButtonGroup>
+                                                    </Center>
+                                                </Td>
+                                                <Td>
+                                                    <Center>
+                                                        <Switch onClick={handleClick} id='email-alerts' />
+                                                    </Center>
                                                 </Td>
                                             </Tr>
                                         );
@@ -209,11 +223,14 @@ const ModifiedProduct = () => {
                                 </Tbody>
                             </Table>
                         </Flex>
+
                     </Box>
                 </Box>
+
             </Box>
         )
     }
 }
 
-export default ModifiedProduct
+
+export default Clientes

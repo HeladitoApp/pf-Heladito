@@ -21,6 +21,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { setLoading } from '../../redux/actions/loading';
@@ -123,6 +124,7 @@ export default function ActualizarExtra() {
                     >
                       Modifique los campos necesarios.
                     </Text>
+                    <Image src={detail?.image} p='10' />
                   </Box>
                 </GridItem>
                 <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>

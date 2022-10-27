@@ -42,7 +42,7 @@ const ButtonComprar = ({ id, image, name, price, type, sabor, checkedToppings, c
             setAddProduct([...addProduct,
                 newProduct])
             swal({
-                title: 'Producto agregado al carrito, a seguir comprando!',
+                title: 'Producto agregado al carrito, estamos listos para pagar!',
                 icon: "success",
                 button: "aceptar"
             })

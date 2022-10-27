@@ -5,7 +5,7 @@ import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
-import { chakra, Box, Flex, Image, Stack, Circle, HStack } from "@chakra-ui/react";
+import { chakra, Box, Flex, Image, Stack, Circle, HStack, VStack } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
@@ -53,15 +53,19 @@ export default function CardDetail() {
   }
   else {
     return (
-      <React.Fragment>
-        
+      <React.Fragment>        
         <Flex
           my={50}
+          mx="20%"
           justifyContent='center'
           spacing='5' >
           {product.map((detail, index) => (
-            <Stack key={index} >
-              <Box className={s.cont1} >
+            <HStack key={index} align="flex-start">
+              <VStack 
+              className={s.cont1} 
+              // maxW="20rem"
+              w="40%"
+              >
                 <chakra.h1
                   mb={4}
                   fontSize='2.5em'
@@ -78,23 +82,26 @@ export default function CardDetail() {
                     src={detail.image}
                     alt={detail.name}
                     objectFit='cover'
-
+                    maxW="21rem"
                   />
                 </Circle>
-              </Box>
+              </VStack>
 
               <Stack
-                direction="column"
-                px={{ base: 4, md: 8, lg: 20 }}
+                //direction="column"
+                //pr="4rem" /* {{ base: 4, md: 8, lg: 20 }} */
+                pl="2rem"
                 py={10}
-
+                // maxW="50rem"
+                w="60%"
               >
                 <chakra.span
                   color="celeste.original"
                   _dark={{ color: "gray.300" }}
-                  fontSize="lg"
-                  h='2em'
-                  mr='10%'
+                  fontSize="2xl"
+                  pr="1rem"
+                  /* h='2em' */
+                  /* mr='10%' */
                   align='right'
                   textTransform="uppercase"
                   fontWeight="extrabold"
@@ -113,14 +120,14 @@ export default function CardDetail() {
                 >
                   {detail.description}
                 </chakra.p>
-                <Stack >
+                <Stack pr="1rem">
                   <Contador
                     contador={contador}
                     setContador={setContador}
                   />
                   <FlavorsList
                     sabor={sabor}
-                    setSabor={setSabor}
+                    setSabor={setSabor}                    
                   />
                   <ToppingsList
                     checkedToppings={checkedToppings}
@@ -155,7 +162,7 @@ export default function CardDetail() {
                     contador={contador} />
                 </HStack>
               </Stack>
-            </Stack>
+            </HStack>
 
           ))}
         </Flex>

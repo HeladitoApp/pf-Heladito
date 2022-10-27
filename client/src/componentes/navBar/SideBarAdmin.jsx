@@ -35,9 +35,9 @@ const SideBarAdmin = () => {
     const { logout } = useAuth0()
     const handleLogout = () => logout({ returnTo: window.location.origin })
 
-    const { user,  isLoading } = useAuth0();
+    const { user, isLoading } = useAuth0();
     const { picture, name } = user;
-    
+
 
     const sidebar = useDisclosure();
 
@@ -125,7 +125,7 @@ const SideBarAdmin = () => {
                     <NavItem icon={MdHome}>Main Dashboard</NavItem>
                 </Link>
 
-                <Link to={'/admin/perfil'}>
+                <Link to={'/login/user'}>
                     <NavItem icon={BsGearFill}>Config. Perfil</NavItem>
                 </Link>
 
@@ -138,14 +138,16 @@ const SideBarAdmin = () => {
                 </Link>
 
                 <Link to={'/admin/modificar_toppings'}>
-                <NavItem icon={FaCartArrowDown}>Modificar Toppings</NavItem>
+                    <NavItem icon={FaCartArrowDown}>Modificar Toppings</NavItem>
                 </Link>
 
                 <Link to={'/admin/clientes'}>
                     <NavItem icon={FaUsers}>Clientes</NavItem>
                 </Link>
 
-                <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
+                <Link to={'/admin/tabla_de_datos'}>
+                    <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
+                </Link>
 
                 <NavItem icon={MdLock} name={'Log Out'} onClick={handleLogout} >Log Out</NavItem>
 
@@ -224,7 +226,7 @@ const SideBarAdmin = () => {
                                 ml="4"
                                 size="sm"
                                 name="anubra266"
-                                src={picture?picture:avatar}
+                                src={picture ? picture : avatar}
                                 alt={name}
                                 cursor="pointer"
                             />

@@ -33,7 +33,7 @@ import ActualizarExtra from "./componentes/updateExtra/updateExtra";
 import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavSuperior from "./componentes/navBar/navSuperior";
-import { Alert, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";

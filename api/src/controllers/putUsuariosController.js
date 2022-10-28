@@ -2,6 +2,7 @@ const { updateUsuario } = require("../utils/updateUsuario");
 
 async function putUsuariosController(req, res) {
   const info = req.body;
+  console.log(info);
   try {
     const result = await updateUsuario(info);
 

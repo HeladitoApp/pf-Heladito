@@ -9,38 +9,45 @@ import { Flex } from "@chakra-ui/react";
 import SearchBar from "../SearchBar/SearchBar";
 import n from "./navSuperior.module.css";
 import Carrito from "../Carrito/Carrito";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProdsFromDb } from "../../redux/actions/products";
 import SideBarAdmin from "./SideBarAdmin";
 import Profile from "../Login/Profile";
 import LoginActionButton from "../Login/LoginActionButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../../page/login/Login";
+import { usuarioByEmail } from "../../redux/actions/getUsuarioByEmail";
+import { useEffect } from "react";
 
 const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
-
+    const { user } = useAuth0();
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { logout, loginWithRedirect, isLoading, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const usuariosss = useSelector((state) => state.state.usuario);
+    let usuario = usuariosss[0]?.rol
     const ruta = useLocation();
-
     const handleLogout = () => {
         logout({ returnTo: window.location.origin })
         onCloseM()
     }
-    
+
+    useEffect( () => {
+        dispatch(usuarioByEmail(user?.email))
+    }, [dispatch])
+
     const handleLogin = () => loginWithRedirect()
-
+    
     const handleSingUp = () => loginWithRedirect({ screen_hint: 'signup', })
-
+    
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProdsFromDb());
         navigate("/");
         setPage(1);
     }
-
+    
     return (
         (!ruta.pathname.includes('admin')) ?
 
@@ -60,6 +67,18 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                 <SearchBar />
                 <Flex
                 >
+                    { usuario === 'usuario' || typeof usuario === "undefined" ?
+                        <Link to="/admin" >
+                        <IconButton
+                        display={"none"}
+                            mr="15px"
+                            variant="outline"
+                            colorScheme='pink'
+                            aria-label='carrito'
+                            icon={<VscSettingsGear />}
+                        />
+                    </Link> 
+                    :  
                     <Link to="/admin" >
                         <IconButton
                             mr="15px"
@@ -68,7 +87,7 @@ const NavSuperior = ({ setPage, page, isOpenM, onOpenM, onCloseM }) => {
                             aria-label='carrito'
                             icon={<VscSettingsGear />}
                         />
-                    </Link>
+                    </Link>}
                     <Link  /* to="/login" */ >
                         <IconButton
                             mr="10px"

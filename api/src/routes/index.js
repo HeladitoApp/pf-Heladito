@@ -11,7 +11,6 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/PostExtrasController");
-
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
@@ -76,7 +75,7 @@ router.get("/rankingUsuarios", getRankingUsuariosCont)
 
 router.get('/usuario/:id', getUsuarioById)
 
-router.get("/usuarioEmail", getByMail);
+router.get("/usuarioEmail/:email", getByMail);
 
 router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);

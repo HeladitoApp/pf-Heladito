@@ -29,7 +29,7 @@ export default function ComprasCliente() {
     }, [])
 
     return (
-        <Box p={20} pt={15}>
+        <Box px={20} py={15}>
             <Heading textAlign={'center'} pb={4}>Historial de compras</Heading>
             <TableContainer p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'20px'}>
                 <Table variant='striped' colorScheme='cyan' >

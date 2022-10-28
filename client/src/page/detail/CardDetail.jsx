@@ -5,7 +5,7 @@ import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
-import { chakra, Box, Flex, Image, Stack, Circle, HStack, VStack } from "@chakra-ui/react";
+import { chakra, Box, Flex, Image, Stack, Circle, HStack, VStack, Button } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';
@@ -13,6 +13,9 @@ import { useParams } from "react-router-dom";
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
+import { updateFavoritos } from '../../redux/actions/updateFavoritos';
+import { useAuth0 } from '@auth0/auth0-react';
+import swal from 'sweetalert';
 
 export default function CardDetail() {
 
@@ -32,7 +35,7 @@ export default function CardDetail() {
   const loading = useSelector((state) => state.state.loading)
 
   const { productId } = useParams();
-
+  const { user } = useAuth0();
 
   useEffect(() => {
     dispatch(getProductById(productId));
@@ -45,6 +48,29 @@ export default function CardDetail() {
       dispatch(clearDetails())
     }
   }, [dispatch, productId]);
+
+
+  const fav = product.map((f)=>{
+    return {
+      email: user.email,
+      favorito: {
+          _id: productId,
+          name: f.name,
+          description: f.description,
+          image: f.image
+      }
+    }
+  })
+
+  const handleFavs = (e) => {
+    dispatch(getProductById(productId));
+    dispatch(updateFavoritos(fav[0]));
+    swal(({
+      title: `${product[0].name} agregado a favoritos.`,
+      icon: "success",
+      button: "Aceptar"
+    }))
+  }
 
   if (loading) {
     return (
@@ -165,6 +191,9 @@ export default function CardDetail() {
             </HStack>
 
           ))}
+          <Button onClick={handleFavs}>
+            Agregar a favoritos
+          </Button>
         </Flex>
       </React.Fragment>
 

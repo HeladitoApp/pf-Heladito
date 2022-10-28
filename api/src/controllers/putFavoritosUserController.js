@@ -2,6 +2,7 @@ const { updateFavorito } = require("../utils/updateFavoritos");
 
 async function putFavoritosController(req, res) {
   const info = req.body;
+  //console.log(info);
   try {
     const result = await updateFavorito(info);
 

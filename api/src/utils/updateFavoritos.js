@@ -2,12 +2,13 @@ const Usuarios = require("../models/Usuarios");
 
 async function updateFavorito(body) {
   try {
+    console.log(body);
     if (!body) {
-      throw new Error("Error. No se ha podido actualizar el Usuario");
+      throw new Error("Error. No se ha podido actualizar sus favoritos");
     } else {
       
-      const update = Usuarios.updateOne({_id: body._id },{$push:{favoritos:body.favoritos[0]}})
-/*         { _id: body._id },
+      const update = Usuarios.updateOne({email: body.email },{$push:{favoritos: body.favorito}})
+/* { _id: body._id },
         {favoritos: body.favoritos ? body.favoritos : usuarioId.favoritos,},
         {
           $inc: body,

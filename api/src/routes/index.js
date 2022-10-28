@@ -37,6 +37,8 @@ const { validateCreate } = require("../validators/users");
 const { getUsuarioById } = require("../controllers/usuariosByIdController");
 const { putFavoritosController } = require("../controllers/putFavoritosUserController");
 const { adminInboxController } = require("../controllers/adminInboxController");
+const { getAdminInboxController } = require("../controllers/getAdminInbox");
+
 
 
 const router = Router();
@@ -80,6 +82,7 @@ router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
 router.post("/adminInbox", adminInboxController)
+router.get("/allInboxAdmin", getAdminInboxController)
 
 router.get("/usuarioEmail", getByMail);
 

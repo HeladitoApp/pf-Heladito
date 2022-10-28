@@ -124,10 +124,12 @@ const UserHome = () => {
           display="flex"
           justifyContent="center"
         >
-          <Card
-            heading="Mis favoritos"
-            detail="Guarda los Heladitos que más te gustan para más tarde."
-          />
+          <Link to={'/login/user/favoritos'}>
+            <Card
+              heading="Mis favoritos"
+              detail="Guarda los Heladitos que más te gustan para más tarde."
+            />
+          </Link>
           <Link to={'/login/user/historial_de_pedidos'}>
             <Card
               heading="Historial de pedidos"

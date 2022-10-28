@@ -12,7 +12,9 @@ import {
     useColorModeValue,
     Box,
     Switch,
-    Center
+    Center,
+    Select,
+    chakra
 } from "@chakra-ui/react";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +25,7 @@ import Loading from '../../componentes/loading/loading';
 import { getAllUsers } from '../../redux/actions/getAllUsers';
 import SearchUsuario from '../../componentes/buscarUsuario/buscarUsuario';
 import { useState } from 'react';
-
+import { updateUsuario } from '../../redux/actions/updateUsuario';
 
 const Clientes = () => {
 
@@ -37,7 +39,7 @@ const Clientes = () => {
         window.scrollTo(0, 0);
         setTimeout(() => {
             dispatch(setLoading(false));
-        }, 1500);
+        }, 100);
         return () => {
             dispatch(clearDetails())
         }
@@ -60,16 +62,27 @@ const Clientes = () => {
         return {...users, estadoAdmin  }
     })
     
-    
-    let [admin, setAdmin] = useState(false)
+    const [input, setInput] = useState({
+        _id: null,
+        rol: null
+    })
 
-    const handleClick = (e) => {
-        e.preventDefaul();
-          
-    }
-    console.log([admin, setAdmin])
-    
-
+    function handleClick (e) {
+        setInput({
+            ...input,
+            rol: e.target.value,
+            _id: e.target.id
+        })
+        }
+        function handleSubmit (e) {
+            e.preventDefault()
+            dispatch(updateUsuario(input))
+            setInput({
+                _id: null,
+                rol: null
+            })
+            alert('Cuenta actualizada')
+        }
     if (loading) {
         return (
             <Loading />
@@ -212,9 +225,27 @@ const Clientes = () => {
                                                     </Center>
                                                 </Td>
                                                 <Td>
-                                                    <Center>
-                                                        <Switch onClick={handleClick} id='email-alerts' />
-                                                    </Center>
+                                                <Select
+                                                    name='rol'
+                                                    id={users[tid]._id}  
+                                                    defaultValue={users[tid].rol} 
+                                                    onChange = {e => handleClick(e)}
+                                                    mt={1}
+                                                    focusBorderColor="#5CE1E6"
+                                                    shadow="sm"
+                                                    size="sm"
+                                                    w="full"
+                                                    rounded="md"
+                                                    className="error">
+                                                    <option value = 'usuario' >Usuario</option>
+                                                    <option value = 'admin'>Admin</option>
+                                                    
+                                                </Select>
+                                                <chakra.form onSubmit={e => handleSubmit(e)}>
+                                                    <button>
+                                                        Cambiar rol
+                                                    </button>
+                                                </chakra.form>
                                                 </Td>
                                             </Tr>
                                         );
@@ -222,10 +253,8 @@ const Clientes = () => {
                                 </Tbody>
                             </Table>
                         </Flex>
-
                     </Box>
                 </Box>
-
             </Box>
         )
     }

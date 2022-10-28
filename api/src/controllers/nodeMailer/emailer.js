@@ -20,20 +20,7 @@ function createTransporter() {
   }
 }
 
-/* const infoMail = (users) => {
-  return {
-    from: process.env.EMAIL,
-    to: `itsmarcos.1up@gmail.com`,
-    subject: `¡No te lo pierdas! Descubre novedades en HeladitosApp 🍦!`,
-    //todo el html que va en el body:
-    html: ,
-    // attachments: [{filename: "", path: ""},]
-  };
-}; */
-
-const mensajeHtml = anuncioHtml(anuncio)
-
-async function sendMail(users) {
+/* async function sendMail(users) {
   const transporter = createTransporter();
   const info = await transporter.sendMail({
     from: process.env.EMAIL,
@@ -44,6 +31,11 @@ async function sendMail(users) {
     // attachments: [{filename: "", path: ""},]
   });
   console.log("mensaje enviado: %s", info.messageId);
-}
+} */
 
-exports.sendMailController = (users) => sendMail(users);
+//exports.sendMailController = (users) => sendMail(users);
+// emailer.sendMailController(newInfo);
+
+module.exports = {
+  createTransporter,
+};

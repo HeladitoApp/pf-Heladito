@@ -1,7 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Button, Icon, Link, Stack, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Box, Heading, Icon, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { FaAngleDoubleDown, FaArrowUp, FaUpDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompraByEmail } from "../../redux/actions/getCompraByEmail";
@@ -10,15 +9,29 @@ import Compra from "./compra";
 export default function ComprasCliente() {
     const dispatch = useDispatch();
     const { user, isAuthenticated, loginWithRedirect } = useAuth0();
-    const compras = useSelector(state => state.state.compras)
-    console.log(compras);
+    let compras = useSelector(state => state.state.compras)
+    const [FiltroCompra, setFiltroCompra] = useState(compras)
+
+    function filtrarCompras() {
+        // const filtrocompra = FiltroCompra.sort(function (a, b) {
+        //     if (a.sumaTotal > b.sumaTotal) {
+        //         return 1;
+        //     }
+        //     if (a.sumaTotal < b.sumaTotal) {
+        //         return -1;
+        //     }
+        //     return 0;
+        // })
+        // console.log(filtrocompra)
+    }
     useEffect(() => {
         dispatch(getCompraByEmail(user.email))
     }, [])
 
     return (
-        <Stack>
-            <TableContainer p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'20px'} mx="1rem">
+        <Box p={20} pt={15}>
+            <Heading textAlign={'center'} pb={4}>Historial de compras</Heading>
+            <TableContainer p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'20px'}>
                 <Table variant='striped' colorScheme='cyan' >
                     <Thead color={'red'} h={'50px'} >
                         <Tr color={'red'}>
@@ -27,7 +40,7 @@ export default function ComprasCliente() {
                             <Th>Fecha de compra</Th>
                             <Th>Metodo pago</Th>
                             <Th>Estado</Th>
-                            <Th>Total de compra <Icon as={FaAngleDoubleDown} /></Th>
+                            <Th onClick={() => filtrarCompras()}>Total de compra <Icon as={FaAngleDoubleDown} /></Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -38,18 +51,13 @@ export default function ComprasCliente() {
                                 productos={c.productos}
                                 createdAt={c.createdAt}
                                 sumaTotal={c.sumaTotal}
-                                />
-                                ))}
+                            />
+                        ))}
 
                     </Tbody>
 
                 </Table>
             </TableContainer>
-            <Link href="/login/user/" style={{ textDecoration: 'none'}}>
-                <Button bg='rosado.normal' mx="1rem" mb="1rem" mt="0.5rem" leftIcon={<ArrowBackIcon />}>
-                    Volver
-                </Button>
-            </Link>
-        </Stack>
+        </Box>
     )
 }

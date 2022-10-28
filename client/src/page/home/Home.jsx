@@ -11,6 +11,7 @@ import Order from '../../componentes/section/Order';
 import Loading from '../../componentes/loading/loading';
 import { setLoading } from '../../redux/actions/loading';
 import NavInferior from '../../componentes/navBar/navInferior';
+import Chat from '../Chat/Chat';
 
 
 
@@ -63,6 +64,7 @@ const Home = ({ page, setPage }) => {
                     }
                 </div>
                 <Pagination page={page} setPage={setPage} max={max} />
+                <Chat/>  
             </div>
         )
     }

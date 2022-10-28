@@ -31,7 +31,6 @@ export default function CardDetail() {
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
-  console.log(product)
   const loading = useSelector((state) => state.state.loading)
 
   const { productId } = useParams();
@@ -150,6 +149,7 @@ export default function CardDetail() {
                   <Contador
                     contador={contador}
                     setContador={setContador}
+                    max={detail.stock} 
                   />
                   <FlavorsList
                     sabor={sabor}
@@ -173,6 +173,7 @@ export default function CardDetail() {
                     name={detail.name}
                     price={detail.price}
                     type={detail.type}
+                    max={detail.stock}
                     sabor={sabor}
                     checkedToppings={checkedToppings}
                     contador={contador}
@@ -183,6 +184,7 @@ export default function CardDetail() {
                     name={detail.name}
                     price={detail.price}
                     type={detail.type}
+                    max={detail.stock}
                     sabor={sabor}
                     checkedToppings={checkedToppings}
                     contador={contador} />

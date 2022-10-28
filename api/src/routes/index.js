@@ -11,7 +11,6 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/PostExtrasController");
-
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
@@ -38,6 +37,10 @@ const { getUsuarioById } = require("../controllers/usuariosByIdController");
 const { putFavoritosController } = require("../controllers/putFavoritosUserController");
 const { getExtraById } = require("../controllers/extraByIdController");
 const { getFavsByEmail } = require("../controllers/favoritosByEmailController");
+const { adminInboxController } = require("../controllers/adminInboxController");
+const { getAdminInboxController } = require("../controllers/getAdminInbox");
+
+
 
 const router = Router();
 
@@ -74,11 +77,13 @@ router.get("/rankingUsuarios", getRankingUsuariosCont)
 
 router.get('/usuario/:id', getUsuarioById)
 
-router.get("/usuarioEmail", getByMail);
+router.get("/usuarioEmail/:email", getByMail);
 
 router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+router.post("/adminInbox", adminInboxController)
+router.get("/allInboxAdmin", getAdminInboxController)
 
 router.get("/usuarioEmail", getByMail);
 
@@ -90,6 +95,8 @@ router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
+const { postEmailsController } = require("../controllers/postEmailsController");
+const { reporteCompras } = require("../controllers/reporteComprasController");
 
 
 const PaymentInstance = new PaymentController(new PaymentService());
@@ -99,5 +106,14 @@ router.post("/payment", function (req, res, next) {
 
 //Rutas de Extras
 router.get("/extras/:id", getExtraById)
+
+
+
+//ruta nodemail
+router.post("/sendEmail", postEmailsController)
+
+
+//Reportes de admin
+router.get("/reportes/compras", reporteCompras)
 
 module.exports = router;

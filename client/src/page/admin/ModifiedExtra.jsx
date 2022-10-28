@@ -183,24 +183,14 @@ const ModifiedExtra = () => {
                                                 </Td>
                                                 <Td>
                                                     <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                                        <IconButton
-                                                            colorScheme="blue"
-                                                            icon={<BsBoxArrowUpRight />}
-                                                            aria-label="Up"
-                                                        />
                                                         <Link to={`/admin/modificar_extra/update/${token.id}`}>
                                                             <IconButton
+                                                                marginLeft="50%"
                                                                 colorScheme="green"
                                                                 icon={<AiFillEdit />}
                                                                 aria-label="Edit"
                                                             />
                                                         </Link>
-                                                        {/* <IconButton
-                                                        colorScheme="red"
-                                                        variant="outline"
-                                                        icon={<BsFillTrashFill />}
-                                                        aria-label="Delete"
-                                                    /> */}
                                                     </ButtonGroup>
                                                 </Td>
                                             </Tr>

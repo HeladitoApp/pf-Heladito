@@ -11,7 +11,6 @@ const {
   postProductosController,
 } = require("../controllers/postProductosController");
 const { postExtraController } = require("../controllers/PostExtrasController");
-
 const {
   postUsuariosController,
 } = require("../controllers/postUsuariosController");
@@ -36,6 +35,12 @@ const { getCompraByEmail } = require("../controllers/comprasByEmailController");
 const { validateCreate } = require("../validators/users");
 const { getUsuarioById } = require("../controllers/usuariosByIdController");
 const { putFavoritosController } = require("../controllers/putFavoritosUserController");
+const { getExtraById } = require("../controllers/extraByIdController");
+const { getFavsByEmail } = require("../controllers/favoritosByEmailController");
+const { adminInboxController } = require("../controllers/adminInboxController");
+const { getAdminInboxController } = require("../controllers/getAdminInbox");
+
+
 
 const router = Router();
 
@@ -72,22 +77,25 @@ router.get("/rankingUsuarios", getRankingUsuariosCont)
 
 router.get('/usuario/:id', getUsuarioById)
 
-router.get("/usuarioEmail", getByMail);
+router.get("/usuarioEmail/:email", getByMail);
 
 router.post("/usuarios", validateCreate, postUsuariosController)
 router.post("/createProducto", postProductosController);
 router.post("/createExtra", postExtraController);
+router.post("/adminInbox", adminInboxController)
+router.get("/allInboxAdmin", getAdminInboxController)
 
 router.get("/usuarioEmail", getByMail);
 
 router.put("/actualizarUsuario", putUsuariosController);
-router.put("/actualizarFavoritos",putFavoritosController)
+router.put("/actualizarFavoritos", putFavoritosController)
+router.get("/favoritoscliente/:email", getFavsByEmail);
 //Rutas de Login
 router.use("/login", loginRouter);
 
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
-const { getExtraById } = require("../controllers/extraByIdController");
+const { postEmailsController } = require("../controllers/postEmailsController");
 const { reporteCompras } = require("../controllers/reporteComprasController");
 
 
@@ -100,6 +108,12 @@ router.post("/payment", function (req, res, next) {
 router.get("/extras/:id", getExtraById)
 
 
+
+//ruta nodemail
+router.post("/sendEmail", postEmailsController)
+
+
 //Reportes de admin
 router.get("/reportes/compras", reporteCompras)
+
 module.exports = router;

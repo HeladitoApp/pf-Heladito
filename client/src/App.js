@@ -38,6 +38,7 @@ import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
+import ReporteCompras from "./page/admin/ReporteCompras";
 
 
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/admin/clientes" element={<ProtectedRoute component={Clientes} />} />
           <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} />
           <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} />
+          <Route path="/admin/reporte_de_compra" element={<ProtectedRoute component={ReporteCompras} />} />
           <Route path="/admin/update/:id" element={<ActualizarUsuario />} />
           <Route path="/product/add" element={<AgregarProducto />} />
           <Route path="*" element={<NotFound />} />

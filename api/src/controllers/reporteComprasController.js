@@ -3,10 +3,11 @@ const { ReporteCompras } = require("../utils/reportecompras");
 const xl = require('excel4node');
 
 async function reporteCompras(req, res) {
-//   const info = req.body;
+  const {fechaInicial,fechaFinal} = req.query;
   try {
-    const result = await ReporteCompras();
-        // Create a new instance of a Workbook class
+    const result = await ReporteCompras(fechaInicial,fechaFinal);
+
+            // Create a new instance of a Workbook class
         var wb = new xl.Workbook();
 
         // Add Worksheets to the workbook
@@ -53,13 +54,13 @@ async function reporteCompras(req, res) {
               }
             });
         ws.row(1).setHeight(30);
-        ws.column(1).setWidth(30);
         ws.row(1).freeze()
         ws.row(1).filter();
         //Titulos
         const Titulos = ["Nº ORDEN","USUARIO","PRODUCTOS","FECHA DE COMPRA",'METODO PAGO','Estado','TOTAL DE COMPRA '] 
         let indexT = 1
         Titulos.map((titulo)=>{
+            ws.column(indexT).setWidth(25);
             ws.cell(1, indexT)
             .string(titulo)
             .style(style)
@@ -100,9 +101,8 @@ async function reporteCompras(req, res) {
             .style(style);
             index ++
         })
-        // res.json(result)
-        wb.write('Reporte de compras.xlsx', res);
-        
+
+        wb.write('Excel.xlsx', res);
 
   } catch (error) {
     console.error({ message: error.message });

@@ -94,7 +94,7 @@ router.use("/login", loginRouter);
 const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { getExtraById } = require("../controllers/extraByIdController");
-/* const { postEmailsController } = require("../controllers/postEmailsController"); */
+const { postEmailsController } = require("../controllers/postEmailsController");
 const { reporteCompras } = require("../controllers/reporteComprasController");
 
 
@@ -109,7 +109,7 @@ router.get("/extras/:id", getExtraById)
 
 
 //ruta nodemail
-/* router.post("/sendEmail", postEmailsController) */
+router.post("/sendEmail", postEmailsController)
 
 
 //Reportes de admin

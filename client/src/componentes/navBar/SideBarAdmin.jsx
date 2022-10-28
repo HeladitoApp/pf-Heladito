@@ -14,7 +14,7 @@ import {
     Button,
     chakra
 } from "@chakra-ui/react";
-import { FaBell, FaCartArrowDown, FaCartPlus, FaUsers } from "react-icons/fa";
+import { FaBell, FaCartArrowDown, FaCartPlus, FaFileSignature, FaUsers } from "react-icons/fa";
 import { AiOutlineInbox } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
 import { FiMenu, FiSearch } from "react-icons/fi";
@@ -149,6 +149,9 @@ const SideBarAdmin = () => {
                     <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
                 </Link>
 
+                <Link to={'/admin/reporte_de_compra'}>
+                    <NavItem icon={FaFileSignature}>Reporte de compras</NavItem>
+                </Link>
                 <NavItem icon={MdLock} name={'Log Out'} onClick={handleLogout} >Log Out</NavItem>
 
 

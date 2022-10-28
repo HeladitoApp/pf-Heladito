@@ -6,7 +6,7 @@ const adminInboxSchema = new Schema(
     name: String,
     lastname: String,
     email: String,
-    contact: Number,
+    contact: String,
     message: String,
   },
   { timestamps: true }

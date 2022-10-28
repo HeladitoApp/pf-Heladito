@@ -43,6 +43,7 @@ import HistoralPedido from "./page/Usuario/HistorialPedido";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
 import { useSelector } from "react-redux";
 
+import ReporteCompras from "./page/admin/ReporteCompras";
 
 
 

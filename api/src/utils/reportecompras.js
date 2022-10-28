@@ -1,14 +1,13 @@
 const Usuario = require("../models/Usuarios");
 const Compra = require("../models/Compras");
 
-async function ReporteCompras(req, res) {
-
+async function ReporteCompras(fechaInicial,fechaFinal) {
   try {
     const compras = await Compra.find(
         { 
             $and: [
-              {createdAt: {$gte: new Date("2022-10-20")}},
-              {createdAt: {$lte: new Date("2022-10-27")}}
+              {createdAt: {$gte: new Date(fechaInicial)}},
+              {createdAt: {$lte: new Date(fechaFinal)}}
             ]
           }
     ); 

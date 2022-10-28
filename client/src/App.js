@@ -38,6 +38,8 @@ import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
+import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
+import HistoralPedido from "./page/Usuario/HistorialPedido";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
 import { useSelector } from "react-redux";
 
@@ -99,7 +101,8 @@ function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/payment/feedback" element={<PaymentFeedback />} />
           <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
-          <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={ComprasCliente} />} />
+          <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={HistoralPedido} />} />
+          <Route path="/login/user/favoritos" element={<ProtectedRoute component={FavoritosCliente} />} />
         </Routes>
         <Footer />
       </div>

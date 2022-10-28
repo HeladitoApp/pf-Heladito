@@ -26,7 +26,6 @@ export default function ComprasCliente() {
     }
     useEffect(() => {
         dispatch(getCompraByEmail(user.email))
-
     }, [])
 
     return (

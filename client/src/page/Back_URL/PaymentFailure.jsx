@@ -88,7 +88,7 @@ const PaymentFailure = () => {
                 <Button
                   color="white"
                   variant="solid"
-                  colorScheme="celeste.normal"
+                  colorScheme="amarillo.normal"
                   size="lg"
                   bg="amarillo.original"
                   w="9rem"
@@ -101,7 +101,7 @@ const PaymentFailure = () => {
                 <Button
                   color="white"
                   variant="solid"
-                  colorScheme="celeste.normal"
+                  colorScheme="amarillo.normal"
                   size="lg"
                   bg="amarillo.original"
                   w="10rem"
@@ -114,7 +114,7 @@ const PaymentFailure = () => {
                 <Button
                   color="white"
                   variant="solid"
-                  colorScheme="celeste.normal"
+                  colorScheme="amarillo.normal"
                   size="lg"
                   bg="amarillo.original"
                   w="10rem"

@@ -206,15 +206,17 @@ const SideBarAdmin = () => {
                     </InputGroup> */}
 
                         <Flex align="center">
-                            <Button
-                                variant="gost"
-                                //color='#ff66c4'
-                                leftIcon={<AiOutlineInbox />}
-                                size="sm"
-                            >
-                                Inbox
-                            </Button>
-                            <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            <Link to={'/admin/inbox'}>
+                                <Button
+                                    variant="gost"
+                                    //color='#ff66c4'
+                                    leftIcon={<AiOutlineInbox />}
+                                    size="sm"
+                                >
+                                    Inbox
+                                </Button>
+                                <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            </Link>
                             <Box>
                                 <Flex
                                     direction='column'>

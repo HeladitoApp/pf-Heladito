@@ -39,6 +39,7 @@ import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
+import AdminInbox from "./page/admin/AdminInbox";
 
 
 
@@ -77,6 +78,7 @@ function App() {
           <Route path="/product/cart" element={<ResumenPedido />} />
           <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} />
           <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} />
+          <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/pending" element={<PaymentPending />} />
           <Route path="/payment/failure" element={<PaymentFailure />} />

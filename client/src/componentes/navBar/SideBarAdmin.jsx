@@ -211,7 +211,9 @@ const SideBarAdmin = () => {
                                 >
                                     Inbox
                                 </Button>
-                                <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            </Link>
+                            <Link to={'/admin/feedbacks'}>
+                                <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='2.2em' ml='5' />
                             </Link>
                             <Box>
                                 <Flex

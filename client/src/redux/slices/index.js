@@ -17,8 +17,8 @@ export const state = createSlice({
         compras:[],
         messages:[],
         usuario: [],
-        favoritos: []
-
+        favoritos: [],
+        feedbacks:[]
     },
     reducers: {
         getProductoById: (state, action) => {
@@ -54,6 +54,9 @@ export const state = createSlice({
         getMessages: (state,action) => {
             state.messages = action.payload
         },
+        getFeedbacks: (state,action) => {
+            state.feedbacks = action.payload
+        },
         filterByType: (state, action) => {
             state.productos = action.payload
         },
@@ -87,6 +90,6 @@ export const state = createSlice({
 });
 
 
-export const { getUsuarioByEmail, getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail, favByEmail, getMessages  } = state.actions;
+export const { getUsuarioByEmail, getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail, favByEmail, getMessages, getFeedbacks  } = state.actions;
 
 export default state.reducer;

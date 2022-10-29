@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getToppingsFromDb } from '../../../redux/actions/toppings';
+import swal from 'sweetalert';
 import {
     Accordion,
     AccordionItem,
@@ -76,7 +77,12 @@ export default function ToppingsList({ checkedToppings, setCheckedToppings }) {
                 setCheckedToppings((prev) => [...prev, e.target.value]);
             } else {
                 e.target.checked = false;
-                alert(`You can select only ${limit} toppings from the given group`);
+                swal({
+                    title: `Solo puede seleccionar ${limit} toppings como máximo`,
+                    icon: "info",
+                    button: "aceptar"
+                })
+               /*  alert(`You can select only ${limit} toppings from the given group`); */
             }
         } else {
             let newArr = checkedToppings.filter((d) => d !== e.target.value);

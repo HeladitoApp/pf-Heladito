@@ -17,32 +17,35 @@ import {
 } from "@chakra-ui/react";
 
 
-const Message = ({ name, lastname, email, message, contact, createdAt }) => {
+const Feedback = ({ email, conformidad, puntaje, aspecto, descripcion, createdAt }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
 
         <React.Fragment>
             <Tr>
-                <Td>{name.concat(lastname)}</Td>
+                <Td>{email}</Td>
                 <Td>
                     <>
-                        <Button size='xs' onClick={onOpen} bg='rosado.original' color='white'>Mensaje</Button>
+                        <Button size='xs' onClick={onOpen} bg='rosado.original' color='white'>Feedback</Button>
 
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
                             <ModalContent>
-                                <ModalHeader color='rosado.original' fontWeight='semibold'>De: {name + lastname}</ModalHeader>
+                                <ModalHeader color='rosado.original' fontWeight='semibold'>Feedback de: {email} </ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
                                     <Box display='flex'>
-                                        <Box fontWeight='semibold'>{email} </Box>
                                         <Spacer />
                                         <Box fontWeight='semibold'>{new Date(createdAt).toDateString()} </Box>
                                     </Box>
                                     <Divider />
-                                    <Box fontWeight='semibold'>Nº de Contacto: {contact}</Box>
+                                    <Box>{conformidad} pude conseguir los productos que buscaba.</Box>
                                     <Divider />
-                                    {message}
+                                    <Box>Puntuaría mi experiencia general en HeladitosApp con un {puntaje}.</Box>
+                                    <Divider />
+                                    <Box>El aspecto que más valoro es: {aspecto}</Box>
+                                    <Divider />
+                                    <Box>Comentario: {descripcion}</Box>
                                 </ModalBody>
 
                                 <ModalFooter>
@@ -62,4 +65,4 @@ const Message = ({ name, lastname, email, message, contact, createdAt }) => {
     )
 }
 
-export default Message
+export default Feedback

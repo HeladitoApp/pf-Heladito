@@ -1,5 +1,5 @@
 import {
-  chakra, Box, Button, FormControl, FormLabel, GridItem, Heading, Select, SimpleGrid, Stack, Text, Divider, Textarea, Link,
+  chakra, Box, Button, FormControl, FormLabel, GridItem, Input, Heading, Select, SimpleGrid, Stack, Text, Divider, Textarea, Link,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,9 @@ import { addFeedback } from '../../redux/actions/addFeedback';
 
 function control(value) {
   let error = {}
-  if (value.conformidad === '') {
+  if (!value.email.includes('@')) {
+    error.email = 'Por favor, escribe un email válido'
+  } else if (value.conformidad === '') {
     error.conformidad = 'Por favor, selecciona una respuesta'
   } else if (value.puntaje === '') {
     error.puntaje = 'Por favor, selecciona una respuesta'
@@ -31,6 +33,7 @@ const PaymentFeedback = () => {
   const loading = useSelector((state) => state.state.loading)
 
   const [value, setValue] = useState({
+    email: '',
     conformidad: '',
     puntaje: '',
     aspecto: '',
@@ -77,12 +80,14 @@ const PaymentFeedback = () => {
   const handleClick = (e) => {
     e.preventDefault();
     if (!value.errors &&
+      value.email &&
       value.conformidad &&
       value.puntaje &&
       value.aspecto &&
       value.descripcion) {
       dispatch(addFeedback(value))
       setValue({
+        email: '',
         conformidad: '',
         puntaje: '',
         aspecto: '',
@@ -157,6 +162,34 @@ const PaymentFeedback = () => {
                   <SimpleGrid columns={6} spacing={6}>
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
+                        htmlFor="email"
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                        _dark={{ color: "gray.50" }}
+                      >
+                        Ingresa el email con el que realizaste tu compra
+                      </FormLabel>
+                      <Input
+                        type="text"
+                        name="email"
+                        id="email"
+                        value={value.email}
+                        onChange={handleInputChange}
+                        autoComplete="given-email"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        className='error'
+                      />
+                      {errors.email && (<p className="error">{errors.email}</p>)}
+                    </FormControl>
+
+                    <FormControl as={GridItem} colSpan={[6, 4]}>
+                      <FormLabel
                         htmlFor="name"
                         fontSize="sm"
                         fontWeight="md"
@@ -180,8 +213,8 @@ const PaymentFeedback = () => {
                         onChange={handleSelect}
                       >
                         <option hidden value='placeholder'>Elige uno</option>
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
+                        <option value="Sí">Si</option>
+                        <option value="No">No</option>
                       </Select>
                       {errors.conformidad && (<p className="error">{errors.conformidad}</p>)}
                     </FormControl>
@@ -228,7 +261,7 @@ const PaymentFeedback = () => {
                         color="gray.700"
                         _dark={{ color: "gray.50" }}
                       >
-                        ¿Cuál el el aspecto que más valoras? Solo puedes elegir uno.
+                        ¿Cuál es el aspecto que más valoras? Solo puedes elegir uno.
                       </FormLabel>
                       <Select
                         id="aspecto"

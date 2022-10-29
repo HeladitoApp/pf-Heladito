@@ -8,6 +8,7 @@ async function postFeedback(data) {
         "Error al subir el Feedback a la DB"
       );
     } else {
+      newFeedback.email = data.email;
       newFeedback.conformidad = data.conformidad;
       newFeedback.puntaje = data.puntaje;
       newFeedback.aspecto = data.aspecto;

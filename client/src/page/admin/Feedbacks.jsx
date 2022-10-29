@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { Box, TableCaption, Table, TableContainer, Tbody, Th, Thead, Tr, Center } from "@chakra-ui/react";
-import Message from '../../componentes/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllInboxAdmin } from '../../redux/actions/getAllInboxAdmin';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
 import { clearDetails } from '../../redux/slices';
+import { getAllFeedbacks } from '../../redux/actions/getAllFeedbacks';
+import Feedback from '../../componentes/Feedback';
 
-const AdminInbox = () => {
+const Feedbacks   = () => {
     const dispatch = useDispatch()
-    const messages = useSelector(state => state.state.messages)
-    console.log(messages)
+    const feedbacks = useSelector(state => state.state.feedbacks)
+    console.log(feedbacks)
     const loading = useSelector((state) => state.state.loading)
 
     useEffect(() => {
-        dispatch(getAllInboxAdmin());
+        dispatch(getAllFeedbacks());
         dispatch(setLoading(true));
         window.scrollTo(0, 0);
         setTimeout(() => {
@@ -37,23 +37,23 @@ const AdminInbox = () => {
                     <Box p='20'>
                         <TableContainer fontSize='xs' p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'0.7em'} bg='white'>
                             <Table variant='striped' colorScheme='pink' size='xs'>
-                                <TableCaption fontSize='xs'>Bandeja de entrada HeladitosApp</TableCaption>
+                                <TableCaption fontSize='xs'>Feedbacks - Experiencia de compra en HeladitosApp</TableCaption>
                                 <Thead >
                                     <Tr>
-                                        <Th>Clientes</Th>
-                                        <Th>Mensajes</Th>
+                                        <Th>Clientes/email</Th>
+                                        <Th>Feedbacks</Th>
                                         <Th>Recibido</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody >
-                                    {messages?.map(message => (
-                                        <Message
-                                            name={message.name}
-                                            lastname={message.lastname}
-                                            email={message.email}
-                                            message={message.message}
-                                            contact={message.contact}
-                                            createdAt={message.createdAt}
+                                    {feedbacks?.map(feedback => (
+                                        <Feedback
+                                            email={feedback.email}
+                                            conformidad={feedback.conformidad}
+                                            puntaje={feedback.puntaje}
+                                            aspecto={feedback.aspecto}
+                                            descripcion={feedback.descripcion}
+                                            createdAt={feedback.createdAt}
                                         />
                                     ))}
                                 </Tbody>
@@ -66,5 +66,4 @@ const AdminInbox = () => {
     }
 }
 
-export default AdminInbox
-
+export default Feedbacks

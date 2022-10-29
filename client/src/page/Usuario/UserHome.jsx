@@ -13,14 +13,23 @@ import {
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-
+import { updateUsuario } from '../../redux/actions/updateUsuario';
+import { useDispatch, useSelector} from 'react-redux';
 
 const UserHome = () => {
   const { user } = useAuth0();
-  const { picture, name } = user;
+  const { picture, name, email } = user;
   const { logout } = useAuth0()
+  const dispatch = useDispatch();
+  const usuariosss = useSelector((state) => state.state.usuario);
+  let id = usuariosss[0]?._id
 
   const handleLogout = () => {
+    logout({ returnTo: window.location.origin })
+  }
+  const handleBaja = (e) => {
+    console.log(e);
+    dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
     logout({ returnTo: window.location.origin })
   }
   const Card = ({ heading, detail }) => {
@@ -89,16 +98,16 @@ const UserHome = () => {
             spacing="1rem"
           >
             <Button
-              // rightIcon={<GoChevronRight />}
-              //colorScheme="blue"
               variant="ghost"
-              //size="lg"
               rounded="md"
               mb={{ base: 2, sm: 0 }}
               minW="9rem"
               bg="celeste.claro"
+              value = {false}
+              id = {id}
+              onClick = {e => handleBaja(e)}
             >
-              Actualizar clave
+              Dar de baja esta cuenta
             </Button>
             <Button
               // rightIcon={<GoChevronRight />}

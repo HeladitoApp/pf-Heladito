@@ -41,7 +41,7 @@ import ComprasCard from "./componentes/ComprasCard";
 import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
 import HistoralPedido from "./page/Usuario/HistorialPedido";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUsuario } from './redux/actions/updateUsuario'
 import AdminInbox from "./page/admin/AdminInbox";
 import { useSelector } from "react-redux";

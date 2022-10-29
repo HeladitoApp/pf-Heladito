@@ -12,8 +12,8 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Divider
-
+    Divider,
+    Spacer
 } from "@chakra-ui/react";
 
 
@@ -31,21 +31,25 @@ const Message = ({ name, lastname, email, message, contact, createdAt }) => {
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
                             <ModalContent>
-                                <ModalHeader color='rosado.original' fontWeight='semibold'>From: {name + lastname}</ModalHeader>
+                                <ModalHeader color='rosado.original' fontWeight='semibold'>De: {name + lastname}</ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
-                                    <Box fontWeight='semibold'>{email} </Box>
+                                    <Box display='flex'>
+                                        <Box fontWeight='semibold'>{email} </Box>
+                                        <Spacer />
+                                        <Box fontWeight='semibold'>{new Date(createdAt).toDateString()} </Box>
+                                    </Box>
                                     <Divider />
-                                    <Box>Contacto: {contact}</Box>
+                                    <Box fontWeight='semibold'>Nº de Contacto: {contact}</Box>
                                     <Divider />
                                     {message}
                                 </ModalBody>
 
                                 <ModalFooter>
                                     <Button bg='celeste.original' color='white' mr={3} onClick={onClose}>
-                                        Close
+                                        Cerrar
                                     </Button>
-                                
+
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>

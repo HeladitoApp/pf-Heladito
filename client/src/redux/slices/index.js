@@ -15,7 +15,7 @@ export const state = createSlice({
         loading: false,
         usuarios: [],
         compras:[],
-        messages:[]
+        messages:[],
         usuario: [],
         favoritos: []
 

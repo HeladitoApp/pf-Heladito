@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import {
+    Divider,
     FormControl,
     GridItem,
     FormLabel,
@@ -16,8 +17,7 @@ import {
     Button,
     chakra,
     Textarea,
-    InputGroup,
-    InputLeftAddon
+    Link,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../redux/actions/addMessage';
@@ -30,8 +30,8 @@ function control(input) {
         error.name = 'Por favor, ingrese su nombre completo'
     } else if (input.lastname <= 1) {
         error.lastname = 'Por favor, ingrese su apellido completo'
-    /* } else if (!input.email.includes('2')) {
-        error.email = 'Por favor, ingrese un email válido' */
+        /* } else if (!input.email.includes('2')) {
+            error.email = 'Por favor, ingrese un email válido' */
     } else if (isNaN(input.contact)) {
         error.contact = 'No puede contener espacios ni letras'
     } else if (input.contact.legth >= 13) {
@@ -58,8 +58,6 @@ const ContactUs = () => {
         contact: '',
         message: '',
     });
-
-    console.log([input, setInput])
 
     const [errors, setErrors] = useState({})
 
@@ -151,7 +149,7 @@ const ContactUs = () => {
                         >
                             <GridItem colSpan={{ md: 1 }}>
                                 <Box px={[4, 0]}>
-                                    <Heading color='#ff66c4' fontSize="2xl" fontWeight="medium" lineHeight="6">
+                                    <Heading color='#ff66c4' fontSize="lg" fontWeight="medium" lineHeight="6">
                                         Contáctanos
                                     </Heading>
                                     <Text
@@ -339,6 +337,17 @@ const ContactUs = () => {
                             </GridItem>
                         </SimpleGrid>
                     </Box>
+                    <Divider
+                        my="5"
+                        borderColor="gray.300"
+                        _dark={{ borderColor: "whiteAlpha.300" }}
+                        visibility={{ base: "hidden", sm: "visible" }}
+                    />
+                    <Link href='/'><Button
+                        //   borderRadius={'full'} 
+                        colorScheme='pink' variant='solid' /* bg="rosado.normal" */>
+                        Ir al inicio
+                    </Button></Link>
                 </Box>
             </Box>
         );

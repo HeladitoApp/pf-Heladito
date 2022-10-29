@@ -198,13 +198,6 @@ const SideBarAdmin = () => {
                             size="sm"
                         />
 
-                        {/* <InputGroup w="96" display={{ base: "none", md: "flex" }}>
-                        <InputLeftElement color="gray.500">
-                            <FiSearch />
-                        </InputLeftElement>
-                        <Input placeholder="Search for articles..." />
-                    </InputGroup> */}
-
                         <Flex align="center">
                             <Link to={'/admin/inbox'}>
                                 <Button
@@ -234,16 +227,7 @@ const SideBarAdmin = () => {
                             />
                         </Flex>
                     </Flex>
-
-                    {/* <Box as="main" p="4">
-                    
-                    Add content here, remove div below 
-                    <AdminHome />
-
-                    <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" />
-                </Box> */}
                 </Box>
-                {/* </Box> */}
             </React.Fragment>
         );
     };

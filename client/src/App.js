@@ -81,6 +81,7 @@ function App() {
           {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}
           {/* <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
           <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> */}
           {/* <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> */}
@@ -96,7 +97,7 @@ function App() {
           <Route path="notAuthorized" element={<NoAutrizado/>} />
           <Route path="/product/cart" element={<ResumenPedido />} />
           
-          <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} />
+          
 
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/pending" element={<PaymentPending />} />

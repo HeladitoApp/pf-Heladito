@@ -11,6 +11,7 @@ import {
     Box
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react';
+import TablaUsuarios from './TablaUsuarios';
 
 
 const UsuariosRegistradosAdmin = () => {
@@ -18,21 +19,20 @@ const UsuariosRegistradosAdmin = () => {
     return (
         <>
             <Button onClick={onOpen} w='10em' h='4em' textAlign='center' bg='amarillo.claro'>
-                Usuarios Registrados <br/> (Últimos 5 días)
+                Usuarios Registrados <br /> (Últimos 7 días)
             </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Últimos usuarios registrados</ModalHeader>
+                    <ModalHeader color='celeste.original'>Usuarios registrados en la última semana</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum facere molestiae eaque tenetur asperiores pariatur numquam inventore obcaecati doloribus aperiam distinctio quasi quo voluptatibus rem laborum nobis, rerum dolores voluptatem.</p>
+                        <TablaUsuarios />
                     </ModalBody>
-
                     <ModalFooter>
                         <Button colorScheme='rosado.original' bg='rosado.original' mr={3} onClick={onClose}>
-                            Close
+                            Cerrar
                         </Button>
                         {/* <Button variant='ghost'>Secondary Action</Button> */}
                     </ModalFooter>

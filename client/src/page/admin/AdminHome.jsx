@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Center, Wrap, WrapItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import UsuariosRegistradosAdmin from '../../componentes/UsuariosRegistradosAdmin/UsuariosRegistradosAdmin';
 
 const AdminHome = () => {
   return (
@@ -24,8 +25,8 @@ const AdminHome = () => {
             </Link>
             <Link>
               <WrapItem>
-                <Center w='210px' h='100px' bg='#FFE6C1' cursor="pointer">
-                  Usuarios Registrados (24H)
+                <Center w='210px' h='100px' bg='#FFE6C1' cursor="pointer" alignContent='stretch'>
+                  <UsuariosRegistradosAdmin />
                 </Center>
               </WrapItem>
             </Link>

@@ -38,11 +38,14 @@ import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
+import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
+import HistoralPedido from "./page/Usuario/HistorialPedido";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUsuario } from './redux/actions/updateUsuario'
-
-
+import AdminInbox from "./page/admin/AdminInbox";
+import { useSelector } from "react-redux";
+import ReporteCompras from "./page/admin/ReporteCompras";
 
 function App() {
 
@@ -118,6 +121,7 @@ function App() {
           {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}
           {/* <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
           <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> */}
           {/* <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> */}
@@ -132,6 +136,9 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="notAuthorized" element={<NoAutrizado/>} />
           <Route path="/product/cart" element={<ResumenPedido />} />
+          
+          
+
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/pending" element={<PaymentPending />} />
           <Route path="/payment/failure" element={<PaymentFailure />} />
@@ -140,7 +147,8 @@ function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/payment/feedback" element={<PaymentFeedback />} />
           <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
-          <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={ComprasCliente} />} />
+          <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={HistoralPedido} />} />
+          <Route path="/login/user/favoritos" element={<ProtectedRoute component={FavoritosCliente} />} />
         </Routes>
         <Footer />
       </div>

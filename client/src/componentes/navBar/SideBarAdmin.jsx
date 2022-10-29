@@ -14,7 +14,7 @@ import {
     Button,
     chakra
 } from "@chakra-ui/react";
-import { FaBell, FaCartArrowDown, FaCartPlus, FaUsers } from "react-icons/fa";
+import { FaBell, FaCartArrowDown, FaCartPlus, FaFileSignature, FaUsers } from "react-icons/fa";
 import { AiOutlineInbox } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
 import { FiMenu, FiSearch } from "react-icons/fi";
@@ -149,6 +149,9 @@ const SideBarAdmin = () => {
                     <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
                 </Link>
 
+                <Link to={'/admin/reporte_de_compra'}>
+                    <NavItem icon={FaFileSignature}>Reporte de compras</NavItem>
+                </Link>
                 <NavItem icon={MdLock} name={'Log Out'} onClick={handleLogout} >Log Out</NavItem>
 
 
@@ -198,23 +201,18 @@ const SideBarAdmin = () => {
                             size="sm"
                         />
 
-                        {/* <InputGroup w="96" display={{ base: "none", md: "flex" }}>
-                        <InputLeftElement color="gray.500">
-                            <FiSearch />
-                        </InputLeftElement>
-                        <Input placeholder="Search for articles..." />
-                    </InputGroup> */}
-
                         <Flex align="center">
-                            <Button
-                                variant="gost"
-                                //color='#ff66c4'
-                                leftIcon={<AiOutlineInbox />}
-                                size="sm"
-                            >
-                                Inbox
-                            </Button>
-                            <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            <Link to={'/admin/inbox'}>
+                                <Button
+                                    variant="gost"
+                                    //color='#ff66c4'
+                                    leftIcon={<AiOutlineInbox />}
+                                    size="sm"
+                                >
+                                    Inbox
+                                </Button>
+                                <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            </Link>
                             <Box>
                                 <Flex
                                     direction='column'>
@@ -232,16 +230,7 @@ const SideBarAdmin = () => {
                             />
                         </Flex>
                     </Flex>
-
-                    {/* <Box as="main" p="4">
-                    
-                    Add content here, remove div below 
-                    <AdminHome />
-
-                    <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" />
-                </Box> */}
                 </Box>
-                {/* </Box> */}
             </React.Fragment>
         );
     };

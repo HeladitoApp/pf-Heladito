@@ -12,7 +12,7 @@ import AboutUs from '../page/About/AboutUs'
     id: "2",
     user: true,
     validator: (value) => {
-        if (/^[a-z]{2,15}$/.test(value)) {
+        if (/[a-zA-Z]{2,30}$/.test(value)) {
             return true;
         }
         else {
@@ -99,55 +99,55 @@ import AboutUs from '../page/About/AboutUs'
 },
 {
     id: "9",
-    component: <Link to={'/products/helados'}>Presione aquí para ser redirigido<Button>Helados</Button></Link>,
+    component: <Link to={'/products/helados'}>Presione aquí para ser redirigido  <Button borderRadius={50} backgroundColor="#FFECF8">Helados</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "10",
-    component: <Link to={'/products/combos'}>Presione aquí para ser redirigido<Button>Combos</Button></Link>,
+    component: <Link to={'/products/combos'}>Presione aquí para ser redirigido  <Button borderRadius={50} backgroundColor="#FFECF8">Combos</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "11",
-    component: <Link to={'/products/bombones'}>Presione aquí para ser redirigido<Button>Bombones</Button></Link>,
+    component: <Link to={'/products/bombones'}>Presione aquí para ser redirigido   <Button borderRadius={50} backgroundColor="#FFECF8">Bombones</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "12",
-    component: <Link to={'/products/shakes'}>Presione aquí para ser redirigido<Button>Shakes</Button></Link>,
+    component: <Link to={'/products/shakes'}>Presione aquí para ser redirigido     <Button borderRadius={50} backgroundColor="#FFECF8">Shakes</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "13",
-    component: <Link to={'/products/crepess  /products/parfaits'}>Presione aquí para ser redirigido<Button>Crepes</Button></Link>,
+    component: <Link to={'/products/crepess  /products/parfaits'}>Presione aquí para ser redirigido   <Button borderRadius={50} backgroundColor="#FFECF8">Crepes</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "14",
-    component: <Link to={'/products/parfaits'}>Presione aquí para ser redirigido<Button>Parfaits</Button></Link>,
+    component: <Link to={'/products/parfaits'}>Presione aquí para ser redirigido    <Button borderRadius={50} backgroundColor="#FFECF8">Parfaits</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "15",
-    component: <Link to={'/sobre_nosotros'}>Presione aquí para ver al mejor equipo de todo Henry     <Button>Sobre Nosotros</Button></Link>,
+    component: <Link to={'/sobre_nosotros'}>Presione aquí para ver al mejor equipo de todo Henry     <Button borderRadius={50} backgroundColor="#FFECF8">Sobre Nosotros</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "16",
-    component: <Link to={'/reviews'}>Presione aquí para ser redirigido<Button>Reseñas</Button></Link>,
+    component: <Link to={'/reviews'}>Presione aquí para ser redirigido <Button borderRadius={50} backgroundColor="#FFECF8">Reseñas</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },
 {
     id: "17",
-    component: <Link to={'/contactanos'}>Presione aquí para ser redirigido<Button>Contáctanos</Button></Link>,
+    component: <Link to={'/contactanos'}>Presione aquí para ser redirigido<Button  borderRadius={50} backgroundColor="#FFECF8">Contáctanos</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },

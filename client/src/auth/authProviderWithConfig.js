@@ -19,6 +19,8 @@ const Auth0ProviderWithConfig = ({ children }) => {
             redirectUri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
             audience={audience}
+            useRefreshTokens
+            cacheLocation="localstorage"
         >
             {children}
         </Auth0Provider>

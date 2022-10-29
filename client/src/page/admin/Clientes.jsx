@@ -16,8 +16,7 @@ import {
     Select,
     chakra
 } from "@chakra-ui/react";
-import { AiFillEdit } from "react-icons/ai";
-import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearDetails } from '../../redux/slices';

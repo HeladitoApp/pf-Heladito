@@ -1,5 +1,5 @@
 //import './App.css';
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, redirect } from "react-router-dom";
 
 import CardDetail from "./page/detail/CardDetail";
 //import CardDetailDos from "./page/detail/CardDetailDos";
@@ -33,7 +33,7 @@ import ActualizarExtra from "./componentes/updateExtra/updateExtra";
 import Loading from "./componentes/loading/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavSuperior from "./componentes/navBar/navSuperior";
-import { useDisclosure } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
 import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
@@ -41,22 +41,61 @@ import ComprasCard from "./componentes/ComprasCard";
 import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
 import HistoralPedido from "./page/Usuario/HistorialPedido";
 import NoAutrizado from "./page/noAutorizado/noAutorizado";
+import { useDispatch } from "react-redux";
+import { updateUsuario } from './redux/actions/updateUsuario'
 import AdminInbox from "./page/admin/AdminInbox";
 import { useSelector } from "react-redux";
-
 import ReporteCompras from "./page/admin/ReporteCompras";
-
-
-
 
 function App() {
 
+  
+
   const [page, setPage] = useState(1);
-  const { isLoading, user } = useAuth0();
+  const { isLoading, user, logout } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const usuariosss = useSelector((state) => state.state.usuario);
+  const dispatch = useDispatch();
+  let id = usuariosss[0]?._id
   let rolDelUsuario = usuariosss[0]?.rol
-
+  let url = 'http://localhost:3000/'
+  if(usuariosss[0]?.activo === false) {
+    const handleLogout = () => {
+      logout({ returnTo: window.location.origin })
+    }
+    const handleAlta = (e) => {
+      console.log(e);
+      this.window.location.replace(url)
+      dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
+    }
+    return (
+    <div>
+      <h1>Esta cuenta esta dada de baja</h1>
+        <Button
+          variant="ghost"
+          rounded="md"
+          mb={{ base: 2, sm: 0 }}
+          minW="9rem"
+          bg="celeste.claro"
+          value = {true}
+          id = {id}
+          onClick = {e => handleAlta(e)}
+          >
+          Dar de alta esta cuenta
+        </Button>
+    <Button
+    variant="ghost"
+    rounded="md"
+    mb={{ base: 2, sm: 0 }}
+    minW="9rem"
+    bg="celeste.claro"
+    onClick = {e => handleLogout(e)}
+  >
+    Salir
+  </Button>
+  </div>
+  )
+  }
   if (isLoading) {
     return <Loading />;
   } else {

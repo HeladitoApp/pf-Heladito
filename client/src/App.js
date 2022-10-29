@@ -65,7 +65,7 @@ function App() {
     }
     const handleAlta = (e) => {
       console.log(e);
-      this.window.location.replace(url)
+      window.location.reload()
       dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
     }
     return (

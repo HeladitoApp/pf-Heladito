@@ -354,7 +354,7 @@ export default function ActualizarProducto() {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 visibility={{ base: "hidden", sm: "visible" }}
               />
-              <Link to={'/admin'}>
+              <Link to={'/admin/modificar_producto'}>
                 <Button
                   borderRadius={'full'}
                   colorScheme='pink' variant='solid'>

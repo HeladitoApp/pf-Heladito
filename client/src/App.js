@@ -153,6 +153,7 @@ function App() {
           <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
           <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={HistoralPedido} />} />
           <Route path="/login/user/favoritos" element={<ProtectedRoute component={FavoritosCliente} />} />
+          <Route path="/admin/reporte_de_compra" element={<ReporteCompras/>} />
         </Routes>
         <Footer />
       </div>

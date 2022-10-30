@@ -42,7 +42,7 @@ const ResumenPedido = () => {
         })
       ))
       pedido.total = Total
-      dispatch(addCompraDb(pedido))
+      // dispatch(addCompraDb(pedido))
       dispatch(addPayment(pedido))
       setproductosCarrito([])
     } else {

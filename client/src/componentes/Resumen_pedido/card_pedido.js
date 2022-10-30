@@ -72,9 +72,9 @@ export default function CardPedido({ productosCarrito, setproductosCarrito,dispo
                     </Text>
                 </Box>
             </Flex>
-            <Box>
+            {/* <Box>
                 <Link onClick={onOpen} as='b' color={'celeste.original'}>Editar producto</Link>
-            </Box>
+            </Box> */}
             <Modal
                 scrollBehavior={'inside'}
                 size={'xl'}

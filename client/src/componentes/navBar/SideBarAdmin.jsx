@@ -17,8 +17,7 @@ import {
 import { FaBell, FaCartArrowDown, FaCartPlus, FaFileSignature, FaUsers } from "react-icons/fa";
 import { AiOutlineInbox, AiOutlineEdit } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
-import { FiMenu, FiSearch } from "react-icons/fi";
-import { RiBarChartFill } from "react-icons/ri";
+import { FiMenu} from "react-icons/fi";
 import { MdHome } from "react-icons/md";
 import { MdLock } from "react-icons/md";
 import React from "react";

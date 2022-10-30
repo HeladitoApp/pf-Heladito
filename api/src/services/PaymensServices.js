@@ -1,18 +1,20 @@
 const axios = require("axios");
+const { postCompra } = require("../utils/postCompra");
 require("dotenv").config();
 
 class PaymentService {
   async createPayment(req) {
     const datos = req.body
     const url = process.env.ACCESS_URL;
-    console.log(datos);
+    const compra = await postCompra(req)
+    // console.log(compra);
     const body = {
       payer_email: "test_user_46945293@testuser.com", /* datos.usuario */
       items: datos.productos,
       back_urls: {
         failure: `http://localhost:3000/payment/failure`,
         pending: `http://localhost:3000/payment/pending`,
-        success: `http://localhost:3000/payment/success`
+        success: `http://localhost:3800/payment/success?compra_id=${compra._id}`
       }
     };
 

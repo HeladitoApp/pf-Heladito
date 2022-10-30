@@ -99,13 +99,19 @@ const PaymentController = require("../controllers/PaymentsController");
 const PaymentService = require("../services/PaymensServices");
 const { postEmailsController } = require("../controllers/postEmailsController");
 const { reporteCompras } = require("../controllers/reporteComprasController");
+const { resultadoCompras } = require("../controllers/resultadoComprasController");
 
 
-
+//Rutas de compras 
 const PaymentInstance = new PaymentController(new PaymentService());
 router.post("/payment", function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
+router.get("/payment/failure", resultadoCompras);
+router.get("/payment/pending", resultadoCompras);
+router.get("/payment/success", resultadoCompras);
+
+
 
 //Rutas de Extras
 router.get("/extras/:id", getExtraById)

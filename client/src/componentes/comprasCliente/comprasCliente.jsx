@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Heading, Icon, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FaAngleDoubleDown, FaArrowUp, FaUpDown } from "react-icons/fa";
+import { FaAngleDoubleDown, FaArrowUp, FaTumblrSquare, FaUpDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompraByEmail } from "../../redux/actions/getCompraByEmail";
 import Compra from "./compra";
@@ -10,6 +10,7 @@ export default function ComprasCliente() {
     const dispatch = useDispatch();
     const { user, isAuthenticated, loginWithRedirect } = useAuth0();
     let compras = useSelector(state => state.state.compras)
+    console.log(compras);
     const [FiltroCompra, setFiltroCompra] = useState(compras)
 
     function filtrarCompras() {
@@ -30,7 +31,6 @@ export default function ComprasCliente() {
 
     return (
         <Box px={20} py={15}>
-            <Heading textAlign={'center'} pb={4}>Historial de compras</Heading>
             <TableContainer p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'20px'}>
                 <Table variant='striped' colorScheme='cyan' >
                     <Thead color={'red'} h={'50px'} >
@@ -51,6 +51,8 @@ export default function ComprasCliente() {
                                 productos={c.productos}
                                 createdAt={c.createdAt}
                                 sumaTotal={c.sumaTotal}
+                                pagado={c.pagado !== undefined ? c.pagado : true}
+                                metodoDePago={c.metodoDePago ? c.metodoDePago : "Mercado pago"}
                             />
                         ))}
 

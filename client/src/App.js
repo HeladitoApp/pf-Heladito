@@ -1,5 +1,5 @@
 //import './App.css';
-import { Link, Route, Routes, redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import CardDetail from "./page/detail/CardDetail";
 import CardDetailDos from "./page/detail/CardDetailDos";
@@ -24,7 +24,6 @@ import Reviews from "./page/Reviews/Reviews";
 
 import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
 import PaymentFeedback from "./page/Back_URL/PaymentFeedback";
-import AdminHome from "./page/admin/AdminHome";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
 import ModifiedProduct from "./page/admin/ModifiedProduct";
 import UserHome from "./page/Usuario/UserHome";
@@ -36,7 +35,6 @@ import NavSuperior from "./componentes/navBar/navSuperior";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
-import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
 import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
 import HistoralPedido from "./page/Usuario/HistorialPedido";
@@ -54,13 +52,13 @@ function App() {
   
 
   const [page, setPage] = useState(1);
-  const { isLoading, user, logout } = useAuth0();
+  const { isLoading, logout } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const usuariosss = useSelector((state) => state.state.usuario);
   const dispatch = useDispatch();
   let id = usuariosss[0]?._id
   let rolDelUsuario = usuariosss[0]?.rol
-  let url = 'http://localhost:3000/'
+
   if(usuariosss[0]?.activo === false) {
     const handleLogout = () => {
       logout({ returnTo: window.location.origin })

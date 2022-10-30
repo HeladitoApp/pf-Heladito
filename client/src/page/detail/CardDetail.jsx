@@ -5,7 +5,7 @@ import { getProductById } from '../../redux/actions/details';
 import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
 import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
-import { chakra, Box, Flex, Image, Stack, Circle, HStack, VStack, Button, Icon } from "@chakra-ui/react";
+import { chakra, Flex, Image, Stack, Circle, HStack, VStack, Icon } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
 import ButtonAgregar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregar';
 import ButtonComprar from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprar';

@@ -1,7 +1,6 @@
 import { Box, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { FcSalesPerformance } from 'react-icons/fc'
 
-import ColumnChart from '../../componentes/DataTables/ColumnChart'
 import CardData from '../../componentes/DataTables/CardData';
 import BarChart from '../../componentes/DataTables/BarChart';
 

@@ -51,17 +51,17 @@ export default function CardDetail() {
   }, [dispatch, productId]);
 
 
-  
+
   const handleFavs = (e) => {
     dispatch(getProductById(productId));
-    const fav = product.map((f)=>{
+    const fav = product.map((f) => {
       return {
         email: user.email,
         favorito: {
-            _id: productId,
-            name: f.name,
-            description: f.description,
-            image: f.image
+          _id: productId,
+          name: f.name,
+          description: f.description,
+          image: f.image
         }
       }
     });
@@ -80,7 +80,7 @@ export default function CardDetail() {
   }
   else {
     return (
-      <React.Fragment>        
+      <React.Fragment>
         <Flex
           my={50}
           mx="20%"
@@ -88,10 +88,10 @@ export default function CardDetail() {
           spacing='5' >
           {product.map((detail, index) => (
             <HStack key={index} align="flex-start">
-              <VStack 
-              className={s.cont1} 
-              // maxW="20rem"
-              w="40%"
+              <VStack
+                className={s.cont1}
+                // maxW="20rem"
+                w="40%"
               >
                 <chakra.h1
                   mb={4}
@@ -105,14 +105,14 @@ export default function CardDetail() {
                   {detail.name}
                 </chakra.h1>
                 <Link>
-                  <Icon 
-                    as={FaRegHeart} 
-                    onClick={handleFavs} 
-                    m="0" 
-                    p="0" 
+                  <Icon
+                    as={FaRegHeart}
+                    onClick={handleFavs}
+                    m="0"
+                    p="0"
                     boxSize={8}
                     pointer
-                  /> 
+                  />
                 </Link>
                 <Circle>
                   <Image
@@ -161,11 +161,11 @@ export default function CardDetail() {
                   <Contador
                     contador={contador}
                     setContador={setContador}
-                    max={detail.stock} 
+                    max={detail.stock}
                   />
                   <FlavorsList
                     sabor={sabor}
-                    setSabor={setSabor}                    
+                    setSabor={setSabor}
                   />
                   <ToppingsList
                     checkedToppings={checkedToppings}
@@ -205,7 +205,7 @@ export default function CardDetail() {
             </HStack>
 
           ))}
-          
+
         </Flex>
       </React.Fragment>
 

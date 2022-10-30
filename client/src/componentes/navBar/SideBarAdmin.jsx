@@ -15,7 +15,7 @@ import {
     chakra
 } from "@chakra-ui/react";
 import { FaBell, FaCartArrowDown, FaCartPlus, FaFileSignature, FaUsers } from "react-icons/fa";
-import { AiOutlineInbox } from "react-icons/ai";
+import { AiOutlineInbox, AiOutlineEdit } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { RiBarChartFill } from "react-icons/ri";
@@ -26,9 +26,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import Loading from '../loading/loading';
 import avatar from '../../assets/usuario.png'
-
-
-
 
 const SideBarAdmin = () => {
 
@@ -127,6 +124,10 @@ const SideBarAdmin = () => {
 
                 <Link to={'/login/user'}>
                     <NavItem icon={BsGearFill}>Config. Perfil</NavItem>
+                </Link>
+
+                <Link to={'/admin/crear_anuncio'}>
+                    <NavItem icon={AiOutlineEdit}>Crear anuncio</NavItem>
                 </Link>
 
                 <Link to={'/admin/crear_producto'}>

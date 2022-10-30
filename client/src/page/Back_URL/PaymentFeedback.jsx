@@ -312,7 +312,7 @@ const PaymentFeedback = () => {
                 <Box
                   px={{ base: 4, sm: 6 }}
                   py={3}
-                  bg="gray.50"
+                  bg="amarillo.muy_claro"
                   _dark={{ bg: "#121212" }}
                   textAlign="right"
                 >

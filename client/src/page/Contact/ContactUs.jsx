@@ -230,7 +230,7 @@ const ContactUs = () => {
                                                     size="sm"
                                                     w="full"
                                                     rounded="md"
-                                                    className='lastname'
+                                                    className='error'
                                                 />
                                                 {errors.lastname && (<p className="error">{errors.lastname}</p>)}
                                             </FormControl>

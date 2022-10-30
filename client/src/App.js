@@ -47,6 +47,7 @@ import AdminInbox from "./page/admin/AdminInbox";
 import { useSelector } from "react-redux";
 import ReporteCompras from "./page/admin/ReporteCompras";
 import Feedbacks from "./page/admin/Feedbacks";
+import CrearAnuncio from "./page/admin/CrearAnuncio";
 
 function App() {
 
@@ -124,6 +125,7 @@ function App() {
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/feedbacks" element={<ProtectedRoute component={Feedbacks} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="admin/crear_anuncio" element={<ProtectedRoute component={CrearAnuncio} />} /> : ''}
           {/* <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
           <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> */}
           {/* <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> */}

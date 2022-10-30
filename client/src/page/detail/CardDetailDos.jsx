@@ -1,40 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getProductById } from '../../redux/actions/details';
-import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import BombonesShakesDetail from './BombonesShakesDetail';
+import CardDetail from './CardDetail';
 
 
 export default function CardDetailDos() {
 
-  const dispatch = useDispatch();
-  const product = useSelector((state) => state.state);
-  console.log(product)
-  const { productId } = useParams();
-  //console.log(productId)
+  const product = useSelector((state) => state.state.details);
+  const productname = product.map(e => e.name)
+  console.log(productname)
 
-  useEffect(() => {
-    dispatch(getProductById(productId))
-  }, [dispatch, productId]);
-
-
-  /* if(Object.keys(product).includes('Shake' || 'Bombones')) */
-  /* const name = product.find(detail => detail.name) */
-  /* if(name.includes('Shake' || 'Bombones')) */
 
 
   return (
-    <React.Fragment>
-      <BombonesShakesDetail />
-     
-      
-
-       
-        
-        <h1>hola</h1>
-      
-
-    </React.Fragment>
+    productname.includes('piña') ?
+      <React.Fragment>
+        <BombonesShakesDetail />
+      </React.Fragment>
+      :
+      <React.Fragment>
+        <CardDetail />
+      </React.Fragment>
   )
 };

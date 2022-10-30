@@ -146,9 +146,9 @@ const SideBarAdmin = () => {
                     <NavItem icon={FaUsers}>Clientes</NavItem>
                 </Link>
 
-                <Link to={'/admin/tabla_de_datos'}>
+                {/* <Link to={'/admin/tabla_de_datos'}>
                     <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
-                </Link>
+                </Link> */}
 
                 <Link to={'/admin/reporte_de_compra'}>
                     <NavItem icon={FaFileSignature}>Reporte de compras</NavItem>

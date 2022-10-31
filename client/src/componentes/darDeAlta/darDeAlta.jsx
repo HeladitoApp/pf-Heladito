@@ -9,14 +9,12 @@ export default function DarDeAlta () {
     const dispatch = useDispatch();
     const usuariosss = useSelector((state) => state.state.usuario);    
     let id = usuariosss[0]?._id
-
     const handleLogout = () => {
         logout({ returnTo: window.location.origin })
         }
-        const handleAlta = (e) => {
-        console.log(e);
+        const handleAlta = () => {
         window.location.reload()
-        dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
+        dispatch(updateUsuario({_id: id, activo: true }))
         }
         return (
             <main className="main">
@@ -31,7 +29,7 @@ export default function DarDeAlta () {
                         value = {true}
                         className = 'botonActivar'
                         id = {id}
-                        onClick = {e => handleAlta(e)}
+                        onClick = {handleAlta}
                         >
                         <h1 className = 'Activar'>Activar cuenta</h1>
                     </Button>

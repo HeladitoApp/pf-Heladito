@@ -6,7 +6,10 @@ const {
 async function sendFacturaMail(user, compra) {
   try {
     if (!user) {
-      throw new Error({ message: "error. El Email no fue embiado." });
+      throw new Error({
+        message:
+          "Error. El Email no fue enviado. Verificar los datos traidos desde el controlador de Mercado Pago",
+      });
     } else {
       const transporter = createTransporter();
       const info = await transporter.sendMail({

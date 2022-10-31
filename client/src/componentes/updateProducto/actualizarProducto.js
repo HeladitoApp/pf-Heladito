@@ -34,16 +34,6 @@ import { traerUsuariosById } from '../../redux/actions/getProductosById'
 import { Link } from 'react-router-dom';
 
 
-// function control(input) {
-//     let error = {}
-//     if(!input.name) error.name = 'Ingrese un nombre'
-//     else if (!input.description) error.description = 'La descripcion es necesaria'
-//     else if (!input.image) error.image = 'Ingrese una imagen'
-//     else if (!input.price) error.price = 'Ingrese un precio'
-//     else if (!input.stock) error.stock = 'Ingrese cantidad en stock'
-//     // else if (!input.type) error.type = 'Seleccione un tipo de producto'
-//     return error
-// }
 
 export default function ActualizarProducto() {
   const { id } = useParams()
@@ -58,7 +48,8 @@ export default function ActualizarProducto() {
     image: null,
     price: null,
     stock: null,
-    type: null
+    type: null,
+    detailModel: null
   })
   useEffect(() => {
     dispatch(traerUsuariosById(id))
@@ -80,6 +71,14 @@ export default function ActualizarProducto() {
       type: e.target.value
     })
   }
+  
+  function handleSelectDetail(e) {
+    setInput({
+      ...input,
+      detailModel: e.target.value
+    })
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(updateProduct(input))
@@ -95,7 +94,8 @@ export default function ActualizarProducto() {
       image: '',
       price: '',
       stock: '',
-      type: ''
+      type: '',
+      detailModel: ''
     })
   }
 
@@ -323,6 +323,41 @@ export default function ActualizarProducto() {
                               <option value="crepes">Crepes</option>
                             </Select>
                           </FormControl>
+
+                          <FormControl as={GridItem} colSpan={[6, 3]}>
+                          <FormLabel
+                            htmlFor="country"
+                            fontSize="sm"
+                            fontWeight="md"
+                            color="gray.700"
+                            _dark={{ color: "gray.50" }}
+                          >
+                            Elige un modelo de detalle
+                          </FormLabel>
+                          <Select
+                            id="selectModel"
+                            defaultValue={'plaseholder'}
+                            onChange={e => handleSelectDetail(e)}
+                            mt={1}
+                            focusBorderColor="#5CE1E6"
+                            shadow="sm"
+                            size="sm"
+                            w="full"
+                            rounded="md"
+                            className="error"
+                          >
+                            <option hidden value='plaseholder'>Modelos</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="I">I</option>
+                          </Select>
+                          {errors.detailModel && (<p className="error">{errors.detailModel}</p>)}
+                        </FormControl>
                         </SimpleGrid>
                       </Stack>
                       <Box
@@ -354,7 +389,7 @@ export default function ActualizarProducto() {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 visibility={{ base: "hidden", sm: "visible" }}
               />
-              <Link to={'/admin'}>
+              <Link to={'/admin/modificar_producto'}>
                 <Button
                   borderRadius={'full'}
                   colorScheme='pink' variant='solid'>

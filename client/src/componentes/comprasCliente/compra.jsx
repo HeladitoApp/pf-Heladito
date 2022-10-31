@@ -1,6 +1,6 @@
 import { Button, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Table, TableContainer, Tag, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
-export default function Compra({ productos, usuario, createdAt, sumaTotal, id }) {
+export default function Compra({ productos, usuario, createdAt, sumaTotal, id, pagado, metodoDePago }) {
     return (
         <>
             <Tr>
@@ -43,8 +43,8 @@ export default function Compra({ productos, usuario, createdAt, sumaTotal, id })
                     </Popover>
                 </Td>
                 <Td textAlign={'center'}>{createdAt.split("T")[0]}</Td>
-                <Td>Mercado pago</Td>
-                <Td><Tag variant='subtle' colorScheme='green'>Pagado</Tag></Td>
+                <Td>{metodoDePago}</Td>
+                <Td><Tag variant='subtle' colorScheme={pagado ? 'green' : "red"}>{pagado ? "Pagado" : "Pendiente"}</Tag></Td>
                 <Td isNumeric> Precio $/{sumaTotal}</Td>
             </Tr>
         </>

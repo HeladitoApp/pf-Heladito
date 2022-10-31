@@ -35,12 +35,12 @@ const AdminInbox = () => {
             <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
                 <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
                     <Box p='20'>
-                        <TableContainer p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'0.7em'} bg='white'>
-                            <Table variant='striped' colorScheme='pink' size='sm'>
-                                <TableCaption>Bandeja de entrada HeladitosApp</TableCaption>
-                                <Thead>
+                        <TableContainer fontSize='xs' p={5} border={'1px'} borderColor={'gray.200'} borderRadius={'0.7em'} bg='white'>
+                            <Table variant='striped' colorScheme='pink' size='xs'>
+                                <TableCaption fontSize='xs'>Bandeja de entrada HeladitosApp</TableCaption>
+                                <Thead >
                                     <Tr>
-                                        <Th>Cliente</Th>
+                                        <Th>Clientes</Th>
                                         <Th>Mensajes</Th>
                                         <Th>Recibido</Th>
                                     </Tr>

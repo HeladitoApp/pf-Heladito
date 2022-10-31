@@ -1,5 +1,5 @@
 import {
-  chakra, Box, Button, FormControl, FormLabel, GridItem, Heading, Select, SimpleGrid, Stack, Text, Divider, Textarea, Link,
+  chakra, Box, Button, FormControl, FormLabel, GridItem, Input, Heading, Select, SimpleGrid, Stack, Text, Divider, Textarea, Link,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
 import { addFeedback } from '../../redux/actions/addFeedback';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function control(value) {
   let error = {}
@@ -30,7 +30,12 @@ const PaymentFeedback = () => {
   const navigate = useNavigate()
   const loading = useSelector((state) => state.state.loading)
 
+  const { user } = useAuth0();
+  const { picture, name } = user;
+
   const [value, setValue] = useState({
+    name: name,
+    picture: picture,
     conformidad: '',
     puntaje: '',
     aspecto: '',
@@ -83,6 +88,8 @@ const PaymentFeedback = () => {
       value.descripcion) {
       dispatch(addFeedback(value))
       setValue({
+        name: '',
+        picture: '',
         conformidad: '',
         puntaje: '',
         aspecto: '',
@@ -154,10 +161,12 @@ const PaymentFeedback = () => {
                   _dark={{ bg: "#141517" }}
                   spacing={6}
                 >
+                  <Box color='celeste.original' fontSize='2xl' fontWeight='semibold' >Hola {name}!</Box>
                   <SimpleGrid columns={6} spacing={6}>
+                    
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
-                        htmlFor="name"
+                        htmlFor="conformidad"
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"
@@ -180,15 +189,15 @@ const PaymentFeedback = () => {
                         onChange={handleSelect}
                       >
                         <option hidden value='placeholder'>Elige uno</option>
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
+                        <option value="Sí">Si</option>
+                        <option value="No">No</option>
                       </Select>
                       {errors.conformidad && (<p className="error">{errors.conformidad}</p>)}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
-                        htmlFor="name"
+                        htmlFor="puntaje"
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"
@@ -228,7 +237,7 @@ const PaymentFeedback = () => {
                         color="gray.700"
                         _dark={{ color: "gray.50" }}
                       >
-                        ¿Cuál el el aspecto que más valoras? Solo puedes elegir uno.
+                        ¿Cuál es el aspecto que más valoras? Solo puedes elegir uno.
                       </FormLabel>
                       <Select
                         id="aspecto"
@@ -256,6 +265,7 @@ const PaymentFeedback = () => {
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
+                        htmlFor='descripcion'
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"
@@ -279,7 +289,7 @@ const PaymentFeedback = () => {
                 <Box
                   px={{ base: 4, sm: 6 }}
                   py={3}
-                  bg="gray.50"
+                  bg="amarillo.muy_claro"
                   _dark={{ bg: "#121212" }}
                   textAlign="right"
                 >

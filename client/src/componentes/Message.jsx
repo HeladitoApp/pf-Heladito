@@ -26,7 +26,7 @@ const Message = ({ name, lastname, email, message, contact, createdAt }) => {
                 <Td>{name.concat(lastname)}</Td>
                 <Td>
                     <>
-                        <Button onClick={onOpen} bg='rosado.original' color='white'>Mensaje</Button>
+                        <Button size='xs' onClick={onOpen} bg='rosado.original' color='white'>Mensaje</Button>
 
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />

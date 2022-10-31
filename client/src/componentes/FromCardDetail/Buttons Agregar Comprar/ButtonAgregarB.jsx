@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
-const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador }) => {
+const ButtonAgregarB = ({ id, image, name, price, type, sabores, checkedToppings, contador }) => {
 
     const [addProduct, setAddProduct] = useLocalStorage(keyCarrito, []);
 
@@ -23,30 +23,31 @@ const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador })
             price: price,
             type: type,
             cantidad: contador,
-            flavors: [],
-            toppings: [],
+            flavors: [sabores],
+            toppings: [checkedToppings],
         }
         console.log(newProduct)
-        if (contador === 0) {
+        if (contador === 0 || sabores === [''] || checkedToppings === []) {
             swal({
-                title: 'Porfavor, selecciona cuantos shakes deseas!',
+                title: 'Porfavor, verifique que todas las secciones estén completas',
                 icon: "info",
                 button: "aceptar"
             })
         }
+
         else if (id && image &&
             name && price &&
             type && contador &&
-            sabor.length > 0 &&
+            sabores.length > 0 &&
             checkedToppings.length > 0) {
             setAddProduct([...addProduct,
                 newProduct])
-            /* swal({
+            swal({
                 title: 'Producto agregado al carrito, a seguir comprando!',
                 icon: "success",
                 button: "aceptar"
-            }) */
-            navigate("/product/cart");
+            })
+            navigate("/");
         }
     };
 
@@ -55,9 +56,9 @@ const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador })
     return (
         <Button className={s.button} w='18.75em' colorScheme='rosado.original' variant='outline'
             onClick={e => handleClick(e)}>
-            AGREGAR E IR A PAGAR
+            AGREGAR Y SEGUIR COMPRANDO
         </Button>
     )
 }
 
-export default ButtonComprarBombonesShakes;
+export default ButtonAgregarB;

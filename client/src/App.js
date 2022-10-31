@@ -1,8 +1,5 @@
 import './App.css';
 import { Link, Route, Routes, redirect } from "react-router-dom";
-
-import CardDetail from "./page/detail/CardDetail";
-//import CardDetailDos from "./page/detail/CardDetailDos";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
 //import Admin from "./page/admin/Admin";
@@ -22,9 +19,8 @@ import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
 import Reviews from "./page/Reviews/Reviews";
 
-import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
+import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario';
 import PaymentFeedback from "./page/Back_URL/PaymentFeedback";
-import AdminHome from "./page/admin/AdminHome";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
 import ModifiedProduct from "./page/admin/ModifiedProduct";
 import UserHome from "./page/Usuario/UserHome";
@@ -36,7 +32,6 @@ import NavSuperior from "./componentes/navBar/navSuperior";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import DataTables from "./page/admin/DataTables";
 import Clientes from "./page/admin/Clientes";
-import ComprasCliente from "./componentes/comprasCliente/comprasCliente";
 import ComprasCard from "./componentes/ComprasCard";
 import FavoritosCliente from "./componentes/favoritosCliente/favoritosCliente";
 import HistoralPedido from "./page/Usuario/HistorialPedido";
@@ -47,19 +42,23 @@ import AdminInbox from "./page/admin/AdminInbox";
 import { useSelector } from "react-redux";
 import ReporteCompras from "./page/admin/ReporteCompras";
 import DarDeAlta from './componentes/darDeAlta/darDeAlta';
+import Feedbacks from "./page/admin/Feedbacks";
+import CrearAnuncio from "./page/admin/CrearAnuncio";
+import MainCardDetail from "./page/detail/MainCardDetail";
+import Informacion from "./page/Usuario/Información";
 
 function App() {
 
   
 
   const [page, setPage] = useState(1);
-  const { isLoading, user, logout } = useAuth0();
+  const { isLoading, logout } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const usuariosss = useSelector((state) => state.state.usuario);
   const dispatch = useDispatch();
   let id = usuariosss[0]?._id
   let rolDelUsuario = usuariosss[0]?.rol
-  
+
   if(usuariosss[0]?.activo === false) { 
     return <DarDeAlta/>
   }
@@ -71,24 +70,26 @@ function App() {
         <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose} />
         <Routes>
           <Route path="/" element={<Home setPage={setPage} page={page} />} />
-          {/* <Route path="/product/:productId" element={<CardDetailDos />} /> */}
-          <Route path="/product/:productId" element={<CardDetail />} />
+          <Route path="/product/:productId" element={<MainCardDetail/>} />
+          {/* <Route path="/product/:productId" element={<CardDetail />} /> */}
           <Route path="/products/:type" element={<Types />} />
           <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose} />} />
           <Route path="/users/client" element={<Consumer />} />
           {/* <Route path="/admin" element={<ProtectedRoute component={Admin} />} /> */}
-          {rolDelUsuario === 'admin'? <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="/admin" element={<ProtectedRoute component={DataTables} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> : ''}
           {rolDelUsuario === 'admin'?  <Route path="admin/modificar_toppings" element={<ProtectedRoute component={ModifiedExtra} />} /> : ''}
           {rolDelUsuario === 'admin'?  <Route path="/admin/clientes" element={<ProtectedRoute component={Clientes} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} /> : ''}
+          {/* {rolDelUsuario === 'admin'? <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} /> : ''} */}
           {rolDelUsuario === 'admin'? <Route path="/admin/update/:id" element={<ActualizarUsuario />} /> :''}
-          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto/>} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="admin/feedbacks" element={<ProtectedRoute component={Feedbacks} />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="admin/crear_anuncio" element={<ProtectedRoute component={CrearAnuncio} />} /> : ''}
           {/* <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
           <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> */}
           {/* <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> */}
@@ -116,6 +117,8 @@ function App() {
           <Route path="/login/user" element={<ProtectedRoute component={UserHome} />} />
           <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={HistoralPedido} />} />
           <Route path="/login/user/favoritos" element={<ProtectedRoute component={FavoritosCliente} />} />
+          <Route path="/admin/reporte_de_compra" element={<ReporteCompras/>} />
+          <Route path="/login/user/mi_informacion" element={<ProtectedRoute component={Informacion} />} />
         </Routes>
         <Footer />
       </div>

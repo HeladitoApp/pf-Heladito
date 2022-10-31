@@ -1,7 +1,6 @@
 import { Box, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { FcSalesPerformance } from 'react-icons/fc'
 
-import ColumnChart from '../../componentes/DataTables/ColumnChart'
 import CardData from '../../componentes/DataTables/CardData';
 import BarChart from '../../componentes/DataTables/BarChart';
 
@@ -26,9 +25,17 @@ const DataTables = () => {
                     fontSize='4xl'
                     as='b'
                     align={'center'}
-                    m={8}
+                    m={4}   
                 >
-                    Resumen de Heladitos App
+                    Tablas de datos
+                </Text>
+                <Text
+                    fontSize='3xl'
+                    as='b'
+                    align={'center'}
+                    color='celeste.original'
+                >
+                    Resumen de HeladitosApp
                 </Text>
 
                 <Box

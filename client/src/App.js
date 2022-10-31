@@ -1,6 +1,5 @@
-//import './App.css';
-import { Route, Routes } from "react-router-dom";
-
+import './App.css';
+import { Link, Route, Routes, redirect } from "react-router-dom";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
 //import Admin from "./page/admin/Admin";
@@ -42,6 +41,7 @@ import { updateUsuario } from './redux/actions/updateUsuario'
 import AdminInbox from "./page/admin/AdminInbox";
 import { useSelector } from "react-redux";
 import ReporteCompras from "./page/admin/ReporteCompras";
+import DarDeAlta from './componentes/darDeAlta/darDeAlta';
 import Feedbacks from "./page/admin/Feedbacks";
 import CrearAnuncio from "./page/admin/CrearAnuncio";
 import MainCardDetail from "./page/detail/MainCardDetail";
@@ -59,42 +59,8 @@ function App() {
   let id = usuariosss[0]?._id
   let rolDelUsuario = usuariosss[0]?.rol
 
-  if(usuariosss[0]?.activo === false) {
-    const handleLogout = () => {
-      logout({ returnTo: window.location.origin })
-    }
-    const handleAlta = (e) => {
-      console.log(e);
-      window.location.reload()
-      dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
-    }
-    return (
-    <div>
-      <h1>Esta cuenta esta dada de baja</h1>
-        <Button
-          variant="ghost"
-          rounded="md"
-          mb={{ base: 2, sm: 0 }}
-          minW="9rem"
-          bg="celeste.claro"
-          value = {true}
-          id = {id}
-          onClick = {e => handleAlta(e)}
-          >
-          Dar de alta esta cuenta
-        </Button>
-    <Button
-    variant="ghost"
-    rounded="md"
-    mb={{ base: 2, sm: 0 }}
-    minW="9rem"
-    bg="celeste.claro"
-    onClick = {e => handleLogout(e)}
-  >
-    Salir
-  </Button>
-  </div>
-  )
+  if(usuariosss[0]?.activo === false) { 
+    return <DarDeAlta/>
   }
   if (isLoading) {
     return <Loading />;

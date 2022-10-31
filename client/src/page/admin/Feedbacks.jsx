@@ -40,7 +40,7 @@ const Feedbacks   = () => {
                                 <TableCaption fontSize='xs'>Feedbacks - Experiencia de compra en HeladitosApp</TableCaption>
                                 <Thead >
                                     <Tr>
-                                        <Th>Clientes/email</Th>
+                                        <Th>Clientes/nombre</Th>
                                         <Th>Feedbacks</Th>
                                         <Th>Recibido</Th>
                                     </Tr>
@@ -48,7 +48,7 @@ const Feedbacks   = () => {
                                 <Tbody >
                                     {feedbacks?.map(feedback => (
                                         <Feedback
-                                            email={feedback.email}
+                                            name={feedback.name}
                                             conformidad={feedback.conformidad}
                                             puntaje={feedback.puntaje}
                                             aspecto={feedback.aspecto}

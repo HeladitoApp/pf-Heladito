@@ -41,6 +41,7 @@ const { adminInboxController } = require("../controllers/adminInboxController");
 const { getAdminInboxController } = require("../controllers/getAdminInbox");
 const { postFeedbacksController } = require("../controllers/postFeedbacksController");
 const { getFeedbacksController } = require("../controllers/getFeedbacksController");
+const { putFeedbackController } = require("../controllers/putFeedbackController");
 
 
 
@@ -88,6 +89,7 @@ router.post("/adminInbox", adminInboxController);
 router.get("/allInboxAdmin", getAdminInboxController);
 router.post("/feedback", postFeedbacksController);
 router.get("/allFeedbacks", getFeedbacksController);
+router.put("/actualizarFeedback", putFeedbackController);
 
 router.get("/usuarioEmail", getByMail);
 
@@ -102,6 +104,7 @@ const PaymentService = require("../services/PaymensServices");
 const { postEmailsController } = require("../controllers/postEmailsController");
 const { reporteCompras } = require("../controllers/reporteComprasController");
 const { resultadoCompras } = require("../controllers/resultadoComprasController");
+
 
 
 //Rutas de compras 

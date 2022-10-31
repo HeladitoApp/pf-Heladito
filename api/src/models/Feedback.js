@@ -3,12 +3,13 @@ const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema(
     {
-        email: String,
+        name:String,
+        picture: String,
         conformidad: String,
         puntaje: String,
-        email: String,
         aspecto: String,
         descripcion: String,
+        aprobado: Boolean
     },
     { timestamps: true }
 );

@@ -23,7 +23,7 @@ const UserHome = () => {
   const dispatch = useDispatch();
   const usuariosss = useSelector((state) => state.state.usuario);
   let id = usuariosss[0]?._id
-
+  console.log(user);
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }

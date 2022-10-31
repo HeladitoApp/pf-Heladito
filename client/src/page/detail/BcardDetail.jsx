@@ -13,10 +13,11 @@ import Loading from '../../componentes/loading/loading';
 import { updateFavoritos } from '../../redux/actions/updateFavoritos';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import TwoFlavorsList from '../../componentes/FromCardDetail/Acordeon/twoFlavorList';
 import ButtonAgregarB from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregarB';
 import ButtonComprarB from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprarB';
+import { getFavoritosByEmail } from '../../redux/actions/getFavoritosByEmail';
 
 
 export default function BcardDetail() {
@@ -34,12 +35,14 @@ export default function BcardDetail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.state.details);
   const loading = useSelector((state) => state.state.loading)
+  const favoritos = useSelector((state) => state.state.favoritos);
 
   const { productId } = useParams();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     dispatch(getProductById(productId));
+    dispatch(getFavoritosByEmail(user.email));
     dispatch(setLoading(true));
     window.scrollTo(0, 0);
     setTimeout(() => {
@@ -70,6 +73,14 @@ export default function BcardDetail() {
       icon: "success",
       button: "Aceptar"
     }));
+  };
+
+  const handleFavs2 = (e) => {
+    swal({
+      title: 'Este producto ya se encuentra en tus favoritos ',
+      icon: "info",
+      button: "Aceptar"
+    })
   }
 
   if (loading) {
@@ -103,16 +114,32 @@ export default function BcardDetail() {
                 >
                   {detail.name}
                 </chakra.h1>
-                <Link>
-                  <Icon
-                    as={FaRegHeart}
-                    onClick={handleFavs}
-                    m="0"
-                    p="0"
-                    boxSize={8}
-                    pointer
-                  />
-                </Link>
+                {
+                  isAuthenticated ?
+                    favoritos.map((e) => e._id).includes(productId) ?                      
+                      (
+                        <Link>
+                          <Icon
+                            as={FaHeart}
+                            onClick={handleFavs2} /* isAuthenticated ? handleFavs : Login*/
+                            ml="25rem"
+                            p="0"
+                            boxSize={8}                         
+                          />
+                        </Link>
+                      ) : (
+                        <Link>
+                          <Icon
+                            as={FaRegHeart}
+                            onClick={handleFavs} /* isAuthenticated ? handleFavs : Login*/
+                            ml="25rem"
+                            p="0"
+                            boxSize={8}                           
+                          />
+                        </Link>
+                      )
+                    : null
+                  }
                 <Circle>
                   <Image
                     src={detail.image}

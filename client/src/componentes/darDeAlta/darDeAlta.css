@@ -1,0 +1,45 @@
+.main {
+    background-color: #FFC6E9;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.fondoActivar {
+    background-color: #99ECEF;
+    font-size: 29px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #09f;
+    border-radius: 5px; 
+    width: 400px;
+    height: auto;
+    padding: 8px;
+}
+
+.botonActivar {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.Activar:hover {
+    color: #16e646;
+}
+
+.BotonNoActivar {
+    font-size: 20px;
+    margin: 10px; 
+}
+
+.BotonNoActivar:hover {
+    color: red;
+}
+
+.temporal {
+    width: 300px;
+    position: relative;
+    left: 53px;
+}

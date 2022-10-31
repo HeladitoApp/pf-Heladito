@@ -45,6 +45,7 @@ import ReporteCompras from "./page/admin/ReporteCompras";
 import Feedbacks from "./page/admin/Feedbacks";
 import CrearAnuncio from "./page/admin/CrearAnuncio";
 import MainCardDetail from "./page/detail/MainCardDetail";
+import Informacion from "./page/Usuario/Información";
 
 function App() {
 
@@ -151,6 +152,7 @@ function App() {
           <Route path="/login/user/historial_de_pedidos" element={<ProtectedRoute component={HistoralPedido} />} />
           <Route path="/login/user/favoritos" element={<ProtectedRoute component={FavoritosCliente} />} />
           <Route path="/admin/reporte_de_compra" element={<ReporteCompras/>} />
+          <Route path="/login/user/mi_informacion" element={<ProtectedRoute component={Informacion} />} />
         </Routes>
         <Footer />
       </div>

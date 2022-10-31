@@ -24,13 +24,13 @@ const CarouselPromociones = () => {
     };
     const slides = [
         {
-        img: "https://www.pinkberry.pe/Multimedia/slider/BANNER_4_SMALLS_V7.PNG",
+        img: "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1667234665/banner111.png_gqflsx.jpg",
         },
         {
-        img: "https://www.pinkberry.pe/Multimedia/slider/Banner_CoockiesCream_V1.PNG",
+        img: "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1667230939/Banner2_tvrud6.png",
         },
         {
-        img: "https://www.pinkberry.pe/Multimedia/slider/Banner_Fresa_Chirimoya_V1.PNG",
+        img: "https://res.cloudinary.com/dkfxfh6rc/image/upload/v1667230944/Banner3_zbqtp8.png",
         },
         // {
         // img: "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",

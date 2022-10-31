@@ -104,6 +104,7 @@ const PaymentService = require("../services/PaymensServices");
 const { postEmailsController } = require("../controllers/postEmailsController");
 const { reporteCompras } = require("../controllers/reporteComprasController");
 const { resultadoCompras } = require("../controllers/resultadoComprasController");
+const { GeneraComprobante } = require("../utils/GeneraComprobante");
 
 
 
@@ -116,7 +117,7 @@ router.post("/payment", function (req, res, next) {
 router.get("/payment/failure", resultadoCompras);
 router.get("/payment/pending", resultadoCompras);
 router.get("/payment/success", resultadoCompras);
-
+router.get("/GeneraComprobante",GeneraComprobante)
 
 
 //Rutas de Extras

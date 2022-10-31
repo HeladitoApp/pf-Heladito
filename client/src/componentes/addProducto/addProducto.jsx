@@ -350,7 +350,7 @@ export default function AgregarProducto2() {
                             <option value="parfaits">Parfaits</option>
                             <option value="crepes">Crepes</option>
                           </Select>
-                          {errors.type && (<p className="error">{errors.type}</p>)}
+                          {/* {errors.type && (<p className="error">{errors.type}</p>)} */}
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -385,7 +385,7 @@ export default function AgregarProducto2() {
                             <option value="G">G</option>
                             <option value="I">I</option>
                           </Select>
-                          {errors.detailModel && (<p className="error">{errors.detailModel}</p>)}
+                          {/* {errors.detailModel && (<p className="error">{errors.detailModel}</p>)} */}
                         </FormControl>
 
                         

@@ -39,7 +39,7 @@ export default function DcardDetail() {
 
   useEffect(() => {
     dispatch(getProductById(productId));
-    dispatch(getFavoritosByEmail(user.email));
+    dispatch(getFavoritosByEmail(user?.email));
     dispatch(setLoading(true));
     window.scrollTo(0, 0);
     setTimeout(() => {

@@ -20,21 +20,23 @@ function createTransporter() {
   }
 }
 
-/* async function sendMail(users) {
+/* async function sendMail(usuario) {
   const transporter = createTransporter();
   const info = await transporter.sendMail({
     from: process.env.EMAIL,
-    to: `itsmarcos.1up@gmail.com`,
+    to: usuario.email,
     subject: `¡No te lo pierdas! Descubre novedades en HeladitosApp 🍦`,
     //todo el html que va en el body:
     html: await mensajeHtml,
-    // attachments: [{filename: "", path: ""},]
+    attachments: [
+      {
+        filename: "",
+        path: "",
+      },
+    ],
   });
   console.log("mensaje enviado: %s", info.messageId);
 } */
-
-//exports.sendMailController = (users) => sendMail(users);
-// emailer.sendMailController(newInfo);
 
 module.exports = {
   createTransporter,

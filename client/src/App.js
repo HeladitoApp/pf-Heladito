@@ -117,7 +117,7 @@ function App() {
           {rolDelUsuario === 'admin'? <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} /> : ''}
           {/* {rolDelUsuario === 'admin'? <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} /> : ''} */}
           {rolDelUsuario === 'admin'? <Route path="/admin/update/:id" element={<ActualizarUsuario />} /> :''}
-          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto/>} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}

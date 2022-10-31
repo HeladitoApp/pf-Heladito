@@ -2,24 +2,38 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getProductById } from '../../redux/actions/details';
+import FlavorsList from '../../componentes/FromCardDetail/Acordeon/FlavorsList';
+import ToppingsList from '../../componentes/FromCardDetail/Acordeon/ToppingsList';
 import Contador from '../../componentes/FromCardDetail/Contador/Contador';
-import { chakra, Flex, Image, Stack, Circle, VStack, HStack, Icon } from "@chakra-ui/react";
+import { chakra, Flex, Image, Stack, Circle, HStack, VStack, Icon } from "@chakra-ui/react";
 import s from './CardDetail.module.css';
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { clearDetails } from '../../redux/slices';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
-import ButtonAgregarBombonesShakes from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregarBombonesShakes';
-import ButtonComprarBombonesShakes from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprarBombonesShakes';
-import { FaRegHeart } from 'react-icons/fa';
 import { updateFavoritos } from '../../redux/actions/updateFavoritos';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
+import { FaRegHeart } from 'react-icons/fa';
+import ButtonComprarCombo from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonComprarCombos';
+import ButtonAgregarCombo from '../../componentes/FromCardDetail/Buttons Agregar Comprar/ButtonAgregarCombos';
+import ToppingsList2 from '../../componentes/FromCardDetail/Acordeon/ToppingsList2';
 
-const BombonesShakesDetail = () => {
+
+export default function GcardDetail() {
 
   //estados para Contador
-  const [contador, setContador] = useState(0);
+  const [contador, setContador] = useState(1);
+
+  //estado para FlavorsList
+  const [sabor, setSabor] = React.useState('');
+  //estado para FlavorsList2
+  const [sabor2, setSabor2] = React.useState('');
+
+  //estado para ToppingsList
+  const [checkedToppings, setCheckedToppings] = useState([]);
+  //estado para ToppingsList2
+  const [checkedToppings2, setCheckedToppings2] = useState([]);
 
 
   const dispatch = useDispatch();
@@ -32,6 +46,7 @@ const BombonesShakesDetail = () => {
   useEffect(() => {
     dispatch(getProductById(productId));
     dispatch(setLoading(true));
+    window.scrollTo(0, 0);
     setTimeout(() => {
       dispatch(setLoading(false));
     }, 1500);
@@ -39,6 +54,8 @@ const BombonesShakesDetail = () => {
       dispatch(clearDetails())
     }
   }, [dispatch, productId]);
+
+
 
   const handleFavs = (e) => {
     dispatch(getProductById(productId));
@@ -60,7 +77,6 @@ const BombonesShakesDetail = () => {
       button: "Aceptar"
     }));
   }
-
 
   if (loading) {
     return (
@@ -152,7 +168,22 @@ const BombonesShakesDetail = () => {
                     setContador={setContador}
                     max={detail.stock}
                   />
-
+                  <FlavorsList
+                    sabor={sabor}
+                    setSabor={setSabor}
+                  />
+                  <ToppingsList
+                    checkedToppings={checkedToppings}
+                    setCheckedToppings={setCheckedToppings}
+                  />
+                  <FlavorsList
+                    sabor={sabor2}
+                    setSabor={setSabor2}
+                  />
+                  <ToppingsList2
+                    checkedToppings2={checkedToppings2}
+                    setCheckedToppings2={setCheckedToppings2}
+                  />
                 </Stack>
                 <HStack
                   spacing={10}
@@ -161,20 +192,28 @@ const BombonesShakesDetail = () => {
                   justify='content'
                   h='4em'
                 >
-                  <ButtonAgregarBombonesShakes
-                    id={detail.id}
+                  <ButtonAgregarCombo
+                    id={detail._id}
                     image={detail.image}
                     name={detail.name}
                     price={detail.price}
                     type={detail.type}
+                    max={detail.stock}
+                    sabores={[sabor, sabor2]}
+                    checkedToppings={checkedToppings}
+                    checkedToppings2={checkedToppings2}
                     contador={contador}
                   />
-                  <ButtonComprarBombonesShakes
-                    id={detail.id}
+                  <ButtonComprarCombo
+                    id={detail._id}
                     image={detail.image}
                     name={detail.name}
                     price={detail.price}
                     type={detail.type}
+                    max={detail.stock}
+                    sabores={[sabor, sabor2]}
+                    checkedToppings={checkedToppings}
+                    checkedToppings2={checkedToppings2}
                     contador={contador} />
                 </HStack>
               </Stack>
@@ -184,8 +223,7 @@ const BombonesShakesDetail = () => {
 
         </Flex>
       </React.Fragment>
+
     )
   };
 }
-
-export default BombonesShakesDetail

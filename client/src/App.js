@@ -1,8 +1,6 @@
 //import './App.css';
 import { Route, Routes } from "react-router-dom";
 
-import CardDetail from "./page/detail/CardDetail";
-import CardDetailDos from "./page/detail/CardDetailDos";
 import Home from "./page/home/Home";
 import Login from "./page/login/Login";
 //import Admin from "./page/admin/Admin";
@@ -46,6 +44,7 @@ import { useSelector } from "react-redux";
 import ReporteCompras from "./page/admin/ReporteCompras";
 import Feedbacks from "./page/admin/Feedbacks";
 import CrearAnuncio from "./page/admin/CrearAnuncio";
+import MainCardDetail from "./page/detail/MainCardDetail";
 
 function App() {
 
@@ -104,7 +103,7 @@ function App() {
         <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose} />
         <Routes>
           <Route path="/" element={<Home setPage={setPage} page={page} />} />
-          <Route path="/product/:productId" element={<CardDetailDos />} />
+          <Route path="/product/:productId" element={<MainCardDetail/>} />
           {/* <Route path="/product/:productId" element={<CardDetail />} /> */}
           <Route path="/products/:type" element={<Types />} />
           <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose} />} />
@@ -118,7 +117,7 @@ function App() {
           {rolDelUsuario === 'admin'? <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} /> : ''}
           {/* {rolDelUsuario === 'admin'? <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} /> : ''} */}
           {rolDelUsuario === 'admin'? <Route path="/admin/update/:id" element={<ActualizarUsuario />} /> :''}
-          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto />} /> : ''}
+          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto/>} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
           {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}

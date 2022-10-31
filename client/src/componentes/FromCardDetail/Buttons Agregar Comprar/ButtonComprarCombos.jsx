@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
-const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador, sabor }) => {
+const ButtonComprarCombo = ({ id, image, name, price, type, sabores, checkedToppings, checkedToppings2, contador }) => {
 
     const [addProduct, setAddProduct] = useLocalStorage(keyCarrito, []);
 
     const navigate = useNavigate();
-
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -23,32 +22,34 @@ const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador, s
             price: price,
             type: type,
             cantidad: contador,
-            /* flavors: [],
-            toppings: [], */
+            flavors: [sabores],
+            toppings: [checkedToppings, checkedToppings2],
         }
         console.log(newProduct)
-        if (contador === 0) {
+        if (contador === 0 || sabores === [''] || checkedToppings === []) {
             swal({
-                title: 'Porfavor, selecciona cuantos shakes deseas!',
+                title: 'Porfavor, verifique que todas las secciones estén completas',
                 icon: "info",
                 button: "aceptar"
             })
         }
+
         else if (id && image &&
             name && price &&
-            type && contador ) {
+            type && contador &&
+            sabores.length > 0 &&
+            checkedToppings.length > 0) {
             setAddProduct([...addProduct,
                 newProduct])
-            /* swal({
-                title: 'Producto agregado al carrito, a seguir comprando!',
+            swal({
+                title: 'Producto agregado al carrito, estamos listos para pagar!',
                 icon: "success",
                 button: "aceptar"
-            }) */
+            })
             navigate("/product/cart");
         }
+
     };
-
-
 
     return (
         <Button className={s.button} w='18.75em' colorScheme='rosado.original' variant='outline'
@@ -58,4 +59,4 @@ const ButtonComprarBombonesShakes = ({ id, image, name, price, type, contador, s
     )
 }
 
-export default ButtonComprarBombonesShakes;
+export default ButtonComprarCombo;

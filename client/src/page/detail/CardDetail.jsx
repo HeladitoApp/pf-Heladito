@@ -36,7 +36,7 @@ export default function CardDetail() {
   const loading = useSelector((state) => state.state.loading)
 
   const { productId } = useParams();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     dispatch(getProductById(productId));
@@ -107,7 +107,7 @@ export default function CardDetail() {
                 <Link>
                   <Icon
                     as={FaRegHeart}
-                    onClick={handleFavs}
+                    onClick={handleFavs}/* isAuthenticated ? handleFavs : Login*/
                     m="0"
                     p="0"
                     boxSize={8}

@@ -15,15 +15,40 @@ import {
     Divider,
     Spacer
 } from "@chakra-ui/react";
+import { updateFeedback } from '../redux/actions/updateFeedback';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 
-const Feedback = ({ email, conformidad, puntaje, aspecto, descripcion, createdAt }) => {
+const Feedback = ({ name, conformidad, puntaje, aspecto, descripcion, createdAt }) => {
+
+    const dispatch = useDispatch();
+
+    const [input, setInput] = useState({
+        aprobado: null
+    })
+    console.log(input)
+
+    function handleClick(e) {
+        e.preventDefault();
+        setInput({
+            ...input,
+            aprobado: true,
+        })
+        dispatch(updateFeedback(input))
+        setInput({
+            aprobado: null
+        })
+        alert('Feedback actualizada')
+    }
+
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
 
         <React.Fragment>
             <Tr>
-                <Td>{email}</Td>
+                <Td>{name}</Td>
                 <Td>
                     <>
                         <Button size='xs' onClick={onOpen} bg='rosado.original' color='white'>Feedback</Button>
@@ -31,7 +56,7 @@ const Feedback = ({ email, conformidad, puntaje, aspecto, descripcion, createdAt
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
                             <ModalContent>
-                                <ModalHeader color='rosado.original' fontWeight='semibold'>Feedback de: {email} </ModalHeader>
+                                <ModalHeader color='rosado.original' fontWeight='semibold'>Feedback de: {name} </ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
                                     <Box display='flex'>
@@ -49,10 +74,10 @@ const Feedback = ({ email, conformidad, puntaje, aspecto, descripcion, createdAt
                                 </ModalBody>
 
                                 <ModalFooter>
-                                    <Button bg='celeste.original' color='white' mr={3} onClick={onClose}>
+                                    <Button variant='ghost' mr={3} color='celeste.original' onClick={handleClick}>Aprovar feedback (reseñas)</Button>
+                                    <Button bg='celeste.original' color='white' onClick={onClose}>
                                         Cerrar
                                     </Button>
-
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>

@@ -14,7 +14,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { updateUsuario } from '../../redux/actions/updateUsuario';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UserHome = () => {
   const { user } = useAuth0();
@@ -29,7 +29,7 @@ const UserHome = () => {
   }
   const handleBaja = (e) => {
     console.log(e);
-    dispatch(updateUsuario({_id: e.target.id, activo: e.target.value }))
+    dispatch(updateUsuario({ _id: e.target.id, activo: e.target.value }))
     logout({ returnTo: window.location.origin })
   }
   const Card = ({ heading, detail }) => {
@@ -103,9 +103,9 @@ const UserHome = () => {
               mb={{ base: 2, sm: 0 }}
               minW="9rem"
               bg="celeste.claro"
-              value = {false}
-              id = {id}
-              onClick = {e => handleBaja(e)}
+              value={false}
+              id={id}
+              onClick={e => handleBaja(e)}
             >
               Dar de baja esta cuenta
             </Button>
@@ -144,9 +144,11 @@ const UserHome = () => {
               heading="Historial de pedidos"
               detail="Accedé a tus últimas compras y sus detalles." />
           </Link>
-          <Card
-            heading="Mi información"
-            detail="Actualizá tu información personal para no perderte las últimas novedades!" />
+          <Link to={'/login/user/mi_informacion'}>
+            <Card
+              heading="Mi información"
+              detail="Actualizá tu información personal para no perderte las últimas novedades!" />
+          </Link>
         </VStack>
       </Stack>
     </Container>

@@ -22,7 +22,7 @@ import PaymentPending from "./page/Back_URL/PaymentPending";
 import PaymentFailure from "./page/Back_URL/PaymentFailure";
 import Reviews from "./page/Reviews/Reviews";
 
-import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario'
+import ActualizarUsuario from './componentes/updateUsuario/actualizarUsuario';
 import PaymentFeedback from "./page/Back_URL/PaymentFeedback";
 import AgregarProducto2 from './componentes/addProducto/addProducto'
 import ModifiedProduct from "./page/admin/ModifiedProduct";

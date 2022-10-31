@@ -8,13 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
 import { addFeedback } from '../../redux/actions/addFeedback';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function control(value) {
   let error = {}
-  if (!value.email.includes('@')) {
-    error.email = 'Por favor, escribe un email válido'
-  } else if (value.conformidad === '') {
+  if (value.conformidad === '') {
     error.conformidad = 'Por favor, selecciona una respuesta'
   } else if (value.puntaje === '') {
     error.puntaje = 'Por favor, selecciona una respuesta'
@@ -32,8 +30,12 @@ const PaymentFeedback = () => {
   const navigate = useNavigate()
   const loading = useSelector((state) => state.state.loading)
 
+  const { user } = useAuth0();
+  const { picture, name } = user;
+
   const [value, setValue] = useState({
-    email: '',
+    name: name,
+    picture: picture,
     conformidad: '',
     puntaje: '',
     aspecto: '',
@@ -80,14 +82,14 @@ const PaymentFeedback = () => {
   const handleClick = (e) => {
     e.preventDefault();
     if (!value.errors &&
-      value.email &&
       value.conformidad &&
       value.puntaje &&
       value.aspecto &&
       value.descripcion) {
       dispatch(addFeedback(value))
       setValue({
-        email: '',
+        name: '',
+        picture: '',
         conformidad: '',
         puntaje: '',
         aspecto: '',
@@ -159,38 +161,12 @@ const PaymentFeedback = () => {
                   _dark={{ bg: "#141517" }}
                   spacing={6}
                 >
+                  <Box color='celeste.original' fontSize='2xl' fontWeight='semibold' >Hola {name}!</Box>
                   <SimpleGrid columns={6} spacing={6}>
+                    
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
-                        htmlFor="email"
-                        fontSize="sm"
-                        fontWeight="md"
-                        color="gray.700"
-                        _dark={{ color: "gray.50" }}
-                      >
-                        Ingresa el email con el que realizaste tu compra
-                      </FormLabel>
-                      <Input
-                        type="text"
-                        name="email"
-                        id="email"
-                        value={value.email}
-                        onChange={handleInputChange}
-                        autoComplete="given-email"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        className='error'
-                      />
-                      {errors.email && (<p className="error">{errors.email}</p>)}
-                    </FormControl>
-
-                    <FormControl as={GridItem} colSpan={[6, 4]}>
-                      <FormLabel
-                        htmlFor="name"
+                        htmlFor="conformidad"
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"
@@ -221,7 +197,7 @@ const PaymentFeedback = () => {
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
-                        htmlFor="name"
+                        htmlFor="puntaje"
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"
@@ -289,6 +265,7 @@ const PaymentFeedback = () => {
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
+                        htmlFor='descripcion'
                         fontSize="sm"
                         fontWeight="md"
                         color="gray.700"

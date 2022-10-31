@@ -23,8 +23,10 @@ import {
   InputGroup,
   InputLeftAddon,
   FormHelperText,
+  Image
 } from "@chakra-ui/react";
 import { sendEmail } from '../../redux/actions/sendEmail';
+import modelo from '../../assets/modelo-anuncio.png';
 //import { Link } from 'react-router-dom';
 //import UsuariosRegistradosAdmin from '../../componentes/UsuariosRegistradosAdmin/UsuariosRegistradosAdmin';
 
@@ -159,6 +161,7 @@ const CrearAnuncio = () => {
                       >
                         Apartado para la creación de email de anuncios que llegará a todos los usuarios registrados en HeladitosApp. Para la creación de un óptimo anuncio, debes llenar todos los campos requeridos.
                       </Text>
+                      <Image src={modelo} alt='No hay modelo por el momento' m='3' />
                     </Box>
                   </GridItem>
 

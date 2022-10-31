@@ -1,10 +1,20 @@
-import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, Link } from '@chakra-ui/react';
+import { chakra, Badge, Box, Button, Flex, Image, SimpleGrid, Link, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure } from '@chakra-ui/react';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import React from 'react';
+import React, { useEffect } from 'react';
 //import { Link } from 'react-router-dom';
 import success from '../../assets/helado_succes.png';
 
 const PaymentSuccess = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const valores = window.location.search;
+  const urlParams = new URLSearchParams(valores);
+  const compra_id = urlParams.get('compra_id');
+
+  useEffect(() => {
+    onOpen()
+
+  }, [])
+
   return (
     <SimpleGrid
       columns={{
@@ -78,38 +88,71 @@ const PaymentSuccess = () => {
           Gracias por elegirnos como tus Heladitos de confianza. Mientras esperas tu pedido te invitamos a participar en nuestra sección de feedback, queremos saber un poco más acerca de tu experiencia en HeladitosApp, solo te llevará unos minutos y nos ayudará a mejorar día a día.
         </chakra.p>
         <chakra.form w="full" mb={0} display="flex" alignItems="center" justifyContent="space-between" pt="2rem" >
-            {/* size="lg"
+          {/* size="lg"
             w="full"
             display={{
               base: "none",
               lg: "flex",
-            }} */}      
-              <Link href="/" style={{ textDecoration: 'none'}}>
+            }} */}
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <Button
+              color="white"
+              variant="solid"
+              colorScheme="rosado.normal"
+              size="lg"
+              bg="rosado.original"
+              w="9rem"
+              leftIcon={<ArrowBackIcon />}
+            >
+              Ir al inicio
+            </Button>
+          </Link>
+          <Link href="/payment/feedback" style={{ textDecoration: 'none' }}>
+            <Button
+              color="white"
+              variant="solid"
+              colorScheme="rosado.normal"
+              size="lg"
+              bg="rosado.original"
+              w="10rem"
+              rightIcon={<ArrowForwardIcon />}
+            >
+              Claro que si!
+            </Button>
+          </Link>
+          <Modal onClose={onClose} size={'sm'} isOpen={isOpen}>
+            <ModalOverlay />
+            <ModalContent bg={'verde.letras'}>
+              <ModalHeader>¡Pago exitoso!</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                ¿Desea generar un comprobante de pago?
+              </ModalBody>
+              <ModalFooter>
                 <Button
+                  mr={15}
+                  onClick={onClose}
                   color="white"
                   variant="solid"
-                  colorScheme="rosado.normal"
-                  size="lg"
                   bg="rosado.original"
-                  w="9rem"
-                  leftIcon={<ArrowBackIcon />}
-                >
-                  Ir al inicio
+                  colorScheme="rosado.normal">
+                  No, Gracias
                 </Button>
-              </Link>
-              <Link href="/payment/feedback" style={{ textDecoration: 'none'}}>
-                <Button
-                  color="white"
-                  variant="solid"
-                  colorScheme="rosado.normal"
-                  size="lg"
-                  bg="rosado.original"
-                  w="10rem"
-                  rightIcon={<ArrowForwardIcon />}
-                >
-                  Claro que si!
-                </Button>
-              </Link>
+                <a href={`${process.env.REACT_APP_SERVER_URL}/GeneraComprobante?compra_id=${compra_id}`} rel="noopener" target="_blank">
+                  <Button
+                    onClick={onClose}
+                    color="white"
+                    variant="solid"
+                    colorScheme="rosado.normal"
+                    bg="rosado.original"
+
+                    ml={20} >
+                    Si!, Por favor</Button>
+                </a>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+
         </chakra.form>
       </Flex>
       <Box>
@@ -126,8 +169,8 @@ const PaymentSuccess = () => {
           loading="lazy"
         />
       </Box>
-    </SimpleGrid>
-  )  
+    </SimpleGrid >
+  )
 }
 
 export default PaymentSuccess;

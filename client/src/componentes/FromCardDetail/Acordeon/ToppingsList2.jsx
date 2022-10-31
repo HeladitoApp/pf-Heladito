@@ -105,7 +105,7 @@ export default function ToppingsList2({ checkedToppings2, setCheckedToppings2 })
                 <h2>
                     <AccordionButton>
                         <Box flex='1' textAlign='left'>
-                            Elige los toppings que deseas
+                            Elige los toppings que deseas para el segundo 
                         </Box>
                         <AccordionIcon />
                     </AccordionButton>

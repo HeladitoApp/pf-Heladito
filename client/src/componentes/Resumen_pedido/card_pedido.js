@@ -42,7 +42,7 @@ export default function CardPedido({ productosCarrito, setproductosCarrito,dispo
             boxShadow='2xl'
             rounded="30px">
             <Stack direction='row' >
-                <Image src={img} boxSize='120px' />
+                <Image src={img} boxSize='18%' />
                 <Heading as='h4' fontSize='2xl' pt={8} noOfLines={2}>{name}</Heading>
                 <Spacer />
                 <Button colorScheme='red' variant='ghost' onClick={() => { deleteCarrito(id) }} >
@@ -50,12 +50,13 @@ export default function CardPedido({ productosCarrito, setproductosCarrito,dispo
                 </Button>
             </Stack>
             <Heading fontSize='xl' p={3} color={'rosado.normal'}> Toppings </Heading>
-            <Stack direction='row' spacing={2}>
+            <Stack direction='row' spacing={2} flexWrap='wrap'>
 
-                {toppings && toppings[0].map((t, index) => (
-                    <Badge key={index} colorScheme='purple' borderRadius={'10px'} px={2}>{t}</Badge>
+                {toppings && toppings.map(e=>
+                e.map((t, index) => ( 
+                    <Badge key={index} colorScheme='purple' borderRadius={'10px'}>{t}</Badge>
 
-                ))}
+                )))}
             </Stack>
             <Flex mt={4} p={2}>
                 <Button onClick={() => setContador('menos')} colorScheme='red' variant='outline' size='sm' borderRadius={'full'} disabled={contador !== 1 ? false : true}>

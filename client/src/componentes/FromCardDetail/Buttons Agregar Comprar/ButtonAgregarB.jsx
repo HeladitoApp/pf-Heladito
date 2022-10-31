@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
-const ButtonAgregarBombonesShakes = ({ id, image, name, price, type, contador }) => {
+const ButtonAgregarB = ({ id, image, name, price, type, sabores, checkedToppings, contador }) => {
 
     const [addProduct, setAddProduct] = useLocalStorage(keyCarrito, []);
 
@@ -23,21 +23,23 @@ const ButtonAgregarBombonesShakes = ({ id, image, name, price, type, contador })
             price: price,
             type: type,
             cantidad: contador,
-            /* flavors: [],
-            toppings: [], */
+            flavors: [sabores],
+            toppings: [checkedToppings],
         }
         console.log(newProduct)
-        if (contador === 0) {
+        if (contador === 0 || sabores === [''] || checkedToppings === []) {
             swal({
-                title: 'Porfavor, selecciona cuantos shakes deseas!',
+                title: 'Porfavor, verifique que todas las secciones estén completas',
                 icon: "info",
                 button: "aceptar"
             })
         }
+
         else if (id && image &&
             name && price &&
-            type && contador 
-            ) {
+            type && contador &&
+            sabores.length > 0 &&
+            checkedToppings.length > 0) {
             setAddProduct([...addProduct,
                 newProduct])
             swal({
@@ -59,4 +61,4 @@ const ButtonAgregarBombonesShakes = ({ id, image, name, price, type, contador })
     )
 }
 
-export default ButtonAgregarBombonesShakes;
+export default ButtonAgregarB;

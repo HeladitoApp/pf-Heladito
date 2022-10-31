@@ -5,7 +5,7 @@ import HeaderComponent from "../../componentes/chatBot/Header";
 import steps from '../../config/steps';
 import chat_styles from '../../config/chatstyles'
 import botAvatar from '../../assets/bot.jpg'
-import botUsuario from '../../assets/usuario.png'
+import botUsuario from '../../assets/userhappy.png'
 
 
 
@@ -20,7 +20,7 @@ import botUsuario from '../../assets/usuario.png'
                 
                 <ChatBot  steps={steps}
                   userAvatar={botUsuario}
-                  /* headerComponent={<HeaderComponent />} */
+                  /*  headerComponent={<HeaderComponent />}  */
                   headerTitle="Boty-Heladito"
                   placeholder="Escribe algo..."
                   customDelay="500"

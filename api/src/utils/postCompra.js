@@ -24,8 +24,8 @@ await Promise.all(
   const NewCompra = new Compras({
     productos: productsId,
      sumaTotal: total,
-    // metodoDePago: "mercadopago",
-    // pagado: true,
+     pagado: false,
+     metodoDePago:"Mercado pago",
     usuario: user.email, //con user._id sólo me trae el id del usuario sino pongo nada me trae toooodo el objeto
   });
 

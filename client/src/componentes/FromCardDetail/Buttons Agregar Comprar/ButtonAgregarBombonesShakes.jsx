@@ -23,8 +23,8 @@ const ButtonAgregarBombonesShakes = ({ id, image, name, price, type, contador })
             price: price,
             type: type,
             cantidad: contador,
-            flavors: [],
-            toppings: [],
+            /* flavors: [],
+            toppings: [], */
         }
         console.log(newProduct)
         if (contador === 0) {
@@ -34,7 +34,6 @@ const ButtonAgregarBombonesShakes = ({ id, image, name, price, type, contador })
                 button: "aceptar"
             })
         }
-
         else if (id && image &&
             name && price &&
             type && contador 

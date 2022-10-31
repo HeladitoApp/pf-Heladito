@@ -317,7 +317,7 @@ export default function ActualizarExtra() {
               _dark={{ borderColor: "whiteAlpha.300" }}
               visibility={{ base: "hidden", sm: "visible" }}
             />
-            <Link to={'/admin'}>
+            <Link to={'/admin/modificar_toppings'}>
                 <Button
                   borderRadius={'full'}
                   colorScheme='pink' variant='solid'>

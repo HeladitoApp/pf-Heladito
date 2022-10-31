@@ -12,7 +12,7 @@ const Header = () => {
         <Text  p={2} fontFamily={'family.heading'} as='h4' fontSize='2xl'>
           Boty-heladito
         </Text>
-        {/* <Text color="green.500">Online</Text> */}
+        <Text color="green.500">Online</Text> 
       </Flex>
       
       
@@ -21,3 +21,5 @@ const Header = () => {
 };
 
 export default Header;
+ 
+

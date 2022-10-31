@@ -65,7 +65,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link href='/sobre_nosotros' textTransform="uppercase">Sobre nosotros</Link>
+                <Link href='/sobre_nosotros' textTransform="uppercase" color='celeste.original' fontWeight='semibold'>Sobre nosotros</Link>
               </Flex>
             </HStack>
             <HStack
@@ -86,7 +86,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link href='/reviews' textTransform="uppercase">Reseñas</Link>
+                <Link href='/reviews' textTransform="uppercase" color='celeste.original' fontWeight='semibold'>Reseñas</Link>
               </Flex>
             </HStack>
             <HStack
@@ -107,7 +107,7 @@ const Footer = () => {
               }}
             >
               <Flex justify="start" direction="column">
-                <Link href='/contactanos' textTransform="uppercase">Contáctanos</Link>
+                <Link href='/contactanos' textTransform="uppercase" color='celeste.original' fontWeight='semibold'>Contáctanos</Link>
               </Flex>
             </HStack>
             <Center>
@@ -196,7 +196,6 @@ const Footer = () => {
       </React.Fragment>
       :
       <FooterAdmin />
-
   )
 }
 

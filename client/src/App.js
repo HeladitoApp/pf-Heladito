@@ -49,8 +49,6 @@ import Informacion from "./page/Usuario/Información";
 
 function App() {
 
-  
-
   const [page, setPage] = useState(1);
   const { isLoading, logout } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();

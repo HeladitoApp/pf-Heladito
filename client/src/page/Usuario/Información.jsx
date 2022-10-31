@@ -25,20 +25,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateProduct } from '../../redux/actions/updateProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
-import { useParams } from "react-router"
-import { traerUsuariosById } from '../../redux/actions/getProductosById'
+//import { useParams } from "react-router"
+//import { traerUsuariosById } from '../../redux/actions/getProductosById'
 import { useAuth0 } from '@auth0/auth0-react';
 import { usuarioByEmail } from '../../redux/actions/getUsuarioByEmail';
 import { updateUsuario } from '../../redux/actions/updateUsuario';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 
-
-
 export default function Informacion() {
+
   const dispatch = useDispatch()
   const usuario = useSelector((state) => state.state.usuario[0])
+  console.log(usuario)
 
-    const { user, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
 
   const [input, setInput] = useState({
     name: null,
@@ -53,7 +53,7 @@ export default function Informacion() {
       dispatch(setLoading(false));
     }, 1500);
   }, [dispatch]);
-  
+
   function handleInputsChange(e) {
     setInput({
       ...input,
@@ -61,13 +61,13 @@ export default function Informacion() {
     })
 
   }
-  function handleSelectType(e) {
+  /* function handleSelectType(e) {
     setInput({
       ...input,
       type: e.target.value
     })
-  }
-  
+  } */
+
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -78,10 +78,10 @@ export default function Informacion() {
       button: "Aceptar"
     })
     setInput({
-        name: '',
-        email: '',
-        picture: '',
-        apodo: '',
+      name: '',
+      email: '',
+      picture: '',
+      apodo: '',
     })
   }
 
@@ -110,8 +110,8 @@ export default function Informacion() {
                 >
                   <GridItem colSpan={{ md: 1 }}>
                     <Box px={[4, 0]}>
-                      <Heading fontSize="2xl" fontWeight="medium" lineHeight="6">
-                        Mi información 
+                      <Heading fontSize="2xl" fontWeight="medium" lineHeight="6" color='rosado.original'>
+                        Mi información
                       </Heading>
                       <Text
                         mt={1}
@@ -119,10 +119,10 @@ export default function Informacion() {
                         color="gray.600"
                         _dark={{ color: "gray.400" }}
                       >
-                        Aquí encntrarás tu información personal.
+                        Aquí encontrarás tu información personal.
                         Para modificarla, completá todos los campos y dale click en "Guardar"
                       </Text>
-                      <Image src={usuario?.picture} p='1.5rem' minW="15rem"/>
+                      <Image src={usuario?.picture} p='1.5rem' minW="15rem" />
                     </Box>
                   </GridItem>
                   <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
@@ -168,7 +168,7 @@ export default function Informacion() {
                               className="error"
                             />
                           </FormControl>
-                          
+
                           <FormControl as={GridItem} colSpan={[6, 3]}>
                             <FormLabel
                               htmlFor="name"
@@ -195,7 +195,7 @@ export default function Informacion() {
                               className="error"
                             />
                           </FormControl>
-                          
+
                           <FormControl as={GridItem} colSpan={[6, 3]}>
                             <FormLabel
                               htmlFor="name"
@@ -221,7 +221,7 @@ export default function Informacion() {
                               rounded="md"
                               className="error"
                             />
-                          </FormControl>                    
+                          </FormControl>
 
                           <FormControl as={GridItem} colSpan={[6, 4]}>
                             <FormLabel
@@ -249,14 +249,14 @@ export default function Informacion() {
                                 placeholder="www.example.com"
                                 focusBorderColor="#5CE1E6"
                                 rounded="md"
-                                className="error"                            
+                                className="error"
                               />
                             </InputGroup>
                             <FormHelperText>
                               Ingrese la URL de la imagen.
                             </FormHelperText>
                           </FormControl>
-                                                
+
                         </SimpleGrid>
                       </Stack>
                       <Box
@@ -270,9 +270,10 @@ export default function Informacion() {
                           borderRadius="0.5rem"
                           variant='solid'
                           type="submit"
-                          colorScheme="blue"
+                          bg="celeste.original"
+                          color='white'
+                          fontWeight='semibold'
                           _focus={{ shadow: "" }}
-                          fontWeight="md"
                         >
                           Guardar
                         </Button>
@@ -288,11 +289,11 @@ export default function Informacion() {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 visibility={{ base: "hidden", sm: "visible" }}
               />
-            <Link href="/login/user/" style={{ textDecoration: 'none'}} /* pl={20} */>
-                <Button bg='rosado.normal'  mb="1rem" mt="0.5rem" leftIcon={<ArrowBackIcon />}>
-                    Volver
+              <Link href="/login/user/" style={{ textDecoration: 'none' }} /* pl={20} */>
+                <Button bg='rosado.normal' mb="1rem" mt="0.5rem" leftIcon={<ArrowBackIcon />}>
+                  Volver
                 </Button>
-            </Link>
+              </Link>
             </Box>
           </Box>
         </Box>

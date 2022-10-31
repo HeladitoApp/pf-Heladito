@@ -1,4 +1,5 @@
 import React from 'react';
+import swal from 'sweetalert';
 import {
     Box,
     Button,
@@ -39,7 +40,11 @@ const Feedback = ({ name, conformidad, puntaje, aspecto, descripcion, createdAt 
         setInput({
             aprobado: null
         })
-        alert('Feedback actualizada')
+        swal({
+            title:'Feedback actualizado!',
+            icon:"success",
+            button: "aceptar"
+        })
     }
 
 
@@ -75,6 +80,7 @@ const Feedback = ({ name, conformidad, puntaje, aspecto, descripcion, createdAt 
 
                                 <ModalFooter>
                                     <Button variant='ghost' mr={3} color='celeste.original' onClick={handleClick}>Aprovar feedback (reseñas)</Button>
+                                    {/* <Button variant='ghost' mr={3} color='celeste.original' onClick={handleClick}>Enviar reseña</Button> */}
                                     <Button bg='celeste.original' color='white' onClick={onClose}>
                                         Cerrar
                                     </Button>

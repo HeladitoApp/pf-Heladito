@@ -30,6 +30,7 @@ import { updateExtra } from '../../redux/actions/updateExtra';
 import { useDispatch, useSelector } from 'react-redux';
 import { traerExtraById } from '../../redux/actions/getExtraById';
 import { Link, useParams } from 'react-router-dom';
+import UploadImage from '../utils/UploadImage';
 
 
 
@@ -77,7 +78,7 @@ export default function ActualizarExtra() {
     swal({
       title: 'Extra actualizado con exito!',
       icon: "success",
-      button: "aceptar"
+      button: "Aceptar"
     })
     setInput({
       _id: '',
@@ -180,29 +181,9 @@ export default function ActualizarExtra() {
                           >
                             Imagen
                           </FormLabel>
-                          <InputGroup size="sm">
-                            <InputLeftAddon
-                              bg="gray.50"
-                              _dark={{ bg: "gray.800" }}
-                              color="gray.500"
-                              rounded="md"
-                              className="error"                          >
-                              http://
-                            </InputLeftAddon>
-                            <Input
-                              type="url"
-                              defaultValue={detail?.image}
-                              name='image'
-                              onChange={(e) => handleInputsChange(e)}
-                              placeholder="www.example.com"
-                              focusBorderColor="#5CE1E6"
-                              rounded="md"
-                              className="error"
-                            />
-                          </InputGroup>
-                          <FormHelperText>
-                            Ingrese la URL de la imagen.
-                          </FormHelperText>
+                          
+                          <UploadImage input={input} setInput={setInput} />
+
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 3]}>

@@ -23,7 +23,8 @@ import botUsuario from '../../assets/userhappy.png'
                   /*  headerComponent={<HeaderComponent />}  */
                   headerTitle="Boty-Heladito"
                   placeholder="Escribe algo..."
-                  customDelay="500"
+                  customDelay="100"
+                  botDelay="300"
                   botAvatar={botAvatar}
                   floating="true"
                   width="700px">

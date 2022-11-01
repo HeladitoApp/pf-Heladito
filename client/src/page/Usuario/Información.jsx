@@ -26,6 +26,9 @@ import Loading from '../../componentes/loading/loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { updateUsuario } from '../../redux/actions/updateUsuario';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
+import { usuarioByEmail } from '../../redux/actions/getUsuarioByEmail';
+import { traerUsuariosById } from '../../redux/actions/getUsuarioById';
 
 export default function Informacion() {
   const dispatch = useDispatch()
@@ -33,11 +36,15 @@ export default function Informacion() {
 
   const { user, isLoading } = useAuth0();
 
+  useEffect(()=>{
+    dispatch(traerUsuariosById(usuario._id))
+  }, [])
+
   const [input, setInput] = useState({
-    name: user?.name,
-    email: user?.email,
-    picture: user?.picture,
-    apodo: user?.apodo,
+    name: usuario?.name,
+    email: usuario?.email,
+    picture: usuario?.picture,
+    apodo: usuario?.apodo,
   })
 
   function handleInputsChange(e) {
@@ -51,16 +58,17 @@ export default function Informacion() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(updateUsuario(input));
+    //dispatch(usuarioByEmail(usuario?.email))
     swal({
       title: 'Información actualizada con exito!',
       icon: "success",
       button: "Aceptar"
     });
     setInput({
-      name: user?.name,
-      email: user?.email,
-      picture: user?.picture,
-      apodo: user?.apodo,
+      name: usuario?.name,
+      email: usuario?.email,
+      picture: usuario?.picture,
+      apodo: usuario?.apodo,
     });
   }
 

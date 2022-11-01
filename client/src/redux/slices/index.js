@@ -18,7 +18,8 @@ export const state = createSlice({
         messages:[],
         usuario: [],
         favoritos: [],
-        feedbacks:[]
+        feedbacks:[],
+        cantCompras:[]
     },
     reducers: {
         getProductoById: (state, action) => {
@@ -28,6 +29,7 @@ export const state = createSlice({
             state.usuarios = action.payload
         },
         getUsuarioByEmail: (state, action) => {
+            console.log(action.payload)
             state.usuario = action.payload
         },
         changeLoading: (state, action) => {
@@ -85,11 +87,14 @@ export const state = createSlice({
         },
         favByEmail: (state, action ) =>{
             state.favoritos = action.payload
+        },
+        cantidadCompras:(state,action) =>{
+            state.cantCompras = action.payload
         }
     }
 });
 
 
-export const { getUsuarioByEmail, getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail, favByEmail, getMessages, getFeedbacks  } = state.actions;
+export const { getUsuarioByEmail, getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail, favByEmail, getMessages, getFeedbacks,cantidadCompras  } = state.actions;
 
 export default state.reducer;

@@ -45,12 +45,12 @@ export default function ReporteCompras() {
         <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh">
             <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
                 <Box as="main" p="10">
-                    <Box p={4} border={'1px'} borderRadius={'10px'} bg={'#99ECEF'}>
+                    <Box p={4} border={'1px'} borderRadius={'10px'} bg={'#FFE6C1'}>
                         <Stack>
-                            <Heading textAlign={'center'} pb={4}>Reporte de compras</Heading>
+                            <Heading textAlign={'center'} pb={4} color={'rosado.original'}>Reporte de compras</Heading>
                             <Wrap spacing='20px'>
                                 <WrapItem>
-                                    <FormLabel>Fecha de inicio: </FormLabel>
+                                    <FormLabel >Fecha de inicio: </FormLabel>
                                     <Input type={'date'} w={'250px'} onChange={(e) => { ActualizarFechas(e, "inicio") }} />
                                 </WrapItem>
                                 <WrapItem>

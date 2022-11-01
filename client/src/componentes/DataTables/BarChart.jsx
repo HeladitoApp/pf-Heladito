@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux"
 import Chart from "react-apexcharts";
 import colors from "../../theme/colors";
 
-const BarChart = ({ title, data }) => {
+const BarChart = ({ title,data}) => {
 
     const dispatch = useDispatch();
     const types = useSelector((state) => state.state.types)
+    const cantCompras = useSelector(state => state.state.cantCompras);
+    
 
     const [options, setOptions] = useState({
         chart: {
@@ -46,10 +48,11 @@ const BarChart = ({ title, data }) => {
 
     })
 
-    const [series, setSeries] = useState([data])
+    const [series, setSeries] = useState([])
     useEffect(() => {
-
-    })
+     /* setSeries([data]) */
+    
+    }) 
 
     return (
         <Stack my={3} boxShadow='dark-lg' p={15}>
@@ -60,7 +63,7 @@ const BarChart = ({ title, data }) => {
             >
                 {title}
             </Text>
-            <Chart options={options} series={series} type={'bar'} width='150%' align='center'
+            <Chart options={options} series={[data]} type={'bar'} width='150%' align='center'
                 height='100%' />
         </Stack>
     )

@@ -32,7 +32,7 @@ const FooterAdmin = () => {
                     bg: "gray.800",
                 }}
             >
-                <chakra.a
+                <Link
                     href="#"
                     fontSize="xl"
                     fontWeight="bold"
@@ -48,7 +48,7 @@ const FooterAdmin = () => {
                     }}
                 >
                     HeladitosApp
-                </chakra.a>
+                </Link>
 
                 <chakra.p
                     py={{

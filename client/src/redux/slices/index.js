@@ -28,6 +28,7 @@ export const state = createSlice({
             state.usuarios = action.payload
         },
         getUsuarioByEmail: (state, action) => {
+            console.log(action.payload)
             state.usuario = action.payload
         },
         changeLoading: (state, action) => {

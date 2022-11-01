@@ -22,7 +22,12 @@ import {
   Textarea,
   chakra,
   Divider,
-  Image
+  Image,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,7 +76,7 @@ export default function ActualizarProducto() {
       type: e.target.value
     })
   }
-  
+
   function handleSelectDetail(e) {
     setInput({
       ...input,
@@ -251,12 +256,8 @@ export default function ActualizarProducto() {
                             >
                               Precio
                             </FormLabel>
-                            <Input
-                              type="number"
-                              defaultValue={detail?.price}
-                              onChange={(e) => handleInputsChange(e)}
+                            <NumberInput defaultValue={detail?.price} precision={2} step={0.1}
                               name="price"
-                              id="price"
                               mt={1}
                               focusBorderColor="#5CE1E6"
                               shadow="sm"
@@ -264,7 +265,14 @@ export default function ActualizarProducto() {
                               w="full"
                               rounded="md"
                               className="error"
-                            />
+
+                            >
+                              <NumberInputField
+                                onChange={(e) => handleInputsChange(e)}
+
+                              />
+
+                            </NumberInput>
                           </FormControl>
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -275,14 +283,10 @@ export default function ActualizarProducto() {
                               color="gray.700"
                               _dark={{ color: "gray.50" }}
                             >
-                              Stock
+                              Precio
                             </FormLabel>
-                            <Input
-                              type="number"
-                              defaultValue={detail?.stock}
-                              onChange={(e) => handleInputsChange(e)}
+                            <NumberInput defaultValue={detail?.stock} precision={0} step={1}
                               name="stock"
-                              id="stock"
                               mt={1}
                               focusBorderColor="#5CE1E6"
                               shadow="sm"
@@ -290,8 +294,16 @@ export default function ActualizarProducto() {
                               w="full"
                               rounded="md"
                               className="error"
-                            />
+
+                            >
+                              <NumberInputField
+                                onChange={(e) => handleInputsChange(e)}
+                              />
+
+                            </NumberInput>
                           </FormControl>
+
+
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
                             <FormLabel
@@ -325,39 +337,39 @@ export default function ActualizarProducto() {
                           </FormControl>
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
-                          <FormLabel
-                            htmlFor="country"
-                            fontSize="sm"
-                            fontWeight="md"
-                            color="gray.700"
-                            _dark={{ color: "gray.50" }}
-                          >
-                            Elige un modelo de detalle
-                          </FormLabel>
-                          <Select
-                            id="selectModel"
-                            defaultValue={'plaseholder'}
-                            onChange={e => handleSelectDetail(e)}
-                            mt={1}
-                            focusBorderColor="#5CE1E6"
-                            shadow="sm"
-                            size="sm"
-                            w="full"
-                            rounded="md"
-                            className="error"
-                          >
-                            <option hidden value='plaseholder'>Modelos</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                            <option value="F">F</option>
-                            <option value="G">G</option>
-                            <option value="I">I</option>
-                          </Select>
-                          {errors.detailModel && (<p className="error">{errors.detailModel}</p>)}
-                        </FormControl>
+                            <FormLabel
+                              htmlFor="country"
+                              fontSize="sm"
+                              fontWeight="md"
+                              color="gray.700"
+                              _dark={{ color: "gray.50" }}
+                            >
+                              Elige un modelo de detalle
+                            </FormLabel>
+                            <Select
+                              id="selectModel"
+                              defaultValue={'plaseholder'}
+                              onChange={e => handleSelectDetail(e)}
+                              mt={1}
+                              focusBorderColor="#5CE1E6"
+                              shadow="sm"
+                              size="sm"
+                              w="full"
+                              rounded="md"
+                              className="error"
+                            >
+                              <option hidden value='plaseholder'>Modelos</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                              <option value="D">D</option>
+                              <option value="E">E</option>
+                              <option value="F">F</option>
+                              <option value="G">G</option>
+                              <option value="I">I</option>
+                            </Select>
+                            {errors.detailModel && (<p className="error">{errors.detailModel}</p>)}
+                          </FormControl>
                         </SimpleGrid>
                       </Stack>
                       <Box

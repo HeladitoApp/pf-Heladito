@@ -26,7 +26,7 @@ import { addProduct } from '../../redux/actions/addProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
 import {Link} from 'react-router-dom'
-import UploadImage from './UploadImage';
+import UploadImage from '../utils/UploadImage';
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { traerUsuarios } from '../../redux/actions/getUsuarioByName';
+import { traerUsuarios, traerUsuariosE } from '../../redux/actions/getUsuarioByName';
 import { IconButton, InputGroup, InputLeftElement, Input, Flex } from '@chakra-ui/react'
 import { ImSearch } from "react-icons/im";
 import { AiOutlineUser } from "react-icons/ai";
@@ -9,19 +9,23 @@ import { AiOutlineUser } from "react-icons/ai";
 export default function SearchUsuario() {
     const dispatch = useDispatch()
     const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+
 
     function handelInputChange(e) {
         e.preventDefault()
         setName(e.target.value)
+        setEmail(e.target.value)
     }
 
     function handelSubmit(e) {
         e.preventDefault()
         dispatch(traerUsuarios(name))
+        dispatch(traerUsuariosE(email))
     }
 
     const handleKeyDown = (e) => {
-        if (e.keyCode === 13) { dispatch(traerUsuarios(name)) }
+        if (e.keyCode === 13) {  dispatch(traerUsuariosE(email)) }
     };
 
     return (

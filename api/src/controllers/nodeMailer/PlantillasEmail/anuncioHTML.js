@@ -950,7 +950,7 @@ async function anuncioHtml(anuncio) {
                                         "
                                         ><img
                                           class="adapt-img"
-                                          src=${anuncio.img}
+                                          src=${anuncio.image}
                                           alt="Consulta nuestros productos"
                                           style="
                                             display: block;
@@ -1373,7 +1373,7 @@ async function anuncioHtml(anuncio) {
 ${anuncio.titulo} ---> h1
 ${anuncio.name} ---> p
 ${anuncio.info} ---> p
-${anuncio.img} ---> src (url)
+${anuncio.image} ---> src (url)
 */
 
 module.exports = {

@@ -13,7 +13,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     onOpen()
 
-  }, [])
+  }, [onOpen])
 
   return (
     <SimpleGrid

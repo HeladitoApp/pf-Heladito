@@ -20,69 +20,48 @@ import {
   Image,
   Link
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProduct } from '../../redux/actions/updateProduct';
-import { setLoading } from '../../redux/actions/loading';
 import Loading from '../../componentes/loading/loading';
-import { useParams } from "react-router"
-import { traerUsuariosById } from '../../redux/actions/getProductosById'
 import { useAuth0 } from '@auth0/auth0-react';
-import { usuarioByEmail } from '../../redux/actions/getUsuarioByEmail';
 import { updateUsuario } from '../../redux/actions/updateUsuario';
 import { ArrowBackIcon } from '@chakra-ui/icons';
-
-
 
 export default function Informacion() {
   const dispatch = useDispatch()
   const usuario = useSelector((state) => state.state.usuario[0])
 
-    const { user, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
 
   const [input, setInput] = useState({
-    name: null,
-    email: null,
-    picture: null,
-    apodo: null,
+    name: user?.name,
+    email: user?.email,
+    picture: user?.picture,
+    apodo: user?.apodo,
   })
-  useEffect(() => {
-    dispatch(usuarioByEmail(user.email))
-    dispatch(setLoading(true));
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 1500);
-  }, [dispatch]);
-  
+
   function handleInputsChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
     })
-
+    console.log(input);
   }
-  function handleSelectType(e) {
-    setInput({
-      ...input,
-      type: e.target.value
-    })
-  }
-  
 
   function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(updateUsuario(input))
+    e.preventDefault();
+    dispatch(updateUsuario(input));
     swal({
       title: 'Información actualizada con exito!',
       icon: "success",
       button: "Aceptar"
-    })
+    });
     setInput({
-        name: '',
-        email: '',
-        picture: '',
-        apodo: '',
-    })
+      name: user?.name,
+      email: user?.email,
+      picture: user?.picture,
+      apodo: user?.apodo,
+    });
   }
 
   if (isLoading) {
@@ -119,7 +98,7 @@ export default function Informacion() {
                         color="gray.600"
                         _dark={{ color: "gray.400" }}
                       >
-                        Aquí encntrarás tu información personal.
+                        Aquí encontrarás tu información personal.
                         Para modificarla, completá todos los campos y dale click en "Guardar"
                       </Text>
                       <Image src={usuario?.picture} p='1.5rem' minW="15rem"/>
@@ -154,7 +133,7 @@ export default function Informacion() {
                             </FormLabel>
                             <Input
                               type="text"
-                              // value={input.name} 
+                              // value={usuario?.name} 
                               name='name'
                               defaultValue={usuario?.name}
                               onChange={(e) => handleInputsChange(e)}
@@ -181,7 +160,7 @@ export default function Informacion() {
                             </FormLabel>
                             <Input
                               type="text"
-                              // value={input.name} 
+                              // value={usuario?.apodo} 
                               name='apodo'
                               defaultValue={usuario?.apodo}
                               onChange={(e) => handleInputsChange(e)}
@@ -208,7 +187,7 @@ export default function Informacion() {
                             </FormLabel>
                             <Input
                               type="text"
-                              // value={input.name} 
+                              // value={usuario?.email} 
                               name='email'
                               defaultValue={usuario?.email}
                               onChange={(e) => handleInputsChange(e)}
@@ -243,8 +222,9 @@ export default function Informacion() {
                               </InputLeftAddon>
                               <Input
                                 type="url"
+                                // value={usuario?.picture}
                                 defaultValue={usuario?.picture}
-                                name='image'
+                                name='picture'
                                 onChange={(e) => handleInputsChange(e)}
                                 placeholder="www.example.com"
                                 focusBorderColor="#5CE1E6"

@@ -18,6 +18,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +26,7 @@ import { addProduct } from '../../redux/actions/addProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
 import {Link} from 'react-router-dom'
+import UploadImage from './UploadImage';
 
 
 
@@ -232,6 +234,7 @@ export default function AgregarProducto2() {
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 4]}>
+                          
                           <FormLabel
                             fontSize="sm"
                             fontWeight="md"
@@ -240,30 +243,9 @@ export default function AgregarProducto2() {
                           >
                             Imagen
                           </FormLabel>
-                          <InputGroup size="sm">
-                            <InputLeftAddon
-                              bg="gray.50"
-                              _dark={{ bg: "gray.800" }}
-                              color="gray.500"
-                              rounded="md"
-                              className="error"                          >
-                              http://
-                            </InputLeftAddon>
-                            <Input
-                              type="url"
-                              value={input.image}
-                              name='image'
-                              onChange={(e) => handleInputsChange(e)}
-                              placeholder="www.example.com"
-                              focusBorderColor="#5CE1E6"
-                              rounded="md"
-                              className="error"
-                            />
-                          </InputGroup>
-                          {errors.image && (<p className="error">{errors.image}</p>)}
-                          <FormHelperText>
-                            Ingrese la URL de la imagen.
-                          </FormHelperText>
+                              
+                          <UploadImage input={input} setInput={setInput} />
+
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 3]}>

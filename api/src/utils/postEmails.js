@@ -8,10 +8,13 @@ async function postEmails(data) {
   const anuncio = data;
 
   try {
-    const mensajeHtml = await anuncioHtml(anuncio); //plantilla de html
+    const mensajeHtml = await anuncioHtml(anuncio);
 
-    const users = await Usuarios.find(null, { email: 1, _id: 0 });
-    const emailUsers = users.map((e) => e.email);
+    const users = await Usuarios.find(null, { email: 1, _id: 0, activo: 1 });
+    const filterUser = users.map((e) => e.activo == true);
+    const emailUsers = filterUser.map((e) => e.email);
+
+    console.log(filterUser);
 
     if (!anuncio) {
       throw new Error(
@@ -30,7 +33,7 @@ async function postEmails(data) {
         console.log("mensaje enviado: %s", info.messageId);
       }
 
-      sendMail(emailUsers);
+      //sendMail(emailUsers);
 
       return "El mensaje se ha enviado correctamente";
     }

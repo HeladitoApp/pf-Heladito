@@ -7,14 +7,10 @@ async function sendFacturaMail(user, compra) {
   // console.log(user, compra,'Email Compras');
   try {
     if (!user) {
-<<<<<<< HEAD
       throw new Error({
         message:
           "Error. El Email no fue enviado. Verificar los datos traidos desde el controlador de Mercado Pago",
       });
-=======
-      throw new Error({ message: "Error. El Email no fue enviado. Verificar los datos traidos desde el controlador de Mercado Pago" });
->>>>>>> 288651242752a58def2d4b942506d34799f5fb24
     } else {
       const transporter = createTransporter();
       const info = await transporter.sendMail({

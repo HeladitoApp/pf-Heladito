@@ -12,7 +12,7 @@ export default function ComprasCliente() {
     let compras = useSelector(state => state.state.compras)
     const [FiltroCompra, setFiltroCompra] = useState(compras)
     let paginas = [];
-    for (let i = 1; i < compras.length / 15 + 1; i++) { paginas.push(i) }
+    for (let i = 1; i < compras.length / 10 + 1; i++) { paginas.push(i) }
     const [paginit, setpaginit] = useState(0)
     const [pagfinal, setpagfinal] = useState(10)
     //pagina no lo que se muestra

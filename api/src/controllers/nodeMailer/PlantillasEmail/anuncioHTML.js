@@ -1366,7 +1366,7 @@ async function anuncioHtml(anuncio) {
       </div>
     </body>
   </html>
-  ;`;
+  ;`
 }
 
 /* 

@@ -13,9 +13,9 @@ class PaymentService {
       payer_email: "test_user_46945293@testuser.com" /* datos.usuario */,
       items: datos.productos,
       back_urls: {
-        failure: `http://localhost:3000/payment/failure`,
-        pending: `http://localhost:3000/payment/pending`,
-        success: `http://localhost:3800/payment/success?compra_id=${compra._id}`,
+        failure: `${process.env.BACK_APP_FRONT_URL}/payment/failure`,
+        pending: `${process.env.BACK_APP_FRONT_URL}/payment/pending`,
+        success: `${process.env.BACK_APP_SERVER_URL}/payment/success?compra_id=${compra._id}`,
       },
     };
 

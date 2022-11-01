@@ -18,12 +18,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const UserHome = () => {
   const { user } = useAuth0();
-  const { picture, name, email } = user;
   const { logout } = useAuth0()
   const dispatch = useDispatch();
-  const usuariosss = useSelector((state) => state.state.usuario);
-  let id = usuariosss[0]?._id
-  console.log(user);
+  const usuariosss = useSelector((state) => state.state.usuario[0]);
+  let id = usuariosss?._id;
+  const { picture, name, email } = usuariosss;
+  
+  console.log(usuariosss);
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }

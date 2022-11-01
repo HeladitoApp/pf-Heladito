@@ -1,6 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import AboutUs from '../page/About/AboutUs'
+import Creadores from '../page/Chat/Creadores';
  
  const steps = [
   {
@@ -54,8 +55,15 @@ import AboutUs from '../page/About/AboutUs'
         {value: "h", label: "Horarios", trigger: "Horarios"},
         {value: "d", label: "Dirección", trigger: "Direccion"},
         {value: "p", label: "Productos", trigger: "Productos"},
-        {value: "e", label: "Nuestra Empresa", trigger: "NuestraEmpresa"}, 
+        {value: "e", label: "Nuestra Empresa", trigger: "NuestraEmpresa"},
+        {value:"c", label:"Creadores", trigger:"Creadores"} 
     ]
+},
+{
+    id: "Creadores",
+    component: <Creadores/>,
+    asMessage: true,
+    trigger: "preguntaVuelta"
 },
 {
     id: "Horarios",

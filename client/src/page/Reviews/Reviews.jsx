@@ -1,117 +1,121 @@
 import {
-    Container,
-    Box,
-    chakra,
-    Flex,
-    Text,
-    Stack,
-    Avatar,
-    SimpleGrid,
-    useColorModeValue
-  } from '@chakra-ui/react';
-  
-  
-  const testimonials = [
-    {
-      name: 'Batman Wayne',
-      position: 'CEO',
-      company: 'Olpers',
-      image:
-        'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80',
-      content: `Los mejores heladitos de toda Ciudad Gótica`
-    },
-    {
-      name: 'Daenerys Targaryen',
-      position: 'GM',
-      company: 'Olpers',
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80',
-      content: `Ideales para cualquier momento del día, super frescos!`
-    },
-    {
-      name: 'Ben Bohmer',
-      position: 'CFO',
-      company: 'Olpers',
-      image:
-        'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80',
-      content: `Los preferidos de todos en mi grupo de trabajo`
-    },
-    {
-      name: 'Chakra Uber',
-      position: 'CFO',
-      company: 'Olpers',
-      image:
-        'https://images.unsplash.com/photo-1606513542745-97629752a13b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
-      content: `Lúcuma mi sabor favorito!! No puedo comer heladitos de ningún otro lado`
-    }
-  ];
-  
-  const Reviews = () => {
+  Container,
+  Box,
+  chakra,
+  Flex,
+  Text,
+  Stack,
+  Avatar,
+  SimpleGrid,
+  useColorModeValue,
+  Center
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../componentes/loading/loading';
+import Pagination from '../../componentes/Pagination/pagination';
+import { getAllFeedbacks } from '../../redux/actions/getAllFeedbacks';
+import { setLoading } from '../../redux/actions/loading';
+
+
+
+
+const Reviews = () => {
+
+  const testimonials = useSelector((state) => state.state.feedbacks);
+  const loading = useSelector((state) => state.state.loading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllFeedbacks());
+    dispatch(setLoading(true));
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 1500);
+  }, [dispatch]);
+
+  const [pageReview, setPageReview] = useState(1);
+  const [perPage, setPerPage] = useState(4);
+  const max = Math.ceil(testimonials.length / perPage);
+
+  const fondo = useColorModeValue('#E9FBFC', 'gray.600')
+
+  if (loading) {
     return (
-      <Container maxW="5xl" py={10} px={6} bg={useColorModeValue('#E9FBFC', 'gray.600')}>
+      <Loading />
+    )
+  }
+  else {
+
+    return (
+      <Container maxW="5xl" py={10} px={6} bg={fondo}>
         <Flex justify="center" mb={8}>
           <chakra.h3 fontSize="3xl" fontWeight="bold" mb={3} textAlign="center" color='#ff66c4'>
             Lo que la gente anda diciendo de nosotros
           </chakra.h3>
         </Flex>
         <SimpleGrid columns={{ base: 1, md: 2 }} placeItems="center" spacing={1} mt={12} mb={4}>
-          {testimonials.map((obj, index) => (
-            <Stack
-              key={index}
-              direction={{ base: 'column', sm: 'row' }}
-              spacing={2}
-              mb={5}
-              justify="center"
-            >
+          {testimonials
+            ?.slice((pageReview - 1) * perPage, (pageReview - 1) * perPage + perPage)
+            .map((obj, index) => (
               <Stack
-                maxW="345px"
-                boxShadow="lg"
-                rounded="md"
-                p={6}
-                pos="relative"
-                bg="#FFF7EA"
-                _after={{
-                  content: `""`,
-                  w: '0',
-                  h: '0',
-                  borderColor: `transparent '#1a202c'`,
-                  borderStyle: 'solid',
-                  borderWidth: '10px 0 10px 10px',
-                  position: 'absolute',
-                  top: { base: 'unset', sm: '45%' },
-                  right: { base: 'unset', sm: '-10px' },
-                  left: { base: '48%', sm: 'unset' },
-                  bottom: { base: '-15px', sm: 'unset' },
-                  transform: { base: 'rotate(90deg)', sm: 'unset' },
-                  display: 'block'
-                }}
+                key={index}
+                direction={{ base: 'column', sm: 'row' }}
+                spacing={2}
+                mb={5}
+                justify="center"
               >
-                <Text fontWeight="medium" fontSize="sm">
-                  {obj.content}
-                </Text>
-              </Stack>
-              <Stack direction="column" spacing={2} p={2} justify="flex-end" alignItems="center">
-                <Avatar
-                  size="lg"
-                  showBorder={true}
-                  borderColor="green.400"
-                  name="avatar"
-                  src={obj.image}
-                />
-                <Box textAlign="center">
-                  <Text fontWeight="bold" fontSize="md">
-                    {obj.name}
+                <Stack
+                  w="345px"
+                  boxShadow="lg"
+                  rounded="md"
+                  p={6}
+                  pos="relative"
+                  bg="#FFF7EA"
+                  _after={{
+                    content: `""`,
+                    w: '0',
+                    h: '0',
+                    borderColor: `transparent '#1a202c'`,
+                    borderStyle: 'solid',
+                    borderWidth: '10px 0 10px 10px',
+                    position: 'absolute',
+                    top: { base: 'unset', sm: '45%' },
+                    right: { base: 'unset', sm: '-10px' },
+                    left: { base: '48%', sm: 'unset' },
+                    bottom: { base: '-15px', sm: 'unset' },
+                    transform: { base: 'rotate(90deg)', sm: 'unset' },
+                    display: 'block'
+                  }}
+                >
+                  <Text fontWeight="medium" fontSize="sm">
+                    {obj.descripcion}
                   </Text>
-                  {/* <Text fontWeight="medium" fontSize="xs" color="gray.400">
-                    {obj.position}, {obj.company}
-                  </Text> */}
-                </Box>
+                </Stack>
+                <Stack direction="column" spacing={2} p={2} justify="flex-end" alignItems="center">
+                  <Avatar
+                    size="lg"
+                    showBorder={true}
+                    borderColor="green.400"
+                    name="avatar"
+                    src={obj.picture}
+                  />
+                  <Box textAlign="center">
+                    <Center>
+                      <Text fontWeight="bold" fontSize="xs" w="150px">
+                        {obj.nombre}
+                      </Text>
+                    </Center>
+                  </Box>
+                </Stack>
               </Stack>
-            </Stack>
-          ))}
+            ))}
         </SimpleGrid>
+        <Pagination page={pageReview} setPage={setPageReview} max={max} />
       </Container>
     );
-  };
-  
-  export default Reviews;
+  }
+};
+
+export default Reviews;

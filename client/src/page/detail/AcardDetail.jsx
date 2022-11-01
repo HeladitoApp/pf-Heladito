@@ -98,7 +98,7 @@ export default function AcardDetail() {
           justifyContent='center'
           spacing='5' >
           {product.map((detail, index) => (
-            <HStack key={index} align="flex-start">
+            <Stack key={index} align="flex-start" flexDirection={{ base: "column", md: "row" }}>
               <VStack
                 className={s.cont1}
                 // maxW="20rem"
@@ -201,7 +201,7 @@ export default function AcardDetail() {
                 </Stack>
                 <HStack
                   spacing={10}
-                  /* direction={['column', 'row']} */
+                  flexDirection={{ base: "column", md: "row" }}
                   align='center'
                   justify='content'
                   h='4em'
@@ -229,7 +229,7 @@ export default function AcardDetail() {
                     contador={contador} />
                 </HStack>
               </Stack>
-            </HStack>
+            </Stack>
 
           ))}
 

@@ -8,7 +8,9 @@ import {
   Avatar,
   SimpleGrid,
   useColorModeValue,
-  Center
+  Center,
+  Icon,
+  HStack
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +18,7 @@ import Loading from '../../componentes/loading/loading';
 import Pagination from '../../componentes/Pagination/pagination';
 import { getAllFeedbacks } from '../../redux/actions/getAllFeedbacks';
 import { setLoading } from '../../redux/actions/loading';
-
+import { FaStar } from 'react-icons/fa'
 
 
 
@@ -40,6 +42,8 @@ const Reviews = () => {
   const max = Math.ceil(testimonials.length / perPage);
 
   const fondo = useColorModeValue('#E9FBFC', 'gray.600')
+
+  const renderStars = (num) => Array.from({ length: num }, (_, i) => <span key={i}><Icon as={FaStar} w={6} h={6} color={'gold'} /></span>)
 
   if (loading) {
     return (
@@ -92,18 +96,22 @@ const Reviews = () => {
                   <Text fontWeight="medium" fontSize="sm">
                     {obj.descripcion}
                   </Text>
+                  <HStack>
+                    <Box>{renderStars(obj.puntaje)}</Box>
+                    <Text fontWeight={'light'} fontSize="sm">{`${obj.puntaje} / 5`}</Text>
+                  </HStack>
                 </Stack>
-                <Stack direction="column" spacing={2} p={2} justify="flex-end" alignItems="center">
+                <Stack direction="column" spacing={1} p={1} justify="center" alignItems="center">
                   <Avatar
                     size="lg"
                     showBorder={true}
-                    borderColor="green.400"
+                    borderColor="verde.fondo"
                     name="avatar"
                     src={obj.picture}
                   />
                   <Box textAlign="center">
                     <Center>
-                      <Text fontWeight="bold" fontSize="xs" w="150px">
+                      <Text fontWeight="bold" fontSize="xs" w="120px">
                         {obj.nombre}
                       </Text>
                     </Center>

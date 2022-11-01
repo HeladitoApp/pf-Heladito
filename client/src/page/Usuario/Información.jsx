@@ -26,12 +26,19 @@ import Loading from '../../componentes/loading/loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { updateUsuario } from '../../redux/actions/updateUsuario';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
+import { usuarioByEmail } from '../../redux/actions/getUsuarioByEmail';
+import { traerUsuariosById } from '../../redux/actions/getUsuarioById';
 
 export default function Informacion() {
   const dispatch = useDispatch()
   const usuario = useSelector((state) => state.state.usuario[0])
 
   const { user, isLoading } = useAuth0();
+
+  useEffect(()=>{
+    dispatch(traerUsuariosById(usuario._id))
+  }, [])
 
   const [input, setInput] = useState({
     name: usuario?.name,
@@ -51,6 +58,7 @@ export default function Informacion() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(updateUsuario(input));
+    //dispatch(usuarioByEmail(usuario?.email))
     swal({
       title: 'Información actualizada con exito!',
       icon: "success",

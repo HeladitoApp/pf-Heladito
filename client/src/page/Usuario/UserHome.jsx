@@ -17,14 +17,12 @@ import { updateUsuario } from '../../redux/actions/updateUsuario';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UserHome = () => {
-  const { user } = useAuth0();
   const { logout } = useAuth0()
   const dispatch = useDispatch();
   const usuariosss = useSelector((state) => state.state.usuario[0]);
   let id = usuariosss?._id;
-  const { picture, name, email } = usuariosss;
-  
   console.log(usuariosss);
+
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }
@@ -79,9 +77,9 @@ const UserHome = () => {
             <Avatar
               boxShadow="xl"
               size="xl"
-              src={picture}
+              src={usuariosss?.picture}
             />
-            <Text fontSize="lg" pl="1rem" fontWeight="semibold">{name}</Text>
+            <Text fontSize="lg" pl="1rem" fontWeight="semibold">{usuariosss?.name}</Text>
           </HStack>
           <Heading
             textAlign={{ base: 'center', sm: 'left' }}

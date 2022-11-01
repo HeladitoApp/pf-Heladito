@@ -29,6 +29,7 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
 import { usuarioByEmail } from '../../redux/actions/getUsuarioByEmail';
 import { traerUsuariosById } from '../../redux/actions/getUsuarioById';
+import UploadImage from '../../componentes/utils/UploadImage';
 
 export default function Informacion() {
   const dispatch = useDispatch()
@@ -43,7 +44,7 @@ export default function Informacion() {
   const [input, setInput] = useState({
     name: usuario?.name,
     email: usuario?.email,
-    picture: usuario?.picture,
+    image: usuario?.picture,
     apodo: usuario?.apodo,
   })
 
@@ -67,7 +68,7 @@ export default function Informacion() {
     setInput({
       name: usuario?.name,
       email: usuario?.email,
-      picture: usuario?.picture,
+      image: usuario?.image,
       apodo: usuario?.apodo,
     });
   }
@@ -219,30 +220,7 @@ export default function Informacion() {
                             >
                               Imagen de perfil
                             </FormLabel>
-                            <InputGroup size="sm">
-                              <InputLeftAddon
-                                bg="gray.50"
-                                _dark={{ bg: "gray.800" }}
-                                color="gray.500"
-                                rounded="md"
-                                className="error">
-                                http://
-                              </InputLeftAddon>
-                              <Input
-                                type="url"
-                                // value={usuario?.picture}
-                                defaultValue={usuario?.picture}
-                                name='picture'
-                                onChange={(e) => handleInputsChange(e)}
-                                placeholder="www.example.com"
-                                focusBorderColor="#5CE1E6"
-                                rounded="md"
-                                className="error"                            
-                              />
-                            </InputGroup>
-                            <FormHelperText>
-                              Ingrese la URL de la imagen.
-                            </FormHelperText>
+                            <UploadImage input={input} setInput={setInput} />
                           </FormControl>
                                                 
                         </SimpleGrid>

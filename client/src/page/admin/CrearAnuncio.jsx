@@ -27,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { sendEmail } from '../../redux/actions/sendEmail';
 import modelo from '../../assets/modelo-anuncio.png';
+import UploadImage from '../../componentes/utils/UploadImage';
 //import { Link } from 'react-router-dom';
 //import UsuariosRegistradosAdmin from '../../componentes/UsuariosRegistradosAdmin/UsuariosRegistradosAdmin';
 
@@ -38,8 +39,8 @@ function control(input) {
         error.name = 'Por favor, ingrese un nombre para el anuncio'
     } else if (input.info === '') {
         error.info = 'Por favor, ingrese la información del anuncio'
-    } else if (input.img === '') {
-        error.img = 'Por favor, ingrese la url de la imagen para elprodcto'
+    } else if (input.image === '') {
+        error.image = 'Por favor, ingrese la url de la imagen para elprodcto'
     } 
     return error
 }
@@ -54,7 +55,7 @@ const CrearAnuncio = () => {
     titulo: '',
     name: '',
     info: '',
-    img: '',
+    image: '',
   });
 
   console.log([input, setInput])
@@ -86,13 +87,13 @@ const CrearAnuncio = () => {
       input.titulo &&
       input.name &&
       input.info &&
-      input.img) {
+      input.image) {
       dispatch(sendEmail(input))
       setInput({
         titulo: '',
         name: '',
         info: '',
-        img: '',
+        image: '',
       })
       swal({
         title: 'Su anuncio fue creado  y enviado correctamente a todos sus usuarios!',
@@ -269,30 +270,9 @@ const CrearAnuncio = () => {
                             >
                               Imagen del anuncio o producto
                             </FormLabel>
-                            <InputGroup size="sm">
-                              <InputLeftAddon
-                                bg="gray.50"
-                                _dark={{ bg: "gray.800" }}
-                                color="gray.500"
-                                rounded="md"
-                                className="error"                          >
-                                http://
-                              </InputLeftAddon>
-                              <Input
-                                type="url"
-                                value={input.img}
-                                name='img'
-                                onChange={handleInputChange}
-                                placeholder="www.example.com"
-                                focusBorderColor="#5CE1E6"
-                                rounded="md"
-                                className="error"
-                              />
-                            </InputGroup>
-                            {errors.img && (<p className="error">{errors.img}</p>)}
-                            <FormHelperText>
-                              Ingrese la URL de la imagen.
-                            </FormHelperText>
+                            
+                            <UploadImage input={input} setInput={setInput} />
+
                           </FormControl>
 
                         </SimpleGrid>

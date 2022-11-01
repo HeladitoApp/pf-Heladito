@@ -6,3 +6,9 @@ export const traerUsuarios = (name) => (dispatch) => {
         .then(res => dispatch(getUsuarios(res.data)))
         .catch(e => alert(e.response.data.message))
 }
+
+export const traerUsuariosE = (email) => (dispatch) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/listaUsuarios/?email=${email}`)
+        .then(res => dispatch(getUsuarios(res.data)))
+        .catch(e => alert(e.response.data.message))
+}

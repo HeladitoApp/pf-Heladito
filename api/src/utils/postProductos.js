@@ -15,6 +15,7 @@ async function postProductos(data) {
       newInfo.price = data.price;
       newInfo.stock = data.stock;
       newInfo.type = data.type;
+      newInfo.detailModel = data.detailModel
 
       newInfo.save();
       return newInfo;

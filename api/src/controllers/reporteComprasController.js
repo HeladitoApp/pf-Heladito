@@ -6,15 +6,15 @@ async function reporteCompras(req, res) {
   const {fechaInicial,fechaFinal} = req.query;
   try {
     const result = await ReporteCompras(fechaInicial,fechaFinal);
-
+    console.log(result[0].productos);
             // Create a new instance of a Workbook class
-        var wb = new xl.Workbook();
+        const wb = new xl.Workbook();
 
         // Add Worksheets to the workbook
-        var ws = wb.addWorksheet('Compras');
+        const ws = wb.addWorksheet('Compras');
 
         // Create a reusable style
-        var style = wb.createStyle({
+        const style = wb.createStyle({
         font: {
             size: 12,
         },
@@ -42,7 +42,7 @@ async function reporteCompras(req, res) {
 
          }
         });
-        var styleTitulo = wb.createStyle({
+        const styleTitulo = wb.createStyle({
             font: {
                 bold: true
             },
@@ -67,9 +67,15 @@ async function reporteCompras(req, res) {
             .style(styleTitulo);
             indexT ++
         })
-
+        let StringProductos = ""
         let index =2;
         result.map(c=>{ 
+            StringProductos = ""
+
+            c.productos.map((p,n)=>{
+
+                StringProductos =`${p.name} ${StringProductos}`
+            })
             ws.column(index).setWidth(30);
   
             ws.cell(index, 1)
@@ -81,7 +87,7 @@ async function reporteCompras(req, res) {
             .style(style);
             
             ws.cell(index, 3)
-            .string('PRODUCTO 1')
+            .string(StringProductos)
             .style(style);
 
             ws.cell(index, 4)
@@ -93,7 +99,7 @@ async function reporteCompras(req, res) {
             .style(style);
             
             ws.cell(index, 6)
-            .string('Pagado')
+            .string(c.pagado?'Pagado':'Pendiente')
             .style(style);
 
             ws.cell(index, 7)
@@ -101,7 +107,7 @@ async function reporteCompras(req, res) {
             .style(style);
             index ++
         })
-
+        ws.column(3).setWidth(50);
         wb.write('Excel.xlsx', res);
 
   } catch (error) {

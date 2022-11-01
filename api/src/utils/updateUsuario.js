@@ -6,13 +6,14 @@ async function updateUsuario(body) {
       throw new Error("Error. No se ha podido actualizar el Usuario");
     } else {
       //console.log(body);
-      const usuarioId = await Usuarios.find({ _id: body._id });
-      const update = Usuarios.updateOne(
-        { _id: body._id },
+      const usuarioId = await Usuarios.findOne({ email: body.email });
+      //console.log(usuarioId)
+      const update =  Usuarios.updateOne(
+        { _id: usuarioId._id },
         {
           name: body.name ? body.name : usuarioId.name,
           password: body.password ? body.password : usuarioId.password,
-          email: body.mail ? body.mail : usuarioId.mail,
+          email: body.mail ? body.mail : usuarioId.email,
           activo: body.activo ? body.activo : usuarioId.activo,
           rol: body.rol ? body.rol : usuarioId.rol,
           apodo: body.apodo ? body.apodo : usuarioId.apodo,

@@ -34,10 +34,10 @@ export default function Informacion() {
   const { user, isLoading } = useAuth0();
 
   const [input, setInput] = useState({
-    name: user?.name,
-    email: user?.email,
-    picture: user?.picture,
-    apodo: user?.apodo,
+    name: usuario?.name,
+    email: usuario?.email,
+    picture: usuario?.picture,
+    apodo: usuario?.apodo,
   })
 
   function handleInputsChange(e) {
@@ -57,10 +57,10 @@ export default function Informacion() {
       button: "Aceptar"
     });
     setInput({
-      name: user?.name,
-      email: user?.email,
-      picture: user?.picture,
-      apodo: user?.apodo,
+      name: usuario?.name,
+      email: usuario?.email,
+      picture: usuario?.picture,
+      apodo: usuario?.apodo,
     });
   }
 

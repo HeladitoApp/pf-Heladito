@@ -131,12 +131,15 @@ let sumaD=0;
           let todayAnt = yyyy + '/' + ma  + '/' + da ;
           let monthAnt= yyyy + '/' + ma + '/' + 01 ; 
           
-          const ComprasDelMesAnt=await Compras.find({"createdAt" : {"$gt" : new Date(monthAnt), "$lte": new Date(month)}})
+          const ComprasDelMesAnt=await Compras.find({"createdAt" : {"$gt" : new Date(monthAnt)}})
           ComprasDelMesAnt.forEach( function(k){
             totalAnt    += 1;
             sumaAnt +=k.sumaTotal
           
           });  
+
+          sumaAnt=Math.abs(sumaAnt-suma)
+          totalAnt=Math.abs(totalAnt -total)
        
        let totalDAnt=0; 
        let sumaDAnt=0;

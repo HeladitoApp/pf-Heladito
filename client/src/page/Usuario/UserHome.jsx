@@ -21,7 +21,7 @@ const UserHome = () => {
   const dispatch = useDispatch();
   const usuariosss = useSelector((state) => state.state.usuario[0]);
   let email = usuariosss?.email;
-  console.log(usuariosss.email);
+  console.log(usuariosss?.email);
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })

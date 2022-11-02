@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import {
+    Divider,
     FormControl,
     GridItem,
     FormLabel,
@@ -13,30 +14,59 @@ import {
     Heading,
     Text,
     Stack,
-    Select,
     Button,
     chakra,
     Textarea,
+    Link,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../../redux/actions/addMessage';
+import { setLoading } from '../../redux/actions/loading';
+import Loading from '../../componentes/loading/loading';
 
+function control(input) {
+    let error = {}
+    if (input.name <= 1) {
+        error.name = 'Por favor, ingrese su nombre completo'
+    } else if (input.lastname <= 1) {
+        error.lastname = 'Por favor, ingrese su apellido completo'
+        /* } else if (!input.email.includes('2')) {
+            error.email = 'Por favor, ingrese un email válido' */
+    } else if (isNaN(input.contact)) {
+        error.contact = 'No puede contener espacios ni letras'
+    } else if (input.contact.legth >= 13) {
+        error.contact = 'No puede contener más de 13 dígitos'
+    } else if (!(input.contact[0]).includes('+')) {
+        error.contact = 'Debes ingresar el prefijo de tu país'
+    } else if (input.message === '') {
+        error.message = 'Por favor, ingresa un mensaje'
+    }
+    return error
+}
 
 const ContactUs = () => {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const loading = useSelector((state) => state.state.loading)
+
 
     const [input, setInput] = useState({
-        first_name: '',
-        last_name: '',
-        email_address: '',
-        country: '',
-        street_address: '',
-        city: '',
-        state: '',
-        postal_code: '',
+        name: '',
+        lastname: '',
+        email: '',
+        contact: '',
         message: '',
     });
 
-    console.log([input, setInput])
+    const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        dispatch(setLoading(true));
+        setTimeout(() => {
+            dispatch(setLoading(false));
+        }, 1500);
+    }, [dispatch]);
 
     const handleInputChange = (e) => {
         e.preventDefault();
@@ -44,60 +74,30 @@ const ContactUs = () => {
             ...input,
             [e.target.name]: e.target.value,
         })
-    }
-
-    const handleSelect = (e) => {
-        e.preventDefault()
-        setInput({
+        setErrors(control({
             ...input,
-            country: e.target.value,
-        }
-        )
-    }
-
-
-    function createMessage(e) {
-        let newMessage = []
-        newMessage.push({
-            first_name: e.first_name,
-            last_name: e.last_name,
-            email_address: e.email_address,
-            country: e.country,
-            street_address: e.street_address,
-            city: e.city,
-            state: e.state,
-            postal_code: e.postal_code,
-            message: e.message,
-        })
-        console.log(newMessage)
-        return newMessage
+            [e.target.name]: e.target.value
+        }))
     }
 
     const handleClick = (e) => {
         e.preventDefault();
-        if (input.first_name &&
-            input.last_name &&
-            input.email_address &&
-            //input.country && --- no esta tomando el país
-            input.street_address &&
-            input.city &&
-            input.state &&
-            input.postal_code &&
+        if (!input.errors &&
+            input.name &&
+            input.lastname &&
+            input.email &&
+            input.contact &&
             input.message) {
-            createMessage(input)
+            dispatch(addMessage(input))
             setInput({
-                first_name: '',
-                last_name: '',
-                email_address: '',
-                country: '',
-                street_address: '',
-                city: '',
-                state: '',
-                postal_code: '',
+                name: '',
+                lastname: '',
+                email: '',
+                contact: '',
                 message: '',
             })
             swal({
-                title: 'Su mensaje fue enviado correctamente. En breve nos podremos en contacto!',
+                title: 'Su mensaje fue enviado correctamente. En breve nos pondremos en contacto con usted!',
                 icon: "success",
                 button: "aceptar"
             })
@@ -111,339 +111,247 @@ const ContactUs = () => {
         }
     }
 
-    return (
-        <Box
-            bg="#E9FBFC"
-            _dark={{
-                bg: "#111",
-            }}
-            p={10}
-        >
-            <Box>
-                <SimpleGrid
-                    display={{
-                        base: "initial",
-                        md: "grid",
-                    }}
-                    columns={{
-                        md: 3,
-                    }}
-                    spacing={{
-                        md: 6,
-                    }}
-                >
-
-                </SimpleGrid>
-
-                <Box mt={[10, 0]}>
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <Box
+                bg="#E9FBFC"
+                _dark={{
+                    bg: "#111",
+                }}
+                p={10}
+            >
+                <Box>
                     <SimpleGrid
-                        display={{ base: "initial", md: "grid" }}
-                        columns={{ md: 3 }}
-                        spacing={{ md: 6 }}
+                        display={{
+                            base: "initial",
+                            md: "grid",
+                        }}
+                        columns={{
+                            md: 3,
+                        }}
+                        spacing={{
+                            md: 6,
+                        }}
                     >
-                        <GridItem colSpan={{ md: 1 }}>
-                            <Box px={[4, 0]}>
-                                <Heading color='#ff66c4' fontSize="3xl" fontWeight="medium" lineHeight="6">
-                                    Contáctanos
-                                </Heading>
-                                <Text
-                                    mt={1}
-                                    fontSize="lg"
-                                    color="gray.600"
-                                    _dark={{ color: "gray.400" }}
-                                >
-                                    ¡Hola! Gracias por contactarte con nosotros. Si tienes un problema con tu pedido o no pudiste gestionar tu compra, por favor, déjanos los siguientes datos para que nuestro equipo se ponga en contacto contigo*. Es importante que los datos sean de la persona que registró el pedido.
-                                </Text>
-                            </Box>
-                        </GridItem>
 
-                        <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-                            <chakra.form
-                                method="POST"
-                                shadow="base"
-                                rounded={[null, "md"]}
-                                overflow={{ sm: "hidden" }}
-                            >
-                                <Stack
-                                    px={4}
-                                    py={5}
-                                    p={[null, 6]}
-                                    bg="white"
-                                    _dark={{ bg: "#141517" }}
-                                    spacing={6}
-                                >
-                                    <SimpleGrid columns={6} spacing={6}>
-                                        <FormControl as={GridItem} colSpan={[6, 3]}>
-                                            <FormLabel
-                                                htmlFor="first_name"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Nombre
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="first_name"
-                                                id="first_name"
-                                                value={input.first_name}
-                                                onChange={handleInputChange}
-                                                autoComplete="given-name"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={[6, 3]}>
-                                            <FormLabel
-                                                htmlFor="last_name"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Apellido
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="last_name"
-                                                id="last_name"
-                                                value={input.last_name}
-                                                onChange={handleInputChange}
-                                                autoComplete="family-name"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-
-
-                                        <FormControl as={GridItem} colSpan={[6, 4]}>
-                                            <FormLabel
-                                                htmlFor="email_address"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                E-mail
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="email_address"
-                                                id="email_address"
-                                                value={input.email_address}
-                                                onChange={handleInputChange}
-                                                autoComplete="email"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={[6, 3]}>
-                                            <FormLabel
-                                                htmlFor="country"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                País / Región
-                                            </FormLabel>
-                                            <Select
-                                                id="country"
-                                                name="country"
-                                                autoComplete="country"
-                                                placeholder="Select option"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                                onChange={handleSelect}
-                                            >
-                                                <option name="country" value={input.country} >Argentina</option>
-                                                <option name="country" value={input.country}>Perú</option>
-                                                <option name="country" value={input.country}>Colombia</option>
-                                            </Select>
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={6}>
-                                            <FormLabel
-                                                htmlFor="street_address"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Dirección
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="street_address"
-                                                id="street_address"
-                                                value={input.street_address}
-                                                onChange={handleInputChange}
-                                                autoComplete="street-address"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-                                            <FormLabel
-                                                htmlFor="city"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Ciudad
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="city"
-                                                id="city"
-                                                value={input.city}
-                                                onChange={handleInputChange}
-                                                autoComplete="city"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-                                            <FormLabel
-                                                htmlFor="state"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Estado / Provincia
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="state"
-                                                id="state"
-                                                value={input.state}
-                                                onChange={handleInputChange}
-                                                autoComplete="state"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-                                            <FormLabel
-                                                htmlFor="postal_code"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                ZIP / Postal
-                                            </FormLabel>
-                                            <Input
-                                                type="text"
-                                                name="postal_code"
-                                                id="postal_code"
-                                                value={input.postal_code}
-                                                onChange={handleInputChange}
-                                                autoComplete="postal-code"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            />
-                                        </FormControl>
-
-                                        <FormControl as={GridItem} colSpan={6}>
-                                            <FormLabel
-                                                htmlFor="message"
-                                                fontSize="sm"
-                                                fontWeight="md"
-                                                color="gray.700"
-                                                _dark={{ color: "gray.50" }}
-                                            >
-                                                Mensaje
-                                            </FormLabel>
-
-                                            {/*  <Input
-                                                type="textarea"
-                                                name="message"
-                                                id="message"
-                                                value={input.postal_code}
-                                                onChange={handleInputChange}
-                                                autoComplete="message"
-                                                mt={1}
-                                                focusBorderColor="brand.400"
-                                                shadow="sm"
-                                                size="sm"
-                                                w="full"
-                                                rounded="md"
-                                            /> */}
-                                            <Textarea
-                                                name='message'
-                                                value={input.message}
-                                                onChange={handleInputChange}
-                                                //placeholder='Mensaje'
-                                                size='sm'
-                                            />
-                                        </FormControl>
-                                    </SimpleGrid>
-                                </Stack>
-                                <Box
-                                    px={{ base: 4, sm: 6 }}
-                                    py={3}
-                                    bg="#FFF5E5"
-                                    _dark={{ bg: "#121212" }}
-                                    textAlign="right"
-                                >
-                                    <Button
-                                        //type="submit"
-                                        color='#ff66c4'
-                                        bg='#FFF5E5'
-                                        onClick={e => handleClick(e)}
-                                    >
-                                        Enviar
-                                    </Button>
-                                </Box>
-                            </chakra.form>
-                        </GridItem>
                     </SimpleGrid>
+
+                    <Box mt={[10, 0]}>
+                        <SimpleGrid
+                            display={{ base: "initial", md: "grid" }}
+                            columns={{ md: 3 }}
+                            spacing={{ md: 6 }}
+                        >
+                            <GridItem colSpan={{ md: 1 }}>
+                                <Box px={[4, 0]}>
+                                    <Heading color='#ff66c4' fontSize="lg" fontWeight="medium" lineHeight="6">
+                                        Contáctanos
+                                    </Heading>
+                                    <Text
+                                        mt={1}
+                                        fontSize="sm"
+                                        color="gray.600"
+                                        _dark={{ color: "gray.400" }}
+                                    >
+                                        ¡Hola! Gracias por contactarte con nosotros. Si tienes un problema con tu pedido o no pudiste gestionar tu compra, por favor, déjanos los siguientes datos para que nuestro equipo se ponga en contacto contigo*. Es importante que los datos sean de la persona que registró el pedido.
+                                    </Text>
+                                </Box>
+                            </GridItem>
+
+                            <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
+                                <chakra.form
+                                    method="POST"
+                                    shadow="base"
+                                    rounded={[null, "md"]}
+                                    overflow={{ sm: "hidden" }}
+                                >
+                                    <Stack
+                                        px={4}
+                                        py={5}
+                                        p={[null, 6]}
+                                        bg="white"
+                                        _dark={{ bg: "#141517" }}
+                                        spacing={6}
+                                    >
+                                        <SimpleGrid columns={6} spacing={6}>
+                                            <FormControl as={GridItem} colSpan={[6, 3]}>
+                                                <FormLabel
+                                                    htmlFor="name"
+                                                    fontSize="sm"
+                                                    fontWeight="md"
+                                                    color="gray.700"
+                                                    _dark={{ color: "gray.50" }}
+                                                >
+                                                    Nombre
+                                                </FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    name="name"
+                                                    id="name"
+                                                    value={input.name}
+                                                    onChange={handleInputChange}
+                                                    autoComplete="given-name"
+                                                    mt={1}
+                                                    focusBorderColor="brand.400"
+                                                    shadow="sm"
+                                                    size="sm"
+                                                    w="full"
+                                                    rounded="md"
+                                                    className='error'
+                                                />
+                                                {errors.name && (<p className="error">{errors.name}</p>)}
+                                            </FormControl>
+
+                                            <FormControl as={GridItem} colSpan={[6, 3]}>
+                                                <FormLabel
+                                                    htmlFor="lastname"
+                                                    fontSize="sm"
+                                                    fontWeight="md"
+                                                    color="gray.700"
+                                                    _dark={{ color: "gray.50" }}
+                                                >
+                                                    Apellido
+                                                </FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    name="lastname"
+                                                    id="last_name"
+                                                    value={input.lastname}
+                                                    onChange={handleInputChange}
+                                                    autoComplete="family-name"
+                                                    mt={1}
+                                                    focusBorderColor="brand.400"
+                                                    shadow="sm"
+                                                    size="sm"
+                                                    w="full"
+                                                    rounded="md"
+                                                    className='error'
+                                                />
+                                                {errors.lastname && (<p className="error">{errors.lastname}</p>)}
+                                            </FormControl>
+
+                                            <FormControl as={GridItem} colSpan={[6, 3]}>
+                                                <FormLabel
+                                                    htmlFor="email"
+                                                    fontSize="sm"
+                                                    fontWeight="md"
+                                                    color="gray.700"
+                                                    _dark={{ color: "gray.50" }}
+                                                >
+                                                    E-mail
+                                                </FormLabel>
+                                                <Input
+                                                    type="email"
+                                                    name="email"
+                                                    id="email"
+                                                    value={input.email}
+                                                    onChange={handleInputChange}
+                                                    autoComplete="email"
+                                                    mt={1}
+                                                    focusBorderColor="brand.400"
+                                                    shadow="sm"
+                                                    size="sm"
+                                                    w="full"
+                                                    rounded="md"
+                                                    className='error'
+                                                />
+                                                {errors.email && (<p className="error">{errors.email}</p>)}
+                                            </FormControl>
+
+                                            <FormControl as={GridItem} colSpan={[6, 3]}>
+                                                <FormLabel
+                                                    htmlFor="contact"
+                                                    fontSize="sm"
+                                                    fontWeight="md"
+                                                    color="gray.700"
+                                                    _dark={{ color: "gray.50" }}
+                                                >
+                                                    Número de contacto
+                                                </FormLabel>
+
+                                                <Input
+                                                    type='tel'
+                                                    pattern="[0-9]{9}"
+                                                    name="contact"
+                                                    id="contact"
+                                                    value={input.contact}
+                                                    onChange={handleInputChange}
+                                                    placeholder='(+54) - 999999999'
+                                                    autoComplete="contacto"
+                                                    mt={1}
+                                                    focusBorderColor="brand.400"
+                                                    shadow="sm"
+                                                    size="sm"
+                                                    w="full"
+                                                    rounded="md"
+                                                    className='error'
+                                                /> <br />
+                                                {errors.contact && (<p className="error">{errors.contact}</p>)}
+                                            </FormControl>
+
+                                            <FormControl as={GridItem} colSpan={6}>
+                                                <FormLabel
+                                                    htmlFor="message"
+                                                    fontSize="sm"
+                                                    fontWeight="md"
+                                                    color="gray.700"
+                                                    _dark={{ color: "gray.50" }}
+                                                >
+                                                    Mensaje
+                                                </FormLabel>
+
+                                                <Textarea
+                                                    name='message'
+                                                    value={input.message}
+                                                    onChange={handleInputChange}
+                                                    //placeholder='Mensaje'
+                                                    size='sm'
+                                                    className='error'
+                                                />
+                                                {errors.message && (<p className="error">{errors.message}</p>)}
+                                            </FormControl>
+                                        </SimpleGrid>
+                                    </Stack>
+                                    <Box
+                                        px={{ base: 4, sm: 6 }}
+                                        py={3}
+                                        bg="#FFF5E5"
+                                        _dark={{ bg: "#121212" }}
+                                        textAlign="right"
+                                    >
+                                        <Button
+                                            //type="submit"
+                                            color='#ff66c4'
+                                            bg='#FFF5E5'
+                                            onClick={e => handleClick(e)}
+                                        >
+                                            Enviar
+                                        </Button>
+                                    </Box>
+                                </chakra.form>
+                            </GridItem>
+                        </SimpleGrid>
+                    </Box>
+                    <Divider
+                        my="5"
+                        borderColor="gray.300"
+                        _dark={{ borderColor: "whiteAlpha.300" }}
+                        visibility={{ base: "hidden", sm: "visible" }}
+                    />
+                    <Link href='/'><Button
+                        //   borderRadius={'full'} 
+                        colorScheme='pink' variant='solid' /* bg="rosado.normal" */>
+                        Ir al inicio
+                    </Button></Link>
                 </Box>
             </Box>
-        </Box>
-    );
+        );
+    };
 };
 
 export default ContactUs;

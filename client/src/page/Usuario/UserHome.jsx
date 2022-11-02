@@ -13,14 +13,22 @@ import {
 } from '@chakra-ui/react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-
+import { updateUsuario } from '../../redux/actions/updateUsuario';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UserHome = () => {
-  const { user } = useAuth0();
-  const { picture, name } = user;
   const { logout } = useAuth0()
+  const dispatch = useDispatch();
+  const usuariosss = useSelector((state) => state.state.usuario[0]);
+  let id = usuariosss?._id;
+  console.log(usuariosss);
 
   const handleLogout = () => {
+    logout({ returnTo: window.location.origin })
+  }
+  const handleBaja = (e) => {
+    console.log(e);
+    dispatch(updateUsuario({ _id: e.target.id, activo: e.target.value }))
     logout({ returnTo: window.location.origin })
   }
   const Card = ({ heading, detail }) => {
@@ -69,9 +77,9 @@ const UserHome = () => {
             <Avatar
               boxShadow="xl"
               size="xl"
-              src={picture}
+              src={usuariosss?.picture}
             />
-            <Text fontSize="lg" pl="1rem" fontWeight="semibold">{name}</Text>
+            <Text fontSize="lg" pl="1rem" fontWeight="semibold">{usuariosss?.name}</Text>
           </HStack>
           <Heading
             textAlign={{ base: 'center', sm: 'left' }}
@@ -89,16 +97,16 @@ const UserHome = () => {
             spacing="1rem"
           >
             <Button
-              // rightIcon={<GoChevronRight />}
-              //colorScheme="blue"
               variant="ghost"
-              //size="lg"
               rounded="md"
               mb={{ base: 2, sm: 0 }}
               minW="9rem"
               bg="celeste.claro"
+              value={false}
+              id={id}
+              onClick={e => handleBaja(e)}
             >
-              Actualizar clave
+              Dar de baja esta cuenta
             </Button>
             <Button
               // rightIcon={<GoChevronRight />}
@@ -124,18 +132,22 @@ const UserHome = () => {
           display="flex"
           justifyContent="center"
         >
-          <Card
-            heading="Mis favoritos"
-            detail="Guarda los Heladitos que más te gustan para más tarde."
-          />
+          <Link to={'/login/user/favoritos'}>
+            <Card
+              heading="Mis favoritos"
+              detail="Guarda los Heladitos que más te gustan para más tarde."
+            />
+          </Link>
           <Link to={'/login/user/historial_de_pedidos'}>
             <Card
               heading="Historial de pedidos"
               detail="Accedé a tus últimas compras y sus detalles." />
           </Link>
-          <Card
-            heading="Mi información"
-            detail="Actualizá tu información personal para no perderte las últimas novedades!" />
+          <Link to={'/login/user/mi_informacion'}>
+            <Card
+              heading="Mi información"
+              detail="Actualizá tu información personal para no perderte las últimas novedades!" />
+          </Link>
         </VStack>
       </Stack>
     </Container>

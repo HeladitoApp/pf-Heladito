@@ -14,7 +14,12 @@ export const state = createSlice({
         respuestacompra: '',
         loading: false,
         usuarios: [],
-        compras:[]
+        compras:[],
+        messages:[],
+        usuario: [],
+        favoritos: [],
+        feedbacks:[],
+        cantCompras:[]
     },
     reducers: {
         getProductoById: (state, action) => {
@@ -22,6 +27,10 @@ export const state = createSlice({
         },
         getUsuarios: (state, action) => {
             state.usuarios = action.payload
+        },
+        getUsuarioByEmail: (state, action) => {
+            console.log(action.payload)
+            state.usuario = action.payload
         },
         changeLoading: (state, action) => {
             state.loading = action.payload
@@ -43,6 +52,12 @@ export const state = createSlice({
         },
         getTypes: (state, action) => {
             state.types = action.payload
+        },
+        getMessages: (state,action) => {
+            state.messages = action.payload
+        },
+        getFeedbacks: (state,action) => {
+            state.feedbacks = action.payload
         },
         filterByType: (state, action) => {
             state.productos = action.payload
@@ -69,9 +84,17 @@ export const state = createSlice({
         },
         compraByEmail: (state, action ) =>{
             state.compras = action.payload
+        },
+        favByEmail: (state, action ) =>{
+            state.favoritos = action.payload
+        },
+        cantidadCompras:(state,action) =>{
+            state.cantCompras = action.payload
         }
     }
 });
 
-export const {getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail } = state.actions;
+
+export const { getUsuarioByEmail, getToppingDetails, getProductoById, getUsuarios, changeLoading, getProductos, getFlavors, getToppings, getTypes, getDetails, orderByPrice, filterByType, addCompra, clearDetails, compraByEmail, favByEmail, getMessages, getFeedbacks,cantidadCompras  } = state.actions;
+
 export default state.reducer;

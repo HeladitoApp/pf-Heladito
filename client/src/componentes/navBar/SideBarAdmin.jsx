@@ -14,11 +14,10 @@ import {
     Button,
     chakra
 } from "@chakra-ui/react";
-import { FaBell, FaCartArrowDown, FaCartPlus, FaUsers } from "react-icons/fa";
-import { AiOutlineInbox } from "react-icons/ai";
+import { FaBell, FaCartArrowDown, FaCartPlus, FaFileSignature, FaUsers } from "react-icons/fa";
+import { AiOutlineInbox, AiOutlineEdit } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
-import { FiMenu, FiSearch } from "react-icons/fi";
-import { RiBarChartFill } from "react-icons/ri";
+import { FiMenu} from "react-icons/fi";
 import { MdHome } from "react-icons/md";
 import { MdLock } from "react-icons/md";
 import React from "react";
@@ -26,9 +25,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import Loading from '../loading/loading';
 import avatar from '../../assets/usuario.png'
-
-
-
 
 const SideBarAdmin = () => {
 
@@ -125,8 +121,12 @@ const SideBarAdmin = () => {
                     <NavItem icon={MdHome}>Main Dashboard</NavItem>
                 </Link>
 
-                <Link to={'/admin/perfil'}>
+                <Link to={'/login/user'}>
                     <NavItem icon={BsGearFill}>Config. Perfil</NavItem>
+                </Link>
+
+                <Link to={'/admin/crear_anuncio'}>
+                    <NavItem icon={AiOutlineEdit}>Crear anuncio</NavItem>
                 </Link>
 
                 <Link to={'/admin/crear_producto'}>
@@ -145,10 +145,13 @@ const SideBarAdmin = () => {
                     <NavItem icon={FaUsers}>Clientes</NavItem>
                 </Link>
 
-                <Link to={'/admin/tabla_de_datos'}>
+                {/* <Link to={'/admin/tabla_de_datos'}>
                     <NavItem icon={RiBarChartFill}>tablas de Datos</NavItem>
-                </Link>
+                </Link> */}
 
+                <Link to={'/admin/reporte_de_compra'}>
+                    <NavItem icon={FaFileSignature}>Reporte de compras</NavItem>
+                </Link>
                 <NavItem icon={MdLock} name={'Log Out'} onClick={handleLogout} >Log Out</NavItem>
 
 
@@ -198,23 +201,20 @@ const SideBarAdmin = () => {
                             size="sm"
                         />
 
-                        {/* <InputGroup w="96" display={{ base: "none", md: "flex" }}>
-                        <InputLeftElement color="gray.500">
-                            <FiSearch />
-                        </InputLeftElement>
-                        <Input placeholder="Search for articles..." />
-                    </InputGroup> */}
-
                         <Flex align="center">
-                            <Button
-                                variant="gost"
-                                //color='#ff66c4'
-                                leftIcon={<AiOutlineInbox />}
-                                size="sm"
-                            >
-                                Inbox
-                            </Button>
-                            <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='1.2em' ml='1' />
+                            <Link to={'/admin/inbox'}>
+                                <Button
+                                    variant="gost"
+                                    //color='#ff66c4'
+                                    leftIcon={<AiOutlineInbox />}
+                                    size="sm"
+                                >
+                                    Inbox
+                                </Button>
+                            </Link>
+                            <Link to={'/admin/feedbacks'}>
+                                <Icon color="#FFBD59" as={FaBell} cursor="pointer" mr='2.2em' ml='5' />
+                            </Link>
                             <Box>
                                 <Flex
                                     direction='column'>
@@ -232,16 +232,7 @@ const SideBarAdmin = () => {
                             />
                         </Flex>
                     </Flex>
-
-                    {/* <Box as="main" p="4">
-                    
-                    Add content here, remove div below 
-                    <AdminHome />
-
-                    <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" />
-                </Box> */}
                 </Box>
-                {/* </Box> */}
             </React.Fragment>
         );
     };

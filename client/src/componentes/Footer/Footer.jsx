@@ -10,7 +10,7 @@ const Footer = () => {
   const ruta = useLocation();
   return (
     (!ruta.pathname.includes('admin')) ?
-      <React.Fragment>
+      <React.Fragment><a></a>
         <Box
           bg="rosado.muy_claro"
           _dark={{

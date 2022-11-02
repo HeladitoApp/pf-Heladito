@@ -1,303 +1,331 @@
-import { chakra, Box, Button, FormControl, FormLabel, GridItem, Heading, Input, Select, SimpleGrid, Stack, Text, Divider, Textarea, InputGroup, InputLeftAddon, FormHelperText, Slider, SliderMark, SliderFilledTrack, Tooltip, SliderThumb, SliderTrack, Flex, Checkbox } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import {
+  chakra, Box, Button, FormControl, FormLabel, GridItem, Input, Heading, Select, SimpleGrid, Stack, Text, Divider, Textarea, Link,
+} from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from '../../redux/actions/loading';
+import Loading from '../../componentes/loading/loading';
+import { addFeedback } from '../../redux/actions/addFeedback';
+import { useAuth0 } from "@auth0/auth0-react";
+
+function control(value) {
+  let error = {}
+  if (value.conformidad === '') {
+    error.conformidad = 'Por favor, selecciona una respuesta'
+  } else if (value.puntaje === '') {
+    error.puntaje = 'Por favor, selecciona una respuesta'
+  } else if (value.aspecto === '') {
+    error.aspecto = 'Por favor, selecciona una respuesta'
+  } else if (value.descripcion === '') {
+    error.descripcion = 'Por favor, déjanos un breve comentario'
+  }
+  return error
+}
 
 const PaymentFeedback = () => {
-    const [sliderValue, setSliderValue] = useState(0);
-    const [showTooltip, setShowTooltip] = useState(false);
-    return (
-    <Box bg="#EBFBFC" _dark={{ bg: "#111" }} p={10}>
-        <Divider
-        my="5"
-        borderColor="gray.300"
-        _dark={{ borderColor: "whiteAlpha.300" }}
-        visibility={{ base: "hidden", sm: "visible" }}
-        />
-    <Box mt={[10, 0]}>
-      <SimpleGrid
-        display={{ base: "initial", md: "grid" }}
-        columns={{ md: 3 }}
-        spacing={{ md: 6 }}
-      >
-        <GridItem colSpan={{ md: 1 }}>
-          <Box px={[4, 0]}>
-            <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
-              Formulario de feedback
-            </Heading>
-            <Text
-              mt={1}
-              fontSize="sm"
-              color="gray.600"
-              _dark={{ color: "gray.400" }}
-            >
-              Muchas gracias por darnos tu opinión. En HeladitosApp queremos que cada cliente tenga una experiencia única, y eso lo hacemos escuchandoté. Te esperamos la próxima!
-            </Text>
-          </Box>
-        </GridItem>
-        <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-          <chakra.form
-            // onSubmit={e => handleSubmit(e)}
-            //method="POST"
-            shadow="base"
-            rounded={[null, "md"]}
-            overflow={{ sm: "hidden" }}
-          >
-            <Stack
-              px={4}
-              py={5}
-              p={[null, 6]}
-              bg="white"
-              _dark={{ bg: "#141517" }}
-              spacing={6}
-            >
-              <SimpleGrid columns={6} spacing={6}>
-                <FormControl as={GridItem} colSpan={[6, 3]}>
-                  <FormLabel
-                    htmlFor="name"
-                    fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
-                    _dark={{ color: "gray.50" }}
-                  >
-                    ¿Pudiste conseguir los productos que buscabas?
-                  </FormLabel>
-                  <Select
-                    id="selectTipo"  
-                    defaultValue={'plaseholder'} 
-                    // onChange = {e => handleSelectType(e)}
-                    mt={1}
-                    focusBorderColor="#5CE1E6"
-                    shadow="sm"
-                    size="sm"
-                    w="full"
-                    rounded="md"
-                    className="error"
-                  >
-                    <option hidden value='plaseholder'>Elige uno</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                  </Select>
-                </FormControl>
-    
-                
-    
-                <FormControl as={GridItem} colSpan={[6, 4]}>
-                        <FormLabel
-                          fontSize="sm"
-                          fontWeight="md"
-                          color="gray.700"
-                          _dark={{ color: "gray.50" }}
-                        >
-                          Del 1 al 5, ¿Cómo puntuarías tu experiencia general en HeladitosApp?
-                        </FormLabel>
-                        <Slider
-                            id='slider'
-                            defaultValue={1}
-                            min={1}
-                            max={5}
-                            colorScheme='teal'
-                            onChange={(v) => setSliderValue(v)}
-                            onMouseEnter={() => setShowTooltip(true)}
-                            onMouseLeave={() => setShowTooltip(false)}
-                            step={1}
-                            >
-                            <SliderMark value={1} mt='1' ml='-15.5' fontSize='xs'>
-                                Muy mala
-                            </SliderMark>
-                            <SliderMark value={2} mt='1' ml='-2.5' fontSize='sm'>
-                                
-                            </SliderMark>
-                            <SliderMark value={3} mt='1' ml='-2.5' fontSize='sm'>
-                                
-                            </SliderMark>
-                            <SliderMark value={4} mt='1' ml='-2.5' fontSize='sm'>
-                                
-                            </SliderMark>
-                            <SliderMark value={5} mt='1' ml='-25.5' fontSize='xs'>
-                                Excelente
-                            </SliderMark>
-                            <SliderTrack>
-                                <SliderFilledTrack />
-                            </SliderTrack>
-                            <Tooltip
-                                hasArrow
-                                bg='teal.500'
-                                color='white'
-                                placement='top'
-                                isOpen={showTooltip}
-                                label={`${sliderValue}`}
-                            >
-                                <SliderThumb />
-                            </Tooltip>
-                            </Slider>
-                </FormControl>
-    
-                <FormControl as={GridItem} colSpan={[6, 4]} mt="0.8rem">
-                        <FormLabel
-                          fontSize="sm"
-                          fontWeight="md"
-                          color="gray.700"
-                          _dark={{ color: "gray.50" }}
-                        >
-                          ¿Cuáles de estos aspectos son los que más valoras? Podés elegir más de uno.
-                        </FormLabel>
-                        <InputGroup size="sm">
-                        <chakra.fieldset>
-                            <Stack mt={1} spacing={1.5}>
-                                <Flex alignItems="start">
-                                <Flex alignItems="center" h={5}>
-                                    <Checkbox colorScheme="brand" id="comments" rounded="md" />
-                                </Flex>
-                                <Box ml={3} fontSize="sm">
-                                    <chakra.label
-                                    htmlFor="comments"
-                                    fontWeight="md"
-                                    color="gray.700"
-                                    _dark={{
-                                        color: "gray.50",
-                                    }}
-                                    >
-                                    Variedad de productos
-                                    </chakra.label>
-                                </Box>
-                                </Flex>
-                                <Flex alignItems="start">
-                                <Flex alignItems="center" h={5}>
-                                    <Checkbox
-                                    colorScheme="brand"
-                                    id="candidates"
-                                    rounded="md"
-                                    />
-                                </Flex>
-                                <Box ml={3} fontSize="sm">
-                                    <chakra.label
-                                    htmlFor="candidates"
-                                    fontWeight="md"
-                                    color="gray.700"
-                                    _dark={{
-                                        color: "gray.50",
-                                    }}
-                                    >
-                                    Tiempo de entrega
-                                    </chakra.label>                                    
-                                </Box>
-                                </Flex>
-                                <Flex alignItems="start">
-                                <Flex alignItems="center" h={5}>
-                                    <Checkbox colorScheme="brand" id="offers" rounded="md" />
-                                </Flex>
-                                <Box ml={3} fontSize="sm">
-                                    <chakra.label
-                                    htmlFor="offers"
-                                    fontWeight="md"
-                                    color="gray.700"
-                                    _dark={{
-                                        color: "gray.50",
-                                    }}
-                                    >
-                                    Ofertas y combos
-                                    </chakra.label>                                    
-                                </Box>
-                                </Flex>
-                                <Flex alignItems="start">
-                                <Flex alignItems="center" h={5}>
-                                    <Checkbox colorScheme="brand" id="offers" rounded="md" />
-                                </Flex>
-                                <Box ml={3} fontSize="sm">
-                                    <chakra.label
-                                    htmlFor="offers"
-                                    fontWeight="md"
-                                    color="gray.700"
-                                    _dark={{
-                                        color: "gray.50",
-                                    }}
-                                    >
-                                    Tiempo de respuesta
-                                    </chakra.label>                                    
-                                </Box>
-                                </Flex>
-                                <Flex alignItems="start">
-                                <Flex alignItems="center" h={5}>
-                                    <Checkbox colorScheme="brand" id="offers" rounded="md" />
-                                </Flex>
-                                <Box ml={3} fontSize="sm">
-                                    <chakra.label
-                                    htmlFor="offers"
-                                    fontWeight="md"
-                                    color="gray.700"
-                                    _dark={{
-                                        color: "gray.50",
-                                    }}
-                                    >
-                                    Medios de pago
-                                    </chakra.label>                                    
-                                </Box>
-                                </Flex>
-                            </Stack>
-                            </chakra.fieldset>
-                        </InputGroup>
-                      </FormControl>
-    
-                    <FormControl as={GridItem} colSpan={[6, 4]}>
-                        <FormLabel
-                          fontSize="sm"
-                          fontWeight="md"
-                          color="gray.700"
-                          _dark={{ color: "gray.50" }}
-                        >
-                          Comentarios adicionales
-                        </FormLabel>
-                        <Textarea
-                          type="text"
-                        //   value={input.description} 
-                          name = 'description'
-                        //   onChange={(e) => handleInputsChange(e)}
-                          mt={1}
-                          rows={3}
-                          shadow="sm"
-                          focusBorderColor= "#5CE1E6"
-                          fontSize={{ sm: "sm" }}
-                          className="error"
-                        />
-                        {/* {errors.description && ( <p className="error">{errors.description}</p>)} */}
-                </FormControl>
-              </SimpleGrid>
-            </Stack>
-            <Box
-              px={{ base: 4, sm: 6 }}
-              py={3}
-              bg="gray.50"
-              _dark={{ bg: "#121212" }}
-              textAlign="right"
-            >
-              <Button
-                // borderRadius={'full'} 
-                variant='solid'
-                //type="submit"
-                colorScheme="blue"
-                _focus={{ shadow: "" }}
-                fontWeight="md"
-              >
-                Enviar feedback
-              </Button>
-            </Box>
-          </chakra.form>
-        </GridItem>
-      </SimpleGrid>
-    </Box>
 
-    <Divider
-      my="5"
-      borderColor="gray.300"
-      _dark={{ borderColor: "whiteAlpha.300" }}
-      visibility={{ base: "hidden", sm: "visible" }}
-    />
-        <a  href='/'><Button
-        //   borderRadius={'full'} 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const loading = useSelector((state) => state.state.loading)
+
+  const { user } = useAuth0();
+  const { picture, name } = user;
+
+  const [value, setValue] = useState({
+    name: name,
+    picture: picture,
+    conformidad: '',
+    puntaje: '',
+    aspecto: '',
+    descripcion: '',
+  });
+
+  console.log([value, setValue])
+
+  const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 1500);
+  }, [dispatch]);
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+    })
+    setErrors(control({
+      ...value,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+    })
+    setErrors(control({
+      ...value,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!value.errors &&
+      value.conformidad &&
+      value.puntaje &&
+      value.aspecto &&
+      value.descripcion) {
+      dispatch(addFeedback(value))
+      setValue({
+        name: '',
+        picture: '',
+        conformidad: '',
+        puntaje: '',
+        aspecto: '',
+        descripcion: '',
+      })
+      swal({
+        title: 'Su feedback fue enviado correctamente. Muchas gracias por su tiempo!',
+        icon: "success",
+        button: "aceptar"
+      })
+      navigate("/")
+    } else {
+      swal({
+        title: 'Porfavor, verifique que todas las secciones estén completas',
+        icon: "info",
+        button: "aceptar"
+      })
+    }
+  }
+
+  if (loading) {
+    return (
+      <Loading />
+    )
+  }
+  else {
+    return (
+      <Box bg="#EBFBFC" _dark={{ bg: "#111" }} p={10}>
+        <Divider
+          my="5"
+          borderColor="gray.300"
+          _dark={{ borderColor: "whiteAlpha.300" }}
+          visibility={{ base: "hidden", sm: "visible" }}
+        />
+        <Box mt={[10, 0]}>
+          <SimpleGrid
+            display={{ base: "initial", md: "grid" }}
+            columns={{ md: 3 }}
+            spacing={{ md: 6 }}
+          >
+            <GridItem colSpan={{ md: 1 }}>
+              <Box px={[4, 0]}>
+                <Heading fontSize="lg" color='rosado.original' fontWeight="medium" lineHeight="6">
+                  Formulario de feedback
+                </Heading>
+                <Text
+                  mt={1}
+                  fontSize="sm"
+                  color="gray.600"
+                  _dark={{ color: "gray.400" }}
+                >
+                  Muchas gracias por darnos tu opinión. En HeladitosApp queremos que cada cliente tenga una experiencia única, y eso lo hacemos escuchandoté. Te esperamos la próxima!
+                </Text>
+              </Box>
+            </GridItem>
+            <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
+              <chakra.form
+                // onSubmit={e => handleSubmit(e)}
+                //method="POST"
+                shadow="base"
+                rounded={[null, "md"]}
+                overflow={{ sm: "hidden" }}
+              >
+                <Stack
+                  px={4}
+                  py={5}
+                  p={[null, 6]}
+                  bg="white"
+                  _dark={{ bg: "#141517" }}
+                  spacing={6}
+                >
+                  <Box color='celeste.original' fontSize='2xl' fontWeight='semibold' >Hola {name}!</Box>
+                  <SimpleGrid columns={6} spacing={6}>
+                    
+                    <FormControl as={GridItem} colSpan={[6, 4]}>
+                      <FormLabel
+                        htmlFor="conformidad"
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                        _dark={{ color: "gray.50" }}
+                      >
+                        ¿Pudiste conseguir los productos que buscabas?
+                      </FormLabel>
+                      <Select
+                        id="conformidad"
+                        defaultValue={'plaseholder'}
+                        mt={1}
+                        focusBorderColor="#5CE1E6"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        className="error"
+                        name="conformidad"
+                        value={value.conformidad}
+                        onChange={handleSelect}
+                      >
+                        <option hidden value='placeholder'>Elige uno</option>
+                        <option value="Sí">Si</option>
+                        <option value="No">No</option>
+                      </Select>
+                      {errors.conformidad && (<p className="error">{errors.conformidad}</p>)}
+                    </FormControl>
+
+                    <FormControl as={GridItem} colSpan={[6, 4]}>
+                      <FormLabel
+                        htmlFor="puntaje"
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                        _dark={{ color: "gray.50" }}
+                      >
+                        Del 1 al 5, ¿Cómo puntuarías tu experiencia general en HeladitosApp? Considerando 1 como una mala puntuación y 5 como excelente.
+                      </FormLabel>
+                      <Select
+                        id="puntaje"
+                        defaultValue={'plaseholder'}
+                        mt={1}
+                        focusBorderColor="#5CE1E6"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        className="error"
+                        name="puntaje"
+                        value={value.puntaje}
+                        onChange={handleSelect}
+                      >
+                        <option hidden value='placeholder'>Elige uno</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </Select>
+                      {errors.puntaje && (<p className="error">{errors.puntaje}</p>)}
+                    </FormControl>
+
+                    <FormControl as={GridItem} colSpan={[6, 4]}>
+                      <FormLabel
+                        htmlFor="aspecto"
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                        _dark={{ color: "gray.50" }}
+                      >
+                        ¿Cuál es el aspecto que más valoras? Solo puedes elegir uno.
+                      </FormLabel>
+                      <Select
+                        id="aspecto"
+                        defaultValue={'plaseholder'}
+                        mt={1}
+                        focusBorderColor="#5CE1E6"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        className="error"
+                        name="aspecto"
+                        value={value.aspecto}
+                        onChange={handleSelect}
+                      >
+                        <option hidden value='placeholder'>Elige uno</option>
+                        <option value="Tiempo de entrega">Tiempo de entrega</option>
+                        <option value="Ofertas y combos">Ofertas y combos</option>
+                        <option value="Tiempo de respuesta">Tiempo de respuesta</option>
+                        <option value="Medios de pago">Medios de pago</option>
+                        <option value="Variedad de productos">Variedad de productos</option>
+                      </Select>
+                      {errors.aspecto && (<p className="error">{errors.aspecto}</p>)}
+                    </FormControl>
+
+                    <FormControl as={GridItem} colSpan={[6, 4]}>
+                      <FormLabel
+                        htmlFor='descripcion'
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                        _dark={{ color: "gray.50" }}
+                      >
+                        Comentarios adicionales
+                      </FormLabel>
+                      <Textarea
+                        name='descripcion'
+                        value={value.descripcion}
+                        onChange={handleInputChange}
+                        //placeholder='Mensaje'
+                        size='sm'
+                        className='error'
+                      />
+
+                      {errors.descripcion && (<p className="error">{errors.descripcion}</p>)}
+                    </FormControl>
+                  </SimpleGrid>
+                </Stack>
+                <Box
+                  px={{ base: 4, sm: 6 }}
+                  py={3}
+                  bg="amarillo.muy_claro"
+                  _dark={{ bg: "#121212" }}
+                  textAlign="right"
+                >
+                  <Button
+                    // borderRadius={'full'} 
+                    variant='solid'
+                    //type="submit"
+                    fontWeight='semibold'
+                    bg='celeste.original'
+                    color="white"
+                    _focus={{ shadow: "" }}
+                    onClick={e => handleClick(e)}
+
+                  >
+                    Enviar feedback
+                  </Button>
+                </Box>
+              </chakra.form>
+            </GridItem>
+          </SimpleGrid>
+        </Box>
+
+        <Divider
+          my="5"
+          borderColor="gray.300"
+          _dark={{ borderColor: "whiteAlpha.300" }}
+          visibility={{ base: "hidden", sm: "visible" }}
+        />
+        <Link href='/'><Button
+          //   borderRadius={'full'} 
           colorScheme='pink' variant='solid' /* bg="rosado.normal" */>
-              Ir al inicio
-        </Button></a>
-    </Box>
-  )
+          Ir al inicio
+        </Button></Link>
+      </Box>
+    )
+  }
 }
 
 export default PaymentFeedback

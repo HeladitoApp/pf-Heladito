@@ -21,6 +21,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { setLoading } from '../../redux/actions/loading';
@@ -28,7 +29,8 @@ import Loading from '../loading/loading';
 import { updateExtra } from '../../redux/actions/updateExtra';
 import { useDispatch, useSelector } from 'react-redux';
 import { traerExtraById } from '../../redux/actions/getExtraById';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import UploadImage from '../utils/UploadImage';
 
 
 
@@ -76,7 +78,7 @@ export default function ActualizarExtra() {
     swal({
       title: 'Extra actualizado con exito!',
       icon: "success",
-      button: "aceptar"
+      button: "Aceptar"
     })
     setInput({
       _id: '',
@@ -123,6 +125,7 @@ export default function ActualizarExtra() {
                     >
                       Modifique los campos necesarios.
                     </Text>
+                    <Image src={detail?.image} p='10' />
                   </Box>
                 </GridItem>
                 <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
@@ -178,29 +181,9 @@ export default function ActualizarExtra() {
                           >
                             Imagen
                           </FormLabel>
-                          <InputGroup size="sm">
-                            <InputLeftAddon
-                              bg="gray.50"
-                              _dark={{ bg: "gray.800" }}
-                              color="gray.500"
-                              rounded="md"
-                              className="error"                          >
-                              http://
-                            </InputLeftAddon>
-                            <Input
-                              type="url"
-                              defaultValue={detail?.image}
-                              name='image'
-                              onChange={(e) => handleInputsChange(e)}
-                              placeholder="www.example.com"
-                              focusBorderColor="#5CE1E6"
-                              rounded="md"
-                              className="error"
-                            />
-                          </InputGroup>
-                          <FormHelperText>
-                            Ingrese la URL de la imagen.
-                          </FormHelperText>
+                          
+                          <UploadImage input={input} setInput={setInput} />
+
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -315,11 +298,13 @@ export default function ActualizarExtra() {
               _dark={{ borderColor: "whiteAlpha.300" }}
               visibility={{ base: "hidden", sm: "visible" }}
             />
-            <Button
-              borderRadius={'full'}
-              colorScheme='pink' variant='solid'>
-              <a href='/'>volver</a>
-            </Button>
+            <Link to={'/admin/modificar_toppings'}>
+                <Button
+                  borderRadius={'full'}
+                  colorScheme='pink' variant='solid'>
+                  Volver
+                </Button>
+              </Link>
           </Box>
         </Box>
       </Box>

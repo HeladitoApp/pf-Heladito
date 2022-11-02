@@ -22,6 +22,12 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,17 +37,9 @@ import Loading from '../loading/loading';
 import { useParams } from "react-router"
 import { traerUsuariosById } from '../../redux/actions/getProductosById'
 import { Link } from 'react-router-dom';
+import UploadImage from '../utils/UploadImage';
 
-// function control(input) {
-//     let error = {}
-//     if(!input.name) error.name = 'Ingrese un nombre'
-//     else if (!input.description) error.description = 'La descripcion es necesaria'
-//     else if (!input.image) error.image = 'Ingrese una imagen'
-//     else if (!input.price) error.price = 'Ingrese un precio'
-//     else if (!input.stock) error.stock = 'Ingrese cantidad en stock'
-//     // else if (!input.type) error.type = 'Seleccione un tipo de producto'
-//     return error
-// }
+
 
 export default function ActualizarProducto() {
   const { id } = useParams()
@@ -56,7 +54,8 @@ export default function ActualizarProducto() {
     image: null,
     price: null,
     stock: null,
-    type: null
+    type: null,
+    detailModel: null
   })
   useEffect(() => {
     dispatch(traerUsuariosById(id))
@@ -65,19 +64,6 @@ export default function ActualizarProducto() {
       dispatch(setLoading(false));
     }, 1500);
   }, [dispatch]);
-
-  // let name = detail?.name
-  // setInput({name: name})
-  // if (detail) { setInput({
-  // _id: detail?._id,
-  // name: detail?.name,
-  // description: detail?.description,
-  // image: detail?.image,
-  // price: detail?.price,
-  // stock: detail?.stock,
-  // type: detail?.type
-  // })}
-
   function handleInputsChange(e) {
     setInput({
       ...input,
@@ -91,13 +77,21 @@ export default function ActualizarProducto() {
       type: e.target.value
     })
   }
+
+  function handleSelectDetail(e) {
+    setInput({
+      ...input,
+      detailModel: e.target.value
+    })
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(updateProduct(input))
     swal({
       title: 'Producto actualizado con exito!',
       icon: "success",
-      button: "aceptar"
+      button: "Aceptar"
     })
     setInput({
       _id: '',
@@ -106,7 +100,8 @@ export default function ActualizarProducto() {
       image: '',
       price: '',
       stock: '',
-      type: ''
+      type: '',
+      detailModel: ''
     })
   }
 
@@ -146,6 +141,7 @@ export default function ActualizarProducto() {
                       >
                         Complete todos los campos.
                       </Text>
+                      <Image src={detail?.image} p='10' />
                     </Box>
                   </GridItem>
                   <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
@@ -226,29 +222,9 @@ export default function ActualizarProducto() {
                             >
                               Imagen
                             </FormLabel>
-                            <InputGroup size="sm">
-                              <InputLeftAddon
-                                bg="gray.50"
-                                _dark={{ bg: "gray.800" }}
-                                color="gray.500"
-                                rounded="md"
-                                className="error"                          >
-                                http://
-                              </InputLeftAddon>
-                              <Input
-                                type="url"
-                                defaultValue={detail?.image}
-                                name='image'
-                                onChange={(e) => handleInputsChange(e)}
-                                placeholder="www.example.com"
-                                focusBorderColor="#5CE1E6"
-                                rounded="md"
-                                className="error"
-                              />
-                            </InputGroup>
-                            <FormHelperText>
-                              Ingrese la URL de la imagen.
-                            </FormHelperText>
+                            
+                            <UploadImage input={input} setInput={setInput} />
+
                           </FormControl>
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -261,12 +237,8 @@ export default function ActualizarProducto() {
                             >
                               Precio
                             </FormLabel>
-                            <Input
-                              type="number"
-                              defaultValue={detail?.price}
-                              onChange={(e) => handleInputsChange(e)}
+                            <NumberInput defaultValue={detail?.price} precision={2} step={0.1}
                               name="price"
-                              id="price"
                               mt={1}
                               focusBorderColor="#5CE1E6"
                               shadow="sm"
@@ -274,7 +246,14 @@ export default function ActualizarProducto() {
                               w="full"
                               rounded="md"
                               className="error"
-                            />
+
+                            >
+                              <NumberInputField
+                                onChange={(e) => handleInputsChange(e)}
+
+                              />
+
+                            </NumberInput>
                           </FormControl>
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -285,14 +264,10 @@ export default function ActualizarProducto() {
                               color="gray.700"
                               _dark={{ color: "gray.50" }}
                             >
-                              Stock
+                              Precio
                             </FormLabel>
-                            <Input
-                              type="number"
-                              defaultValue={detail?.stock}
-                              onChange={(e) => handleInputsChange(e)}
+                            <NumberInput defaultValue={detail?.stock} precision={0} step={1}
                               name="stock"
-                              id="stock"
                               mt={1}
                               focusBorderColor="#5CE1E6"
                               shadow="sm"
@@ -300,8 +275,16 @@ export default function ActualizarProducto() {
                               w="full"
                               rounded="md"
                               className="error"
-                            />
+
+                            >
+                              <NumberInputField
+                                onChange={(e) => handleInputsChange(e)}
+                              />
+
+                            </NumberInput>
                           </FormControl>
+
+
 
                           <FormControl as={GridItem} colSpan={[6, 3]}>
                             <FormLabel
@@ -332,6 +315,41 @@ export default function ActualizarProducto() {
                               <option value="parfaits">Parfaits</option>
                               <option value="crepes">Crepes</option>
                             </Select>
+                          </FormControl>
+
+                          <FormControl as={GridItem} colSpan={[6, 3]}>
+                            <FormLabel
+                              htmlFor="country"
+                              fontSize="sm"
+                              fontWeight="md"
+                              color="gray.700"
+                              _dark={{ color: "gray.50" }}
+                            >
+                              Elige un modelo de detalle
+                            </FormLabel>
+                            <Select
+                              id="selectModel"
+                              defaultValue={'plaseholder'}
+                              onChange={e => handleSelectDetail(e)}
+                              mt={1}
+                              focusBorderColor="#5CE1E6"
+                              shadow="sm"
+                              size="sm"
+                              w="full"
+                              rounded="md"
+                              className="error"
+                            >
+                              <option hidden value='plaseholder'>Modelos</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                              <option value="D">D</option>
+                              <option value="E">E</option>
+                              <option value="F">F</option>
+                              <option value="G">G</option>
+                              <option value="I">I</option>
+                            </Select>
+                            {errors.detailModel && (<p className="error">{errors.detailModel}</p>)}
                           </FormControl>
                         </SimpleGrid>
                       </Stack>
@@ -364,7 +382,7 @@ export default function ActualizarProducto() {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 visibility={{ base: "hidden", sm: "visible" }}
               />
-              <Link to={'/admin'}>
+              <Link to={'/admin/modificar_producto'}>
                 <Button
                   borderRadius={'full'}
                   colorScheme='pink' variant='solid'>

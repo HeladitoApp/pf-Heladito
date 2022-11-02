@@ -55,7 +55,6 @@ export default function Carrito({ isOpen, onOpen, onClose }) {
                         </Stack>
                     </DrawerHeader>
                     <DrawerBody>
-                        <Input placeholder='Type here...' />
                         {productosCarrito.length === 0 ?
                             <Box pt={4}>
                                 <Alert status='warning'>

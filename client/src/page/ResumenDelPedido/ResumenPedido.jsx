@@ -42,14 +42,15 @@ const ResumenPedido = () => {
         })
       ))
       pedido.total = Total
-      dispatch(addCompraDb(pedido))
+      // dispatch(addCompraDb(pedido))
       dispatch(addPayment(pedido))
+      window.scrollTo(0, 0);
       setproductosCarrito([])
     } else {
       swal({
         title: 'Porfavor, inicie se sesión para poder comprar ',
         icon: "info",
-        button: "aceptar"
+        button: "Aceptar"
       })
       loginWithRedirect()
       // navigate('/')

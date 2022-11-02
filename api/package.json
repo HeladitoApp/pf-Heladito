@@ -14,6 +14,7 @@
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
+    "excel4node": "^1.8.0",
     "express": "^4.18.2",
     "express-jwt": "^6.1.0",
     "express-jwt-authz": "^2.4.1",
@@ -23,6 +24,8 @@
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
     "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "pdfkit": "^0.13.0",
+    "pdfkit-construct": "^1.2.3"
   }
 }

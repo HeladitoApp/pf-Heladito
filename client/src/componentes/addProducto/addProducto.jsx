@@ -18,6 +18,7 @@ import {
   Textarea,
   chakra,
   Divider,
+  Image,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,17 +26,19 @@ import { addProduct } from '../../redux/actions/addProduct';
 import { setLoading } from '../../redux/actions/loading';
 import Loading from '../loading/loading';
 import {Link} from 'react-router-dom'
+import UploadImage from '../utils/UploadImage';
 
 
 
 function control(input) {
   let error = {}
   if (!input.name) error.name = 'Ingrese un nombre'
-  else if (!input.description) error.description = 'La descripcion es necesaria'
-  else if (!input.image) error.image = 'Ingrese una imagen'
-  else if (!input.price) error.price = 'Ingrese un precio'
-  else if (!input.stock) error.stock = 'Ingrese cantidad en stock'
-  else if (!input.type) error.type = 'Seleccione un tipo de producto'
+  if (!input.description) error.description = 'La descripcion es necesaria'
+  if (!input.image) error.image = 'Ingrese una imagen'
+  if (!input.price) error.price = 'Ingrese un precio'
+  if (!input.stock) error.stock = 'Ingrese cantidad en stock'
+  if (!input.type) error.type = 'Seleccione un tipo de producto'
+  if (!input.detailModel) error.detailModel = 'Seleccione un modelo de detalle'
   return error
 }
 
@@ -50,7 +53,8 @@ export default function AgregarProducto2() {
     image: '',
     price: '',
     stock: '',
-    type: ''
+    type: '',
+    detailModel: ''
   })
 
   useEffect(() => {
@@ -77,6 +81,16 @@ export default function AgregarProducto2() {
       type: e.target.value
     })
   }
+
+  function handleSelectDetail(e) {
+    setInput({
+      ...input,
+      detailModel: e.target.value
+    })
+  }
+
+
+  
   function handleSubmit(e) {
     e.preventDefault()
     if (input.name &&
@@ -84,12 +98,13 @@ export default function AgregarProducto2() {
       input.image &&
       input.price &&
       input.stock &&
-      input.type) {
+      input.type  &&
+      input.detailModel) {
       dispatch(addProduct(input))
       swal({
         title: 'Producto creado con exito!',
         icon: "success",
-        button: "aceptar"
+        button: "Aceptar"
       })
       setInput({
         name: '',
@@ -97,7 +112,8 @@ export default function AgregarProducto2() {
         image: '',
         price: '',
         stock: '',
-        type: ''
+        type: '',
+        detailModel: ''
       })
     }
     else {
@@ -218,6 +234,7 @@ export default function AgregarProducto2() {
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 4]}>
+                          
                           <FormLabel
                             fontSize="sm"
                             fontWeight="md"
@@ -226,30 +243,9 @@ export default function AgregarProducto2() {
                           >
                             Imagen
                           </FormLabel>
-                          <InputGroup size="sm">
-                            <InputLeftAddon
-                              bg="gray.50"
-                              _dark={{ bg: "gray.800" }}
-                              color="gray.500"
-                              rounded="md"
-                              className="error"                          >
-                              http://
-                            </InputLeftAddon>
-                            <Input
-                              type="url"
-                              value={input.image}
-                              name='image'
-                              onChange={(e) => handleInputsChange(e)}
-                              placeholder="www.example.com"
-                              focusBorderColor="#5CE1E6"
-                              rounded="md"
-                              className="error"
-                            />
-                          </InputGroup>
-                          {errors.image && (<p className="error">{errors.image}</p>)}
-                          <FormHelperText>
-                            Ingrese la URL de la imagen.
-                          </FormHelperText>
+                              
+                          <UploadImage input={input} setInput={setInput} />
+
                         </FormControl>
 
                         <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -336,8 +332,45 @@ export default function AgregarProducto2() {
                             <option value="parfaits">Parfaits</option>
                             <option value="crepes">Crepes</option>
                           </Select>
-                          {errors.type && (<p className="error">{errors.type}</p>)}
+                          {/* {errors.type && (<p className="error">{errors.type}</p>)} */}
                         </FormControl>
+
+                        <FormControl as={GridItem} colSpan={[6, 3]}>
+                          <FormLabel
+                            htmlFor="country"
+                            fontSize="sm"
+                            fontWeight="md"
+                            color="gray.700"
+                            _dark={{ color: "gray.50" }}
+                          >
+                            Elige un modelo de detalle
+                          </FormLabel>
+                          <Select
+                            id="selectModel"
+                            defaultValue={'plaseholder'}
+                            onChange={e => handleSelectDetail(e)}
+                            mt={1}
+                            focusBorderColor="#5CE1E6"
+                            shadow="sm"
+                            size="sm"
+                            w="full"
+                            rounded="md"
+                            className="error"
+                          >
+                            <option hidden value='plaseholder'>Modelos</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="I">I</option>
+                          </Select>
+                          {/* {errors.detailModel && (<p className="error">{errors.detailModel}</p>)} */}
+                        </FormControl>
+
+                        
                       </SimpleGrid>
                     </Stack>
                     <Box

@@ -9,6 +9,7 @@ const productosSchema = new Schema({
   price: Number,
   stock: Number,
   type: String,
+  detailModel: String
 });
 
 const Productos = mongoose.model("Productos", productosSchema);

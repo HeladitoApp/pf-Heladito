@@ -26,10 +26,9 @@ const UserHome = () => {
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }
-  const handleBaja = () => {
-    dispatch(updateUsuario({ _id:id, activo: false }))
-    logout({ returnTo: window.location.origin })
-  }
+ const handleBaja = (e) => {
+    console.log(e);
+ }
   const Card = ({ heading, detail }) => {
     return (
       <Stack

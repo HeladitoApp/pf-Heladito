@@ -25,19 +25,26 @@ useEffect (() => {
         data: cantCompras[4]
     
     }
-    
-   
-    const ventasDia = Math.round(cantCompras[3])
+
+
+    const pedidosMes = cantCompras[0]
     const ventasMes = Math.round(cantCompras[1])
     const pedidosDia = cantCompras[2]
-    const pedidosMes = cantCompras[0]
+    const ventasDia = Math.round(cantCompras[3])
     
     
+    
+    const pedidosMesAnt = cantCompras[5]
+    const ventasMesAnt = cantCompras[6]
+    const pedidosDiaAnt = cantCompras[7]
+    const ventasDiaAnt = cantCompras[8]
 
-    let porcentVentD = Math.round((cantCompras[3]-cantCompras[8])*100/cantCompras[8]);
-    let porcentVentM = Math.round((cantCompras[1]-cantCompras[6])*100/cantCompras[6])
-    let porcentPedD = Math.round((cantCompras[2]-cantCompras[7])*100/cantCompras[7])
-    let porcentPedM = Math.round((cantCompras[0]-cantCompras[5])*100/cantCompras[5]) 
+
+
+    let porcentVentD = Math.round((ventasDia-ventasDiaAnt)*100/ventasDiaAnt);
+    let porcentVentM = Math.round((ventasMes-ventasMesAnt)*100/ventasMesAnt)
+    let porcentPedD = Math.round((pedidosDia-pedidosDiaAnt)*100/pedidosDiaAnt)
+    let porcentPedM = Math.round((pedidosMes-pedidosMesAnt)*100/pedidosMesAnt) 
     return (
         <Box mx={3} my={1} minH="81vh" >
 
@@ -114,7 +121,7 @@ useEffect (() => {
                         justify={'space-around'}
                         my={5}
                     >
-                          <BarChart title={'Ventas del día por Categoría'} data={data} />  
+                          <BarChart title={'Ventas del mes por Categoría'} data={data} />  
                     </Stack>
                 </Box>
             </Stack>

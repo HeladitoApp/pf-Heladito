@@ -11,10 +11,10 @@ const UploadImage = ({ input, setInput }) => {
     console.log(files);
     const data = new FormData();
     data.append('file', files[0]);
-    data.append('upload_preset', 'heladitos');
+    data.append('upload_preset', `${process.env.REACT_APP_UPLOAD_PRESET}`);
     setLoadingImg(true);
     console.log(data);
-    const res = await fetch("https://api.cloudinary.com/v1_1/dau2psu2k/upload", { method: "POST", body: data })
+    const res = await fetch(`${process.env.REACT_APP_CLOUDINARY_URL}`, { method: "POST", body: data })
     console.log(res);
     const file = await res.json();
     setImage(file.secure_url);

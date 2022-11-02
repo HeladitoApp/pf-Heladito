@@ -68,7 +68,7 @@ const containerStyle = {
 
   return (
    <LoadScript
-      googleMapsApiKey="AIzaSyBnThDdJuBYKQu3x9N-gjf2LaFJ3GeVhjY"
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPSAPIKEY}
     >
        
       <GoogleMap

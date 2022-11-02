@@ -20,15 +20,14 @@ const UserHome = () => {
   const { logout } = useAuth0()
   const dispatch = useDispatch();
   const usuariosss = useSelector((state) => state.state.usuario[0]);
-  let id = usuariosss?._id;
-  console.log(usuariosss);
+  let email = usuariosss?.email;
+  console.log(usuariosss.email);
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }
-  const handleBaja = (e) => {
-    console.log(e);
-    dispatch(updateUsuario({ _id: e.target.id, activo: e.target.value }))
+  const handleBaja = () => {
+    dispatch(updateUsuario({ email: email, activo: false}))
     logout({ returnTo: window.location.origin })
   }
   const Card = ({ heading, detail }) => {
@@ -103,7 +102,6 @@ const UserHome = () => {
               minW="9rem"
               bg="celeste.claro"
               value={false}
-              id={id}
               onClick={e => handleBaja(e)}
             >
               Dar de baja esta cuenta

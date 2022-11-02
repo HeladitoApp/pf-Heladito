@@ -28,7 +28,7 @@ const UserHome = () => {
   }
   const handleBaja = (e) => {
     console.log(e);
-    dispatch(updateUsuario({ _id: e.target.id, activo: e.target.value }))
+    dispatch(updateUsuario({ _id:id, activo: false }))
     logout({ returnTo: window.location.origin })
   }
   const Card = ({ heading, detail }) => {
@@ -102,9 +102,7 @@ const UserHome = () => {
               mb={{ base: 2, sm: 0 }}
               minW="9rem"
               bg="celeste.claro"
-              value={false}
-              id={id}
-              onClick={e => handleBaja(e)}
+              onClick={handleBaja}
             >
               Dar de baja esta cuenta
             </Button>

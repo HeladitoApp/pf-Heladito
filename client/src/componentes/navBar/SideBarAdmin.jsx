@@ -25,6 +25,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import Loading from '../loading/loading';
 import avatar from '../../assets/usuario.png'
+import NotFound from '../../page/NotFound/NotFound';
+import NoAutorizado from '../../page/noAutorizado/noAutorizado';
 
 const SideBarAdmin = () => {
 
@@ -32,7 +34,7 @@ const SideBarAdmin = () => {
     const handleLogout = () => logout({ returnTo: window.location.origin })
 
     const { user, isLoading } = useAuth0();
-    const { picture, name } = user;
+    //const { picture, name } = user;
 
 
     const sidebar = useDisclosure();
@@ -165,6 +167,11 @@ const SideBarAdmin = () => {
         )
     }
     else {
+        if(!user) {
+            return (
+                null
+            )
+        } else {
         return (
             <React.Fragment>
                 {/* <Box as="section" bg="#E9FBFC" _dark={{ bg: "gray.700" }} minH="100vh"> */}
@@ -219,22 +226,22 @@ const SideBarAdmin = () => {
                                 <Flex
                                     direction='column'>
                                     <Text>Hola</Text>
-                                    <Text fontWeight="semibold">{name}!</Text>
+                                    <Text fontWeight="semibold">{user ? user.name : "[Nombre]"}!</Text>
                                 </Flex>
                             </Box>
                             <Avatar
                                 ml="4"
                                 size="sm"
                                 name="anubra266"
-                                src={picture ? picture : avatar}
-                                alt={name}
+                                src={user ? user.picture : avatar}
+                                //alt={name}
                                 cursor="pointer"
                             />
                         </Flex>
                     </Flex>
                 </Box>
             </React.Fragment>
-        );
+        );}
     };
 };
 export default SideBarAdmin;

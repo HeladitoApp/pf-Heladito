@@ -5,12 +5,14 @@ import { FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom'
 import FooterAdmin from './FooterAdmin';
 import Mapa from '../Map/map';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Footer = () => {
   const ruta = useLocation();
+  const { user } = useAuth0();
   return (
-    (!ruta.pathname.includes('admin')) ?
-      <React.Fragment><a></a>
+    (!ruta.pathname.includes('admin')) || !user ?
+      <React.Fragment>
         <Box
           bg="rosado.muy_claro"
           _dark={{

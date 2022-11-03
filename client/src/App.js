@@ -46,13 +46,14 @@ import Feedbacks from "./page/admin/Feedbacks";
 import CrearAnuncio from "./page/admin/CrearAnuncio";
 import MainCardDetail from "./page/detail/MainCardDetail";
 import Informacion from "./page/Usuario/Información";
+import NoAutorizado from './page/noAutorizado/noAutorizado';
 
 function App() {
 
   
 
   const [page, setPage] = useState(1);
-  const { isLoading, logout } = useAuth0();
+  const { isLoading, logout, user } = useAuth0();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const usuariosss = useSelector((state) => state.state.usuario);
   const dispatch = useDispatch();
@@ -76,20 +77,20 @@ function App() {
           <Route path="/login" element={<Login isOpen={isOpen} onOpen={onOpen} onClose={onClose} />} />
           <Route path="/users/client" element={<Consumer />} />
           {/* <Route path="/admin" element={<ProtectedRoute component={Admin} />} /> */}
-          {rolDelUsuario === 'admin'? <Route path="/admin" element={<ProtectedRoute component={DataTables} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> : ''}
-          {rolDelUsuario === 'admin'?  <Route path="admin/modificar_toppings" element={<ProtectedRoute component={ModifiedExtra} />} /> : ''}
-          {rolDelUsuario === 'admin'?  <Route path="/admin/clientes" element={<ProtectedRoute component={Clientes} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} /> : ''}
+          { user && rolDelUsuario === 'admin'? <Route path="/admin" element={<ProtectedRoute component={DataTables} />} /> : <Route path="/admin" element={ <NoAutorizado/> } /> }
+          { user && rolDelUsuario === 'admin'? <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> : <Route path="/admin/crear_producto" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> : <Route path="/admin/modificar_producto" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'?  <Route path="admin/modificar_toppings" element={<ProtectedRoute component={ModifiedExtra} />} /> : <Route path="/admin/modificar_toppings" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'?  <Route path="/admin/clientes" element={<ProtectedRoute component={Clientes} />} /> : <Route path="/admin/clientes" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="/admin/clientes/:email" element={<ProtectedRoute component={ComprasCard} />} /> : <Route path="/admin/clientes/:email" element={ <NoAutorizado/> } />}
           {/* {rolDelUsuario === 'admin'? <Route path="/admin/tabla_de_datos" element={<ProtectedRoute component={DataTables} />} /> : ''} */}
-          {rolDelUsuario === 'admin'? <Route path="/admin/update/:id" element={<ActualizarUsuario />} /> :''}
-          {rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto/>} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/feedbacks" element={<ProtectedRoute component={Feedbacks} />} /> : ''}
-          {rolDelUsuario === 'admin'? <Route path="admin/crear_anuncio" element={<ProtectedRoute component={CrearAnuncio} />} /> : ''}
+          { user && rolDelUsuario === 'admin'? <Route path="/admin/update/:id" element={<ActualizarUsuario />} /> : <Route path="/admin/update/:id" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="/product/add" element={<AgregarProducto/>} /> : <Route path="/product/add" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/modificar_extra/update/:id" element={<ProtectedRoute component={ActualizarExtra} />} /> : <Route path="/admin/modificar_extra/update/:id" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/modificar_producto/update/:id" element={<ProtectedRoute component={ActualizarProducto} />} /> : <Route path="/admin/modificar_producto/update/:id" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/inbox" element={<ProtectedRoute component={AdminInbox} />} /> : <Route path="/admin/inbox" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/feedbacks" element={<ProtectedRoute component={Feedbacks} />} /> : <Route path="/admin/feedbacks" element={ <NoAutorizado/> } />}
+          { user && rolDelUsuario === 'admin'? <Route path="admin/crear_anuncio" element={<ProtectedRoute component={CrearAnuncio} />} /> : <Route path="/admin/crear_anuncio" element={ <NoAutorizado/> } />}
           {/* <Route path="/admin" element={<ProtectedRoute component={AdminHome} />} />
           <Route path="/admin/crear_producto" element={<ProtectedRoute component={AgregarProducto2} />} /> */}
           {/* <Route path="admin/modificar_producto" element={<ProtectedRoute component={ModifiedProduct} />} /> */}

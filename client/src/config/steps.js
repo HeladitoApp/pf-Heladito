@@ -13,7 +13,7 @@ import Creadores from '../page/Chat/Creadores';
     id: "2",
     user: true,
     validator: (value) => {
-        if (/[a-zA-Z]{2,30}$/.test(value)) {
+        if (/[a-zA-Z\u00C0-\u017F]{2,30}$/.test(value)) {
             return true;
         }
         else {
@@ -131,7 +131,7 @@ import Creadores from '../page/Chat/Creadores';
 },
 {
     id: "13",
-    component: <Link to={'/products/crepess  /products/parfaits'}>Presione aquí para ser redirigido   <Button borderRadius={50} backgroundColor="#FFECF8">Crepes</Button></Link>,
+    component: <Link to={'/products/crepes'}>Presione aquí para ser redirigido   <Button borderRadius={50} backgroundColor="#FFECF8">Crepes</Button></Link>,
     asMessage: true,
     trigger: "preguntaVuelta"
 },

@@ -21,6 +21,7 @@ month= yyyy + '/' + mm + '/' + 01 ;
      suma +=k.sumaTotal
    
    });  
+   
 
 let totalD=0;
 let sumaD=0;
@@ -36,7 +37,7 @@ let sumaD=0;
 
    
    const ProductosMasvend = await Compras.find({"createdAt" : {"$gt" : new Date(month)}},{productos:1,_id:0});
-   console.log(ProductosMasvend)
+  
    const ArraydeObjProduc = ProductosMasvend.map(p => {
    return (
    p.productos )})
@@ -129,14 +130,20 @@ let sumaD=0;
          let totalAnt=0;
          let sumaAnt=0; 
           let todayAnt = yyyy + '/' + ma  + '/' + da ;
-          let monthAnt= yyyy + '/' + ma + '/' + 01 ; 
+          let monthAnt= yyyy + '/' + (mm-1) + '/' + 01 ; 
           
-          const ComprasDelMesAnt=await Compras.find({"createdAt" : {"$gt" : new Date(monthAnt), "$lte": new Date(month)}})
+          
+          const ComprasDelMesAnt=await Compras.find({"createdAt" : {"$gt" : new Date(monthAnt)}})
           ComprasDelMesAnt.forEach( function(k){
             totalAnt    += 1;
             sumaAnt +=k.sumaTotal
           
           });  
+         
+
+          sumaAnt=Math.abs(sumaAnt-suma)
+          totalAnt=Math.abs(totalAnt -total)
+          
        
        let totalDAnt=0; 
        let sumaDAnt=0;

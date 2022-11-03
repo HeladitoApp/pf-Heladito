@@ -222,7 +222,7 @@ export default function ActualizarProducto() {
                             >
                               Imagen
                             </FormLabel>
-                            
+
                             <UploadImage input={input} setInput={setInput} />
 
                           </FormControl>
@@ -264,7 +264,7 @@ export default function ActualizarProducto() {
                               color="gray.700"
                               _dark={{ color: "gray.50" }}
                             >
-                              Precio
+                              Stock
                             </FormLabel>
                             <NumberInput defaultValue={detail?.stock} precision={0} step={1}
                               name="stock"

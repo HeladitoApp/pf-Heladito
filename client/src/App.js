@@ -60,14 +60,15 @@ function App() {
   let id = usuariosss[0]?._id
   let rolDelUsuario = usuariosss[0]?.rol
 
+  if (isLoading) {
+    return <Loading />;
+  } 
   if(usuariosss[0]?.activo === false) { 
     return <DarDeAlta/>
   }
-  if (isLoading) {
-    return <Loading />;
-  } else {
-    return (
-      <div>
+  else {
+      return (
+        <div>
         <NavSuperior setPage={setPage} page={page} isOpenM={isOpen} onOpenM={onOpen} onCloseM={onClose} />
         <Routes>
           <Route path="/" element={<Home setPage={setPage} page={page} />} />

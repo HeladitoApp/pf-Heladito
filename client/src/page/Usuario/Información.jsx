@@ -38,7 +38,7 @@ export default function Informacion() {
   const { user, isLoading } = useAuth0();
 
   useEffect(()=>{
-    dispatch(traerUsuariosById(usuario._id))
+    dispatch(traerUsuariosById(usuario?._id))
   }, [])
 
   const [input, setInput] = useState({

@@ -37,6 +37,9 @@ _Carrito_
 _Pago de Producto_
 ![Producto](./App%20Images/5.%20CheckoutMercadoPago2.png)
 
+_Recepción de Comprobante en Email_
+![Producto](./App%20Images/17.%20Pago%20en%20Email.png)
+
 _Reviews_
 ![Producto](./App%20Images/14.%20Reviews.png)
 

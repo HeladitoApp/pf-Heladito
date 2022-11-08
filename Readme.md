@@ -37,6 +37,9 @@ _Carrito_
 _Pago de Producto_
 ![Producto](./App%20Images/5.%20CheckoutMercadoPago2.png)
 
+_Recepción de Comprobante en Email_
+![Producto](./App%20Images/17.%20Pago%20en%20Email.png)
+
 _Reviews_
 ![Producto](./App%20Images/14.%20Reviews.png)
 
@@ -60,7 +63,7 @@ _Para poder ejecutar el proyecto de forma local deberá crear los archivos .env 
 
 ### Pre-requisitos 📋
 
-_Se necesita estar registrado en los siguientes para ejecutar Heladitos APP_
+_Se necesita estar registrado en los siguientes servicios para ejecutar Heladitos APP_
 
 Para el Frontend
 

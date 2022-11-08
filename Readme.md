@@ -60,7 +60,7 @@ _Para poder ejecutar el proyecto de forma local deberá crear los archivos .env 
 
 ### Pre-requisitos 📋
 
-_Se necesita estar registrado en los siguientes para ejecutar Heladitos APP_
+_Se necesita estar registrado en los siguientes servicios para ejecutar Heladitos APP_
 
 Para el Frontend
 

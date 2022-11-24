@@ -15,7 +15,7 @@ _Para el despligue del proyecto se utilizaron los siguientes servicios:_
 * [Railway](https://railway.app/) para el backend
 * [MongoDb Atlas](https://www.mongodb.com/es/atlas/database) para la Base de Datos
 
- _Puede ver el proyecto completo [aquí](https://heladitos-app.vercel.app/)_
+ _[Aquí](https://heladitos-app.vercel.app/)_ puedes ver el proyecto completo
 
 __
 
